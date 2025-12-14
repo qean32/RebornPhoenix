@@ -5,8 +5,9 @@ export const useHandlerScroll = (daley: number = 100, direction: 'top' | 'bottom
     const { on, off, boolean } = useBoolean(false);
     const refHandler = React.useRef<HTMLDivElement | null>(null)
     const controller = new AbortController
-    const nodeHandler = refHandler.current
     const fn = useThrottleFunction(() => {
+        const nodeHandler = refHandler.current
+
         if (nodeHandler) {
 
             (direction == 'top' && nodeHandler.getBoundingClientRect()[direction] < window.innerHeight + daley)
@@ -19,6 +20,8 @@ export const useHandlerScroll = (daley: number = 100, direction: 'top' | 'bottom
     }, 30)
 
     React.useEffect(() => {
+        const nodeHandler = refHandler.current
+
         if (nodeHandler) {
             window.addEventListener('scroll', fn, { signal: controller.signal })
 

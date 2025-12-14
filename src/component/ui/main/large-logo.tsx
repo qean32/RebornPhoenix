@@ -9,7 +9,7 @@ interface Props {
 
 
 export const LargeLogo: React.FC<Props> = ({ }: Props) => {
-    const { refHandler, boolean } = useHandlerScroll(50)
+    const { refHandler, boolean } = useHandlerScroll(-200)
 
     return (
         <div className={cn(
