@@ -3,15 +3,7 @@ import { Circle, Group } from "react-konva"
 import { useDMEntity } from '@lib/castom-hook/area';
 import { entityDto } from '@/model';
 import { useAppDispatch } from '@lib/castom-hook/redux';
-import { getSizeInPixel } from '@/lib/function';
-import Konva from 'konva'
-import { Dead, Gray, Hidden } from './utils';
-
-const restObject = {
-    fillPatternRepeat: 'no-repeat',
-    strokeWidth: 35,
-    stroke: "#1f1f1f",
-}
+import { Dead, Gray, Hidden, utils } from './utils';
 
 
 export const EntityDM: React.FC<Omit<entityDto, 'description'>> = (props: Omit<entityDto, 'description'>) => {
@@ -26,6 +18,7 @@ export const EntityDM: React.FC<Omit<entityDto, 'description'>> = (props: Omit<e
         image,
         rectRef
     } = useDMEntity(dispath, props.path)
+    const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
 
     return (
@@ -40,18 +33,14 @@ export const EntityDM: React.FC<Omit<entityDto, 'description'>> = (props: Omit<e
             onMouseOut={mouseOutHandler}
             onMouseOver={mouseOverHandler}
             onDragMove={dragMoveHandler}
-            filters={props.status == 'hidden' ? [Konva.Filters.Grayscale] : []}
         >
             <Circle
-                {...restObject}
+                {...utils.restObject}
                 radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
                 fillPatternImage={image}
                 fillPatternX={image ? -image?.width / 2 : 0}
                 fillPatternY={image ? -image?.height / 2 : 0}
-                scale={{
-                    y: image ? ((getSizeInPixel(props.size) / 2) / ((image?.height > image.width ? image.width : image.height) / 2)) : 0,
-                    x: image ? ((getSizeInPixel(props.size) / 2) / ((image?.height > image.width ? image.width : image.height) / 2)) : 0,
-                }}
+                scale={{ y: scale, x: scale }}
             />
             {(props.status == 'dead' || props.status == 'hidden') &&
                 <Gray image={image} size={props.size} />}

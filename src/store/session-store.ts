@@ -116,10 +116,12 @@ const sessionSlice = createSlice({
         // """"""""""""""""""""""""""""""""""""""""""" { map action } """"""""""""""""""""""""""""""""""""""""""" //
 
         swapCurrentMap: (state: stateDto, { payload }: PayloadAction<idDto>) => {
-            state.session.currentMap =
-                state.session.maps.find(item => item.id == payload.id)
-                ??
-                state.session.currentMap
+            if (state.session.maps.find(item => item.id == payload.id)) {
+                state.session.currentMap =
+                    state.session.maps.find(item => item.id == payload.id)
+                    ??
+                    state.session.currentMap
+            }
         },
         pushMap: (state: stateDto, { payload }: PayloadAction<mapDto>) => {
             const id = generateId()
@@ -130,7 +132,7 @@ const sessionSlice = createSlice({
             state.session.mapsData[id] = {
                 objects: [],
                 queue: [],
-                character: []
+                characters: []
             }
         },
         removeMap: (state: stateDto, { payload: { id } }: PayloadAction<idDto>) => {
@@ -155,12 +157,12 @@ const sessionSlice = createSlice({
             if (!state.session.characters.find(item => item.name == payload.name)) {
                 state.session.characters = [
                     ...state.session.characters,
-                    { ...payload, id: generateId(), size: 2, status: 'live', position: { x: 0, y: 0 } }
+                    { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
                 ]
             }
-            state.session.mapsData[state.session.currentMap.id].character = [
-                ...state.session.mapsData[state.session.currentMap.id].character,
-                { ...payload, id: generateId(), size: 2, status: 'live', position: { x: 0, y: 0 } }
+            state.session.mapsData[state.session.currentMap.id].characters = [
+                ...state.session.mapsData[state.session.currentMap.id].characters,
+                { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
             ]
         },
         removeCharacter: (state: stateDto, { payload: { id } }: PayloadAction<idDto>) => {

@@ -21,8 +21,8 @@ const actionMap: { status: statusDto, icon: any }[] = [
         status: 'hidden'
     },
     {
-        icon: <img src={'/icon/live.svg'} alt="" className='icon-md-' />,
-        status: 'live'
+        icon: <img src={'/icon/stable.svg'} alt="" className='icon-md-' />,
+        status: 'stable'
     },
     {
         icon: <img src={'/icon/dead.svg'} alt="" className='icon-lg' />,
@@ -54,8 +54,8 @@ export const ActionEntity: React.FC<Props> = ({
     view,
     swap,
 }: Props) => {
-    const { session: { mapsData, currentMap: { id } } } = useAppSelector(state => state.session)
-    const entity = mapsData[id]?.queue.find(item => item.id == Number(view))
+    const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
+    const entity = mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view))
     const dispath = useAppDispatch()
     const change = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
@@ -84,6 +84,7 @@ export const ActionEntity: React.FC<Props> = ({
                             <p className='pb-4'>Статус</p>
                             {actionMap.map(item => {
                                 return <Square
+                                    key={item.status}
                                     value={entity?.status == item.status}
                                     data={{ key: 'status', value: item.status }}
                                 >
@@ -95,6 +96,7 @@ export const ActionEntity: React.FC<Props> = ({
                             <p className='pb-4'>Размер</p>
                             {sizeMap.map(item => {
                                 return <Square
+                                    key={item.id}
                                     value={entity?.size == item.id}
                                     data={{ key: 'size', value: item.id }}
                                 >

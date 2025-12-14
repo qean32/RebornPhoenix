@@ -14,7 +14,7 @@ interface sourceDto extends idDto {
     name: string
 }
 
-export type statusDto = 'live' | 'dead' | 'stan' | 'hidden'
+export type statusDto = 'stable' | 'dead' | 'stan' | 'hidden'
 
 export interface entityDto extends abstractEntity {
     idInBestiary: number

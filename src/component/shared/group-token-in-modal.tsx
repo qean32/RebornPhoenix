@@ -2,7 +2,7 @@ import React from 'react'
 import { Title } from '@component/ui'
 import { cn, getHTMLData } from '@/lib/function'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { swapObjectBeingPushedToGame } from '@/store/object-being-pushed-to-game-store'
+import { swapObjectBeingPushedToSession } from '@/store/object-being-pushed-to-session-store'
 
 interface Props {
     renderItem(item: any): React.ReactNode
@@ -15,7 +15,7 @@ export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props)
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const object = getHTMLData(e, true)
         if (object) {
-            dispath(swapObjectBeingPushedToGame({ object }))
+            dispath(swapObjectBeingPushedToSession({ object }))
         }
     }
 

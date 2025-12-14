@@ -17,7 +17,8 @@
     "mapsData": {
         "0": {
             "objects": [],
-            "queue": []
+            "queue": [],
+            "characters": []
         }
     }
 }

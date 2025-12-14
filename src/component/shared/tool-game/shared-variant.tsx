@@ -12,7 +12,7 @@ interface Props {
     mapsData: mapsDataDto
     characters: characterDto[]
     bestiary: bestiaryItem[]
-    id: number
+    id: number | null
 }
 
 
@@ -23,6 +23,9 @@ export const SharedVariant: React.FC<Props> = ({
     id
 }: Props) => {
     const { param } = useQueryParam(qParamName.sContent)
+    if (id == null) {
+        return <></>
+    }
 
     return (<>
         <SwithContentLiftSideGame />

@@ -1,3 +1,6 @@
 export { authService } from './auth-service'
 export { serverService } from './server-service'
-export { userService } from './user-service'
+export { communityService } from './community-service'
+export { forumService } from './forum-service'
+export { postService } from './post-service'
+export { profileService } from './profile-service'

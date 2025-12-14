@@ -6,7 +6,7 @@ type stateDto = { tmpEntity: entityDto | objectDto | null | idDto }
 const initialState: stateDto = { tmpEntity: null }
 
 const tempEntitySlice = createSlice({
-    name: 'temp-entity',
+    name: 'temp-entity-store',
     initialState,
     reducers: {
         swapTmpEntity(state: stateDto, { payload }: PayloadAction<entityDto | objectDto | idDto>) {

@@ -2,7 +2,7 @@ import React from "react"
 import { useBoolean, useHandlerScroll } from "."
 
 export const useDinamickPaginationFake = <T,>(skip_: number = 0, search: string, items: T[]) => {
-    const { refHandler, boolean } = useHandlerScroll(10)
+    const { refHandler, boolean } = useHandlerScroll(70)
 
     const [skip, setSkip] = React.useState<number | string>(skip_)
     const { boolean: isEnd, on: onIsEnd } = useBoolean()

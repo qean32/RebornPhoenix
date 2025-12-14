@@ -37,7 +37,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
                 <NoFindData title='У игрока нет персонажей!' view={false} className='py-5' />
                 <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>
                     {f_post.slice(0, 14).map((__, _) =>
-                        <CharacterItemInPush key={_} id={_ + 1} name='КлиганКлиган' status={'live'} user={{ ava: '', email: '', id: 1, name: '' }} path={'/img/carousel-item-7.jpg'} size={1} />
+                        <CharacterItemInPush key={_} id={_ + 1} name='КлиганКлиган' status={'stable'} user={{ ava: '', email: '', id: 1, name: '' }} path={'/img/carousel-item-7.jpg'} size={1} />
                     )}
                 </div>
                 <div className="flex justify-end gap-2">

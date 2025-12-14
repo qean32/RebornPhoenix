@@ -1,15 +1,15 @@
 import { useDMObject } from '@/lib/castom-hook/area'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { getSizeInPixel } from '@/lib/function'
 import { objectDto } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
+import { utils } from './utils'
 
 interface Props extends objectDto {
 }
 
 
-export const ObjectDM: React.FC<Props> = (props: Props) => {
+export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
     const dispath = useAppDispatch()
     const {
         clickHandler,
@@ -20,6 +20,7 @@ export const ObjectDM: React.FC<Props> = (props: Props) => {
         mouseOutHandler,
         mouseOverHandler,
     } = useDMObject(dispath, props.path)
+    const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
         <>
@@ -27,10 +28,7 @@ export const ObjectDM: React.FC<Props> = (props: Props) => {
                 visible={props.status != 'hidden'}
                 {...props.position}
                 id={props.id.toString()}
-                scale={{
-                    y: image ? ((getSizeInPixel(props.size) / 2) / ((image?.height > image.width ? image.width : image.height) / 2)) : 0,
-                    x: image ? ((getSizeInPixel(props.size) / 2) / ((image?.height > image.width ? image.width : image.height) / 2)) : 0,
-                }}
+                scale={{ y: scale, x: scale }}
                 onClick={clickHandler}
                 onDragEnd={dragEndHandler}
                 onDragStart={dragStartHandler}

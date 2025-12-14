@@ -18,7 +18,7 @@ export const MapsGame: React.FC<Props> = ({ view, swap }: Props) => {
     const { session: { maps, currentMap } } = useAppSelector(state => state.session)
     const dispath = useAppDispatch()
     const swapHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        dispath(swapCurrentMap({ id: getHTMLData(e, true).id }))
+        dispath(swapCurrentMap({ id: getHTMLData(e, true)?.id }))
     }
 
     return (
@@ -35,7 +35,8 @@ export const MapsGame: React.FC<Props> = ({ view, swap }: Props) => {
                 <p className='pl-5 pt-2 text-2xl'>Карты</p>
                 <div className='grid gap-5 p-5 grid-cols-6 adaptive2k-grid-column-7' onClick={swapHandler}>
                     {maps.map((item) =>
-                        <SelectMapItem value={currentMap.id} data={item} path={item.path} />
+                        // @ts-ignore
+                        <SelectMapItem value={currentMap ? currentMap.id : 'null'} data={item} path={item.path} key={item.id} />
                     )}
                     <ModalGroup.Root modal={ModalGroup.PushToSession} props={{ type: 'map', renderItem: InStoreMapItem, accept: PushMap }}>
                         <PlusButton className='h-[9vh] w-1/9 px-5' iconSize='icon-sm' /></ModalGroup.Root>

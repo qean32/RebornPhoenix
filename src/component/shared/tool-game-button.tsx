@@ -63,7 +63,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <Modal.Root modal={Modal.ImgCarousel}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/img-carousel.svg' />} /></Modal.Root>
                 </LocalHint>
-                <LocalHint title='Записи'>
+                <LocalHint title='Заметки'>
                     <Modal.Root modal={Modal.Notes}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/edit.svg' />} /></Modal.Root>
                 </LocalHint>

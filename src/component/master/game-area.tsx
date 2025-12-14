@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stage, Layer, Group } from "react-konva"
-import { EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
+import { CharacterDM, EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
 import { useAppSelector } from '@lib/castom-hook/redux';
 import { useStage } from '@lib/castom-hook';
 
@@ -9,12 +9,8 @@ interface Props {
 
 
 export const GameArea: React.FC<Props> = ({ }: Props) => {
-    const { session: { currentMap: { id }, mapsData } } = useAppSelector(state => state.session)
+    const { session: { currentMap, mapsData } } = useAppSelector(state => state.session)
     const { handleWheel, stage } = useStage()
-    const [entities, setEntities] = React.useState(mapsData[id]?.queue)
-    React.useEffect(() => {
-        setEntities(mapsData[id]?.queue)
-    }, [id, mapsData[id]])
 
 
     return (
@@ -35,14 +31,19 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
                 <Group>
                     <GameBackground />
                 </Group>
-                {!!entities?.length &&
-                    entities?.map((item) => {
+                {!!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
+                    mapsData[currentMap ? currentMap.id : 'null']?.queue.map((item) => {
                         return <EntityDM {...item} key={item.id} />
                     })
                 }
-                {!!mapsData[id]?.objects.length &&
-                    mapsData[id]?.objects.map((item) => {
+                {!!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
+                    mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
                         return <ObjectDM {...item} key={item.id} />
+                    })
+                }
+                {!!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
+                    mapsData[currentMap ? currentMap.id : 'null']?.characters.map((item) => {
+                        return <CharacterDM {...item} key={item.id} />
                     })
                 }
             </Layer>

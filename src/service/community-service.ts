@@ -1,8 +1,7 @@
 import { requestGet, requestPatch } from "@lib/function/request"
-import { getToken } from "@lib/function"
 const instance = 'users'
 
-export const userService = {
+export const communityService = {
     getUsers: (skip: number, take: number, search: string) => {
         return requestGet(`${instance}?skip=${skip}&take=${take}&search=${search}`)
     },
@@ -11,12 +10,7 @@ export const userService = {
         return requestGet(`${instance}/id/?id=${id}`)
     },
 
-    searchUser: (query: string) => {
-        return requestGet(`${instance}/search${query}`)
-    },
-
     updateUser: (ava: any) => {
-        // @ts-ignore
-        return requestPatch(`${instance}/${getToken().id}/`, ava, true)
+        return requestPatch(`${instance}/`, ava, true)
     }
 }

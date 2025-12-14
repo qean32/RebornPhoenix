@@ -5,8 +5,8 @@ import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
 
 interface Props {
-    view: boolean
-    swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
+    view: boolean | string
+    swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement> | any
 }
 
 
@@ -25,7 +25,7 @@ export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
     return (
         <Modal
             swap={swap}
-            view={view}
+            view={Boolean(view)}
             animation={{
                 open: 'modal-open',
                 close: 'modal-close'
