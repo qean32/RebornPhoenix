@@ -35,7 +35,7 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
             <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={false} />
 
             <ViewAuthor>
-                <div className="px-4 mt-4">
+                <div className="px-1 mt-4">
                     <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>
             </ViewAuthor>

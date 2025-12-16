@@ -13,12 +13,12 @@ export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
     const { param } = useQueryParam(qParamName.anchorLink)
 
     return (
-        <div className="relative bg-color-dark px-5 pt-5 w-fit">
+        <div className="relative bg-color-dark px-6 pt-4 pb-5 w-fit border-l-1">
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
                     return (
                         <Link to={`/faq#${index}`}>
-                            <p className={cn('transition-300', (param == item && "text-red-800"))}>{item}</p></Link>
+                            <p className={cn('transition-300 text-lg hover:text-red-800', (param == item && "text-red-800"))}>{item}</p></Link>
                     )
                 })}
             </div>
