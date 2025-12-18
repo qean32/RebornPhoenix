@@ -7,7 +7,7 @@ export const forumService = {
     },
 
     getPost: (id: number) => {
-        return requestGet(`${instance}/post/${id}`)
+        return requestGet(`${instance}/${id}/post/`)
     },
 
     getDepartmentPost: (skip: number, take: number, search: string, idDepartment: number, date: string, tags: string) => {
@@ -15,7 +15,7 @@ export const forumService = {
     },
 
     createPost: (data: any) => {
-        return requestPost(`${instance}/push-post`, data)
+        return requestPost(`${instance}/create/post`, data)
     },
 
     like: (id: number) => {

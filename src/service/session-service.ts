@@ -25,5 +25,9 @@ export const sessionService = {
 
     createObject: (data: any) => {
         return requestPost(`${instance}/create/object`, data)
+    },
+
+    pushImgToSession: (data: any, id: number) => {
+        return requestPost(`${instance}/${id}/push/img`, data)
     }
 }

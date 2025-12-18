@@ -10,6 +10,7 @@ interface Props {
     content: {
         image?: string,
         text: string,
+        subTitle?: string
     }[],
     id: number
 }
@@ -32,9 +33,10 @@ export const FaqBlock: React.FC<Props> = ({
     return (
         <div className='pt-20' ref={refHandler} id={id.toString()}>
             <p className="text-3xl uppercase">{title}</p>
-            {content.map(({ text, image }) => {
+            {content.map(({ text, image, subTitle }) => {
                 return (
                     <>
+                        {subTitle && <p className="text-2xl uppercase pt-5 pb-2">{subTitle}</p>}
                         <p className='text-md text-justify'>
                             {text}
                         </p>

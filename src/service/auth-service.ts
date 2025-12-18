@@ -16,6 +16,6 @@ export const authService = {
     },
 
     resetPassword: async (data: resetPasswordFormDto) => {
-        return requestPost(`${instance}/reser-password`, data)
+        return requestPost(`${instance}/reset-password`, data)
     },
 }

@@ -20,11 +20,11 @@ export const profileService = {
     },
 
     banAction: (data: any, id: number) => {
-        return requestPost(`${instance}/ban-action/${id}`, data)
+        return requestPost(`${instance}/${id}/ban-action/`, data)
     },
 
     getBanReason: (id: number) => {
-        return requestGet(`${instance}/ban-reason/${id}`)
+        return requestGet(`${instance}/${id}/ban-reason/`)
     },
 
     subscribe: (id: number) => {
