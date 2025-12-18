@@ -1,6 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { mapDto } from '@/model'
+import { MapItemMenu } from '@/component/case/context-menu'
 
 interface Props {
     path: string
@@ -9,15 +10,18 @@ interface Props {
 }
 
 
-export const SelectMapItem: React.FC<Props> = ({ path, value, data }: Props) => {
+export const SelectMapItem: React.FC<Props> = (item: Props) => {
     return (
         <div
-            data={JSON.stringify(data)}
+            data={JSON.stringify(item.data)}
             className={cn(
-                'bg-img bg-shadow rounded-sm overflow-hidden cursor-pointer hover:border-1 h-[9vh]',
-                (data.id == value && 'border-1')
+                'bg-img bg-shadow-prime relative rounded-sm cursor-pointer hover:border-1 h-[9vh]',
+                (item.data.id == item.value && 'border-1')
             )}
-            style={{ transformOrigin: 'bottom', backgroundImage: `url(${`${path}`})` }}>
+            style={{ transformOrigin: 'bottom', backgroundImage: `url(${`${item.path}`})` }}>
+            <div className="absolute right-0">
+                <MapItemMenu {...item.data} />
+            </div>
         </div>
     )
 }

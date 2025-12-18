@@ -33,7 +33,11 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
                             name='confirmPassword'
                             xHint='right'
                         />
-                        <Button variant="acceess" className="w-full py-3" >Сохранить</Button>
+                        <Button
+                            variant="acceess"
+                            type='submit'
+                            className="w-full py-3"
+                        >Сохранить</Button>
                     </div>
                 </div>
             </form>

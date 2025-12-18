@@ -12,7 +12,7 @@ export const GroupButton: React.FC<Props> = ({
     children
 }: Props) => {
     return (
-        <div className={cn('flex rounded-b-sm bg-color-dark fit-content children-no-outline-hover overflow-hidden', className)}>
+        <div className={cn('flex rounded-b-sm bg-color-dark fit-content children-no-outline-hover', className)}>
             {children}
         </div>
     )

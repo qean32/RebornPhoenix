@@ -11,6 +11,9 @@ export const convertToHTML = (text: string, link?: string) => {
     return text.split(separator).map(item => {
         const arr = item.split(' ')
 
+        if (item.includes('script')) {
+            return "ERROR"
+        }
         if (arr[0] == customMarkup.h1) {
             return `<p class="text-4xl">${arr.slice(1)}</p>`
         }

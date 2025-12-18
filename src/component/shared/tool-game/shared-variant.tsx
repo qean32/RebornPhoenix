@@ -3,17 +3,16 @@ import { cn } from '@lib/function'
 import { Button } from '@component/ui'
 import { SwithContentLiftSideGame } from './swith-content-tool-in-game'
 import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './utils'
-import { mapsDataDto } from '@/model'
+import { bestiaryItem, mapsDataDto, characterDto } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
-import { characterDto, entityDto } from '@/model/entities.dto'
 import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
 
 interface Props {
     mapsData: mapsDataDto
     characters: characterDto[]
-    bestiary: entityDto[]
-    id: number
+    bestiary: bestiaryItem[]
+    id: number | null
 }
 
 
@@ -24,6 +23,9 @@ export const SharedVariant: React.FC<Props> = ({
     id
 }: Props) => {
     const { param } = useQueryParam(qParamName.sContent)
+    if (id == null) {
+        return <></>
+    }
 
     return (<>
         <SwithContentLiftSideGame />
@@ -63,9 +65,9 @@ export const SharedVariant: React.FC<Props> = ({
                 />
             </div >
         </div>
-        {param == 'queue' &&
+        {(param == 'queue' || !param) &&
             <div className='flex justify-center px-4 bg-color-dark pt-5'>
-                <Button variant='acceess' className='w-full py-3'><p>следующий</p></Button>
+                <Button variant='acceess' className='w-full py-2.5'>Cледующий</Button>
             </div>}
     </>
     )

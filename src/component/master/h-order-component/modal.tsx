@@ -29,8 +29,21 @@ export const Modal: React.FC<Props> = ({
 
     return (
         <Portal>
-            <div className={cn("shadow z-50", !view && 'shadow-close')} onClick={swap} style={{ zIndex: 100 }}>
-                <div className={cn('flex w-full h-full justify-center items-center', (view ? open : close), className)}>
+            <div className={cn(
+                "shadow z-50",
+                !view && 'shadow-close'
+            )}
+                onClick={swap}
+                style={{ zIndex: 100 }}
+            >
+                <div
+                    className={cn(
+                        'flex w-full h-full justify-center items-center',
+                        (view ? open : close),
+                        className
+                    )}
+                    value='modal'
+                >
                     {children}
                 </div>
             </div>

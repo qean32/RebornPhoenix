@@ -73,6 +73,11 @@ body {
     aspect-ratio: 1/1;
 }
 
+.icon-md- {
+    width: 36px;
+    aspect-ratio: 1/1;
+}
+
 .icon-lg {
     width: 50px;
     aspect-ratio: 1/1;
@@ -84,7 +89,7 @@ body {
 }
 
 .icon-4xl {
-    width: 144px;
+    width: 164px;
     aspect-ratio: 1/1;
 }
 
@@ -113,19 +118,21 @@ body {
 .ava-md {
     width: 50px;
     aspect-ratio: 1/1;
-    border-radius: 100%;
 }
 
 .ava-sm {
     width: 38px;
     aspect-ratio: 1/1;
-    border-radius: 100%;
 }
 
 .ava-lg {
     width: 75px;
     aspect-ratio: 1/1;
-    border-radius: 100%;
+}
+
+.ava-xl {
+    width: 85px;
+    aspect-ratio: 1/1;
 }
 
 .child-pointer {

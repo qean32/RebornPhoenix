@@ -1,12 +1,12 @@
 import React from 'react'
-import { cn } from '../../lib/function'
+import { cn, getBetweenNumber } from '../../lib/function'
+import { noFindDataIcon } from '@/export'
 
 interface Props {
     className?: string
     title: string
     view: boolean
 }
-
 
 export const NoFindData: React.FC<Props> = ({
     className,
@@ -16,10 +16,11 @@ export const NoFindData: React.FC<Props> = ({
     if (!view) {
         return null
     }
+    const ref = React.useRef(noFindDataIcon[getBetweenNumber(0, noFindDataIcon.length - 1)])
 
     return (
-        <div className={cn("flex-1 flex justify-center items-center flex-col gap-5", className)}>
-            <img src='/icon/no-find-data.svg' className='icon-4xl' />
+        <div className={cn("flex-1 flex justify-center items-center flex-col gap-8", className)}>
+            <img src={ref.current} className='icon-4xl' />
             <p className='text-sm'>{title}</p>
         </div>
     )

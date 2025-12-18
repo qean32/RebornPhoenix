@@ -17,7 +17,7 @@ export const ToastMessage: React.FC<Props> = ({
     return (
         <Toast view={view}>
             <div className={cn("py-3 px-4 flex gap-4 items-center", className)}>
-                <img src="/icon/logo.svg" className='icon-sm' alt="" />
+                <img src="/icon/logo-short.svg" className='icon-sm' alt="" />
                 <p className='text-xl'>{text}</p>
             </div>
         </Toast>

@@ -1,6 +1,6 @@
-import { tokenStorage } from "@/export"
-import { tokenStorageDto } from "@/model"
+import { tokenKey } from "@/export"
+import Cookies from 'js-cookie'
 
 export const getToken = () => {
-    return (JSON.parse(localStorage.getItem(tokenStorage) as string) as tokenStorageDto)?.token
+    return Cookies.get(tokenKey)
 }

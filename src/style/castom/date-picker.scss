@@ -58,3 +58,9 @@
     font-size: 20px;
     outline: none !important;
 }
+
+.date-picker-form {
+    & input {
+        padding-block: 10px !important;
+    }
+}

@@ -17,9 +17,23 @@ export const useQueryParam = (key: string, defaultValue?: string) => {
         })
     }
 
+    const clearQParam = (key: string) => {
+        setParam({
+            ...Object.fromEntries(searchParams),
+            [key]: '',
+        })
+    }
+
+    const pushQParam = (key: string, value: string) => {
+        setParam({
+            ...Object.fromEntries(searchParams),
+            [key]: value,
+        })
+    }
+
     const clearQ = () => {
         setParam({})
     }
 
-    return { param: param.get(key) ?? '', pushQ, clearQ, allQ: Object.fromEntries(searchParams) }
+    return { param: param.get(key) ?? '', pushQ, clearQ, allQ: Object.fromEntries(searchParams), clearQParam, pushQParam }
 }

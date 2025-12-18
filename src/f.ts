@@ -313,34 +313,39 @@ export const f_map: Omit<mapDto, 'id'>[] = [
 
 export const f_object: Omit<objectDto, 'id'>[] = [
     {
-        status: 'live',
-        name: 'Гоблин',
-        path: '/img/f/object1.jpg',
+        status: '',
+        name: 'Ящик с гоблином внутри',
+        size: 2,
+        path: '/img/f/object1.png',
         source: { id: 1, name: 'Мелкие твари' },
     },
     {
-        status: 'live',
+        status: '',
         name: 'Гремлин',
-        path: '/img/f/object2.jpg',
+        path: '/img/f/object2.webp',
         source: { id: 1, name: 'Мелкие твари' },
+        size: 2,
     },
     {
-        status: 'live',
+        status: '',
         name: 'Громовой дракон',
         path: '/img/f/object3.jpg',
         source: { id: 1, name: 'Драконы' },
+        size: 2,
     },
     {
-        status: 'live',
+        status: '',
         name: 'Огненый дракон',
         path: '/img/f/object4.jpg',
         source: { id: 1, name: 'Драконы' },
+        size: 2,
     },
     {
-        status: 'live',
+        status: '',
         name: 'Стражник',
         path: '/img/f/object5.jpg',
         source: { id: 1, name: 'Стражна' },
+        size: 2,
     }
 ]
 
@@ -352,7 +357,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Маленькое злое существо, часто встречающееся в подземельях.',
         initiative: 130,
         size: 2,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 123
     },
     {
@@ -362,7 +367,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Маленькое вредное существо, известное своим коварством.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1234
     },
     {
@@ -372,7 +377,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Могучий дракон, умеющий вызывать грозы и молнии.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1123
     },
     {
@@ -382,7 +387,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Дракон, способный извергать пламя изо рта.',
         initiative: 5,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1223
     },
     {
@@ -392,7 +397,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Защитник или охранник, охраняющий важные объекты.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1323
     },
     {
@@ -402,7 +407,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Грубое существо, живущее в горах или лесах.',
         initiative: 52,
         size: 3,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1423
     },
     {
@@ -412,7 +417,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Мастер магии, владеющий силой заклинаний.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1253
     },
     {
@@ -422,7 +427,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Знахарка или магиня, использующая магию для своих целей.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1243
     },
     {
@@ -432,7 +437,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Суровое воинственное существо, обычно враждебное людям.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 1273
     },
     {
@@ -442,7 +447,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Лесное существо, известное своей грацией и магическими способностями.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 12312
     },
     {
@@ -452,7 +457,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Маленькое, но искусное в кузнечном деле существо.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 43123
     },
     {
@@ -462,7 +467,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Зловещее существо, связанное с тьмой и магией зла.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 12343
     },
     {
@@ -472,7 +477,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Большое хищное животное, обитающее в лесах.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 123
     },
     {
@@ -482,7 +487,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Длинное пресмыкающееся существо, часто ядовитое.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 564123
     },
     {
@@ -492,7 +497,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Небольшое ночное существо, летающее в тёмных местах.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 234123
     },
     {
@@ -502,7 +507,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Морское существо с верхней частью человека и хвостом рыбы.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 67123
     },
     {
@@ -512,7 +517,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Гигантское морское существо, способное разрушать корабли.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 423123
     },
     {
@@ -522,7 +527,7 @@ export const f_entity: Omit<entityDto, 'id'>[] = [
         description: 'Величественное существо, владеющее магией и силой.',
         initiative: 30,
         size: 1,
-        status: 'live',
+        status: 'stable',
         idInBestiary: 64123
     }
 ]

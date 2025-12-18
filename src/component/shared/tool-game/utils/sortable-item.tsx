@@ -9,10 +9,15 @@ import { CSS } from "@dnd-kit/utilities";
 import { EntityItemMenu } from "@/component/case/context-menu";
 import { Ava } from "@/component/ui";
 import { entityDto } from "@/model";
+import { cn } from "@/lib/function";
 
 interface Props {
     id: UniqueIdentifier;
-    item: entityDto
+    item: extandEntityDto
+}
+
+interface extandEntityDto extends entityDto {
+    selectId: number
 }
 
 interface Context {
@@ -54,7 +59,7 @@ export function SortableItem({ children, id, item }: PropsWithChildren<Props>) {
     return (
         <SortableItemContext.Provider value={context}>
             <div
-                className='flex items-center justify-between px-3 pr-3 py-4 bg-color-hover transition-300'
+                className={cn('flex items-center justify-between px-3 pr-3 py-4 bg-color-hover transition-300 mount-opacity', (item.selectId == item.id && 'border-1'))}
                 style={{ 'position': 'relative', ...style }}
                 ref={setNodeRef}
             >
@@ -67,7 +72,7 @@ export function SortableItem({ children, id, item }: PropsWithChildren<Props>) {
                 </div>
                 {children}
             </div >
-        </SortableItemContext.Provider>
+        </SortableItemContext.Provider >
     );
 }
 

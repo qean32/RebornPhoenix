@@ -4,7 +4,15 @@ import { useBoolean } from '@/lib/castom-hook'
 interface Props {
     children: React.ReactNode
     modal: any
-    props?: any
+    props?: {
+        fn?: any
+        warningButtonText?: string
+        warning?: string
+        type?: string
+        renderItem?: (item: any) => React.ReactNode
+        accept?: any
+        id?: string
+    }
 }
 
 

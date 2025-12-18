@@ -27,5 +27,5 @@ export const useMyForm = <T extends FieldValues,>(
     const submitHandler = form.handleSubmit(onSubmit, onError)
 
 
-    return { submitHandler, form, }
+    return { submitHandler, form }
 }

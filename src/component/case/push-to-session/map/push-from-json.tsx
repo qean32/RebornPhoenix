@@ -45,7 +45,7 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                 <NoFindData title='карта не выбрана' className='h-full' view={!data?.isMap} />
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
-                <div className="flex gap-2" data={JSON.stringify({ ...data })}>
+                <div className="flex gap-2" data={JSON.stringify(data)}>
                     <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
                     <Button fn={switcher.off} variant='ghost'>
                         <p className='pointer-events-none'>Кастомная карта</p></Button>

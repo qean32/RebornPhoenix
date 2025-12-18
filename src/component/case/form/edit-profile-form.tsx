@@ -35,7 +35,13 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                             path='/change-password'
                         >Востановить пароль</LinkPrime>
                     </div>
-                    <Button className="px-5 py-3" variant='acceess' children={<p>Редактировать</p>} />
+                    <Button
+                        variant='acceess'
+                        className="px-5 py-3"
+                        type='submit'
+                    >
+                        <p>Редактировать</p>
+                    </Button>
                 </div>
             </form>
         </FormProvider>

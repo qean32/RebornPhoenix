@@ -29,6 +29,7 @@ export const CommentForm: React.FC<Props> = ({ }: Props) => {
                             name='text'
                             title='Ваш коментарий'
                             parentDivclassName='w-full max-h-[300px] overflow-scroll translate-y-1.5 text-xl'
+                            className='no-min-h'
                         />
                         <Button type='submit'>
                             <img src="/icon/send.svg" alt="" className="icon-md" /></Button>

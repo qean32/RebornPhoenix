@@ -14,7 +14,8 @@ export default defineConfig(({ mode }) => {
     ],
     define: {
       'process.env.SERVER_HOST': JSON.stringify(env.SERVER_HOST),
-      'process.env.CLIENT_HOST': JSON.stringify(env.CLIENT_HOST)
+      'process.env.CLIENT_HOST': JSON.stringify(env.CLIENT_HOST),
+      'process.env.DISCORD': JSON.stringify(env.DISCORD),
     },
     resolve: {
       alias: {

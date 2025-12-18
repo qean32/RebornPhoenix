@@ -16,9 +16,9 @@
     "characters": [],
     "mapsData": {
         "0": {
-            "entities": [],
             "objects": [],
-            "queue": []
+            "queue": [],
+            "characters": []
         }
     }
 }

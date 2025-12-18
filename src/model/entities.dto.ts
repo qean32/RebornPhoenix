@@ -7,29 +7,30 @@ interface abstractEntity extends idDto {
     position?: coordinateDto
     name: string
     path: string
+    size: 1 | 2 | 3 | 4
 }
 
 interface sourceDto extends idDto {
     name: string
 }
 
-type statusDto = 'live' | 'dead' | 'stan' | 'hidden'
+export type statusDto = 'stable' | 'dead' | 'stan' | 'hidden'
 
 export interface entityDto extends abstractEntity {
     idInBestiary: number
     description: string
     status: statusDto
-    size: 1 | 2 | 3
     initiative: number
 }
 
-export interface characterDto extends entityDto {
+export interface characterDto extends Omit<abstractEntity, "source"> {
+    status: statusDto
     user: userDto
 }
 
-export interface mapDto extends Omit<abstractEntity, "position"> {
+export interface mapDto extends Omit<abstractEntity, "position" | "size"> {
 }
 
 export interface objectDto extends abstractEntity {
-    status: statusDto
+    status: '' | 'hidden'
 }

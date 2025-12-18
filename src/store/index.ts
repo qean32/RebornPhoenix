@@ -2,13 +2,19 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import { toastReducer } from './toast-store'
 import { sessionReducer } from './session-store'
-import { objectBeingPushedToGameReducer } from './object-being-pushed-to-game-store'
+import { objectBeingPushedToSessionReducer } from './object-being-pushed-to-session-store'
+import { tempEntityReducer } from './temp-entity'
+import { notesReducer } from './notes-store'
+import { userReducer } from './user-store'
 
 
 const rootReducer = combineReducers({
     toast: toastReducer,
     session: sessionReducer,
-    pushedObject: objectBeingPushedToGameReducer,
+    pushedObject: objectBeingPushedToSessionReducer,
+    tempEntity: tempEntityReducer,
+    notes: notesReducer,
+    user: userReducer,
 })
 
 export const store = configureStore({

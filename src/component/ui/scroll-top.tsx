@@ -1,5 +1,5 @@
 import React from 'react'
-import { useBoolean, useDebounceFunction } from '@lib/castom-hook'
+import { useBoolean, useThrottleFunction } from '@lib/castom-hook'
 import { cn } from '@lib/function'
 
 interface Props {
@@ -11,18 +11,18 @@ const clickHandler = () => {
 
 export const ScrollTop: React.FC<Props> = ({ }: Props) => {
     const { boolean, on, off } = useBoolean()
-    const fn = useDebounceFunction(() => {
+    const throttledFn = useThrottleFunction(() => {
         if (window.scrollY > 1200) {
             on()
         } else {
             off()
         }
-    }, 150)
+    }, 700)
 
     React.useEffect(() => {
-        window.addEventListener('scroll', fn)
+        window.addEventListener('scroll', throttledFn)
         return () => {
-            window.removeEventListener('scroll', fn)
+            window.removeEventListener('scroll', throttledFn)
         }
     }, [])
 

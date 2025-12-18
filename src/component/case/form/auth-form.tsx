@@ -37,7 +37,11 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
                             path='/reset-password'
                         >Востановить пароль</LinkPrime>
                     </div>
-                    <Button className="px-5 py-3" variant='acceess' children={<p>Вход</p>} />
+                    <Button
+                        className="px-5 py-3"
+                        variant='acceess'
+                        children={<p>Вход</p>}
+                    />
                 </div>
             </form>
         </FormProvider>

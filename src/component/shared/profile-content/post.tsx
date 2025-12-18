@@ -26,16 +26,16 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
     }
 
     return (
-        <div className='pt-2 pb-5'>
-            <PostColumn className="pl-5" />
+        <div className='pt-2 pb-4'>
+            <PostColumn />
             {!!f_post.length &&
                 f_post.slice(0, 6).map(item => {
-                    return <PostItem {...item} key={item.title} className="pl-5" />
+                    return <PostItem {...item} key={item.title} className="pl-2 -translate-x-1" />
                 })}
             <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={false} />
 
             <ViewAuthor>
-                <div className="px-4">
+                <div className="px-1 mt-4">
                     <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>
             </ViewAuthor>

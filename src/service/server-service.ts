@@ -1,8 +1,8 @@
 import { requestGet } from "@lib/function/request"
-const instance = 'http-message';
+const instance = 'server';
 
 export const serverService = {
     server: () => {
-        return requestGet(`${instance}/server`)
+        return requestGet(`${instance}`)
     },
 }

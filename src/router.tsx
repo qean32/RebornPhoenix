@@ -26,6 +26,7 @@ export const Router = () => {
                     <Route element={<pages.CreatePost />} path="/create-post" />
                     <Route element={<pages.ResetPassword />} path="/reset-password" />
                     <Route element={<pages.EditProfile />} path="/edit-profile" />
+                    <Route element={<pages.Followers />} path="/followers" />
 
                     <Route element={<pages.Profile />} path="/profile/:id/:name" />
                     <Route element={<pages.ChangePassword />} path="/change-password" />

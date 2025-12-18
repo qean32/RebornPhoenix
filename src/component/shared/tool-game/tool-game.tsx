@@ -12,14 +12,14 @@ interface Props {
 
 export const ToolGame: React.FC<Props> = ({ className }: Props) => {
     const { boolean, swap } = useBoolean(false)
-    const { session: { currentMap: { id }, mapsData, characters }, bestiary } = useAppSelector(state => state.session)
+    const { session: { currentMap, mapsData, characters }, bestiary } = useAppSelector(state => state.session)
 
     return (
-        <div className={cn('fixed z-10 w-[16%] h-[100%] bg-color-dark transition-700 pt-14 pb-3 flex flex-col', (!boolean && 'w-[55px]'), className)}>
+        <div className={cn('fixed z-10 w-[20%] h-[100%] bg-color-dark transition-700 pt-14 pb-3 flex flex-col', (!boolean && 'w-[55px]'), className)}>
             {boolean && <Arrow swap={swap} />}
             {boolean && <SharedVariant
                 bestiary={bestiary}
-                id={id}
+                id={currentMap ? currentMap.id : null}
                 characters={characters}
                 mapsData={mapsData} />}
             {!boolean && <ShortVariant swap={swap} />}

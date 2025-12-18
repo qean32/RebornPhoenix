@@ -37,22 +37,36 @@ interface TextInputProps {
     name: string
     validate?: boolean
     xHint?: xPositionHint,
-    yHint?: yPositionHint
+    yHint?: yPositionHint,
+    defaultValue?: string
 }
 
 
-export const TextInput: React.FC<TextInputProps> = ({ className = 'w-full', placeHolder, validate = true, name, xHint = 'left', yHint = 'center-y' }: TextInputProps) => {
+export const TextInput: React.FC<TextInputProps> = ({
+    className = 'w-full',
+    placeHolder,
+    validate = true,
+    name,
+    xHint = 'left',
+    yHint = 'center-y',
+    defaultValue = ''
+}: TextInputProps) => {
     const { register, formState: { errors } } = useFormContext()
     const textError = errors[name]?.message as string;
 
     return (
         <div className={cn('relative rounded-sm', className)}>
             {validate && textError &&
-                <HoverHint className='top-1/2 absolute -translate-y-1/2 right-2' text={textError} x={xHint} y={yHint} >
+                <HoverHint
+                    className='top-1/2 absolute -translate-y-1/2 right-2'
+                    text={textError}
+                    x={xHint}
+                    y={yHint}
+                >
                     <DangerIcon />
                 </HoverHint>
             }
-            <input type="text" placeholder={placeHolder} {...register(name)} />
+            <input type="text" placeholder={placeHolder} {...register(name)} defaultValue={defaultValue} />
         </div>
     )
 }
@@ -81,10 +95,18 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         <div className={cn('w-full relative rounded-sm', className)}>
             <div className='relative'>
                 <input type={view.boolean ? 'text' : 'password'} placeholder={placeHolder} {...register(name)} />
-                <img src={view.boolean ? '/icon/unlock.svg' : 'icon/lock.svg'} alt='' onClick={() => view.swap()} className='cursor-pointer icon-sm- absolute top-4 right-3' />
+                <img src={view.boolean ? '/icon/unlock.svg' : 'icon/lock.svg'} alt=''
+                    onClick={() => view.swap()}
+                    className='cursor-pointer icon-sm- absolute top-4 right-3'
+                />
             </div>
             {textError &&
-                <HoverHint className='top-1/2 absolute -translate-y-1/2 -left-7' text={textError} x={xHint} y={yHint} >
+                <HoverHint
+                    className='top-1/2 absolute -translate-y-1/2 -left-8'
+                    text={textError}
+                    x={xHint}
+                    y={yHint}
+                >
                     <DangerIcon />
                 </HoverHint>
             }
@@ -171,7 +193,7 @@ export const FileInput: React.FC<FileProps> = ({
 
     return (
         <div className={cn('w-fit', className)}>
-            <input type="file" name="" id={id} hidden onChange={changeHandlerFile} />
+            <input type="file" name="" multiple id={id} hidden onChange={changeHandlerFile} />
             <label htmlFor={id}>
                 <img src='/icon/upload.svg' className='icon-md cursor-pointer' />
             </label>
@@ -188,7 +210,13 @@ interface FakeTextProps {
     yHint?: yPositionHint
 }
 
-export const FakeTextInput: React.FC<FakeTextProps> = ({ title, className, name, xHint = 'right', yHint = 'center-y' }: FakeTextProps) => {
+export const FakeTextInput: React.FC<FakeTextProps> = ({
+    title,
+    className,
+    name,
+    xHint = 'right',
+    yHint = 'center-y'
+}: FakeTextProps) => {
     const { register, formState: { errors } } = useFormContext()
     const textError = errors[name]?.message as string;
 
@@ -196,7 +224,12 @@ export const FakeTextInput: React.FC<FakeTextProps> = ({ title, className, name,
         <div className={cn("relative", className)}>
             <input type="text" className='fake-input text-3xl w-fit' defaultValue={title} style={{ outline: 0 }} {...register(name)} />
             {textError &&
-                <HoverHint className='top-1/2 absolute -translate-y-1/2 -left-7' text={textError} x={xHint} y={yHint} >
+                <HoverHint
+                    className='top-1/2 absolute -translate-y-1/2 -left-7'
+                    text={textError}
+                    x={xHint}
+                    y={yHint}
+                >
                     <DangerIcon />
                 </HoverHint>
             }

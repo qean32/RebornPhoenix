@@ -2,7 +2,7 @@ import React from "react";
 import { useBoolean } from "./";
 
 export const useOnline = () => {
-    const { boolean, on, off } = useBoolean()
+    const { boolean, on, off } = useBoolean(true)
     const controller = new AbortController
 
     React.useLayoutEffect(() => {

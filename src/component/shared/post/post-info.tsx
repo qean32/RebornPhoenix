@@ -14,7 +14,7 @@ export const PostInfo: React.FC<Props> = ({ ava, name, id }: Props) => {
                 <Ava size="ava-sm" path={ava ?? "/img/auth.jpg"} />
             </Link>
             <Link to={`/profile/${id}/${name}`}>
-                <p>zxccursed</p>
+                <p className='ml-2'>zxccursed</p>
             </Link>
             <p>20.05.2002</p>
             <p># 764</p>

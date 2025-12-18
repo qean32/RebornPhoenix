@@ -30,7 +30,7 @@ export const ShortVariant: React.FC<Props> = ({ swap }: Props) => {
                 <img className='icon-sm pointer-events-none' src='/icon/user.svg' />
             </ButtonInGroup>
             <ButtonInGroup className='px-3' fn={swapGameView}>
-                <img className='icon-sm pointer-events-none' src='/icon/dice-6.svg' />
+                <img className='icon-sm pointer-events-none' src='/icon/dice.svg' />
             </ButtonInGroup>
             <ButtonInGroup className='px-3' value='queue' fn={swapGameView}>
                 <img className='icon-sm pointer-events-none' src='/icon/queue.svg' />

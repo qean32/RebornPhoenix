@@ -1,14 +1,15 @@
-import { PushCharacterInGame } from "@component/case/modal/push-character-in-game-modal"
-import { ViewImg } from "@component/case/modal/img-view-modal"
+import { PushCharacterInSession, ViewImg, ActionEntity } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame } from "@component/shared"
-import { usePage, useQueryParam } from "@lib/castom-hook"
+import { useEntityMore, usePage, useQueryParam } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
 import React from "react"
 import { GameArea } from "@/component/master"
 import { qParamName } from "@/export"
+import { EntityMore } from "@/component/case/modal/entity-more-modal"
 
 export const Session = () => {
     const { } = usePage(getParamName())
+
 
     return (
         <>
@@ -23,12 +24,17 @@ export const Session = () => {
 }
 
 const Modal: React.FC = () => {
-    const { allQ, clearQ } = useQueryParam('')
+    const { allQ, clearQParam } = useQueryParam('')
+    const { clearTmp, tmpEntity } = useEntityMore()
+
 
     return (
         <>
-            <PushCharacterInGame swap={clearQ} view={!!allQ[qParamName.pCharacter]} />
-            <ViewImg swap={clearQ} view={!!allQ[qParamName.vImg]} />
+            <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
+            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
+            {/* @ts-ignore */}
+            <EntityMore swap={clearTmp} view={tmpEntity?.id} />
+            <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
         </>
     )
 }

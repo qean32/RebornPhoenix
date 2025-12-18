@@ -11,12 +11,12 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }: Props) => {
     return (
-        <header className={cn('bg-color-darkness z-50 sticky flex justify-around py-2.5 items-center', className)}>
+        <header className={cn('bg-color-darkness z-50 flex justify-around py-2.5 items-center', className)}>
             <div className="absolute right-3 top-5"><IsOnline /></div>
             <div className='flex gap-2'>
-                <p>{slogan}</p>
+                <p className='cursor-pointer'>{slogan}</p>
             </div>
-            <Logo />
+            <Logo variant='short' />
             <Link className='flex gap-4 items-center' to='/auth'>
                 <p className='cursor-pointer'>Профиль</p>
                 <Ava path={''} size='ava-sm' />

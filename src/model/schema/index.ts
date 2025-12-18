@@ -9,4 +9,5 @@ export { resetPasswordSchema, type resetPasswordFormDto } from './reset-password
 export { commentSchema, type commentFormDto } from './comment-schema'
 export { pushEntityToSessionSchema, type pushEntityToSessionFormDto } from './push-entity-to-session'
 export { pushMapToSessionSchema, type pushMapToSessionFormDto } from './push-map-to-session'
+export { banSchema, type banFormDto } from './ban-schema'
 export { pushObjectToSessionSchema, type pushObjectToSessionFormDto } from './push-object-to-session'

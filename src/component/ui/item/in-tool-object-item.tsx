@@ -1,15 +1,16 @@
 import React from 'react'
-import { entityDto } from '@/model'
+import { objectDto } from '@/model'
 import { ObjectItemMenu } from '@component/case/context-menu'
 
 
-export const InToolObjectItem: React.FC<entityDto> = ({ path = '/img/carousel-item-1.jpg' }: entityDto) => {
+export const InToolObjectItem: React.FC<objectDto> = (item: objectDto) => {
     return (
-        <div className='flex items-start justify-between px-3 pr-3 py-4 bg-color-hover transition-300'>
+        <div className='flex items-start justify-between px-3 pr-3 py-4 bg-color-hover transition-300 relative'>
             <div className="flex w-fit gap-2 max-w-10/12">
-                <img src={path} alt="" className='max-w-1/2' />
+                <img src={item.path} alt="" className='max-w-1/2' />
+                <p>{item.name}</p>
             </div>
-            <ObjectItemMenu />
+            <ObjectItemMenu {...item} />
         </div>
     )
 }

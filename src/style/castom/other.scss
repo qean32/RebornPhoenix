@@ -126,8 +126,34 @@
     }
 }
 
+.infinity-view {
+    &:hover {
+        opacity: 0 !important;
+    }
+
+    & .warning-hint {
+        transform: scaleX(1);
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.no-min-w {
+    min-width: fit-content !important;
+}
+
+.no-min-h {
+    min-height: initial !important;
+}
+
+
+.block-prime {
+    position: initial;
+}
+
 .bg-shadow-prime:before {
     content: '';
+    border-radius: 5px;
     display: block;
     width: 100%;
     height: 100%;
@@ -142,4 +168,8 @@
 .bg-icons {
     background-image: url('/icon/bg-icon.svg');
     background-repeat: space;
+}
+
+.letter-spacing-2px {
+    letter-spacing: 2px;
 }

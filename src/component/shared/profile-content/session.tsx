@@ -7,7 +7,7 @@ import { SessionItem } from "@component/ui/item"
 
 export const Session: React.FC<{}> = ({ }: {}) => {
     return (
-        <div className='flex flex-col py-2'>
+        <div className='flex flex-col py-3'>
             {f_post.slice(0, 9).map((__, _) =>
                 <SessionItem key={_} id={_ + 1} name={'ПерваяПерваяПервая'} />
             )}

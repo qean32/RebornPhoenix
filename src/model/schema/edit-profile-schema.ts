@@ -1,5 +1,5 @@
 import z from "zod";
-import { name } from "./types-zod";
+import { name } from "./zod-types";
 
 export const editProfileSchema = z.object({
     name: name

@@ -4,7 +4,7 @@ import { cn } from '@lib/function'
 interface Props {
     className?: string
     path: string
-    size?: 'ava-sm' | 'ava-md' | 'ava-lg'
+    size?: 'ava-sm' | 'ava-md' | 'ava-lg' | 'ava-xl'
 }
 
 
@@ -14,6 +14,6 @@ export const Ava: React.FC<Props> = ({
     path
 }: Props) => {
     return (
-        <div className={cn('z-10 bg-img bg-color rounded-sm cursor-pointer', size, className)} style={{ backgroundImage: `url(${path})` }} ></div>
+        <div className={cn('z-10 bg-img bg-color cursor-pointer rounded-full', size, className)} style={{ backgroundImage: `url(${path})` }} ></div>
     )
 }

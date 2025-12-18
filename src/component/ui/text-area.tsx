@@ -13,6 +13,7 @@ interface Props {
     children?: React.ReactNode
     name: string
     convertHTML?: boolean
+    initValue?: boolean
 }
 
 
@@ -23,10 +24,16 @@ export const TextArea: React.FC<Props> = ({
     children,
     name,
     parentDivclassName,
-    convertHTML = false
+    convertHTML = false,
+    initValue = false
 }: Props) => {
     const { register, formState: { errors }, setValue } = useFormContext()
     const textError = errors[name]?.message as string;
+    React.useEffect(() => {
+        if (initValue) {
+            setValue(name, children)
+        }
+    }, [])
 
 
     return (
@@ -52,7 +59,7 @@ export const TextArea: React.FC<Props> = ({
                 // @ts-ignore
                 placeholder={title}
                 suppressContentEditableWarning={true}
-                className={cn("outline-0 bg-color-dark w-full rounded-md", className)}
+                className={cn("outline-0 bg-color-dark w-full rounded-md min-h-[200px]", className)}
             >
                 {children}
             </div>

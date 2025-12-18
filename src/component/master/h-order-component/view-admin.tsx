@@ -7,8 +7,8 @@ interface Props {
 
 export const ViewAdmin: React.FC<Props> = ({ children }: Props) => {
     return (
-        <>
+        <div className='w-fit'>
             {children}
-        </>
+        </div>
     )
 }

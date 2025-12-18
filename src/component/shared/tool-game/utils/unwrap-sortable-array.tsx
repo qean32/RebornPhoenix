@@ -13,7 +13,7 @@ import {
     sortableKeyboardCoordinates
 } from "@dnd-kit/sortable";
 import { SortableOverlay } from '.';
-import { useAppDispatch } from '@/lib/castom-hook/redux';
+import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux';
 import { changeQueue } from '@/store/session-store';
 
 interface Props {
@@ -29,6 +29,7 @@ export function UnwrapSortableArray({
     renderItem
 }: Props) {
     const dispath = useAppDispatch()
+    const { tmpEntity } = useAppSelector(state => state.tempEntity)
     const onChange = (array: any[]) => {
         dispath(changeQueue({ queue: array }))
     }
@@ -70,7 +71,7 @@ export function UnwrapSortableArray({
                     <SortableContext items={items}>
                         <div className='h-full pt-2 pb-2 max-h-full overflow-scroll'>
                             {items.map(item => {
-                                return <React.Fragment key={item.id} >{renderItem(item)}</React.Fragment>
+                                return <React.Fragment key={item.id}>{renderItem({ ...item, selectId: tmpEntity?.id })}</React.Fragment>
                             })}
                         </div>
                     </SortableContext>
