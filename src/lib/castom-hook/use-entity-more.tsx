@@ -4,11 +4,11 @@ import { clearTmpEntity } from "@/store/temp-entity"
 
 export const useEntityMore = () => {
     const dispath = useAppDispatch()
-    const { tmpEntity } = useAppSelector(state => state.tempEntity)
+    const { tmpObject } = useAppSelector(state => state.tempEntity)
 
     const clearTmp = () => {
         dispath(clearTmpEntity())
     }
 
-    return { tmpEntity, clearTmp }
+    return { tmpObject, clearTmp }
 }

@@ -160,8 +160,12 @@ const sessionSlice = createSlice({
                     { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
                 ]
             }
-            state.session.mapsData[state.session.currentMap.id].characters = [
-                ...state.session.mapsData[state.session.currentMap.id].characters,
+
+
+            state.session.mapsData[state.session.currentMap.id].queue = [
+                // @ts-ignore
+                ...state.session.mapsData[state.session.currentMap.id].queue,
+                // @ts-ignore
                 { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
             ]
         },

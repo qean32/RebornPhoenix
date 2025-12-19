@@ -25,7 +25,7 @@ export const Session = () => {
 
 const Modal: React.FC = () => {
     const { allQ, clearQParam } = useQueryParam('')
-    const { clearTmp, tmpEntity } = useEntityMore()
+    const { clearTmp, tmpObject } = useEntityMore()
 
 
     return (
@@ -33,7 +33,7 @@ const Modal: React.FC = () => {
             <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
             <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
             {/* @ts-ignore */}
-            <EntityMore swap={clearTmp} view={tmpEntity?.id} />
+            <EntityMore swap={clearTmp} view={tmpObject?.id} />
             <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
         </>
     )

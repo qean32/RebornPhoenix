@@ -2,6 +2,7 @@ import React from 'react'
 import { Ava, UnwrapFiles } from '..'
 import { Link } from 'react-router-dom'
 import { commentDto } from '@/model'
+import { CommentMenu } from '@/component/case/context-menu'
 
 interface Props extends commentDto {
 }
@@ -18,7 +19,8 @@ export const CommentItem: React.FC<Props> = ({
     files = [
         { path: '/img/auth.jpg' },
     ],
-    date = '20.05.2006'
+    date = '20.05.2006',
+    id = 1
 }: Props) => {
     return (
         <div className="flex gap-2 justify-between pt-2 px-5">
@@ -38,7 +40,12 @@ export const CommentItem: React.FC<Props> = ({
                     }
                 </div>
             </div>
-            <p className='text-sm w-[100px] pl-5'>{date}</p>
+            <div className="flex items-end flex-col relative">
+                <p className='text-sm w-[100px] pl-5'>
+                    {date}
+                </p>
+                <CommentMenu {...{ date, files, id, text, user }} />
+            </div>
         </div>
     )
 }

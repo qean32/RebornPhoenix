@@ -38,9 +38,11 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                             <DisabledInput value={entity.name} className='my-5' />
                             <div className="flex justify-between text-sm">
                                 <p>Инициатива</p>
+                                {/* @ts-ignore */}
                                 <DisabledInput value={entity.initiative} className='w-[60px]' />
                             </div>
                             <div className="h-[160px] overflow-scroll rounded-sm bg-color-dark p-4 py-2 my-2 mb-4">
+                                {/* @ts-ignore */}
                                 {entity?.description}
                             </div>
                         </div>

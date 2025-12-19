@@ -9,7 +9,7 @@ interface Props extends objectDto {
 }
 
 
-export const ObjectItemMenu: React.FC<Props> = (item: Props) => {
+export const ObjectMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const removeHandler = () => dispath(removeObject({ id: item.id }))
     const scaleHandler = (operation: -1 | 1) => dispath(scaleObject({ object: item, operation }))

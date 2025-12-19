@@ -14,7 +14,7 @@ export const Page: React.FC<Props> = ({
     size = 'w-[60%]'
 }: Props) => {
     return (
-        <main className={cn("w-full flex justify-center items-start", className)}>
+        <main className={cn("w-full flex justify-center items-start pb-10", className)}>
             <div className={cn("h-full bg-color py-4 px-8 box-content", size)}>
                 {children}
             </div>

@@ -1,26 +1,34 @@
-import { entityDto, idDto, objectDto } from "@/model";
+import { commentDto, entityDto, idDto, objectDto } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type stateDto = { tmpEntity: entityDto | objectDto | null | idDto }
+type state = entityDto | objectDto | null | idDto | commentDto
+type stateT = state & {
+    isComment?: boolean
+    isEntity?: boolean
+    isObject?: boolean
+    isMap?: boolean
+} | null
 
-const initialState: stateDto = { tmpEntity: null }
+type stateDto = { tmpObject: stateT }
+
+const initialState: stateDto = { tmpObject: null }
 
 const tempEntitySlice = createSlice({
     name: 'temp-entity-store',
     initialState,
     reducers: {
-        swapTmpEntity(state: stateDto, { payload }: PayloadAction<entityDto | objectDto | idDto>) {
-            if (state.tmpEntity?.id == payload.id) {
-                state.tmpEntity = null
+        swapTmpObject(state: stateDto, { payload }: PayloadAction<stateT>) {
+            if (payload && state.tmpObject?.id == payload.id) {
+                state.tmpObject = null
                 return
             }
-            state.tmpEntity = payload
+            state.tmpObject = payload
         },
         clearTmpEntity(state: stateDto) {
-            state.tmpEntity = null
+            state.tmpObject = null
         }
     },
 })
 
 export const tempEntityReducer = tempEntitySlice.reducer
-export const { swapTmpEntity, clearTmpEntity } = tempEntitySlice.actions
+export const { swapTmpObject, clearTmpEntity } = tempEntitySlice.actions

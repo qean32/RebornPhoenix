@@ -45,7 +45,7 @@ export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: st
     };
 
     const clickHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
-        // dispath(swapTmpEntity({ id: e.currentTarget.attrs.id }))
+        // dispath(swapTmpObject({ id: e.currentTarget.attrs.id }))
         pushQ(e.currentTarget.attrs.id)
     }
 

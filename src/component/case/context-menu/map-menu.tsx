@@ -9,7 +9,7 @@ interface Props extends mapDto {
 }
 
 
-export const MapItemMenu: React.FC<Props> = (item: Props) => {
+export const MapMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const remove = () => {
         dispath(removeMap({ id: item.id }))
