@@ -4,7 +4,8 @@ import {
     BlockTwo,
     Carousel,
     LargeLogo,
-    MainBanner
+    MainBanner,
+    Map
 } from "@/component/ui/main";
 import { title } from "@/export";
 import { usePage } from "@lib/castom-hook";
@@ -20,6 +21,7 @@ export const Main = () => {
             <BlockTwo />
             <BlockThree />
             <LargeLogo />
+            <Map />
             <Carousel />
         </main >
     );

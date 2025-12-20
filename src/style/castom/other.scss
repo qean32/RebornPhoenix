@@ -173,3 +173,62 @@
 .letter-spacing-2px {
     letter-spacing: 2px;
 }
+
+.no-max-w {
+    max-width: none;
+}
+
+.fake-token {
+    filter: brightness(70%);
+    outline: 4px solid $bg-color-light;
+}
+
+.fake-token-1 {
+    top: 590px;
+    left: 420px;
+    // animation: fake-token-1-anim linear 5s 2s infinite;
+}
+
+.fake-token-2 {
+    top: 280px;
+    left: 740px;
+}
+
+.fake-token-3 {
+    top: 540px;
+    left: 600px;
+}
+
+.fake-token-4 {
+    top: 100px;
+    left: 240px;
+}
+
+.fake-token-5 {
+    top: 200px;
+    left: 290px;
+}
+
+@keyframes fake-token-1-anim {
+    0% {}
+
+    10% {}
+
+    20% {}
+
+    30% {}
+
+    40% {}
+
+    50% {}
+
+    60% {}
+
+    70% {}
+
+    80% {}
+
+    90% {}
+
+    100% {}
+}

@@ -22,14 +22,14 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
             <form className="h-full flex justify-center" onSubmit={submitHandler}>
                 <div className="w-fit flex flex-col gap-3">
                     <Title className="pb-4">Изменение пароля</Title>
-                    <div className="w-[35vh] flex flex-col gap-5">
+                    <div className="w-[40vh] flex flex-col gap-5">
                         <PasswordInput
-                            placeHolder="Введите пароль"
+                            placeHolder="пароль"
                             name='password'
                             xHint='right'
                         />
                         <PasswordInput
-                            placeHolder="Повторите пароль"
+                            placeHolder="повторите пароль"
                             name='confirmPassword'
                             xHint='right'
                         />

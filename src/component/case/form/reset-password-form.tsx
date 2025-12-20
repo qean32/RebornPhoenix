@@ -22,9 +22,9 @@ export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
             <form className="h-full flex justify-center" onSubmit={submitHandler}>
                 <div className="w-fit flex flex-col gap-3">
                     <Title className="pb-4">Востановление пароля</Title>
-                    <div className="w-[35vh]">
+                    <div className="w-[40vh]">
                         <TextInput
-                            placeHolder="Введите почту"
+                            placeHolder="почта"
                             name='email'
                             className='mb-5'
                         />

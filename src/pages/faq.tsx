@@ -10,7 +10,7 @@ export const Faq = () => {
     const { } = usePage('')
 
     return (
-        <Page size="w-[85%]">
+        <Page size="w-[85%]" className="pb-20">
             <div className="flex gap-5">
                 <FaqContent />
                 <FaqAnchor />
