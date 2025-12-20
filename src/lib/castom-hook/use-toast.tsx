@@ -5,11 +5,13 @@ import { generateId } from "../function"
 
 export const useToast = () => {
     const dispath = useAppDispatch()
-    const id = generateId()
-    const toast = (key: toastKeyDto, payload?: toastPayloadDto, timeout: number = 2000) => {
-        dispath(pushToast({ view: true, key, payload: payload ?? {}, id }))
+    const toast = (key: toastKeyDto, payload?: toastPayloadDto, timeout: number = 1000) => {
+        const id = generateId()
+        dispath(pushToast({ key, payload: payload ?? {}, id }))
 
         setTimeout(() => {
+            console.log("toast");
+
             dispath(removeToast({ id }))
         }, timeout)
     }

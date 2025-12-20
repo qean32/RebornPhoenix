@@ -6,8 +6,10 @@
 
 .toast-close {
     animation: toast-close-anim 1s;
-    transform: translate(0, 50%);
+    transform: translate(0, 10%);
+    margin-top: 10px !important;
     opacity: 0;
+    scale: .9 !important;
 }
 
 @keyframes toast-open-anim {
@@ -32,4 +34,10 @@
         transform: translate(0, 50%);
         opacity: 0;
     }
+}
+
+.backToast {
+    z-index: 10;
+    margin-top: 20px;
+    scale: .9;
 }

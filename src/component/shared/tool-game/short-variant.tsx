@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonInGroup } from '@component/ui'
 import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
-import { getHTMLData } from '@/lib/function'
+import { getHTMLData, initFunctionRoll } from '@/lib/function'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLButtonElement>
@@ -16,6 +16,7 @@ export const ShortVariant: React.FC<Props> = ({ swap }: Props) => {
         pushQ(getHTMLData(e, false, 'value'))
         swap(e)
     }
+    const roll = initFunctionRoll()
 
     return (
         <div className='flex flex-col'>
@@ -29,7 +30,7 @@ export const ShortVariant: React.FC<Props> = ({ swap }: Props) => {
             <ButtonInGroup className='px-3' value='characters' fn={swapGameView}>
                 <img className='icon-sm pointer-events-none' src='/icon/user.svg' />
             </ButtonInGroup>
-            <ButtonInGroup className='px-3' fn={swapGameView}>
+            <ButtonInGroup className='px-3' fn={roll}>
                 <img className='icon-sm pointer-events-none' src='/icon/dice.svg' />
             </ButtonInGroup>
             <ButtonInGroup className='px-3' value='queue' fn={swapGameView}>

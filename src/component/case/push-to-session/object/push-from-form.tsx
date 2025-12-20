@@ -1,6 +1,6 @@
 import { Button, TextInput, UploadImgArea } from '@/component/ui'
 import { TypeUseBoolen, useMyForm } from '@/lib/castom-hook'
-import { pushDataInSessionInit } from '@/lib/function'
+import { initPushDataToSession } from '@/lib/function'
 import { pushObjectToSessionFormDto, pushObjectToSessionSchema } from '@/model/schema'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
@@ -12,7 +12,7 @@ interface Props {
 
 
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
-    const push = pushDataInSessionInit('object')
+    const push = initPushDataToSession('object')
     const pushHandler = (data: any) => {
         push(data);
         // @ts-ignore

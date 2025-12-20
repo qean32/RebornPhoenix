@@ -10,12 +10,12 @@ interface Props {
 
 
 export const CommentForm: React.FC<Props> = ({ }: Props) => {
-    const { tmpObject } = useAppSelector(state => state.tempEntity)
+    const { tmpObject, key } = useAppSelector(state => state.tmpEntity)
     const { form, submitHandler } =
         useMyForm<commentFormDto>(
             commentSchema,
             () => {
-                if (tmpObject?.isComment) {
+                if (key == 'update-comment') {
                 } else {
                 }
             },

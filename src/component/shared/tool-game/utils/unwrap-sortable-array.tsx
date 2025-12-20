@@ -29,7 +29,7 @@ export function UnwrapSortableArray({
     renderItem
 }: Props) {
     const dispath = useAppDispatch()
-    const { tmpObject } = useAppSelector(state => state.tempEntity)
+    const { tmpObject } = useAppSelector(state => state.tmpEntity)
     const onChange = (array: any[]) => {
         dispath(changeQueue({ queue: array }))
     }

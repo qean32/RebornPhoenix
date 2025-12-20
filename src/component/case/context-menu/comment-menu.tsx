@@ -3,7 +3,7 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { commentDto } from '@/model'
-import { swapTmpObject } from '@/store/temp-entity'
+import { swapTmpObject } from '@/store/tmp-entity'
 
 interface Props extends commentDto {
 }
@@ -14,7 +14,7 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
     const remove = () => {
     }
     const update = () => {
-        dispath(swapTmpObject({ ...item, isComment: true }))
+        dispath(swapTmpObject({ payload: item, key: 'update-comment' }))
     }
 
     return (

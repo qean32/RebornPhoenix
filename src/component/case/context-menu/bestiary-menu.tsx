@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { pushEntity } from '@/store/session-store'
 import { entityDto } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/temp-entity'
+import { swapTmpObject } from '@/store/tmp-entity'
 interface Props extends entityDto {
 }
 
@@ -13,7 +13,7 @@ interface Props extends entityDto {
 export const BestiaryMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const pushHandler = () => dispath(pushEntity(item))
-    const moreHandler = () => dispath(swapTmpObject({ id: item.idInBestiary }))
+    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more' }))
 
     return (
         <ContextMenu className='z-20'>
