@@ -48,7 +48,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                 <TextArea
                     title="Описание вашей статьи"
                     className='min-h-[160px] p-2 px-3 mb-5'
-                    name='description'
+                    name='content'
                 />
 
                 <TextArea

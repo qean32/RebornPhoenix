@@ -23,7 +23,7 @@ export const CommentItem: React.FC<Props> = ({
     id = 1
 }: Props) => {
     return (
-        <div className="flex gap-2 justify-between pt-2 px-5">
+        <div className="flex gap-2 justify-between pt-2 pb-3 px-5">
             <div className="flex gap-2">
                 <Link to={`/profile/${user.id}/${user.name}`} className="flex gap-2 flex-col">
                     <Ava size="ava-sm" path={user.ava} />

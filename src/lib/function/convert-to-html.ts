@@ -6,6 +6,8 @@ export const convertToHTML = (text: string, link?: string) => {
         for (const item of link?.replaceAll('{', '').replaceAll('}', '').split(',')) yield item;
     }
     const generator = generatorFn()
+    console.log(link);
+
 
 
     return text.split(separator).map(item => {
@@ -29,7 +31,7 @@ export const convertToHTML = (text: string, link?: string) => {
         if (arr[0] == customMarkup.small) {
             return `<p class="text-sm">${arr.slice(1)}<p>`
         }
-        if (arr[0].slice(0, 4) == 'img:') {
+        if (arr[0].slice(0, 4) == 'img:' && link) {
 
             return `<img class="rounded-sm" src="${generator.next().value.replaceAll(';', '/')}" />`
         }

@@ -184,29 +184,29 @@
 }
 
 .fake-token-1 {
-    top: 590px;
-    left: 420px;
+    top: 630px;
+    left: 520px;
     // animation: fake-token-1-anim linear 5s 2s infinite;
 }
 
 .fake-token-2 {
     top: 280px;
-    left: 740px;
+    left: 880px;
 }
 
 .fake-token-3 {
-    top: 540px;
-    left: 600px;
+    top: 570px;
+    left: 650px;
 }
 
 .fake-token-4 {
     top: 100px;
-    left: 240px;
+    left: 260px;
 }
 
 .fake-token-5 {
     top: 200px;
-    left: 290px;
+    left: 320px;
 }
 
 @keyframes fake-token-1-anim {
@@ -231,4 +231,8 @@
     90% {}
 
     100% {}
+}
+
+.no-absolute {
+    position: initial;
 }

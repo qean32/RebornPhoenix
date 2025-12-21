@@ -8,11 +8,6 @@ const bestiaryStorage = 'bestiary-storage'
 
 type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
 
-function swap(array: any[]) {
-    [array[0], array[1]] = [array[1], ...array.slice(1, -1), array[0]];
-    return array;
-}
-
 const initialState: stateDto = {
     session: {
         ...JSON.parse((localStorage.getItem(gameStorage) as string)),

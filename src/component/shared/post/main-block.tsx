@@ -4,12 +4,14 @@ import { convertToHTML } from '@/lib/function'
 import { separatorLink } from '@/export'
 
 interface Props {
-    text?: string
+    content?: string
 }
 
 
-export const MainBlock: React.FC<Props> = ({ text = 'статья' }: Props) => {
-    const data = text.replace('script', '').split(separatorLink)
+export const MainBlock: React.FC<Props> = ({ content = 'статья' }: Props) => {
+    console.log(content);
+    
+    const data = content.replace('script', '').split(separatorLink)
 
     return (
         <div className="rounded-sm py-2">
