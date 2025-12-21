@@ -1,7 +1,7 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
 import { TypeUseBoolen } from '@/lib/castom-hook'
 import { useAppSelector } from '@/lib/castom-hook/redux'
-import { pushDataInSessionInit } from '@/lib/function'
+import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
 
 interface Props {
@@ -12,8 +12,9 @@ interface Props {
 
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     const { object: data } = useAppSelector(state => state.pushedObject)
-    const push = pushDataInSessionInit('object')
+    const push = initPushDataToSession('object')
     const pushHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        // @ts-ignore
         push(data);
         swap(e);
     }

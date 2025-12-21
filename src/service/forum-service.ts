@@ -1,4 +1,4 @@
-import { requestDelete, requestGet, requestPost } from "@lib/function/request"
+import { requestDelete, requestGet, requestPatch, requestPost } from "@lib/function/request"
 const instance = 'forum'
 
 export const forumService = {
@@ -28,5 +28,13 @@ export const forumService = {
 
     createComment: (data: any) => {
         return requestPost(`${instance}/create/comment`, data)
+    },
+
+    updateComment: (data: any, id: number) => {
+        return requestPatch(`${instance}/update/comment/${id}`, data)
+    },
+
+    deleteComment: (id: number) => {
+        return requestDelete(`${instance}/create/comment/${id}`)
     }
 }

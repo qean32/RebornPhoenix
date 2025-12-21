@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { mapDto } from '@/model'
-import { MapItemMenu } from '@/component/case/context-menu'
+import { MapMenu } from '@/component/case/context-menu'
 
 interface Props {
     path: string
@@ -20,7 +20,7 @@ export const SelectMapItem: React.FC<Props> = (item: Props) => {
             )}
             style={{ transformOrigin: 'bottom', backgroundImage: `url(${`${item.path}`})` }}>
             <div className="absolute right-0">
-                <MapItemMenu {...item.data} />
+                <MapMenu {...item.data} />
             </div>
         </div>
     )

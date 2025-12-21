@@ -12,7 +12,7 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
             <CommentForm />
             <p className='pl-6 py-2 text-2xl'>Коментарии</p>
             {[{}].map(item => {
-                return (<CommentItem {...item} date='' files={[]} id={1} text='' user={{ ava: '', email: '', id: 1, name: '' }} />)
+                return (<CommentItem {...item} date='20.05.2006' files={[]} id={1} text='lorem zxc' user={{ ava: '', email: '', id: 1, name: 'Zxccurser' }} />)
             })}
         </div>
     )

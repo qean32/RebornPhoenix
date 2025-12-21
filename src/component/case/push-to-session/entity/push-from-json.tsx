@@ -1,7 +1,7 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
 import { TypeUseBoolen } from '@/lib/castom-hook'
 import { useAppSelector } from '@/lib/castom-hook/redux'
-import { pushDataInSessionInit } from '@/lib/function'
+import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
 
 interface Props {
@@ -12,8 +12,9 @@ interface Props {
 
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     const { object: data } = useAppSelector(state => state.pushedObject)
-    const push = pushDataInSessionInit('entity')
+    const push = initPushDataToSession('entity')
     const pushHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        // @ts-ignore
         push(data);
         swap(e);
     }
@@ -38,9 +39,11 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                             <DisabledInput value={entity.name} className='my-5' />
                             <div className="flex justify-between text-sm">
                                 <p>Инициатива</p>
+                                {/* @ts-ignore */}
                                 <DisabledInput value={entity.initiative} className='w-[60px]' />
                             </div>
                             <div className="h-[160px] overflow-scroll rounded-sm bg-color-dark p-4 py-2 my-2 mb-4">
+                                {/* @ts-ignore */}
                                 {entity?.description}
                             </div>
                         </div>

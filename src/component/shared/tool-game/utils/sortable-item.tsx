@@ -6,7 +6,7 @@ import type {
 } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { EntityItemMenu } from "@/component/case/context-menu";
+import { EntityMenu } from "@/component/case/context-menu";
 import { Ava } from "@/component/ui";
 import { entityDto } from "@/model";
 import { cn } from "@/lib/function";
@@ -68,7 +68,7 @@ export function SortableItem({ children, id, item }: PropsWithChildren<Props>) {
                         <Ava path={item.path ?? ''} size='ava-md' />
                         <p className='pl-3 flex-1 text-ellipsis overflow-hidden text-nowrap'>{item.name ?? ''}</p>
                     </div>
-                    <EntityItemMenu {...item} />
+                    <EntityMenu {...item} />
                 </div>
                 {children}
             </div >

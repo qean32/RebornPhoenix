@@ -8,6 +8,7 @@ import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
 import { useToast } from '@/lib/castom-hook'
 import { HoverHint } from '../master/h-order-component'
+import { toggleFullScreen } from '@/lib/function'
 
 interface Props {
 }
@@ -38,7 +39,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                 </LocalHint>
             </GroupButton>
             <GroupButton>
-                <LocalHint title='Состав'>
+                <LocalHint title='Игроки'>
                     <Modal.Root modal={Modal.Users}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
                 </LocalHint>
@@ -67,6 +68,9 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <Modal.Root modal={Modal.Notes}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/edit.svg' />} /></Modal.Root>
                 </LocalHint>
+                <LocalHint title='Экран'>
+                    <ButtonInGroup fn={toggleFullScreen} children={<img className='icon-sm' src='/icon/toggle-full-screen.svg' />} />
+                </LocalHint>
             </GroupButton>
         </div >
     )
@@ -89,6 +93,7 @@ const LocalHint: React.FC<Props_> = ({
                 fit
                 x='center-x'
                 y='bottom'
+                className='no-max-w'
             >
                 {children}
             </HoverHint>

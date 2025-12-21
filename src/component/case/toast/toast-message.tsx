@@ -6,16 +6,18 @@ interface Props {
     className?: string
     view: boolean
     text: string
+    backToast: boolean
 }
 
 
 export const ToastMessage: React.FC<Props> = ({
     className,
     view,
-    text
+    text,
+    backToast
 }: Props) => {
     return (
-        <Toast view={view}>
+        <Toast view={view} backToast={backToast}>
             <div className={cn("py-3 px-4 flex gap-4 items-center", className)}>
                 <img src="/icon/logo-short.svg" className='icon-sm' alt="" />
                 <p className='text-xl'>{text}</p>

@@ -9,7 +9,7 @@ const bestiaryStorage = 'bestiary-storage'
 type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
 
 function swap(array: any[]) {
-    [array[0], array[array.length - 1]] = [array[array.length - 1], array[0]];
+    [array[0], array[1]] = [array[1], ...array.slice(1, -1), array[0]];
     return array;
 }
 
@@ -160,8 +160,12 @@ const sessionSlice = createSlice({
                     { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
                 ]
             }
-            state.session.mapsData[state.session.currentMap.id].characters = [
-                ...state.session.mapsData[state.session.currentMap.id].characters,
+
+
+            state.session.mapsData[state.session.currentMap.id].queue = [
+                // @ts-ignore
+                ...state.session.mapsData[state.session.currentMap.id].queue,
+                // @ts-ignore
                 { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
             ]
         },
@@ -175,7 +179,11 @@ const sessionSlice = createSlice({
             state.session.mapsData[state.session.currentMap.id].queue = queue
         },
         nextQueue: (state: stateDto) => {
-            state.session.mapsData[state.session.currentMap.id].queue = swap(state.session.mapsData[state.session.currentMap.id].queue)
+            state.session.mapsData[state.session.currentMap.id].queue = [
+                state.session.mapsData[state.session.currentMap.id].queue[1],
+                ...state.session.mapsData[state.session.currentMap.id].queue.slice(2),
+                state.session.mapsData[state.session.currentMap.id].queue[0],
+            ]
         },
 
         // """"""""""""""""""""""""""""""""""""""""""" { bestiary action } """"""""""""""""""""""""""""""""""""""""""" //

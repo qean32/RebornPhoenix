@@ -1,7 +1,7 @@
 import React from 'react'
 import { Ava } from '@component/ui'
 import { entityDto } from '@/model'
-import { BestiaryItemMenu } from '@component/case/context-menu'
+import { BestiaryMenu } from '@component/case/context-menu'
 
 
 export const InToolEntityItem: React.FC<entityDto> = (item: entityDto) => {
@@ -14,7 +14,7 @@ export const InToolEntityItem: React.FC<entityDto> = (item: entityDto) => {
                     <Ava path={item.path ?? ''} size='ava-md' />
                     <p className='pl-3 flex-1 text-ellipsis overflow-hidden text-nowrap'>{item.name ?? ''}</p>
                 </div>
-                <BestiaryItemMenu {...item} />
+                <BestiaryMenu {...item} />
             </div>
         </div>
     )

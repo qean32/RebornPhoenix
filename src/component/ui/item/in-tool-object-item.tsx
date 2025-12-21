@@ -1,6 +1,6 @@
 import React from 'react'
 import { objectDto } from '@/model'
-import { ObjectItemMenu } from '@component/case/context-menu'
+import { ObjectMenu } from '@component/case/context-menu'
 
 
 export const InToolObjectItem: React.FC<objectDto> = (item: objectDto) => {
@@ -10,7 +10,7 @@ export const InToolObjectItem: React.FC<objectDto> = (item: objectDto) => {
                 <img src={item.path} alt="" className='max-w-1/2' />
                 <p>{item.name}</p>
             </div>
-            <ObjectItemMenu {...item} />
+            <ObjectMenu {...item} />
         </div>
     )
 }

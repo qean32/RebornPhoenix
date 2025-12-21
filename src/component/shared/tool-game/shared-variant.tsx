@@ -7,6 +7,8 @@ import { bestiaryItem, mapsDataDto, characterDto } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
 import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
+import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { nextQueue } from '@/store/session-store'
 
 interface Props {
     mapsData: mapsDataDto
@@ -25,6 +27,10 @@ export const SharedVariant: React.FC<Props> = ({
     const { param } = useQueryParam(qParamName.sContent)
     if (id == null) {
         return <></>
+    }
+    const dispath = useAppDispatch()
+    const next = () => {
+        dispath(nextQueue())
     }
 
     return (<>
@@ -67,7 +73,7 @@ export const SharedVariant: React.FC<Props> = ({
         </div>
         {(param == 'queue' || !param) &&
             <div className='flex justify-center px-4 bg-color-dark pt-5'>
-                <Button variant='acceess' className='w-full py-2.5'>Cледующий</Button>
+                <Button variant='acceess' fn={next} className='w-full py-2.5'>Cледующий</Button>
             </div>}
     </>
     )

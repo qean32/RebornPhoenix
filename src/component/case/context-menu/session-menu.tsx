@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const SessionItemMenu: React.FC<Props> = ({ }: Props) => {
+export const SessionMenu: React.FC<Props> = ({ }: Props) => {
     return (
         <div className="absolute right-2 z-50" onClick={stopPropagation}>
             <ContextMenu>

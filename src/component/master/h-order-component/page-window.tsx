@@ -15,7 +15,7 @@ export const PageWindow: React.FC<Props> = ({
         <main className={cn("flex justify-center items-center w-full h-[90vh] bg-icons", className)}>
 
             <div className="w-fit h-[40vh] -translate-y-1/3">
-                <div className="px-10 bg-color rounded-lg py-10 pt-7 outline-bg-light">
+                <div className="px-7 bg-color rounded-lg py-10 pt-7 outline-bg-light">
                     {children}
                 </div>
             </div>

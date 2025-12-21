@@ -14,6 +14,7 @@ export const Carousel: React.FC<Props> = ({ }: Props) => {
                     <img src="/img/carousel-item-3.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-4.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-5.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
+                    <img src="/img/dnd.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-6.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-7.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                 </div>
@@ -23,6 +24,7 @@ export const Carousel: React.FC<Props> = ({ }: Props) => {
                     <img src="/img/carousel-item-3.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-4.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-5.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
+                    <img src="/img/dnd.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-6.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-7.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />
                     <img src="/img/carousel-item-1.jpg" className='h-full bg-hover-shadow rounded-sm' alt="" />

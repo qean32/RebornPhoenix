@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonInGroup } from '@component/ui'
 import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
-import { getHTMLData } from '@/lib/function'
+import { getHTMLData, initFunctionRoll } from '@/lib/function'
 
 interface Props {
 }
@@ -14,6 +14,7 @@ export const SwithContentLiftSideGame: React.FC<Props> = ({ }: Props) => {
     const swapGameView = (e: React.MouseEvent<HTMLButtonElement>) => {
         pushQ(getHTMLData(e, false, 'value'))
     }
+    const roll = initFunctionRoll()
 
     return (
         <div className='flex'>
@@ -25,7 +26,7 @@ export const SwithContentLiftSideGame: React.FC<Props> = ({ }: Props) => {
                 <img className='icon-sm pointer-events-none' src='/icon/object.svg' /></ButtonInGroup>
             <ButtonInGroup value='characters' className='w-full py-4 rounded-sm' fn={swapGameView}>
                 <img className='icon-sm pointer-events-none' src='/icon/user.svg' /></ButtonInGroup>
-            <ButtonInGroup className='w-full py-4 rounded-sm'>
+            <ButtonInGroup className='w-full py-4 rounded-sm' fn={roll}>
                 <img className='icon-sm pointer-events-none' src='/icon/dice.svg' /></ButtonInGroup>
         </div>
     )
