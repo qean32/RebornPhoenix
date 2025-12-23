@@ -10,7 +10,7 @@ import { userReducer } from './user-store'
 
 const rootReducer = combineReducers({
     toast: toastReducer,
-    session: sessionReducer,
+    session: sessionReducer ?? '',
     pushedObject: objectBeingPushedToSessionReducer,
     tmpEntity: tmpEntityReducer,
     notes: notesReducer,

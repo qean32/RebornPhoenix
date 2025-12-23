@@ -31,7 +31,7 @@ export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
                 close: 'modal-close'
             }}
         >
-            <div className="bg-color max-h-11/12 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
+            <div className="bg-color max-w-[95%] max-h-11/12 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
                 <img src={statePath} alt="" />
             </div>
         </Modal>

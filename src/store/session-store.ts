@@ -180,6 +180,14 @@ const sessionSlice = createSlice({
                 state.session.mapsData[state.session.currentMap.id].queue[0],
             ]
         },
+        prevQueue: (state: stateDto) => {
+            state.session.mapsData[state.session.currentMap.id].queue = [
+                // @ts-ignore
+                state.session.mapsData[state.session.currentMap.id].queue.at(-1),
+                ...state.session.mapsData[state.session.currentMap.id].queue.slice(1, -1),
+                state.session.mapsData[state.session.currentMap.id].queue[0],
+            ]
+        },
 
         // """"""""""""""""""""""""""""""""""""""""""" { bestiary action } """"""""""""""""""""""""""""""""""""""""""" //
 
@@ -208,6 +216,7 @@ export const {
     removeMap,
     changeQueue,
     nextQueue,
+    prevQueue,
     pushToBestiary,
     editBestiary,
     scaleObject,

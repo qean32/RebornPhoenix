@@ -16,7 +16,7 @@ interface Props extends entityDto {
 export const EntityMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const removeHandler = () => dispath(removeEntity({ id: item.id }))
-    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more' }))
+    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more-entity' }))
     const actionHandler = () => { pushQ(item.id.toString()) }
     const { pushQ } = useQueryParam(qParamName.actionEntity)
 

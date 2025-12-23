@@ -29,7 +29,7 @@ export const EntityMore: React.FC<Props> = ({ view, swap }: Props) => {
             {entity ?
                 <>
                     {true ?
-                        <EditBestiaryForm entity={entity} />
+                        <EditBestiaryForm entity={entity} swap={swap} />
                         :
                         <div onClick={stopPropagation} className='bg-color h-full w-[340px] flex items-center justify-start pt-3 flex-col'>
                             <div className="w-11/12 bg-color-dark aspect-square rounded-sm bg-img" style={{ backgroundImage: `url(${entity?.path ?? ''})` }} ></div>

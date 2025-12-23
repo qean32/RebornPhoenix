@@ -12,7 +12,7 @@ export const GameBackground: React.FC<Props> = ({ }: Props) => {
     const [bgGameArea] = useImage(currentMap?.path ?? '', 'anonymous');
 
     if (!currentMap) {
-        return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ КАРТ!" />
+        return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />
     }
 
     return <Image

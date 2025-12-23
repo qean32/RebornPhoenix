@@ -10,15 +10,16 @@ import { FormProvider } from 'react-hook-form'
 
 interface Props {
     entity: entityDto
+    swap: Function
 }
 
 
-export const EditBestiaryForm: React.FC<Props> = ({ entity }: Props) => {
+export const EditBestiaryForm: React.FC<Props> = ({ entity, swap }: Props) => {
     const dispath = useAppDispatch()
     const { form, submitHandler } = useMyForm<pushEntityToSessionFormDto>(pushEntityToSessionSchema,
         (data: any) => {
-            dispath(editBestiary(data))
-
+            dispath(editBestiary({ ...entity, ...data, id: entity.idInBestiary }))
+            swap()
         },
         () => { },
     )
@@ -36,7 +37,7 @@ export const EditBestiaryForm: React.FC<Props> = ({ entity }: Props) => {
                 <div className="w-11/12 bg-color-dark aspect-square rounded-sm bg-img" style={{ backgroundImage: `url(${entity ? entity.path : ''})` }} ></div>
                 <div className="w-11/12 rounded-sm pt-10 flex flex-col gap-2 h-full">
                     <TextInput name='name' placeHolder='Наименование' defaultValue={entity.name} />
-                    <TextArea name='description' title='' className='p-4 px-5 h-[300px] overflow-scroll' >
+                    <TextArea name='description' initValue title='' className='p-4 px-5 h-[300px] overflow-scroll' >
                         {entity.description}
                     </TextArea>
                     <TextInput name='initiative' placeHolder='' className='d-none' defaultValue={entity ? entity.initiative.toString() : '0'} />
