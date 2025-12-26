@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stage, Layer, Group } from "react-konva"
+import { Stage, Layer } from "react-konva"
 import { CharacterDM, EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
 import { useAppSelector } from '@lib/castom-hook/redux';
 import { useStage, useWindowSize } from '@lib/castom-hook';
@@ -29,9 +29,7 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
             draggable
         >
             <Layer>
-                <Group>
-                    <GameBackground />
-                </Group>
+                <GameBackground />
                 {!!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.queue.map((item) => {
                         return <EntityDM action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id} {...item} key={item.id} />

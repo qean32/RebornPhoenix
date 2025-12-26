@@ -16,8 +16,11 @@ export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
 
     React.useEffect(() => {
         if (!param) {
-            setTimeout(() => { setStatePath('') }, 200)
-            return
+            const t = setTimeout(() => { setStatePath('') }, 200)
+
+            return () => {
+                clearTimeout(t)
+            }
         }
         setStatePath(param)
     }, [param])
@@ -31,8 +34,8 @@ export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
                 close: 'modal-close'
             }}
         >
-            <div className="bg-color max-w-[95%] max-h-11/12 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
-                <img src={statePath} alt="" />
+            <div className="max-w-[98%] h-[95%] overflow-hidden rounded-md flex justify-center items-center" onClick={stopPropagation}>
+                <img src={statePath} alt="" style={{ maxHeight: '100%' }} />
             </div>
         </Modal>
     )

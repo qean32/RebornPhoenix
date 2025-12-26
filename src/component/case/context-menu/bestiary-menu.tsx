@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { pushEntity } from '@/store/session-store'
 import { entityDto } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-entity'
+import { swapTmpObject } from '@/store/tmp-object'
 interface Props extends entityDto {
 }
 

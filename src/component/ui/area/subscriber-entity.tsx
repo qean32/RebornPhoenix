@@ -3,10 +3,12 @@ import { Circle, Group } from "react-konva"
 import { entityDto } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
 import { useSubscriber } from '@/lib/castom-hook/area';
+import { useAppDispatch } from '@/lib/castom-hook/redux';
 
 
 export const EntitySubscriber: React.FC<Omit<entityDto, 'description'>> = (props: Omit<entityDto, 'description'>) => {
-    const { image, mouseOutHandler, mouseOverHandler } = useSubscriber(props.path)
+    const dispath = useAppDispatch()
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-entity', props.idInBestiary)
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
@@ -14,6 +16,7 @@ export const EntitySubscriber: React.FC<Omit<entityDto, 'description'>> = (props
             id={props.id.toString()}
             {...props.position}
             onMouseOver={mouseOverHandler}
+            onClick={clickHandler}
             onMouseOut={mouseOutHandler}
         >
             <Circle

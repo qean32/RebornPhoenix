@@ -6,7 +6,7 @@ import { slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
-import { useToast } from '@/lib/castom-hook'
+import { useGrid, useToast } from '@/lib/castom-hook'
 import { FillHoverHint } from '../master/h-order-component'
 import { toggleFullScreen } from '@/lib/function'
 
@@ -26,6 +26,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
         navigator.clipboard.writeText(`${slogan} \n${process.env.CLIENT_HOST}${window.location.pathname.slice(1)}`);
         toast("message", { text: 'Ссылка скопирована' })
     }, [])
+    const { swap: swapGrid } = useGrid()
 
     return (
         <div className='absolute flex z-10 right-35 gap-4'>
@@ -44,7 +45,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Сетка'>
-                    <ButtonInGroup children={<img className='icon-sm' src='/icon/grid.svg' />} />
+                    <ButtonInGroup fn={swapGrid} children={<img className='icon-sm' src='/icon/grid.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Поделиться'>
                     <ButtonInGroup fn={forwardClick} children={<img className='icon-sm' src='/icon/forward.svg' />} />

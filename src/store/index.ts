@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { toastReducer } from './toast-store'
 import { sessionReducer } from './session-store'
 import { objectBeingPushedToSessionReducer } from './object-being-pushed-to-session-store'
-import { tmpEntityReducer } from './tmp-entity'
+import { tmpObjectReducer } from './tmp-object'
 import { notesReducer } from './notes-store'
 import { userReducer } from './user-store'
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     toast: toastReducer,
     session: sessionReducer ?? '',
     pushedObject: objectBeingPushedToSessionReducer,
-    tmpEntity: tmpEntityReducer,
+    tmpObject: tmpObjectReducer,
     notes: notesReducer,
     user: userReducer,
 })

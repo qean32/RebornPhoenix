@@ -1,7 +1,8 @@
 import React from 'react'
-import { Image, Text } from 'react-konva'
+import { Group, Image, Text } from 'react-konva'
 import useImage from 'use-image';
 import { useAppSelector } from '@lib/castom-hook/redux';
+import { useGrid } from '@/lib/castom-hook';
 
 interface Props {
 }
@@ -14,11 +15,27 @@ export const GameBackground: React.FC<Props> = ({ }: Props) => {
     if (!currentMap) {
         return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />
     }
+    const { param: grid } = useGrid()
+    console.log(Boolean(grid));
+    const [chart] = useImage('/icon/chart.png')
 
-    return <Image
-        image={bgGameArea}
-        x={0}
-        y={0}
-        cornerRadius={[10, 10, 10, 10]}
-    />;
+
+    return (
+        <Group>
+            <Image
+                image={chart}
+                x={0}
+                y={0}
+                width={bgGameArea?.width}
+                height={bgGameArea?.height}
+                cornerRadius={[10, 10, 10, 10]}
+            />
+            <Image
+                image={bgGameArea}
+                x={0}
+                y={0}
+                cornerRadius={[10, 10, 10, 10]}
+            />
+        </Group>
+    )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stage, Layer, Group } from "react-konva"
+import { Stage, Layer } from "react-konva"
 import { CharacterSubscriber, EntitySubscriber, GameBackground, ObjectSubscriber } from '@component/ui/area';
 import { useAppSelector } from '@lib/castom-hook/redux';
 import { useStage, useWindowSize } from '@lib/castom-hook';
@@ -29,22 +29,20 @@ export const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
             draggable
         >
             <Layer>
-                <Group>
-                    <GameBackground />
-                </Group>
+                <GameBackground />
                 {!!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.queue.map((item) => {
                         return <EntitySubscriber {...item} key={item.id} />
                     })
                 }
-                {!!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
-                    mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
-                        return <ObjectSubscriber {...item} key={item.id} />
-                    })
-                }
                 {!!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.characters.map((item) => {
                         return <CharacterSubscriber {...item} key={item.id} />
+                    })
+                }
+                {!!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
+                    mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
+                        return <ObjectSubscriber {...item} key={item.id} />
                     })
                 }
             </Layer>

@@ -7,7 +7,7 @@ interface Props {
 
 
 export const ProtectedRouteSession: React.FC<Props> = ({ children }: Props) => {
-    if (false) {
+    if (true) {
         return <ViewSession />
     }
 

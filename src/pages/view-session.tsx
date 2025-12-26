@@ -1,4 +1,4 @@
-import { ViewImg } from "@component/case/modal/index-group"
+import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
 import { ToolGameSubscriber } from "@component/shared"
 import { usePage, useQueryParam } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
@@ -27,6 +27,7 @@ const Modal: React.FC = () => {
 
     return (
         <>
+            <ObjectMoreDetailed />
             <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!param} />
         </>
     )
