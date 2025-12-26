@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Image, Text } from 'react-konva'
+import { Group, Image, Rect, Text } from 'react-konva'
 import useImage from 'use-image';
 import { useAppSelector } from '@lib/castom-hook/redux';
 import { useGrid } from '@/lib/castom-hook';
@@ -16,26 +16,27 @@ export const GameBackground: React.FC<Props> = ({ }: Props) => {
         return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />
     }
     const { param: grid } = useGrid()
-    console.log(Boolean(grid));
-    const [chart] = useImage('/icon/chart.png')
+    const [chart] = useImage('/icon/grid.png')
 
 
     return (
         <Group>
-            <Image
-                image={chart}
-                x={0}
-                y={0}
-                width={bgGameArea?.width}
-                height={bgGameArea?.height}
-                cornerRadius={[10, 10, 10, 10]}
-            />
             <Image
                 image={bgGameArea}
                 x={0}
                 y={0}
                 cornerRadius={[10, 10, 10, 10]}
             />
+            {Boolean(grid) &&
+                <Rect
+                    x={0}
+                    y={0}
+                    cornerRadius={[10, 10, 10, 10]}
+                    fillPatternImage={chart}
+                    width={bgGameArea?.width ? bgGameArea?.width : 0}
+                    height={bgGameArea?.height ? bgGameArea?.height : 0}
+                />
+            }
         </Group>
     )
 }
