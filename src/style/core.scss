@@ -11,7 +11,7 @@
 
 @font-face {
     font-family: 'DFTFONT';
-    src: "/font/static/Oswald-Medium.ttf"
+    src: url("/font/WDXL_Lubrifont_JP_N/WDXLLubrifontJPN-Regular.ttf")
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=TikTok+Sans:opsz,wght@12..36,300..900&family=WDXL+Lubrifont+JP+N&display=swap');
@@ -30,7 +30,7 @@
 }
 
 * {
-    font-family: "WDXL Lubrifont JP N", sans-serif, "DFTFONT";
+    font-family: "WDXL Lubrifont JP N", "DFTFONT", Arial;
     letter-spacing: 0.7px;
     scroll-behavior: smooth;
     // outline: #E74343 1px solid;

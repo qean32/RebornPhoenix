@@ -1,23 +1,32 @@
-Oswald Variable Font
-====================
+Rubik Variable Font
+===================
 
-This download contains Oswald as both a variable font and static fonts.
+This download contains Rubik as both variable fonts and static fonts.
 
-Oswald is a variable font with this axis:
+Rubik is a variable font with this axis:
   wght
 
-This means all the styles are contained in a single file:
-  Oswald-VariableFont_wght.ttf
+This means all the styles are contained in these files:
+  Rubik/Rubik-VariableFont_wght.ttf
+  Rubik/Rubik-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Oswald:
-  static/Oswald-ExtraLight.ttf
-  static/Oswald-Light.ttf
-  static/Oswald-Regular.ttf
-  static/Oswald-Medium.ttf
-  static/Oswald-SemiBold.ttf
-  static/Oswald-Bold.ttf
+in those cases you can use the static font files for Rubik:
+  Rubik/static/Rubik-Light.ttf
+  Rubik/static/Rubik-Regular.ttf
+  Rubik/static/Rubik-Medium.ttf
+  Rubik/static/Rubik-SemiBold.ttf
+  Rubik/static/Rubik-Bold.ttf
+  Rubik/static/Rubik-ExtraBold.ttf
+  Rubik/static/Rubik-Black.ttf
+  Rubik/static/Rubik-LightItalic.ttf
+  Rubik/static/Rubik-Italic.ttf
+  Rubik/static/Rubik-MediumItalic.ttf
+  Rubik/static/Rubik-SemiBoldItalic.ttf
+  Rubik/static/Rubik-BoldItalic.ttf
+  Rubik/static/Rubik-ExtraBoldItalic.ttf
+  Rubik/static/Rubik-BlackItalic.ttf
 
 Get started
 -----------
