@@ -1,37 +1,23 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
-import { useDMEntity } from '@lib/castom-hook/area';
 import { entityDto } from '@/model';
-import { useAppDispatch } from '@lib/castom-hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
+import { useSubscriber } from '@/lib/castom-hook/area';
+import { useAppDispatch } from '@/lib/castom-hook/redux';
 
 
 export const EntitySubscriber: React.FC<Omit<entityDto, 'description'>> = (props: Omit<entityDto, 'description'>) => {
     const dispath = useAppDispatch()
-    const {
-        clickHandler,
-        dragEndHandler,
-        dragStartHandler,
-        mouseOutHandler,
-        mouseOverHandler,
-        dragMoveHandler,
-        image,
-        rectRef
-    } = useDMEntity(dispath, props.path)
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-entity', props.idInBestiary)
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
         <Group
             id={props.id.toString()}
-            ref={rectRef}
-            draggable={true}
             {...props.position}
-            onClick={clickHandler}
-            onDragEnd={dragEndHandler}
-            onDragStart={dragStartHandler}
-            onMouseOut={mouseOutHandler}
             onMouseOver={mouseOverHandler}
-            onDragMove={dragMoveHandler}
+            onClick={clickHandler}
+            onMouseOut={mouseOutHandler}
         >
             <Circle
                 {...utils.restObject}

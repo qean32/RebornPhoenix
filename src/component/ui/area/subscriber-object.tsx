@@ -1,9 +1,9 @@
-import { useDMObject } from '@/lib/castom-hook/area'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { objectDto } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
 import { utils } from './utils'
+import { useSubscriber } from '@/lib/castom-hook/area'
+import { useAppDispatch } from '@/store'
 
 interface Props extends objectDto {
 }
@@ -11,15 +11,7 @@ interface Props extends objectDto {
 
 export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
     const dispath = useAppDispatch()
-    const {
-        clickHandler,
-        dragEndHandler,
-        dragMoveHandler,
-        dragStartHandler,
-        image,
-        mouseOutHandler,
-        mouseOverHandler,
-    } = useDMObject(dispath, props.path)
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-object')
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
@@ -29,14 +21,10 @@ export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
                 {...props.position}
                 id={props.id.toString()}
                 scale={{ y: scale, x: scale }}
-                onClick={clickHandler}
-                onDragEnd={dragEndHandler}
-                onDragStart={dragStartHandler}
-                onMouseOut={mouseOutHandler}
-                onMouseOver={mouseOverHandler}
-                onDragMove={dragMoveHandler}
-                draggable={true}
                 image={image}
+                onMouseOver={mouseOverHandler}
+                onMouseOut={mouseOutHandler}
+                onClick={clickHandler}
             />
         </>
     )

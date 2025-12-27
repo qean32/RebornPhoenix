@@ -14,10 +14,9 @@ export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
 
 
     return (
-        <div className="relative bg-color-dark px-6 pt-4 pb-5 w-fit">
+        <div className="relative px-6 pt-4 pb-5 w-fit">
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
-                    console.log(param == item, item, param);
                     return (
                         <Link to={`/faq#${index}`}>
                             <p className={cn('transition-300 text-lg hover:text-red-800', (param == item && "text-red-800"))}>{item}</p></Link>

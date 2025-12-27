@@ -3,7 +3,7 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { commentDto } from '@/model'
-import { swapTmpObject } from '@/store/tmp-entity'
+import { swapTmpObject } from '@/store/tmp-object'
 
 interface Props extends commentDto {
 }

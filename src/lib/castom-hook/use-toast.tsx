@@ -10,8 +10,6 @@ export const useToast = () => {
         dispath(pushToast({ key, payload: payload ?? {}, id }))
 
         setTimeout(() => {
-            console.log("toast");
-
             dispath(removeToast({ id }))
         }, timeout)
     }

@@ -8,11 +8,6 @@ const bestiaryStorage = 'bestiary-storage'
 
 type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
 
-function swap(array: any[]) {
-    [array[0], array[1]] = [array[1], ...array.slice(1, -1), array[0]];
-    return array;
-}
-
 const initialState: stateDto = {
     session: {
         ...JSON.parse((localStorage.getItem(gameStorage) as string)),
@@ -185,6 +180,14 @@ const sessionSlice = createSlice({
                 state.session.mapsData[state.session.currentMap.id].queue[0],
             ]
         },
+        prevQueue: (state: stateDto) => {
+            state.session.mapsData[state.session.currentMap.id].queue = [
+                // @ts-ignore
+                state.session.mapsData[state.session.currentMap.id].queue.at(-1),
+                ...state.session.mapsData[state.session.currentMap.id].queue.slice(1, -1),
+                state.session.mapsData[state.session.currentMap.id].queue[0],
+            ]
+        },
 
         // """"""""""""""""""""""""""""""""""""""""""" { bestiary action } """"""""""""""""""""""""""""""""""""""""""" //
 
@@ -213,6 +216,7 @@ export const {
     removeMap,
     changeQueue,
     nextQueue,
+    prevQueue,
     pushToBestiary,
     editBestiary,
     scaleObject,

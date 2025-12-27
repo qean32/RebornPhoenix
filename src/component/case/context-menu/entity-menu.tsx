@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { removeEntity } from '@/store/session-store'
 import { entityDto } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-entity'
+import { swapTmpObject } from '@/store/tmp-object'
 import { useQueryParam } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
 
@@ -16,7 +16,7 @@ interface Props extends entityDto {
 export const EntityMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const removeHandler = () => dispath(removeEntity({ id: item.id }))
-    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more' }))
+    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more-entity' }))
     const actionHandler = () => { pushQ(item.id.toString()) }
     const { pushQ } = useQueryParam(qParamName.actionEntity)
 

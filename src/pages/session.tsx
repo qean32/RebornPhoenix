@@ -1,11 +1,11 @@
 import { PushCharacterInSession, ViewImg, ActionEntity } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame } from "@component/shared"
-import { useEntityMore, usePage, useQueryParam } from "@lib/castom-hook"
+import { usePage, useQueryParam } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
 import React from "react"
 import { GameArea } from "@/component/master"
 import { qParamName } from "@/export"
-import { EntityMore } from "@/component/case/modal/entity-more-modal"
+import { ObjectMoreDetailed } from "@/component/case/modal/object-more-detailed"
 
 export const Session = () => {
     const { } = usePage(getParamName())
@@ -25,15 +25,13 @@ export const Session = () => {
 
 const Modal: React.FC = () => {
     const { allQ, clearQParam } = useQueryParam('')
-    const { clearTmp, tmpObject } = useEntityMore()
 
 
     return (
         <>
             <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
             <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
-            {/* @ts-ignore */}
-            <EntityMore swap={clearTmp} view={tmpObject?.id} />
+            <ObjectMoreDetailed />
             <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
         </>
     )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ViewSession } from '../'
+import { MainLoader } from '@/component/master'
 
 interface Props {
     children: React.ReactNode
@@ -8,7 +9,10 @@ interface Props {
 
 export const ProtectedRouteSession: React.FC<Props> = ({ children }: Props) => {
     if (false) {
-        return <ViewSession />
+        return <>
+            <MainLoader />
+            <ViewSession />
+        </>
     }
 
     return (

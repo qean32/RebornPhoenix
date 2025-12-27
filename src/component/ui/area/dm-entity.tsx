@@ -5,8 +5,12 @@ import { entityDto } from '@/model';
 import { useAppDispatch } from '@lib/castom-hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
 
+type Props = {
+    action?: boolean
+} & Omit<entityDto, 'description'>
 
-export const EntityDM: React.FC<Omit<entityDto, 'description'>> = (props: Omit<entityDto, 'description'>) => {
+
+export const EntityDM: React.FC<Props> = (props: Props) => {
     const dispath = useAppDispatch()
     const {
         clickHandler,
@@ -36,6 +40,7 @@ export const EntityDM: React.FC<Omit<entityDto, 'description'>> = (props: Omit<e
         >
             <Circle
                 {...utils.restObject}
+                {...props.action && utils.restQueue}
                 radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
                 fillPatternImage={image}
                 fillPatternX={image ? -image?.width / 2 : 0}

@@ -15,12 +15,18 @@ export const useMyForm = <T extends FieldValues,>(
     })
 
     const onSubmit: SubmitHandler<T> = (data) => {
-        submitCallBack()
+        if (data) {
+
+            submitCallBack(data)
+        }
         console.log(data);
         toast('message', { text: '' })
     }
     const onError: SubmitErrorHandler<T> = (data) => {
-        submitErrorCallBack()
+        if (data) {
+
+            submitErrorCallBack(data)
+        }
         console.log(data);
         toast('message', { text: '' })
     }

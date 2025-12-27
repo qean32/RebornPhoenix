@@ -1,4 +1,4 @@
-export { EntityMore } from './entity-more-modal'
+export { ObjectMoreDetailed } from './object-more-detailed'
 export { Notes } from './notes-modal'
 export { PushToSession } from './push-to-session-modal'
 export { PushCharacterInSession } from './push-character-in-session-modal'

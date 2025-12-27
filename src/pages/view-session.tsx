@@ -1,8 +1,34 @@
+import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
+import { ToolGameSubscriber } from "@component/shared"
+import { usePage, useQueryParam } from "@lib/castom-hook"
+import { getParamName } from "@lib/function"
+import React from "react"
+import { GameAreaSubscriber } from "@/component/master"
+import { qParamName } from "@/export"
+
 export const ViewSession = () => {
+    const { } = usePage(getParamName())
+
 
     return (
-        <div className="h-full flex justify-center items-center fixed inset-0">
-            Просмотр сессии
-        </div>
+        <>
+            <ToolGameSubscriber />
+            <main className="h-full z-0 relative">
+                <GameAreaSubscriber />
+            </main >
+            <Modal />
+        </>
+    )
+}
+
+const Modal: React.FC = () => {
+    const { param, clearQParam } = useQueryParam(qParamName.vImg)
+
+
+    return (
+        <>
+            <ObjectMoreDetailed />
+            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!param} />
+        </>
     )
 }

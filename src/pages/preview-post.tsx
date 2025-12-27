@@ -8,13 +8,13 @@ import { useParams } from "react-router-dom"
 
 export const PreviewPost = () => {
     const { } = usePage(getParamName())
-    const { text } = useParams()
+    const { content } = useParams()
 
     return (
         <Page size="w-[65%]">
             <Crumb />
             <PostInfo {...f_user[0]} email="" />
-            <MainBlock text={text} />
+            <MainBlock content={content} />
             <CommentBlock />
         </Page>
     )

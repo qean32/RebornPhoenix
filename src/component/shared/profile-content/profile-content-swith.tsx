@@ -26,7 +26,7 @@ export const ProfileContentSwith: React.FC<Props> = ({ }: Props) => {
 
     return (
         <div className="mt-5 flex gap-2 pt-2 pl-1.5 pb-5 w-[100%]" onClick={swap} >
-            <p className={cn("cursor-pointer text-xl", (param == 'post' && 'font-bold'))} >Посты</p>
+            <p className={cn("cursor-pointer text-xl", ((param == 'post' || !param) && 'font-bold'))} >Посты</p>
             <p className={cn("cursor-pointer text-xl", (param == 'character' && 'font-bold'))} >Персонажи</p>
             <p className={cn("cursor-pointer text-xl", (param == 'session' && 'font-bold'))} >Игры</p>
         </div>

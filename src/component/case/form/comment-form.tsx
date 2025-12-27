@@ -10,7 +10,7 @@ interface Props {
 
 
 export const CommentForm: React.FC<Props> = ({ }: Props) => {
-    const { tmpObject, key } = useAppSelector(state => state.tmpEntity)
+    const { tmpObject, key } = useAppSelector(state => state.tmpObject)
     const { form, submitHandler } =
         useMyForm<commentFormDto>(
             commentSchema,

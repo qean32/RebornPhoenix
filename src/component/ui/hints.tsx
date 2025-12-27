@@ -25,6 +25,7 @@ export const Hints: React.FC<Props> = React.memo(({ }: Props) => {
                 <p>пример</p>
                 <p>img:{'{'}https://pathToImg{'}'}</p>
             </div>
+            <p className='mt-2 pb-8'>Предупреждение: используйте ссылки, заканчивающиеся на .jpg | .png | .jpeg | .webp и т.д</p>
         </>
     )
 })

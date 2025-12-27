@@ -21,7 +21,7 @@ export const Character: React.FC<{}> = ({ }: {}) => {
                 )}
                 <ViewAuthor>
                     <Modal.Root modal={Modal.PushCharacterInProfile}>
-                        <PlusButton className='h-[100px]' iconSize='icon-sm' />
+                        <PlusButton className='h-[106px]' iconSize='icon-sm' />
                     </Modal.Root>
                 </ViewAuthor>
             </div>

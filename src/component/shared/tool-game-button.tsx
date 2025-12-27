@@ -6,8 +6,8 @@ import { slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
-import { useToast } from '@/lib/castom-hook'
-import { HoverHint } from '../master/h-order-component'
+import { useGrid, useToast } from '@/lib/castom-hook'
+import { FillHoverHint } from '../master/h-order-component'
 import { toggleFullScreen } from '@/lib/function'
 
 interface Props {
@@ -26,77 +26,53 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
         navigator.clipboard.writeText(`${slogan} \n${process.env.CLIENT_HOST}${window.location.pathname.slice(1)}`);
         toast("message", { text: 'Ссылка скопирована' })
     }, [])
+    const { swap: swapGrid } = useGrid()
 
     return (
         <div className='absolute flex z-10 right-35 gap-4'>
             <GroupButton>
-                <LocalHint title='Режим'>
+                <FillHoverHint title='Режим'>
                     <ButtonInGroup children={<img className='icon-sm' src='/icon/game.svg' />} />
-                </LocalHint>
-                <LocalHint title='Карты'>
+                </FillHoverHint>
+                <FillHoverHint title='Карты'>
                     <Modal.Root modal={Modal.MapsGame}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/map.svg' />} /></Modal.Root>
-                </LocalHint>
+                </FillHoverHint>
             </GroupButton>
             <GroupButton>
-                <LocalHint title='Игроки'>
+                <FillHoverHint title='Игроки'>
                     <Modal.Root modal={Modal.Users}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
-                </LocalHint>
-                <LocalHint title='Сетка'>
-                    <ButtonInGroup children={<img className='icon-sm' src='/icon/grid.svg' />} />
-                </LocalHint>
-                <LocalHint title='Поделиться'>
+                </FillHoverHint>
+                <FillHoverHint title='Сетка'>
+                    <ButtonInGroup fn={swapGrid} children={<img className='icon-sm' src='/icon/grid.svg' />} />
+                </FillHoverHint>
+                <FillHoverHint title='Поделиться'>
                     <ButtonInGroup fn={forwardClick} children={<img className='icon-sm' src='/icon/forward.svg' />} />
-                </LocalHint>
-                <LocalHint title='Сохранить'>
+                </FillHoverHint>
+                <FillHoverHint title='Сохранить'>
                     <ButtonInGroup fn={saveGame} children={<img className='icon-sm' src='/icon/save.svg' />} />
-                </LocalHint>
-                <LocalHint title='Сущности'>
+                </FillHoverHint>
+                <FillHoverHint title='Сущности'>
                     <Modal.Root modal={Modal.PushToSession} props={{ type: 'entity', renderItem: (item: entityDto) => <InStoreEntityItem {...item} />, accept: PushEntity }}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/dragon.svg' />} /></Modal.Root>
-                </LocalHint>
-                <LocalHint title='Объекты'>
+                </FillHoverHint>
+                <FillHoverHint title='Объекты'>
                     <Modal.Root modal={Modal.PushToSession} props={{ type: 'object', renderItem: (item: objectDto) => <InStoreObjectItem {...item} />, accept: PushObject }}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/object.svg' />} /></Modal.Root>
-                </LocalHint>
-                <LocalHint title='Изображения'>
+                </FillHoverHint>
+                <FillHoverHint title='Изображения'>
                     <Modal.Root modal={Modal.ImgCarousel}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/img-carousel.svg' />} /></Modal.Root>
-                </LocalHint>
-                <LocalHint title='Заметки'>
+                </FillHoverHint>
+                <FillHoverHint title='Заметки'>
                     <Modal.Root modal={Modal.Notes}>
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/edit.svg' />} /></Modal.Root>
-                </LocalHint>
-                <LocalHint title='Экран'>
+                </FillHoverHint>
+                <FillHoverHint title='Экран'>
                     <ButtonInGroup fn={toggleFullScreen} children={<img className='icon-sm' src='/icon/toggle-full-screen.svg' />} />
-                </LocalHint>
+                </FillHoverHint>
             </GroupButton>
         </div >
-    )
-}
-
-
-type Props_ = {
-    children: React.ReactNode
-    title: string
-}
-
-const LocalHint: React.FC<Props_> = ({
-    children,
-    title
-}: Props_) => {
-    return (
-        <div className="w-[47px] h-[47px] relative">
-            <HoverHint
-                text={title}
-                fit
-                x='center-x'
-                y='bottom'
-                className='no-max-w'
-            >
-                {children}
-            </HoverHint>
-        </div>
     )
 }

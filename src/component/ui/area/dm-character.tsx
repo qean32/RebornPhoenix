@@ -5,8 +5,11 @@ import { characterDto } from '@/model';
 import { useAppDispatch } from '@lib/castom-hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
 
+type Props = {
+    action?: boolean
+} & characterDto
 
-export const CharacterDM: React.FC<characterDto> = (props: characterDto) => {
+export const CharacterDM: React.FC<Props> = (props: Props) => {
     const dispath = useAppDispatch()
     const {
         clickHandler,
@@ -35,6 +38,7 @@ export const CharacterDM: React.FC<characterDto> = (props: characterDto) => {
         >
             <Circle
                 {...utils.restObject}
+                {...props.action && utils.restQueue}
                 radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
                 fillPatternImage={image}
                 fillPatternX={image ? -image?.width / 2 : 0}

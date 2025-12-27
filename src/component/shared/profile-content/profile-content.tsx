@@ -13,7 +13,7 @@ export const ProfileContent: React.FC<Props> = ({ }: Props) => {
 
     return (
         <div className={cn("flex w-[300%] pl-1 gap-1 transition-700 min-h-[520px] h-fit", (param == 'character' && '-translate-x-1/3'), param == 'session' && '-translate-x-2/3')}>
-            <div className={classParent}><Post view={param == 'post'} /></div>
+            <div className={classParent}><Post view={param == 'post' || !param} /></div>
             <div className={classParent}>
                 {param == 'character' && <Character />}</div>
             <div className={classParent}>

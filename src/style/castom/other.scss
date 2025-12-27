@@ -184,51 +184,37 @@
 }
 
 .fake-token-1 {
-    top: 590px;
-    left: 420px;
-    // animation: fake-token-1-anim linear 5s 2s infinite;
+    top: 630px;
+    left: 520px;
+    // animation: fake-token-1-anim 5s infinite alternate linear;
 }
 
 .fake-token-2 {
-    top: 280px;
-    left: 740px;
+    top: 290px;
+    left: 980px;
 }
 
 .fake-token-3 {
-    top: 540px;
-    left: 600px;
+    top: 570px;
+    left: 630px;
 }
 
 .fake-token-4 {
     top: 100px;
-    left: 240px;
+    left: 260px;
 }
 
 .fake-token-5 {
     top: 200px;
-    left: 290px;
+    left: 310px;
 }
 
-@keyframes fake-token-1-anim {
-    0% {}
+@keyframes fake-token-1-anim {}
 
-    10% {}
+.no-absolute {
+    position: initial;
+}
 
-    20% {}
-
-    30% {}
-
-    40% {}
-
-    50% {}
-
-    60% {}
-
-    70% {}
-
-    80% {}
-
-    90% {}
-
-    100% {}
+.bg-transparent {
+    background-color: transparent !important;
 }

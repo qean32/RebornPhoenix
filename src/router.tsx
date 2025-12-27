@@ -38,7 +38,7 @@ export const Router = () => {
                     <Route element={<pages.Department />} path="/department/:name" />
 
                     <Route element={<pages.Post />} path="/post/:department/:id/:name" />
-                    <Route element={<pages.PreviewPost />} path="/preview/:text" />
+                    <Route element={<pages.PreviewPost />} path="/preview/:content" />
 
                     <Route element={<pages.P404 />} path="*" />
                 </Routes>
