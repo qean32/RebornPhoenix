@@ -13,12 +13,12 @@ interface Props extends entityDto {
 export const BestiaryMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const pushHandler = () => dispath(pushEntity(item))
-    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more' }))
+    const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more-entity' }))
 
     return (
         <ContextMenu className='z-20'>
             <Initiative title={item.initiative} className='mx-3 mb-3' />
-            <ContextMenuItem fn={pushHandler}>Добавить</ContextMenuItem>
+            <ContextMenuItem fn={pushHandler}>Клонировать</ContextMenuItem>
             <ContextMenuItem fn={moreHandler}>Подробнее</ContextMenuItem>
         </ContextMenu>
     )

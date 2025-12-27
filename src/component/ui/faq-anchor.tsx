@@ -14,7 +14,7 @@ export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
 
 
     return (
-        <div className="relative bg-color-dark px-6 pt-4 pb-5 w-fit">
+        <div className="relative px-6 pt-4 pb-5 w-fit">
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
                     return (

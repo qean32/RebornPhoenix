@@ -36,14 +36,10 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                 <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                     <div className="flex gap-2">
                         <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                        <Button
-                            fn={() => { }}
-                            variant='acceess'
-                            type='submit'
-                        >
-                            <p className='pointer-events-none'>Добавить</p></Button>
+                        <Button fn={switcher.on} variant='ghost'>
+                            <p className='pointer-events-none'>Назад</p></Button>
                     </div>
-                    <Button variant='acceess' fn={switcher.on} className='mt-3 w-11/12'><p>Назад</p></Button>
+                    <Button variant='acceess' fn={switcher.on} className='mt-3 w-11/12'><p>Добавить</p></Button>
                 </div>
             </form>
         </FormProvider>

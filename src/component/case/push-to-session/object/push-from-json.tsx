@@ -32,10 +32,10 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                 {data?.isObject
                     &&
                     <>
-                        <div className="h-[300px] flex justify-center items-center pt-15">
-                            <div className="w-[99%] aspect-square bg-img bg-color-dark rounded-sm" style={{ backgroundImage: `url(${object.path})` }}></div>
+                        <div className="h-[300px] flex justify-center items-center pt-20">
+                            <div className="w-[99%] aspect-square bg-img rounded-sm" style={{ backgroundImage: `url(${object.path})` }}></div>
                         </div>
-                        <div className='pt-10'>
+                        <div className='pt-15'>
                             <DisabledInput value={object.name} />
                         </div>
                     </>

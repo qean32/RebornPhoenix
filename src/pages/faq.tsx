@@ -8,7 +8,7 @@ export const Faq = () => {
     const { } = usePage(title.faq)
 
     return (
-        <Page size="w-[85%]" className="pb-20">
+        <Page size="w-[85%]" className="pb-20 bg-color-dark">
             <div className="flex gap-5">
                 <FaqContent />
                 <FaqAnchor />

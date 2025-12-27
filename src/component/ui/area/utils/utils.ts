@@ -7,8 +7,8 @@ export const restObject = {
 }
 
 export const restQueue = {
-    strokeWidth: 30,
-    stroke: "#8b0000",
+    strokeWidth: 40,
+    stroke: "oklch(44.4% 0.177 26.899)",
 }
 
 export const getScale = (height: number, width: number, size: 1 | 2 | 3 | 4) => {
