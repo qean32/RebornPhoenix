@@ -32,8 +32,8 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                             <ImgInput title='фото профиля' className='pl-1 pt-5' />
                         </div>
                         <LinkPrime
-                            path='/change-password'
-                        >Востановить пароль</LinkPrime>
+                            path='/reset-password'
+                        >Изменить пароль</LinkPrime>
                     </div>
                     <Button
                         variant='acceess'

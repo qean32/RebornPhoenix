@@ -13,7 +13,7 @@ export const FaqContent: React.FC<Props> = ({ }: Props) => {
 
     return (
         <>
-            <div className="w-10/12">
+            <div className="w-10/12 pb-5">
                 <p className="text-4xl uppercase">часто задаваетые <span className="text-red-800 text-5xl">вопросы</span></p>
                 {q.map(({ content, title }, index) => {
                     return (
