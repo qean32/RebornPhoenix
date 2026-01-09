@@ -9,6 +9,7 @@ export type postDto = idDto & {
         id: number
         ava: string
     },
+    files: string
     department: string
     likes: number
     fixed?: boolean

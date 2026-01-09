@@ -3,39 +3,43 @@ import { requestDelete, requestGet, requestPatch, requestPost } from "@/lib/func
 const instance = 'profile'
 
 export const profileService = {
-    getUserInfo: (id: number) => {
+    getUserInfo: (id: string | number) => {
         return requestGet(`${instance}/${id}/info/`)
     },
 
-    getCharacters: (id: number) => {
+    getCharacters: (id: string | number) => {
         return requestGet(`${instance}/${id}/characters/`)
     },
 
-    getPosts: (id: number) => {
+    getPosts: (id: string | number) => {
         return requestGet(`${instance}/${id}/posts/`)
     },
 
-    getSessions: (id: number) => {
+    getSessions: (id: string | number) => {
         return requestGet(`${instance}/${id}/sessions/`)
     },
 
-    banAction: (data: any, id: number) => {
+    banAction: (data: any, id: string | number) => {
         return requestPost(`${instance}/${id}/ban-action/`, data)
     },
 
-    getBanReason: (id: number) => {
+    getBanReason: (id: string | number) => {
         return requestGet(`${instance}/${id}/ban-reason/`)
     },
 
-    subscribe: (id: number) => {
+    subscribeAction: (id: string | number) => {
         return requestPost(`${instance}/subscribe/${id}`, {})
+    },
+
+    getSubscribe: (id: string | number) => {
+        return requestGet(`${instance}/subscribe/${id}`)
     },
 
     createCharacter: (data: any) => {
         return requestPost(`${instance}/create/character`, data)
     },
 
-    deleteCharacter: (id: number) => {
+    deleteCharacter: (id: string | number) => {
         return requestDelete(`${instance}/delete/character/${id}`)
     },
 

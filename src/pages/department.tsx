@@ -1,13 +1,15 @@
 import React from "react"
 import { GroupContainer } from "@component/master"
 import { PostColumn, ScrollTop, Search, TextInfo } from "@component/ui"
-import { f_post } from "@/f"
 import { Page } from "@component/master/h-order-component"
 import { useParams } from "react-router-dom"
 import { PostItem } from "@component/ui/item"
 import { FilterForum } from "@component/shared"
-import { usePage } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
+import { forumService } from "@/service"
+import { departmentOptions } from "@/export"
+import { postDto } from "@/model/post.dto"
 
 
 export const Department = () => {
@@ -25,6 +27,8 @@ export const Department = () => {
 
 const MainSideForum: React.FC<{}> = ({ }: {}) => {
     const { name } = useParams()
+    const departmentId = departmentOptions.find(item => item.value == name)?.id
+    const { finaldata } = useRequest<postDto>(() => forumService.getFixedPost(departmentId ?? 0), ['get-fixed'])
 
     return (
         <div className="relative w-full">
@@ -33,10 +37,13 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
             <Search />
             <PostColumn />
             <div className="pb-4">
-                <PostItem {...f_post[10]} fixed={true} className="pl-2" />
+                <PostItem {...finaldata[0]} fixed={true} className="pl-2" />
             </div>
             <GroupContainer
-                items={f_post}
+                rq={{
+                    fetch: forumService.getDepartmentPost,
+                    RQKey: ['department-post']
+                }}
                 renderItem={(item) => <PostItem {...item} className="pl-2" />}
             />
         </div>

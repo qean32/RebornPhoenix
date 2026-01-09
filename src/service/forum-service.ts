@@ -6,7 +6,7 @@ export const forumService = {
         return requestGet(`${instance}/departments`)
     },
 
-    getPost: (id: number) => {
+    getPost: (id: string | number) => {
         return requestGet(`${instance}/${id}/post/`)
     },
 
@@ -14,15 +14,19 @@ export const forumService = {
         return requestGet(`${instance}/department/${idDepartment}?skip=${skip}&take=${take}&search=${search}&date=${date}&tags=${tags}`)
     },
 
+    getFixedPost: (idDepartment: number) => {
+        return requestGet(`${instance}/department/${idDepartment}/fixed`)
+    },
+
     createPost: (data: any) => {
         return requestPost(`${instance}/create/post`, data)
     },
 
-    like: (id: number) => {
+    likeAction: (id: string | number) => {
         return requestPost(`${instance}/${id}/like-action`, {})
     },
 
-    deletePost: (id: number) => {
+    deletePost: (id: string | number) => {
         return requestDelete(`${instance}/${id}/delete`)
     },
 
@@ -30,11 +34,15 @@ export const forumService = {
         return requestPost(`${instance}/create/comment`, data)
     },
 
-    updateComment: (data: any, id: number) => {
+    updateComment: (data: any, id: string | number) => {
         return requestPatch(`${instance}/update/comment/${id}`, data)
     },
 
-    deleteComment: (id: number) => {
+    deleteComment: (id: string | number) => {
         return requestDelete(`${instance}/create/comment/${id}`)
+    },
+
+    getComment: (id: string | number) => {
+        return requestGet(`${instance}/${id}/comment`)
     }
 }

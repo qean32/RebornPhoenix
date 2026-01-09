@@ -14,7 +14,7 @@ export const useMyForm = <T extends FieldValues,>(
         resolver: zodResolver(schema)
     })
 
-    const onSubmit: SubmitHandler<T> = (data) => {
+    const onSubmit: SubmitHandler<T> = (data: T) => {
         if (data) {
 
             submitCallBack(data)

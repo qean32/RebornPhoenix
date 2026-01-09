@@ -61,3 +61,9 @@ export const customMarkup = {
     img: 'img:{src}',
     small: ".",
 }
+
+export const departmentOptions = [
+    { title: "D&D", value: "D&D", id: 1 },
+    { title: "WEB", value: "WEB", id: 2 },
+    { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
+]

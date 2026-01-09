@@ -8,20 +8,7 @@ interface Props extends commentDto {
 }
 
 
-export const CommentItem: React.FC<Props> = ({
-    text = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt eius aperiam dignissimos obcaecati sint blanditiis maiores at quibusdam in consequuntur ducimus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt eius aperiam dignissimos obcaecati sint blanditiis maiores at quibusdam in consequuntur ducimus.',
-    user = {
-        ava: 'zxc',
-        email: 'zxc',
-        id: 1,
-        name: 'zxczxc'
-    },
-    files = [
-        { path: '/img/auth.jpg' },
-    ],
-    date = '20.05.2006',
-    id = 1
-}: Props) => {
+export const CommentItem: React.FC<Props> = ({ date, files, id, text, user }: Props) => {
     return (
         <div className="flex gap-2 justify-between pt-2 pb-3 px-5">
             <div className="flex gap-2">

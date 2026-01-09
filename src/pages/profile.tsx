@@ -1,20 +1,25 @@
 import { Page, ViewAuthor } from "@component/master/h-order-component"
 import { BanReason, ButtonSubscription, LinkPrime, UserInfo } from "@component/ui"
 import { ProfileContent, ProfileContentSwith } from "@component/shared/profile-content"
-import { usePage } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
+import { profileService } from "@/service"
+import { useParams } from "react-router-dom"
 
 export const Profile = () => {
     const { } = usePage(getParamName())
+    const { id } = useParams()
+    const { finaldata } = useRequest(() => profileService.getSubscribe(Number(id)), ['get-subscribe'])
 
     return (
         <>
             <Page size="w-[65%]">
                 <div className="flex-col flex h-full pb-3 overflow-hidden">
                     <UserInfo />
-                    <ButtonSubscription init={false} />
+                    <ViewAuthor reverse>
+                        <ButtonSubscription init={!!finaldata} />
+                    </ViewAuthor>
                     <ViewAuthor>
-
                         <LinkPrime
                             className="mt-3 pl-2"
                             path='/followers'
@@ -23,7 +28,6 @@ export const Profile = () => {
                     <ProfileContentSwith />
                     <ProfileContent />
                     <ViewAuthor>
-
                         <LinkPrime
                             className="mt-3 pl-2"
                             path='/edit-profile'
@@ -31,7 +35,7 @@ export const Profile = () => {
                     </ViewAuthor>
                 </div>
             </Page >
-            <BanReason />
+            <BanReason id={id ?? 0} />
         </>
     )
 }

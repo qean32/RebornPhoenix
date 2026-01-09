@@ -3,19 +3,31 @@ import { PushTagInForm, FakeTextInput, Button, UploadFilesInCreatePost, Select, 
 import { previewPost } from '@/lib/function'
 import { FormProvider } from 'react-hook-form'
 import { createPostFormDto, createPostSchema } from '@/model/schema'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { forumService } from '@/service'
+import { departmentOptions } from '@/export'
 
 interface Props {
 }
 
+const ACCEESS_ACTION = 'Пост создан!'
 
 export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
+    const toast = useToast()
 
     const { form, submitHandler } =
         useMyForm<createPostFormDto>(
             createPostSchema,
-            () => { },
+            (data: createPostFormDto) => {
+                forumService.createPost(data)
+                    .then(({ code }) => {
+                        if (code == 200) {
+                            toast('message', { text: ACCEESS_ACTION })
+                        }
+                    })
+                    .catch(error => toast('message', { text: error }))
+            },
             () => { }
         )
 
@@ -26,11 +38,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                 <div className='w-[200px] pb-2 pl-0.5'>
                     <Select
                         name='department'
-                        options={[
-                            { title: "D&D", value: "D&D", id: 1 },
-                            { title: "WEB", value: "WEB", id: 2 },
-                            { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
-                        ]} />
+                        options={departmentOptions} />
                 </div>
 
                 <Upper

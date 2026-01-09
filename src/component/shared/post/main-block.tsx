@@ -1,16 +1,14 @@
 import React from 'react'
-import { CountBlock } from './'
 import { convertToHTML } from '@/lib/function'
 import { separatorLink } from '@/export'
 
 interface Props {
     content?: string
+    children: React.ReactNode
 }
 
 
-export const MainBlock: React.FC<Props> = ({ content = 'статья' }: Props) => {
-    console.log(content);
-    
+export const MainBlock: React.FC<Props> = ({ content = 'статья', children }: Props) => {
     const data = content.replace('script', '').split(separatorLink)
 
     return (
@@ -20,7 +18,7 @@ export const MainBlock: React.FC<Props> = ({ content = 'статья' }: Props) 
                 <div dangerouslySetInnerHTML={{ __html: convertToHTML(data[0], data[1]) }}>
                 </div>
             </div>
-            <CountBlock />
+            {children}
         </div >
     )
 }

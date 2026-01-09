@@ -3,18 +3,13 @@ import { sessionDto, mapDto, idDto, bestiaryItem } from "@/model";
 import { characterDto, entityDto, objectDto } from "@/model/entities.dto";
 import { generateId } from "@/lib/function";
 
-const gameStorage = 'game-storage'
-const bestiaryStorage = 'bestiary-storage'
-
-type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
+type stateDto = { session: sessionDto, bestiary: bestiaryItem[], imgs: string }
 
 const initialState: stateDto = {
-    session: {
-        ...JSON.parse((localStorage.getItem(gameStorage) as string)),
-    },
-    bestiary: [
-        ...JSON.parse((localStorage.getItem(bestiaryStorage) as string)) ?? [],
-    ]
+    // @ts-ignore
+    session: {},
+    bestiary: [],
+    imgs: ''
 }
 
 const sessionSlice = createSlice({
@@ -22,6 +17,11 @@ const sessionSlice = createSlice({
     initialState,
     reducers: {
 
+        setSession: (state: stateDto, { payload: { session, bestiary, imgs } }: PayloadAction<{ session: sessionDto, bestiary: bestiaryItem[], imgs: string }>) => {
+            state.session = session
+            state.imgs = imgs
+            state.bestiary = bestiary
+        },
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
 
@@ -221,5 +221,6 @@ export const {
     editBestiary,
     scaleObject,
     pushCharacter,
-    removeCharacter
+    removeCharacter,
+    setSession
 } = sessionSlice.actions

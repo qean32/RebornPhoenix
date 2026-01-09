@@ -1,13 +1,28 @@
 import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
 import { ToolGameSubscriber } from "@component/shared"
-import { usePage, useQueryParam } from "@lib/castom-hook"
+import { usePage, useQueryParam, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
 import React from "react"
 import { GameAreaSubscriber } from "@/component/master"
 import { qParamName } from "@/export"
+import { sessionDto } from "@/model"
+import { sessionService } from "@/service/session-service"
+import { useAppDispatch } from "@/store"
+import { setSession } from "@/store/session-store"
+import { useParams } from "react-router-dom"
 
 export const ViewSession = () => {
     const { } = usePage(getParamName())
+    const { id } = useParams()
+    const dispath = useAppDispatch()
+    const { finaldata: session } = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), ['session'])
+    React.useEffect(() => {
+        dispath(setSession({
+            bestiary: [],
+            imgs: '',
+            session: session[0]
+        }))
+    }, [session])
 
 
     return (

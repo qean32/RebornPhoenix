@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom"
-import { f_post } from "@/f"
+import { Link, useParams } from "react-router-dom"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
-import { useBoolean } from "@lib/castom-hook"
+import { useBoolean, useRequest } from "@lib/castom-hook"
 import React from "react"
 import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"
+import { profileService } from "@/service"
+import { postDto } from "@/model/post.dto"
 
 interface Props {
     view: boolean
+    id: number
 }
 
 export const Post: React.FC<Props> = ({ view }: Props) => {
@@ -24,13 +26,19 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
     if (!view) {
         return null
     }
+    const { id } = useParams()
+    const { finaldata } = useRequest<postDto>(() => profileService.getPosts(id ?? 0), ['profile-post'])
 
     return (
         <div className='pt-2 pb-4'>
             <PostColumn />
-            {!!f_post.length &&
-                f_post.slice(0, 6).map(item => {
-                    return <PostItem {...item} key={item.title} className="pl-2 -translate-x-1" />
+            {!!finaldata.length &&
+                finaldata.slice(0, 6).map(item => {
+                    return <PostItem
+                        {...item}
+                        className="pl-2 -translate-x-1"
+                        key={item.id}
+                    />
                 })}
             <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={false} />
 

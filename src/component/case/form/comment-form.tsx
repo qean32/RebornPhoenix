@@ -2,21 +2,38 @@ import React from 'react'
 import { commentFormDto, commentSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
 import { useAppSelector } from '@/lib/castom-hook/redux'
+import { forumService } from '@/service'
 
 interface Props {
 }
 
-
+const ACCEESS_ACTION = 'Коментарий обновлен'
+const ACCEESS_ACTION_CREATE = 'Коментарий оставлен!'
 export const CommentForm: React.FC<Props> = ({ }: Props) => {
     const { tmpObject, key } = useAppSelector(state => state.tmpObject)
+    const toast = useToast()
     const { form, submitHandler } =
         useMyForm<commentFormDto>(
             commentSchema,
-            () => {
+            (data: commentFormDto) => {
                 if (key == 'update-comment') {
+                    forumService.updateComment(data, tmpObject?.id ?? 0)
+                        .then(({ code }) => {
+                            if (code == 200) {
+                                toast('message', { text: ACCEESS_ACTION })
+                            }
+                        })
+                        .catch(error => toast('message', { text: error }))
                 } else {
+                    forumService.createComment(data)
+                        .then(({ code }) => {
+                            if (code == 200) {
+                                toast('message', { text: ACCEESS_ACTION_CREATE })
+                            }
+                        })
+                        .catch(error => toast('message', { text: error }))
                 }
             },
             () => { }

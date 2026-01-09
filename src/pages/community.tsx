@@ -3,8 +3,8 @@ import { Page } from "@component/master/h-order-component"
 import { ScrollTop, Search, TextInfo } from "@component/ui"
 import { UserItem } from "@component/ui/item"
 import { title } from "@/export"
-import { f_user } from "@/f"
 import { usePage } from "@lib/castom-hook"
+import { communityService } from "@/service"
 
 export const Community = () => {
     const { } = usePage(title.communty)
@@ -16,7 +16,10 @@ export const Community = () => {
                 <TextInfo title="Сообщество" />
                 <Search />
                 <GroupContainer
-                    items={f_user}
+                    rq={{
+                        fetch: communityService.getUsers,
+                        RQKey: ['community'],
+                    }}
                     className="pt-5"
                     renderItem={(item) => <UserItem {...item} />}
                 />

@@ -2,18 +2,29 @@ import React from 'react'
 import { Title, TextInput, SelectSessionBG } from '@component/ui'
 import { pushSessionFormDto, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { sessionService } from '@/service/session-service'
 
 interface Props {
     children: React.ReactNode
 }
 
+const ACCEESS_ACTION = 'Сессия создан'
 
 export const PushSessionForm: React.FC<Props> = ({ children }: Props) => {
+    const toast = useToast()
     const { form, submitHandler } =
         useMyForm<pushSessionFormDto>(
             pushSessionSchema,
-            () => { },
+            (data: pushSessionFormDto) => {
+                sessionService.createSession(data)
+                    .then(({ code }) => {
+                        if (code == 200) {
+                            toast('message', { text: ACCEESS_ACTION })
+                        }
+                    })
+                    .catch(error => toast('message', { text: error }))
+            },
             () => { }
         )
 

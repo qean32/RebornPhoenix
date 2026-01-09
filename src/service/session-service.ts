@@ -3,7 +3,7 @@ import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
 const instance = 'session'
 
 export const sessionService = {
-    getSession: (id: number) => {
+    getSession: (id: string | number) => {
         return requestGet(`${instance}/${id}`)
     },
 
@@ -11,7 +11,7 @@ export const sessionService = {
         return requestPost(`${instance}/create/session`, data)
     },
 
-    deleteSession: (id: number) => {
+    deleteSession: (id: string | number) => {
         return requestDelete(`${instance}/delete/session/${id}`)
     },
 
@@ -27,7 +27,7 @@ export const sessionService = {
         return requestPost(`${instance}/create/object`, data)
     },
 
-    pushImgToSession: (data: any, id: number) => {
+    pushImgToSession: (data: any, id: string | number) => {
         return requestPost(`${instance}/${id}/push/img`, data)
     }
 }

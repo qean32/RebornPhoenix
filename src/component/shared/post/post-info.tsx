@@ -3,7 +3,7 @@ import { Ava } from '@component/ui'
 import { Link } from 'react-router-dom'
 import { userDto } from '@/model'
 
-interface Props extends userDto {
+interface Props extends Omit<userDto, 'email'> {
 }
 
 

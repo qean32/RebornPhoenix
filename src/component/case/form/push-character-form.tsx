@@ -2,18 +2,29 @@ import React from 'react'
 import { Title, TextInput } from '@component/ui'
 import { pushCharacterDto, pushCharacterSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { profileService } from '@/service'
 
 interface Props {
     children: React.ReactNode
 }
 
+const ACCEESS_ACTION = 'Персонаж создан'
 
 export const PushCharaterForm: React.FC<Props> = ({ children }: Props) => {
+    const toast = useToast()
     const { form, submitHandler } =
         useMyForm<pushCharacterDto>(
             pushCharacterSchema,
-            () => { },
+            (data: pushCharacterDto) => {
+                profileService.createCharacter(data)
+                    .then(({ code }) => {
+                        if (code == 200) {
+                            toast('message', { text: ACCEESS_ACTION })
+                        }
+                    })
+                    .catch(error => toast('message', { text: error }))
+            },
             () => { }
         )
 

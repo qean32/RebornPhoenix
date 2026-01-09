@@ -2,12 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { PostItem } from './post-item'
 import { f_post } from '@/f'
+import { departmentDto } from '@/model'
 
-interface Props {
-    name: string
-    description: string
-    path: string
-    count: number
+interface Props extends departmentDto {
 }
 
 

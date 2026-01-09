@@ -4,14 +4,25 @@ import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { commentDto } from '@/model'
 import { swapTmpObject } from '@/store/tmp-object'
+import { forumService } from '@/service'
+import { useToast } from '@/lib/castom-hook'
 
 interface Props extends commentDto {
 }
 
-
+const ACCEESS_ACTION = 'Комментарий удален'
 export const CommentMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
+    const toast = useToast()
     const remove = () => {
+        forumService.deleteComment(item.id)
+            // @ts-ignore
+            .then(({ code }) => {
+                if (code == 200) {
+                    toast('message', { text: ACCEESS_ACTION })
+                }
+            })
+            .catch(error => toast('message', { text: error }))
     }
     const update = () => {
         dispath(swapTmpObject({ payload: item, key: 'update-comment' }))

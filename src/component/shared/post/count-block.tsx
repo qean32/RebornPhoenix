@@ -3,6 +3,9 @@ import { IconAndCount, IconAndNumber } from '@/component/ui'
 import { useBoolean } from '@/lib/castom-hook'
 
 interface Props {
+    likeCount: number
+    userLike: boolean
+    viewCount?: number
 }
 
 const actionsName = {
@@ -10,10 +13,10 @@ const actionsName = {
     unlike: 'unlike'
 }
 
-export const CountBlock: React.FC<Props> = ({ }: Props) => {
+export const CountBlock: React.FC<Props> = ({ likeCount, userLike, viewCount = 0 }: Props) => {
     const [actions, setActions] = React.useState<string[]>([])
     const [count, setCount] = React.useState<number>(0)
-    const { boolean: action } = useBoolean()
+    const { boolean: action } = useBoolean(userLike)
 
     function clickHandler() {
         if (count % 2 == 0) {
@@ -46,9 +49,9 @@ export const CountBlock: React.FC<Props> = ({ }: Props) => {
     return (
         <div className="flex gap-2 -translate-x-1">
             <div onClick={clickHandler}>
-                <IconAndCount count={98} icon="/icon/like-no-fill.svg" iconAction="/icon/like-fill.svg" action={action} />
+                <IconAndCount count={likeCount} icon="/icon/like-no-fill.svg" iconAction="/icon/like-fill.svg" action={action} />
             </div>
-            <IconAndNumber count={29} icon="/icon/view.svg" />
+            <IconAndNumber count={viewCount} icon="/icon/view.svg" />
         </div>
     )
 }

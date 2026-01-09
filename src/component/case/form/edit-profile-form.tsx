@@ -2,17 +2,28 @@ import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormDto, editProfileSchema } from '@/model/schema'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { profileService } from '@/service'
 
 interface Props {
 }
 
+const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
+    const toast = useToast()
     const { form, submitHandler } =
         useMyForm<editProfileFormDto>(
             editProfileSchema,
-            () => { },
+            (data: editProfileFormDto) => {
+                profileService.updateProfile(data)
+                    .then(({ code }) => {
+                        if (code == 200) {
+                            toast('message', { text: ACCEESS_ACTION })
+                        }
+                    })
+                    .catch(error => toast('message', { text: error }))
+            },
             () => { }
         )
 
