@@ -1,18 +1,35 @@
 import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
 import { stopPropagation } from '@/lib/function'
 import { banFormDto, banSchema } from '@/model/schema'
+import { profileService } from '@/service'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 interface Props {
     id: string
 }
 
 
+const ACCEESS_ACTION = 'Пользовтель забанен'
+const REJECT_ACTION = 'Ошибка'
+
 export const BanForm: React.FC<Props> = ({ id }: Props) => {
+    const { id: idUser } = useParams()
+    const toast = useToast()
     const { form, submitHandler } = useMyForm<banFormDto>(banSchema,
-        () => { },
+        (data: banFormDto) => {
+            profileService.banAction(data, idUser ?? 0)
+                .then(() => toast('message', { text: ACCEESS_ACTION }))
+                .catch(() => toast('message', { text: REJECT_ACTION }))
+                .finally(() => {
+                    setTimeout(() => {
+                        // @ts-ignore
+                        window.reload()
+                    }, 1000)
+                })
+        },
         () => { },
     )
 

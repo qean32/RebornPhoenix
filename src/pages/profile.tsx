@@ -22,7 +22,7 @@ export const Profile = () => {
                     <ViewAuthor>
                         <LinkPrime
                             className="mt-3 pl-2"
-                            path='/followers'
+                            path='/subscribers'
                         >Мои подписки</LinkPrime>
                     </ViewAuthor>
                     <ProfileContentSwith />

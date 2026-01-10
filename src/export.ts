@@ -19,6 +19,7 @@ export const title = {
     p404: 'Страница 404',
     changePassword: 'Изменение пароля',
     communty: 'Сообщество',
+    subscribers: 'Подписчики',
     createPost: 'Конструктор статьи',
     editProfile: 'Редактор профиля',
     forum: 'Форум',
@@ -51,7 +52,7 @@ export const noFindDataIcon = [
 export const separator = ':separator:'
 export const separatorLink = ':separator-link:'
 
-export const serverWork = 'serverWork!'
+export const serverWork = 'ok'
 
 export const customMarkup = {
     h1: "*",

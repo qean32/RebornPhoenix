@@ -1,6 +1,8 @@
 import { UploadImgArea, Button, TextInput } from '@/component/ui'
-import { TypeUseBoolen, useMyForm } from '@/lib/castom-hook'
+import { TypeUseBoolen, useMyForm, useToast } from '@/lib/castom-hook'
+import { initPushDataToSession } from '@/lib/function'
 import { pushMapToSessionFormDto, pushMapToSessionSchema } from '@/model/schema'
+import { sessionService } from '@/service/session-service'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 
@@ -11,10 +13,24 @@ interface Props {
 
 
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
+    const toast = useToast()
+    const push = initPushDataToSession('map')
+    const pushHandler = (data: any) => {
+        push(data);
+        // @ts-ignore
+        swap();
+    }
     const { form, submitHandler } =
         useMyForm<pushMapToSessionFormDto>(
             pushMapToSessionSchema,
-            () => { },
+            (data: pushMapToSessionFormDto) => {
+                sessionService.createMap(data)
+                    .then(data => {
+                        pushHandler(data);
+                        toast('push-entity', { text: data.name })
+                    })
+                    .catch(error => toast(error))
+            },
             () => { }
         )
 

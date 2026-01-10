@@ -2,22 +2,29 @@ import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
+import { sessionService } from '@/service/session-service'
+import { useParams } from 'react-router-dom'
 
 interface Props {
     view: boolean
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
-
+const ACCEESS_ACTION = 'Изображение добавленно'
 export const PushImg: React.FC<Props> = ({ view, swap }: Props) => {
-    const { form, submitHandler } = useMyForm<{ path: any }>(
+    const { id } = useParams()
+    const toast = useToast()
+    const { form, submitHandler } = useMyForm<{ img: any }>(
         z.object({
-            path: z.any()
+            img: z.any()
         }),
-        () => { },
+        (data: { img: any }) => {
+            sessionService.pushImgToSession(data, id ?? 0)
+                .then(() => toast('message', { text: ACCEESS_ACTION }))
+        },
         () => { }
     )
 
@@ -42,7 +49,7 @@ export const PushImg: React.FC<Props> = ({ view, swap }: Props) => {
                     <div className="m-7 h-10/12">
                         <UploadImgArea
                             className='h-full w-full'
-                            name='path'
+                            name='img'
                         />
                     </div>
                     <div className="flex gap-5 justify-end p-5 flex-1 items-end">

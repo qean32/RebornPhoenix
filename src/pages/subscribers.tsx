@@ -6,8 +6,8 @@ import { title } from "@/export"
 import { usePage } from "@lib/castom-hook"
 import { profileService } from "@/service"
 
-export const Followers = () => {
-    const { } = usePage(title.communty)
+export const Subscribers = () => {
+    const { } = usePage(title.subscribers)
 
     return (
         <Page size="w-[70%]">
@@ -19,8 +19,8 @@ export const Followers = () => {
                     noFindDataText="У вас нет подписок!"
                     className="pt-5"
                     rq={{
-                        fetch: profileService.getFollowers,
-                        RQKey: ['followers']
+                        fetch: profileService.getSubscribers,
+                        RQKey: ['subscribers']
                     }}
                     renderItem={(item) => <UserItem {...item} />}
                 />

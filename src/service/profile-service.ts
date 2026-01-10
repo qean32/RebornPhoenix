@@ -47,8 +47,8 @@ export const profileService = {
         return requestPatch(`${instance}/update`, data)
     },
 
-    getFollowers: () => {
-        return requestGet(`${instance}/followers`)
+    getSubscribers: () => {
+        return requestGet(`${instance}/subscribers`)
     },
 
     me: () => {
