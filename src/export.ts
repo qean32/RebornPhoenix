@@ -8,7 +8,8 @@ export const qParamName = {
     sContent: 'sContent',
     pCharacter: 'pCharacter',
     actionEntity: 'actionEntity',
-    anchorLink: "anchorLink"
+    anchorLink: "anchorLink",
+    search: 'search'
 }
 
 export const nameProject = 'Reborn Phoenix'

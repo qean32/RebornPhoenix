@@ -8,7 +8,7 @@ export type toastDto = {
 export type toastPayloadDto = {
     name?: string
     path?: string
-    text?: string
+    text?: string | unknown
 }
 
 export type toastKeyDto =

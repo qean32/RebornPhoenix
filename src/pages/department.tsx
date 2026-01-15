@@ -27,22 +27,25 @@ export const Department = () => {
 
 const MainSideForum: React.FC<{}> = ({ }: {}) => {
     const { name } = useParams()
-    const departmentId = departmentOptions.find(item => item.value == name)?.id
+    const departmentId = departmentOptions.find(item => item.value.toLocaleLowerCase() == (name ?? '').toLocaleLowerCase())?.id
     const { finaldata } = useRequest<postDto>(() => forumService.getFixedPost(departmentId ?? 0), ['get-fixed'])
 
     return (
         <div className="relative w-full">
             <ScrollTop />
             <TextInfo title={name ? name.toUpperCase() : ''} />
-            <Search />
+            <>
+                <Search />
+            </>
             <PostColumn />
             <div className="pb-4">
-                <PostItem {...finaldata[0]} fixed={true} className="pl-2" />
+                {finaldata[0] && <PostItem {...finaldata[0]} fixed={true} className="pl-2" />}
             </div>
             <GroupContainer
                 rq={{
                     fetch: forumService.getDepartmentPost,
-                    RQKey: ['department-post']
+                    RQKey: ['department-post'],
+                    staticParam: [departmentId]
                 }}
                 renderItem={(item) => <PostItem {...item} className="pl-2" />}
             />

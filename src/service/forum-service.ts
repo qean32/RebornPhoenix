@@ -10,12 +10,12 @@ export const forumService = {
         return requestGet(`${instance}/${id}/post/`)
     },
 
-    getDepartmentPost: (skip: number, take: number, search: string, idDepartment: number, date: string, tags: string) => {
-        return requestGet(`${instance}/department/${idDepartment}?skip=${skip}&take=${take}&search=${search}&date=${date}&tags=${tags}`)
+    getDepartmentPost: (skip: number, take: number, search: string, idDepartment: number | string, date: string = '', tags: string = '') => {
+        return requestGet(`${instance}/${idDepartment}/department?skip=${skip}&take=${take}&search=${search}&date=${date}&tags=${tags}`)
     },
 
     getFixedPost: (idDepartment: number) => {
-        return requestGet(`${instance}/department/${idDepartment}/fixed`)
+        return requestGet(`${instance}/${idDepartment}/department/fixed`)
     },
 
     createPost: (data: any) => {

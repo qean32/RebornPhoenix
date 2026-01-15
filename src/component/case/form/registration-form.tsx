@@ -4,7 +4,7 @@ import { registrationFormDto, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/castom-hook';
 import { authService } from '@/service';
-import { setToken } from '@/lib/function';
+import { getFirstError, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -21,9 +21,17 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
             (data: registrationFormDto) => {
                 auth.registration(data)
                     // @ts-ignore
-                    .then(token => setToken(token))
-                    .catch(error => toast('message', { text: error }))
-                    .then(() => navigate('/'))
+                    .then(({ data, status }) => {
+                        if (status == 200) {
+                            // @ts-ignore
+                            setToken(data.token);
+                            toast('message', { text: 'Успешная авторизация' })
+                            setTimeout(() => {
+                                navigate('/')
+                            }, 500)
+                        }
+                    })
+                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
             },
             () => { }
         )

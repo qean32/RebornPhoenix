@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { useNavigate } from 'react-router-dom'
 import { authService } from '@/service'
-import { setToken } from '@/lib/function'
+import { getFirstError, setToken } from '@/lib/function'
 
 interface Props {
 }
@@ -21,9 +21,17 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
             (data: authFormDto) => {
                 auth.auth(data)
                     // @ts-ignore
-                    .then(token => setToken(token))
-                    .then(() => navigate('/'))
-                    .catch(error => toast('message', { text: error }))
+                    .then(({ data, status }) => {
+                        if (status == 200) {
+                            // @ts-ignore
+                            setToken(data?.token);
+                            toast('message', { text: 'Успешная авторизация' })
+                            setTimeout(() => {
+                                navigate('/')
+                            }, 500)
+                        }
+                    })
+                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
             },
             () => { }
         )
@@ -53,8 +61,10 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
                     <Button
                         className="px-5 py-3"
                         variant='acceess'
-                        children={<p>Вход</p>}
-                    />
+                        type='submit'
+                    >
+                        <p>Вход</p>
+                    </Button>
                 </div>
             </form>
         </FormProvider>

@@ -1,8 +1,9 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { Loader, NoFindData } from '../ui'
-import { useDinamickPagination } from '@/lib/castom-hook';
+import { useDinamickPagination, useQueryParam } from '@/lib/castom-hook';
 import { userDto } from '@/model';
+import { qParamName } from '@/export';
 
 interface Props {
     className?: string
@@ -10,7 +11,8 @@ interface Props {
     noFindDataText?: string
     rq: {
         fetch: Function,
-        RQKey: string[]
+        RQKey: string[],
+        staticParam: any[]
     }
 }
 
@@ -21,27 +23,30 @@ export const GroupContainer: React.FC<Props> = ({
     noFindDataText = 'По вашему запросу ничего не найдено',
     rq: {
         RQKey,
-        fetch
+        fetch,
+        staticParam
     }
 }: Props) => {
-    const { finaldata, loading, refHandler, isEnd } = useDinamickPagination<userDto>(fetch, [...RQKey], 0, 10, '')
+    const { param } = useQueryParam(qParamName.search)
+    const { allQ } = useQueryParam('')
+    const { finaldata, loading, refHandler, isEnd } = useDinamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam, allQ['date'], allQ['tags']])
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
+            {loading &&
+                <div className="flex-1 flex justify-center items-center">
+                    <Loader />
+                </div>
+            }
             {finaldata.map(item => {
                 return (
                     <React.Fragment key={item.id}>
                         {renderItem(item)}</React.Fragment>
                 )
             })}
-            <NoFindData title={noFindDataText} view={!finaldata.length} />
-            {loading &&
-                <div className="flex-1 flex justify-center items-center">
-                    <Loader />
-                </div>
-            }
+            <NoFindData title={noFindDataText} view={!finaldata.length && !loading} />
+            {isEnd && <p className='pt-3 text-center'>...</p>}
             <div className='w-100 min-h-[50px]' ref={refHandler} ></div>
-            {!isEnd ? <div className="w-full flex justify-center items-center"><Loader /></div> : <p>Конец очереди</p>}
         </div>
     )
 }

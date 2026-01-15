@@ -1,6 +1,6 @@
 import { requestPost } from "@lib/function/request"
 import { authFormDto, changePasswordFormDto, registrationFormDto, resetPasswordFormDto } from "@/model/schema"
-const instance = 'auth'
+const instance = ''
 
 export class authService {
     async registration(data: registrationFormDto) {
@@ -8,7 +8,7 @@ export class authService {
     }
 
     async auth(data: authFormDto) {
-        return requestPost(`${instance}`, data)
+        return requestPost(`${instance}/auth`, data)
     }
 
     async changePassword(data: changePasswordFormDto) {

@@ -19,16 +19,15 @@ export const useMyForm = <T extends FieldValues,>(
 
             submitCallBack(data)
         }
-        console.log(data);
-        toast('message', { text: '' })
+        toast('message', { text: 'Отправка..' }, 2000)
     }
     const onError: SubmitErrorHandler<T> = (data) => {
         if (data) {
 
             submitErrorCallBack(data)
         }
-        console.log(data);
-        toast('message', { text: '' })
+        // console.log('АП:', data);
+        toast('message', { text: 'Поля заполнены некорректно' }, 2000)
     }
     const submitHandler = form.handleSubmit(onSubmit, onError)
 

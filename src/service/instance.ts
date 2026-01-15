@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const axiosInstance = axios.create({
-    baseURL: process.env.SERVER_HOST,
+    baseURL: process.env.SERVER_HOST + 'api/',
 })

@@ -19,6 +19,7 @@ export const Community = () => {
                     rq={{
                         fetch: communityService.getUsers,
                         RQKey: ['community'],
+                        staticParam: []
                     }}
                     className="pt-5"
                     renderItem={(item) => <UserItem {...item} />}
