@@ -32,7 +32,7 @@ export const profileService = {
     },
 
     getSubscribe: (id: string | number) => {
-        return requestGet(`${instance}/subscribe/${id}`)
+        return requestGet(`${instance}/${id}/my-follow/`)
     },
 
     createCharacter: (data: any) => {
@@ -48,7 +48,7 @@ export const profileService = {
     },
 
     getSubscribers: () => {
-        return requestGet(`${instance}/subscribers`)
+        return requestGet(`${instance}/followers`)
     },
 
     me: () => {

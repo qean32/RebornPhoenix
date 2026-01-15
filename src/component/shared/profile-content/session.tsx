@@ -9,7 +9,7 @@ import React from "react"
 
 interface Props {
     view: boolean
-    id: number
+    id: number | string
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)

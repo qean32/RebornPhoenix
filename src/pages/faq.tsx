@@ -6,9 +6,6 @@ import { usePage } from "@/lib/castom-hook"
 
 export const Faq = () => {
     const { } = usePage(title.faq)
-    // const { finaldata } = useRequest(() => fetch('http://localhost:8000/api/forum/departments'), ['zxczxc'])
-    // console.log(finaldata[0]);
-    // fetch('http://localhost:8000/api/forum/departments').then(data => data.json().then(data => console.log(data)))
 
 
     return (

@@ -45,7 +45,7 @@ export const GroupContainer: React.FC<Props> = ({
                 )
             })}
             <NoFindData title={noFindDataText} view={!finaldata.length && !loading} />
-            {isEnd && <p className='pt-3 text-center'>...</p>}
+            {isEnd && <p className='pt-3 text-center'></p>}
             <div className='w-100 min-h-[50px]' ref={refHandler} ></div>
         </div>
     )

@@ -7,7 +7,7 @@ export const getAuthHeaders = (file: boolean = false) => {
         (getToken() ?
             {
                 'Content-Type': 'application/json',
-                'Authorization': `${getToken()}`
+                'Authorization': `Bearer ${getToken()}`
             }
             :
             {

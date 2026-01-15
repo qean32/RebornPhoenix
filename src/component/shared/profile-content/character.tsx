@@ -10,7 +10,7 @@ import React from "react"
 
 interface Props {
     view: boolean
-    id: number
+    id: number | string
 }
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {

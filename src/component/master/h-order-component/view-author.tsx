@@ -1,13 +1,17 @@
+import { useUser } from '@/lib/castom-hook'
 import React from 'react'
 
 interface Props {
     children: React.ReactNode
     reverse?: boolean
+    payload_id: number
 }
 
 
-export const ViewAuthor: React.FC<Props> = ({ children, reverse = false }: Props) => {
-    if (reverse) {
+export const ViewAuthor: React.FC<Props> = ({ children, payload_id, reverse = false }: Props) => {
+    const user = useUser()
+
+    if (reverse && payload_id != user.id && payload_id) {
         return (
             <>
                 {children}
@@ -15,9 +19,11 @@ export const ViewAuthor: React.FC<Props> = ({ children, reverse = false }: Props
         )
     }
 
-    return (
-        <>
-            {children}
-        </>
-    )
+    if (payload_id == user.id && payload_id) {
+        return (
+            <>
+                {children}
+            </>
+        )
+    }
 }

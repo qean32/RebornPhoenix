@@ -9,7 +9,7 @@ import { postDto } from "@/model/post.dto"
 
 interface Props {
     view: boolean
-    id: number
+    id: number | string
 }
 
 export const Post: React.FC<Props> = ({ view }: Props) => {
@@ -33,7 +33,7 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
         <div className='pt-2 pb-4'>
             <PostColumn />
             {!!finaldata.length &&
-                finaldata.slice(0, 6).map(item => {
+                finaldata.map(item => {
                     return <PostItem
                         {...item}
                         className="pl-2 -translate-x-1"

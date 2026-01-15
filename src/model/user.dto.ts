@@ -3,4 +3,6 @@ export interface userDto {
     ava: string
     email: string
     id: number
+    ban?: boolean
+    role: number
 }
