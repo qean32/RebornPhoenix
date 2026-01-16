@@ -15,6 +15,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
+    const { finaldata, loading } = useRequest<characterDto>(() => profileService.getCharacters(id ?? 0), [('profile-characters' + id)])
 
     React.useEffect(() => {
         if (view) {
@@ -27,11 +28,10 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
     if (!view) {
         return null
     }
-    const { finaldata } = useRequest<characterDto>(() => profileService.getCharacters(id ?? 0), ['profile-characters'])
 
     return (
         <>
-            {!true &&
+            {!finaldata.length && !loading &&
                 <div className="w-full">
 
                     <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[360px]" view={true} />
@@ -46,7 +46,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                             key={item.id}
                         />
                     )}
-                <ViewAuthor>
+                <ViewAuthor payload_id={id}>
                     <Modal.Root modal={Modal.PushCharacterInProfile}>
                         <PlusButton className='h-[106px]' iconSize='icon-sm' />
                     </Modal.Root>

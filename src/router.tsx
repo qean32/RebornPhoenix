@@ -7,10 +7,10 @@ import { ProtectedRouteSession, ProtectedRouteTechWork } from "./pages/protected
 export const Router = () => {
     return (
         <BrowserRouter>
-            <RefreshToken />
             <Header />
             <ToastArea />
             <Navigate />
+            <RefreshToken />
             <ProtectedRouteTechWork>
 
                 <Routes>

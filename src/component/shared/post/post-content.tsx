@@ -17,8 +17,8 @@ interface Props {
 export const PostContent: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
     const navigate = useNavigate()
-    const { finaldata: comments, setFinalData: setComments } = useRequest<commentDto>(() => forumService.getComment(id ?? 0), ['post-comment'])
-    const { finaldata } = useRequest<postDto>(() => forumService.getPost(id ?? 0), ['post'])
+    const { finaldata: comments, setFinalData: setComments } = useRequest<commentDto>(() => forumService.getComment(id ?? 0), [('post-comment' + id)])
+    const { finaldata } = useRequest<postDto>(() => forumService.getPost(id ?? 0), [('post' + id)])
     const deletePost = () => {
         forumService.deletePost(id ?? 0)
             .then(() => navigate('/'))
@@ -28,7 +28,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
         <>
             <p className="text-4xl mb-1.5">{finaldata[0].title}</p>
 
-            <ViewAuthor>
+            <ViewAuthor payload_id={id ?? 0}>
                 <Modal.Root modal={Modal.AccessAction} props={{ fn: () => deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
                     <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root></ViewAuthor>
 

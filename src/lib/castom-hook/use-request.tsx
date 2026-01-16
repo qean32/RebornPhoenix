@@ -12,5 +12,5 @@ export function useRequest<T>(fetch_: any, RQkey: string[]) {
     }, [RQData.data])
 
     // @ts-ignore
-    return { finaldata, setFinalData, count: RQData?.data?.count, loading: RQData.isLoading }
+    return { finaldata, setFinalData, loading: RQData.isLoading }
 }

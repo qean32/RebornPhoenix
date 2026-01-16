@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
 import { useBoolean, useRequest } from "@lib/castom-hook"
 import React from "react"
@@ -12,8 +12,9 @@ interface Props {
     id: number | string
 }
 
-export const Post: React.FC<Props> = ({ view }: Props) => {
+export const Post: React.FC<Props> = ({ view, id }: Props) => {
     const { on, off } = useBoolean(view)
+    const { finaldata, loading } = useRequest<postDto>(() => profileService.getPosts(id ?? 0), [('profile-post' + id)])
 
     React.useEffect(() => {
         if (view) {
@@ -26,8 +27,6 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
     if (!view) {
         return null
     }
-    const { id } = useParams()
-    const { finaldata } = useRequest<postDto>(() => profileService.getPosts(id ?? 0), ['profile-post'])
 
     return (
         <div className='pt-2 pb-4'>
@@ -40,9 +39,9 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
                         key={item.id}
                     />
                 })}
-            <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={false} />
+            <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={!finaldata.length && !loading} />
 
-            <ViewAuthor>
+            <ViewAuthor payload_id={id ?? 0}>
                 <div className="px-1 mt-4">
                     <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>

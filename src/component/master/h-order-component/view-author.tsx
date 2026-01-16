@@ -4,7 +4,7 @@ import React from 'react'
 interface Props {
     children: React.ReactNode
     reverse?: boolean
-    payload_id: number
+    payload_id: number | string
 }
 
 

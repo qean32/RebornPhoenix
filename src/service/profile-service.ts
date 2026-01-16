@@ -28,7 +28,7 @@ export const profileService = {
     },
 
     subscribeAction: (id: string | number) => {
-        return requestPost(`${instance}/subscribe/${id}`, {})
+        return requestPost(`${instance}/${id}/follow`, {})
     },
 
     getSubscribe: (id: string | number) => {
