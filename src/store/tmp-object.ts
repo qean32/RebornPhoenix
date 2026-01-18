@@ -2,7 +2,7 @@ import { commentDto, entityDto, idDto, objectDto } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type state = entityDto | objectDto | null | idDto | commentDto
-export type key = 'push-entity' | 'push-object' | 'push-map' | 'update-comment' | null | 'more-entity' | 'more-character' | 'more-object'
+export type key = 'push-entity' | 'push-object' | 'push-map' | 'update-comment' | null | 'more-entity' | 'more-character' | 'more-object' | 'delete-comment'
 type stateDto = { tmpObject: state, key: key }
 
 const initialState: stateDto = { tmpObject: null, key: null }

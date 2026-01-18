@@ -6,8 +6,6 @@ export const convertToHTML = (text: string, link?: string) => {
         for (const item of link?.replaceAll('{', '').replaceAll('}', '').split(',')) yield item;
     }
     const generator = generatorFn()
-    console.log(link);
-
 
 
     return text.split(separator).map(item => {

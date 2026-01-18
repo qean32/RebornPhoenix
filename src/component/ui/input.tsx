@@ -16,16 +16,16 @@ interface SelectProps {
 export const Select: React.FC<SelectProps> = ({ className = 'w-fit', options, name }: SelectProps) => {
     const { setValue } = useFormContext()
     React.useEffect(() => {
-        setValue(name, options[0].value)
+        setValue(name, options[0].id)
     }, [])
 
     return (
         <select
             className={cn('flex-1', className)}
-            onChange={e => setValue(name, e.target.value)}
+            onChange={e => setValue(name, Number(e.target.value))}
         >
-            {options.map(({ title, value, id }) => {
-                return <option key={id} value={value}>{title}</option>
+            {options.map(({ title, id }) => {
+                return <option key={id} value={id}>{title}</option>
             })}
         </select>
     )

@@ -12,6 +12,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }: Props) => {
     const { id, name, ava } = useUser()
+    
 
     return (
         <header className={cn('bg-color-darkness z-50 flex justify-around py-2.5 items-center', className)}>
@@ -21,7 +22,7 @@ export const Header: React.FC<Props> = ({ className }: Props) => {
             </div>
             <Logo variant='short' />
             <Link className='flex gap-4 items-center' to={!id ? '/auth' : `/profile/${id}/${name}`}>
-                <p className='cursor-pointer'>{!id ? 'Вход' : 'Профиль'}</p>
+                <p className='cursor-pointer'>{name ? name : 'Вход'}</p>
                 <Ava path={ava ?? ''} size='ava-sm' />
             </Link>
         </header>

@@ -22,11 +22,7 @@ export const useDinamickPagination = <T,>(fetch_: Function, RQkey: string[], ski
             RQData.data
             && Array.isArray(RQData.data.data)
         ) {
-            if (search) {
-                setFinalData((prev: T[]) => [...prev, ...RQData.data.data])
-            } else {
-                setFinalData(RQData.data.data)
-            }
+            setFinalData((prev: T[]) => [...prev, ...RQData.data.data])
             RQData.data.isEnd && onIsEnd()
             off();
         }

@@ -18,6 +18,7 @@ export const FaqContent: React.FC<Props> = ({ }: Props) => {
                 {q.map(({ content, title }, index) => {
                     return (
                         <FaqBlock
+                            key={title}
                             id={index}
                             pushQParam={pushQParam}
                             content={content}

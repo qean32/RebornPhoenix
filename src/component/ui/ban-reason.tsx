@@ -11,7 +11,7 @@ interface Props {
 
 
 export const BanReason: React.FC<Props> = ({ id }: Props) => {
-    const { finaldata: reason } = useRequest<banReasonDto>(() => profileService.getBanReason(id), [('ban-reson' + id)])
+    const { finaldata: reason } = useRequest<banReasonDto>(() => profileService.getBanReason(id), [`ban-reason-${id}`])
 
     return (
         <Page size="w-[65%]">

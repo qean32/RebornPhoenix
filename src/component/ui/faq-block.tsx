@@ -16,7 +16,7 @@ interface Props {
 }
 
 
-export const FaqBlock: React.FC<Props> = ({
+export const FaqBlock: React.FC<Props> = React.memo(({
     content,
     title,
     pushQ,
@@ -35,7 +35,7 @@ export const FaqBlock: React.FC<Props> = ({
             <p className="text-3xl uppercase">{title}</p>
             {content.map(({ text, image, subTitle }) => {
                 return (
-                    <>
+                    <React.Fragment key={text}>
                         {subTitle && <p className="text-2xl uppercase pt-5 pb-2">{subTitle}</p>}
                         <p className='text-md text-justify'>
                             {text}
@@ -46,9 +46,9 @@ export const FaqBlock: React.FC<Props> = ({
                                 pushQ={pushQ}
                             />
                         }
-                    </>
+                    </React.Fragment>
                 )
             })}
         </div>
     )
-}
+})

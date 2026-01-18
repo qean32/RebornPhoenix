@@ -13,7 +13,7 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const { finaldata, loading } = useRequest<sessionDto>(() => profileService.getSessions(id ?? 0), [('profile-session' + id)])
+    const { finaldata, loading } = useRequest<sessionDto>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`])
 
     React.useEffect(() => {
         if (view) {

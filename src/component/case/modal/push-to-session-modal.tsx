@@ -47,7 +47,7 @@ export const PushToSession: React.FC<Props> = ({
                     <FilterPushToSession />
                     {
                         Object.values(primeItems).map((item: any) => {
-                            return <GroupTokenInModal items={item} renderItem={renderItem} />
+                            return <GroupTokenInModal key={item.id} items={item} renderItem={renderItem} />
                         })
                     }
                 </div>

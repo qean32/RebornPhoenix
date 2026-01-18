@@ -14,7 +14,7 @@ interface Props {
 
 export const Post: React.FC<Props> = ({ view, id }: Props) => {
     const { on, off } = useBoolean(view)
-    const { finaldata, loading } = useRequest<postDto>(() => profileService.getPosts(id ?? 0), [('profile-post' + id)])
+    const { finaldata, loading } = useRequest<postDto>(() => profileService.getPosts(id ?? 0), [`profile-post-${id}`])
 
     React.useEffect(() => {
         if (view) {

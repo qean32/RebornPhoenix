@@ -36,17 +36,17 @@ export const IconAndCount: React.FC<Props> = ({
             <div>
                 <div className='flex'>
                     {((count + 1).toString()).split('').map((item, _) =>
-                        <p className={cn(value > count && 'translate-y-full')} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
+                        <p key={_} className={cn(value > count && 'translate-y-full')} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
                     )}
                 </div>
                 <div className='flex'>
                     {(count.toString()).split('').map((item, _) =>
-                        <p className={cn(value != count && (value > count ? 'translate-y-full' : '-translate-y-full'))} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
+                        <p key={_} className={cn(value != count && (value > count ? 'translate-y-full' : '-translate-y-full'))} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
                     )}
                 </div>
                 <div className='flex'>
                     {((count - 1).toString()).split('').map((item, _) =>
-                        <p className={cn(value < count && '-translate-y-full')} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
+                        <p key={_} className={cn(value < count && '-translate-y-full')} style={{ transition: `${(_ + 1) * 0.2}s` }}>{item}</p>
                     )}
                 </div>
             </div>

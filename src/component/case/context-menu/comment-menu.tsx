@@ -15,6 +15,7 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
     const dispath = useAppDispatch()
     const toast = useToast()
     const remove = () => {
+        dispath(swapTmpObject({ key: 'delete-comment', payload: item }))
         forumService.deleteComment(item.id)
             // @ts-ignore
             .then(({ code }) => {
@@ -22,7 +23,7 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
                     toast('message', { text: ACCEESS_ACTION })
                 }
             })
-            .catch(error => toast('message', { text: error }))
+            .catch(() => toast('message', { text: "Ошибка" }))
     }
     const update = () => {
         dispath(swapTmpObject({ payload: item, key: 'update-comment' }))

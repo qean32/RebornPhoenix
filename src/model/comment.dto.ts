@@ -5,7 +5,7 @@ import { userDto } from "./user.dto"
 
 export type commentDto = idDto & {
     user: userDto
-    text: string
+    content: string
     files: fileDto[]
     date: string
 }

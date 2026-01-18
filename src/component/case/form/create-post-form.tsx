@@ -6,27 +6,35 @@ import { createPostFormDto, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { forumService } from '@/service'
 import { departmentOptions } from '@/export'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Пост создан!'
+const REJECT_ACTION = 'Ошибка!'
 
 export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
     const toast = useToast()
+    const navigate = useNavigate()
 
     const { form, submitHandler } =
         useMyForm<createPostFormDto>(
             createPostSchema,
             (data: createPostFormDto) => {
                 forumService.createPost(data)
-                    .then(({ code }) => {
-                        if (code == 200) {
+                    .then(({ status }) => {
+                        if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION })
+                            setTimeout(() => {
+                                navigate('/')
+                            }, 600)
                         }
                     })
-                    .catch(error => toast('message', { text: error }))
+                    .catch(() => {
+                        toast('message', { text: REJECT_ACTION })
+                    })
             },
             () => { }
         )
@@ -56,7 +64,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                 <TextArea
                     title="Описание вашей статьи"
                     className='min-h-[160px] p-2 px-3 mb-5'
-                    name='content'
+                    name='description'
                 />
 
                 <TextArea
@@ -64,7 +72,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                     ref={ref}
                     title='Текст вашей статьи'
                     className='p-2 px-3 min-h-[600px]'
-                    name='text'
+                    name='payload_content'
                 />
                 <Hints />
             </form>

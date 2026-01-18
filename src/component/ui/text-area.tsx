@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '../../lib/function'
+import { cn, generateId } from '../../lib/function'
 import { useFormContext } from 'react-hook-form'
 import { HoverHint } from '../master/h-order-component'
 import { DangerIcon } from '.'
@@ -27,13 +27,20 @@ export const TextArea: React.FC<Props> = ({
     convertHTML = false,
     initValue = false
 }: Props) => {
-    const { register, formState: { errors }, setValue } = useFormContext()
+    const { register, formState: { errors }, setValue, watch } = useFormContext()
+    const id = generateId().toString()
     const textError = errors[name]?.message as string;
     React.useEffect(() => {
         if (initValue) {
             setValue(name, children)
         }
     }, [])
+    React.useEffect(() => {
+        if (!watch(name)) {
+            // @ts-ignore
+            document.getElementById(id).innerHTML = '';
+        }
+    }, [watch(name)])
 
 
     return (
@@ -44,6 +51,7 @@ export const TextArea: React.FC<Props> = ({
                 </HoverHint>}
             <div
                 contentEditable={true}
+                id={id}
                 {...register(name)}
                 ref={ref}
                 onInput={e => {

@@ -26,7 +26,7 @@ export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props)
                 {
                     !!items.length &&
                     items.map(item => {
-                        return renderItem(item)
+                        return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
                     })
                 }
             </div>

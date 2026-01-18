@@ -1,18 +1,17 @@
-import { useAppDispatch, useAppSelector } from "@lib/castom-hook/redux"
 import { useRequest } from "./use-request"
 import { profileService } from "@/service"
-import { setUser } from "@/store/user-store"
 import { userDto } from "@/model"
+import Cookies from "js-cookie"
+import { userStorageKey } from "@/export"
 
-export const useUser = () => {
-    const dispath = useAppDispatch()
-    const { user } = useAppSelector(state => state.user)
+export const useUser = (set: boolean = false) => {
+    const user = JSON.parse(Cookies.get(userStorageKey) as string)
 
-    if (!user) {
+    if (set) {
         const { finaldata } = useRequest<userDto>(profileService.me, ['me'])
 
         if (finaldata[0]) {
-            dispath(setUser(finaldata[0]))
+            Cookies.set(userStorageKey, JSON.stringify(finaldata[0]))
         }
     }
 

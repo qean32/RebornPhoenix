@@ -16,16 +16,18 @@ export const PostItem: React.FC<Props> = ({
     department,
     likes,
     description,
+    id,
     className
 }: Props) => {
+
     return (
-        <Link to={`/post/${department}/1/${title}`} className='prime-hover'>
+        <Link to={`/post/${department}/${id}/${title}`} className='prime-hover'>
             {title &&
                 <div className={cn('py-2 grid cursor-pointer transition-300 mount-opacity', className)} style={{ gridTemplateColumns: '5fr 1fr 1fr' }}>
                     {fixed && <img src="/icon/fixed.svg" alt="" className='absolute top-2 right-2' />}
                     <div className='flex flex-col justify-between'>
                         <p className='text-2xl'>{title}</p>
-                        <p className='text-sm pr-4'>{description}</p>
+                        <p className='text-sm pr-4 min-h-[100px] overflow-hidden max-h-[100px]'>{description}</p>
                         <UnwrapTags tags={tags} className='' />
                     </div>
                     <p className='translate-y-1'>{user && user.name}</p>

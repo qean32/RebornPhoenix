@@ -30,19 +30,19 @@ export const forumService = {
         return requestDelete(`${instance}/${id}/delete`)
     },
 
-    createComment: (data: any) => {
-        return requestPost(`${instance}/create/comment`, data)
+    createComment: (data: any, id: string | number) => {
+        return requestPost(`${instance}/${id}/comment/create`, data)
     },
 
     updateComment: (data: any, id: string | number) => {
-        return requestPatch(`${instance}/update/comment/${id}`, data)
+        return requestPatch(`${instance}/${id}/comment/update`, data)
     },
 
     deleteComment: (id: string | number) => {
-        return requestDelete(`${instance}/create/comment/${id}`)
+        return requestDelete(`${instance}/${id}/comment/delete`)
     },
 
-    getComment: (id: string | number) => {
-        return requestGet(`${instance}/${id}/comment`)
+    getComments: (id: string | number) => {
+        return requestGet(`${instance}/${id}/comments`)
     }
 }

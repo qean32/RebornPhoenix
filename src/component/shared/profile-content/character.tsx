@@ -15,7 +15,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const { finaldata, loading } = useRequest<characterDto>(() => profileService.getCharacters(id ?? 0), [('profile-characters' + id)])
+    const { finaldata, loading } = useRequest<characterDto>(() => profileService.getCharacters(id ?? 0), [`profile-characters-${id}`])
 
     React.useEffect(() => {
         if (view) {

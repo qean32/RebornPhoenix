@@ -1,6 +1,6 @@
 export type { idDto } from './id.dto'
 export type { positionDto, coordinateDto } from './position.dto'
-export type { tokenKeyDto } from './token-storage.dto'
+export type { tokenStorageKeyDto } from './token-storage.dto'
 export type { userDto } from './user.dto'
 export type { sessionDto, mapsDataDto, bestiaryItem } from './session.dto'
 export type { toastDto, toastPayloadDto, toastKeyDto } from './toast.dto'
