@@ -22,8 +22,9 @@ export const CommentForm: React.FC<Props> = ({ push, update, delete_ }: Props) =
     React.useEffect(() => {
         if (key == 'delete-comment') {
             delete_(tmpObject)
+            toast('message', { text: 'Коментарий удален' })
         }
-    }, [key])
+    }, [key, tmpObject])
     const toast = useToast()
 
     const { form, submitHandler, clear } =
@@ -57,15 +58,16 @@ export const CommentForm: React.FC<Props> = ({ push, update, delete_ }: Props) =
     return (
         <FormProvider {...form}>
             <form className="" onSubmit={submitHandler}>
-                <div className="p-5">
+                <div className="p-5 py-4 pb-0">
                     <div className='flex outline-bg-light outline-1 rounded-sm items-end py-2 pb-1'>
                         <Button className='px-4' variant='ghost'><FileInput
                             name='files' /></Button>
                         <TextArea
                             initValue={true}
                             name='payload_content'
+                            convertHTML
                             title='Ваш коментарий'
-                            parentDivclassName='w-full max-h-[300px] overflow-scroll translate-y-1 text-xl'
+                            parentDivclassName='w-full max-h-[300px] overflow-scroll translate-y-1.5 text-xl'
                             className='no-min-h'
                         >
                             {/* @ts-ignore */}

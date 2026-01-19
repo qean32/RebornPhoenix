@@ -26,6 +26,10 @@ export const forumService = {
         return requestPost(`${instance}/${id}/like-action`, {})
     },
 
+    myLike: (id: string | number) => {
+        return requestGet(`${instance}/${id}/my-like`)
+    },
+
     deletePost: (id: string | number) => {
         return requestDelete(`${instance}/${id}/delete`)
     },

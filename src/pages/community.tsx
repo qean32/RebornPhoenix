@@ -5,6 +5,7 @@ import { UserItem } from "@component/ui/item"
 import { title } from "@/export"
 import { usePage } from "@lib/castom-hook"
 import { communityService } from "@/service"
+import { UserSceleton } from "@/component/case/sceleton"
 
 export const Community = () => {
     const { } = usePage(title.communty)
@@ -16,6 +17,7 @@ export const Community = () => {
                 <TextInfo title="Сообщество" />
                 <Search />
                 <GroupContainer
+                    sceleton={() => <UserSceleton />}
                     rq={{
                         fetch: communityService.getUsers,
                         RQKey: ['community'],

@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@/lib/function'
-import { Loader, NoFindData } from '../ui'
+import { NoFindData } from '../ui'
 import { useDinamickPagination, useQueryParam } from '@/lib/castom-hook';
 import { userDto } from '@/model';
 import { qParamName } from '@/export';
@@ -14,6 +14,7 @@ interface Props {
         RQKey: string[],
         staticParam: any[]
     }
+    sceleton(): React.ReactNode
 }
 
 
@@ -25,7 +26,8 @@ export const GroupContainer: React.FC<Props> = ({
         RQKey,
         fetch,
         staticParam
-    }
+    },
+    sceleton
 }: Props) => {
     const { param } = useQueryParam(qParamName.search)
     const { allQ } = useQueryParam('')
@@ -33,11 +35,7 @@ export const GroupContainer: React.FC<Props> = ({
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
-            {loading &&
-                <div className="flex-1 flex justify-center items-center">
-                    <Loader />
-                </div>
-            }
+            {loading && <>{sceleton()}</>}
             {finaldata.map(item => {
                 return (
                     <React.Fragment key={item.id}>

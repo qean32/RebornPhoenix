@@ -42,6 +42,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
                 {finaldata[0] && <PostItem {...finaldata[0]} fixed={true} className="pl-2" />}
             </div>
             <GroupContainer
+                sceleton={() => <></>}
                 rq={{
                     fetch: forumService.getDepartmentPost,
                     RQKey: [`department-post-${name}`],

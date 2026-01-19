@@ -1,10 +1,11 @@
 import { Page } from "@component/master/h-order-component"
-import { Loader, TextInfo } from "@component/ui"
+import { TextInfo } from "@component/ui"
 import { DepartmentItem } from "@component/ui/item"
 import { title } from "@/export"
 import { usePage, useRequest } from "@lib/castom-hook"
 import { forumService } from "@/service"
 import { departmentDto } from "@/model"
+import { ForumSceleton } from "@/component/case/sceleton"
 
 
 export const Forum = () => {
@@ -18,11 +19,7 @@ export const Forum = () => {
                     <TextInfo title="Форум" />
 
                     <div className="flex flex-col gap-7">
-                        {loading &&
-                            <div className="flex-1 flex justify-center items-center min-h-[50vh]">
-                                <Loader />
-                            </div>
-                        }
+                        {loading && <ForumSceleton />}
                         {
                             !!finaldata.length &&
                             finaldata.map(item => {

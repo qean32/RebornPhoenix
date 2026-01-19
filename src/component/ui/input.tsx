@@ -117,15 +117,20 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
 
 interface InputFileProps {
     className?: string
-    title: string
+    title: string,
+    name: string,
+    defaultValue?: string
 }
 
 
 export const ImgInput: React.FC<InputFileProps> = ({
     className,
-    title
+    title,
+    name,
+    defaultValue
 }: InputFileProps) => {
     const id = generateId().toString()
+    const { setValue } = useFormContext()
     const [src, setSrc] = React.useState<any>([]);
     const urls = src.map((file: any) => URL.createObjectURL(file));
 
@@ -133,13 +138,14 @@ export const ImgInput: React.FC<InputFileProps> = ({
         if (!e.target.files) return
         if (!e.target.files[0]) return
 
+        setValue(name, e.target.files)
         setSrc([e.target.files[0]])
     }
 
     return (
         <div className={cn('w-fit', className)}>
             <label htmlFor={id} className='cursor-pointer'>
-                <Ava path={urls[0]} size='ava-lg' className='ml-1' />
+                <Ava path={urls[0] ?? defaultValue} blob={urls[0]} size='ava-lg' className='ml-1' />
                 <p className='pt-2 pl-1'>
                     {title}
                 </p>

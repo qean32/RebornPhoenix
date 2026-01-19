@@ -9,13 +9,14 @@ import { useParams } from 'react-router-dom'
 
 interface Props {
     id: string
+    swap: Function
 }
 
 
 const ACCEESS_ACTION = 'Пользовтель забанен'
 const REJECT_ACTION = 'Ошибка'
 
-export const BanForm: React.FC<Props> = ({ id }: Props) => {
+export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
     const { id: idUser } = useParams()
     const toast = useToast()
     const { form, submitHandler } = useMyForm<banFormDto>(banSchema,
@@ -25,10 +26,10 @@ export const BanForm: React.FC<Props> = ({ id }: Props) => {
                 .catch(() => toast('message', { text: REJECT_ACTION }))
                 .finally(() => {
                     setTimeout(() => {
-                        // @ts-ignore
-                        window.reload()
+                        window.location.reload()
                     }, 1000)
                 })
+            swap()
         },
         () => { },
     )

@@ -27,9 +27,10 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
         <div className="bg-color-dark rounded-lg pb-2">
             <CommentForm update={updateComment}
                 push={pushComment} delete_={deleteComment} />
-            <p className='pl-6 py-2 text-2xl'>Коментарии</p>
+            {!!comments.length && <p className='pl-6 py-2 text-2xl'>Коментарии</p>}
+            {!comments.length && <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>}
             {comments.map(item => {
-                return (<CommentItem {...item} key={item.id} />)
+                return <CommentItem {...item} key={item.id} />
             })}
         </div>
     )

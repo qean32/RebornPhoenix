@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { commentDto } from '@/model'
 import { CommentMenu } from '@/component/case/context-menu'
 import { ViewAuthor } from '@/component/master/h-order-component'
+import { separator } from '@/export'
 
 interface Props extends commentDto {
 }
@@ -18,7 +19,8 @@ export const CommentItem: React.FC<Props> = (item: Props) => {
                 </Link >
                 <div className='flex flex-col gap-2 pl-2 pb-2 items-start'>
                     <Link to={`/profile/${item.user.id}/${item.user.name}`}><p className='text-2xl'>{item.user.name}</p></Link>
-                    <p className='text-justify'>{item.content}</p>
+                    {/* @ts-ignore */}
+                    <p className='text-justify'>{item.content.replaceAll(separator, ' ')}</p>
                     {
                         !!item.files?.length &&
                         <>

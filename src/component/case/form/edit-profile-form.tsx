@@ -2,8 +2,9 @@ import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormDto, editProfileSchema } from '@/model/schema'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast, useUser } from '@/lib/castom-hook'
 import { profileService } from '@/service'
+import { setUser } from '@/lib/function'
 
 interface Props {
 }
@@ -12,20 +13,32 @@ const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
+    const returnformData = (file: any, name: string) => {
+        const form = new FormData()
+        if (file) {
+            form.append('ava', file[0])
+        }
+        form.append('name', name)
+
+        return form
+    }
+
     const { form, submitHandler } =
         useMyForm<editProfileFormDto>(
             editProfileSchema,
             (data: editProfileFormDto) => {
-                profileService.updateProfile(data)
-                    .then(({ code }) => {
-                        if (code == 200) {
+                profileService.updateProfile(returnformData(data.ava, data.name))
+                    .then(({ status, data }) => {
+                        if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION })
+                            setUser(data)
                         }
                     })
-                    .catch(error => toast('message', { text: error }))
+                    .catch(() => toast('message', { text: 'Ошибка!' }))
             },
             () => { }
         )
+    const { name, ava } = useUser()
 
     return (
         <FormProvider {...form}>
@@ -35,12 +48,19 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                     <Title>РЕДАКТОР</Title>
                     <div className="flex-1 w-[35vh] pt-2 flex flex-col justify-between pb-3">
                         <div className="flex gap-2 flex-col">
+
                             <TextInput
                                 placeHolder="никнейм"
                                 name='name'
+                                defaultValue={name}
                                 className='outline-bg-light'
                             />
-                            <ImgInput title='фото профиля' className='pl-1 pt-5' />
+
+                            <ImgInput name='ava'
+                                defaultValue={ava}
+                                title='фото профиля'
+                                className='pl-1 pt-5'
+                            />
                         </div>
                         <LinkPrime
                             path='/reset-password'

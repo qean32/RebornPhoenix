@@ -2,9 +2,11 @@ import z from "zod";
 import { name } from "./zod-types";
 
 export const editProfileSchema = z.object({
-    name: name
+    name: name,
+    ava: z.any().nullable()
 });
 
 export type editProfileFormDto = {
     name: string
+    ava?: any
 }

@@ -17,6 +17,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
+    const { finaldata: isLike } = useRequest<boolean>(() => forumService.myLike(id ?? 0), [`my-like-${id}`])
     const { finaldata } = useRequest<postDto>(() => forumService.getPost(id ?? 0), [`post-${id}`])
     const deletePost = () => {
         forumService.deletePost(id ?? 0)
@@ -45,7 +46,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                     <MainBlock content={finaldata[0].content} description={finaldata[0].description}>
                         <CountBlock
                             likeCount={finaldata[0].likes}
-                            userLike={false}
+                            userLike={isLike[0] ?? false}
                         />
                     </MainBlock>
                     <UnwrapFiles

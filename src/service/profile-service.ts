@@ -1,4 +1,4 @@
-import { requestDelete, requestGet, requestPatch, requestPost } from "@/lib/function/request"
+import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
 
 const instance = 'profile'
 
@@ -44,7 +44,7 @@ export const profileService = {
     },
 
     updateProfile: (data: any) => {
-        return requestPatch(`${instance}/update`, data)
+        return requestPost(`${instance}/update`, data, !!data.get('ava'))
     },
 
     getSubscribers: () => {
