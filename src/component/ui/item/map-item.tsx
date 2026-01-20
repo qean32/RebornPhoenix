@@ -7,7 +7,7 @@ interface Props {
 
 
 export const MapItem: React.FC<Props> = ({ }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.vImg)
+    const { pushQ } = useQueryParam(qParamName.viewimg)
 
     const clickHAndler = () => {
         pushQ('/img/carousel-item-1.jpg')

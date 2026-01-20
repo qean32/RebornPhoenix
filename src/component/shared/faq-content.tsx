@@ -9,7 +9,7 @@ interface Props {
 
 
 export const FaqContent: React.FC<Props> = ({ }: Props) => {
-    const { pushQ, pushQParam, clearQParam, param } = useQueryParam(qParamName.vImg)
+    const { pushQ, pushQParam, clearQParam, param } = useQueryParam(qParamName.viewimg)
 
     return (
         <>
@@ -29,7 +29,7 @@ export const FaqContent: React.FC<Props> = ({ }: Props) => {
                 })}
             </div>
 
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={param} />
+            <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={param} />
         </>
     )
 }

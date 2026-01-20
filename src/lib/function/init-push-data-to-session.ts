@@ -5,9 +5,9 @@ import { useToast } from "../castom-hook"
 
 export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     const dispath = useAppDispatch()
+    const toast = useToast()
 
     if (type == 'entity') {
-        const toast = useToast()
         const push = (data: entityDto) => {
             dispath(pushEntity(data))
             toast('push-entity', { name: data.name })
@@ -17,8 +17,6 @@ export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     }
 
     if (type == 'object') {
-        const toast = useToast()
-
         const push = (data: objectDto) => {
             dispath(pushObject(data))
             toast('push-entity', { name: data.name })
@@ -28,8 +26,6 @@ export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     }
 
     if (type == 'map') {
-        const toast = useToast()
-
         const push = (data: mapDto) => {
             dispath(pushMap(data))
             toast('push-entity', { name: data.name })

@@ -2,27 +2,37 @@ import React from "react"
 import { useQuery } from "react-query"
 import { useBoolean, useHandlerScroll } from "."
 
-export const useDinamickPagination = <T,>(fetch_: Function, RQkey: string[], skip_: number = 0, take: number, search: string, staticParam: any[]) => {
+export const useDynamickPagination = <T,>(
+    fetch_: Function,
+    RQkey: string[],
+    skip_: number = 0,
+    take: number,
+    search: string,
+    staticParam: any[],
+    date?: any,
+    tags?: any
+) => {
     const { refHandler, boolean } = useHandlerScroll()
     const [skip, setSkip] = React.useState<number>(skip_)
-    const [finaldata, setFinalData] = React.useState<T[]>([])
+    const [response, setResponse] = React.useState<T[]>([])
     const { boolean: isEnd, on: onIsEnd, off: offIsEnd } = useBoolean()
     const { boolean: loading, off, on } = useBoolean(true)
-    const RQData = useQuery([...RQkey, skip, search, staticParam], () => fetch_(skip, take, search, ...staticParam), { keepPreviousData: false, refetchOnWindowFocus: false })
+    const RQData = useQuery([...RQkey, skip, search, date, tags],
+        () => fetch_(skip, take, search, ...staticParam, date, tags), { keepPreviousData: false, refetchOnWindowFocus: false })
 
     React.useEffect(() => {
-        on()
         offIsEnd()
+        on()
         setSkip(0)
-        setFinalData([])
-    }, [search])
+        setResponse([])
+    }, [search, date, tags])
 
     React.useEffect(() => {
         if (
             RQData.data
             && Array.isArray(RQData.data.data)
         ) {
-            setFinalData((prev: T[]) => [...prev, ...RQData.data.data])
+            setResponse((prev: T[]) => [...prev, ...RQData.data.data])
             RQData.data.isEnd && onIsEnd()
             off();
         }
@@ -36,5 +46,5 @@ export const useDinamickPagination = <T,>(fetch_: Function, RQkey: string[], ski
         }
     }, [boolean])
 
-    return { finaldata, refHandler, loading, isEnd }
+    return { response, refHandler, loading, isEnd }
 }

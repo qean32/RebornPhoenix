@@ -10,7 +10,7 @@ import { ForumSceleton } from "@/component/case/sceleton"
 
 export const Forum = () => {
     const { } = usePage(title.forum)
-    const { finaldata, loading } = useRequest<departmentDto>(forumService.getDepartments, ['departments'])
+    const [departments, loading] = useRequest<departmentDto[]>(forumService.getDepartments, ['departments'])
 
     return (
         <Page size="w-[70%]">
@@ -21,8 +21,8 @@ export const Forum = () => {
                     <div className="flex flex-col gap-7">
                         {loading && <ForumSceleton />}
                         {
-                            !!finaldata.length &&
-                            finaldata.map(item => {
+                            !!departments?.length &&
+                            departments?.map(item => {
                                 return (
                                     <DepartmentItem {...item} />
                                 )

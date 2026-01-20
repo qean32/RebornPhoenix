@@ -15,7 +15,7 @@ export const AuthBackground: React.FC<Props> = ({ text }: Props) => {
             <div className="h-full items-center cursor-pointer flex justify-center arrow-auth-relative">
                 <div
                     className={cn(
-                        "rounded-md h-full w-full bg-shadow bg-img transition-300"
+                        "rounded-md h-full w-full bg-shadow bg-color bg-img transition-300"
                     )}
                     style={{ backgroundImage: `url(${'/img/auth.jpg'})` }}
                 ></div>

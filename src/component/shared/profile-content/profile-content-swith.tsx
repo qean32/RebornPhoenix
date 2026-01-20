@@ -14,7 +14,7 @@ const map = new Map([
 
 
 export const ProfileContentSwith: React.FC<Props> = ({ }: Props) => {
-    const { pushQ, param } = useQueryParam(qParamName.pContent)
+    const { pushQ, param } = useQueryParam(qParamName.contentprofile)
 
     const swap = (e: React.MouseEvent<HTMLDivElement>) => {
         // @ts-ignore

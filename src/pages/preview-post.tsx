@@ -1,5 +1,4 @@
-import { PostInfo, MainBlock, CommentBlock, CountBlock } from "@/component/shared/post"
-import { f_user } from "@/f"
+import { PostInfo, MainBlock, CountBlock } from "@/component/shared/post"
 import { Page } from "@component/master/h-order-component"
 import { Crumb } from "@component/ui"
 import { usePage } from "@lib/castom-hook"
@@ -13,14 +12,13 @@ export const PreviewPost = () => {
     return (
         <Page size="w-[65%]">
             <Crumb />
-            <PostInfo {...f_user[0]} />
-            <MainBlock content={content}>
+            <PostInfo name={""} ava={""} id={0} role={0} />
+            <MainBlock content={content} description="" >
                 <CountBlock
                     likeCount={0}
                     userLike={false}
                 />
             </MainBlock>
-            <CommentBlock comments={[]} />
         </Page>
     )
 }

@@ -28,7 +28,7 @@ export const Department = () => {
 const MainSideForum: React.FC<{}> = ({ }: {}) => {
     const { name } = useParams()
     const departmentId = departmentOptions.find(item => item.value.toLocaleLowerCase() == (name ?? '').toLocaleLowerCase())?.id
-    const { finaldata } = useRequest<postDto>(() => forumService.getFixedPost(departmentId ?? 0), [`get-fixed-${departmentId}`])
+    const [post] = useRequest<postDto>(() => forumService.getFixedPost(departmentId ?? 0), [`get-fixed-${departmentId}`])
 
     return (
         <div className="relative w-full">
@@ -39,7 +39,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
             </>
             <PostColumn />
             <div className="pb-4">
-                {finaldata[0] && <PostItem {...finaldata[0]} fixed={true} className="pl-2" />}
+                <PostItem {...post} fixed={true} className="pl-2" />
             </div>
             <GroupContainer
                 sceleton={() => <></>}

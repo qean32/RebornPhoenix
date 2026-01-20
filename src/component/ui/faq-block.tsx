@@ -26,7 +26,7 @@ export const FaqBlock: React.FC<Props> = React.memo(({
     const { boolean, refHandler } = useHandlerScrollBetween()
     React.useEffect(() => {
         if (boolean) {
-            pushQParam(qParamName.anchorLink, title)
+            pushQParam(qParamName.anchorlink, title)
         }
     }, [boolean])
 

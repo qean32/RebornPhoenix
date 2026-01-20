@@ -1,6 +1,7 @@
 import React from 'react'
-import { Ava, BanAction, BanPlate } from '.'
+import { Ava, BanPlate } from '.'
 import { userDto } from '@/model'
+import { ProfileInfoSceleton } from '../case/sceleton'
 
 interface Props {
     className?: string
@@ -9,7 +10,8 @@ interface Props {
 
 
 export const UserInfo: React.FC<Props> = ({ user }: Props) => {
-    if (user)
+    if (user?.id) {
+
         return (
             <>
                 <div className='flex gap-6 mt-4'>
@@ -17,7 +19,9 @@ export const UserInfo: React.FC<Props> = ({ user }: Props) => {
                     <BanPlate ban={user && (user.ban ?? false)} />
                     <p className="text-3xl">{user && user.name}</p>
                 </div>
-                <BanAction ban={user.ban ?? false} />
             </>
         )
+    }
+
+    return <ProfileInfoSceleton />
 }

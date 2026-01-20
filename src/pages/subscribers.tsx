@@ -1,13 +1,14 @@
-import { GroupContainer } from "@component/master"
 import { Page } from "@component/master/h-order-component"
 import { BackArrow, ScrollTop, TextInfo } from "@component/ui"
-import { UserItem } from "@component/ui/item"
 import { title } from "@/export"
-import { usePage } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/castom-hook"
 import { profileService } from "@/service"
+import { userDto } from "@/model"
+import { UserItem } from "@/component/ui/item"
 
 export const Subscribers = () => {
     const { } = usePage(title.subscribers)
+    const [subscribers, loading] = useRequest<userDto[]>(profileService.getSubscribers, ['my-subscribers'])
 
     return (
         <Page size="w-[70%]">
@@ -15,15 +16,13 @@ export const Subscribers = () => {
             <BackArrow />
             <div className="relative">
                 <TextInfo title="Ваши подписки" />
-                <GroupContainer
-                    noFindDataText="У вас нет подписок!"
-                    className="pt-5"
-                    rq={{
-                        fetch: profileService.getSubscribers,
-                        RQKey: ['subscribers']
-                    }}
-                    renderItem={(item) => <UserItem {...item} />}
-                />
+                {loading && <p>загрузка</p>}
+                {
+                    !!subscribers?.length &&
+                    subscribers.map(item => {
+                        return <UserItem {...item} />
+                    })
+                }
             </div>
         </Page>
     )

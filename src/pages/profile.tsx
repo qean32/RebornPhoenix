@@ -1,54 +1,45 @@
 import { Page, ViewAuthor } from "@component/master/h-order-component"
-import { BanReason, ButtonSubscription, LinkPrime, UserInfo } from "@component/ui"
+import { BanAction, BanReason, ButtonSubscription, LinkPrime, Logout, UserInfo } from "@component/ui"
 import { ProfileContent, ProfileContentSwith } from "@component/shared/profile-content"
-import { usePage, useRequest, useToast } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { userDto } from "@/model"
 import { profileService } from "@/service"
-import Cookies from "js-cookie"
-import { tokenStorageKey, userStorageKey } from "@/export"
 
 export const Profile = () => {
     const { } = usePage(getParamName())
-    const toast = useToast()
-    const navigate = useNavigate()
     const { id } = useParams()
-    const { finaldata: user } = useRequest<Omit<userDto, 'email'>>(() => profileService.getUserInfo(id ?? 0), [`profile-info-${id}`])
-    const { finaldata: sub } = useRequest(() => profileService.getSubscribe(Number(id)), [`get-subscribe-${id}`])
-    const logout = () => {
-        Cookies.remove(tokenStorageKey)
-        Cookies.remove(userStorageKey)
-        toast('message', { text: 'Выход..' })
-        setTimeout(() => {
-            navigate('/')
-        }, 600)
-    }
+    const [user] = useRequest<Omit<userDto, 'email'>>(() => profileService.getUserInfo(id ?? 0), [`profile-info-${id}`])
+    const [sub] = useRequest(() => profileService.getSubscribe(Number(id)), [`get-subscribe-${id}`])
 
     return (
         <>
             <Page size="w-[65%]">
                 <div className="flex-col flex h-full pb-3 overflow-hidden">
-                    <UserInfo user={user[0]} />
-                    <ViewAuthor payload_id={user[0]?.id}>
-                        <LinkPrime
-                            className="mt-3 pl-2"
-                            path='/subscribers'
-                        >Мои подписки</LinkPrime>
-                    </ViewAuthor>
+                    <UserInfo user={user} />
+                    <div className="flex gap-5 mt-1">
+                        <ViewAuthor payload_id={user?.id}>
+                            <LinkPrime
+                                className="mt-3 pl-2"
+                                path='/subscribers'
+                            >Мои подписки</LinkPrime>
+                        </ViewAuthor>
+                        <ViewAuthor payload_id={user?.id} reverse>
+                            <ButtonSubscription init={!!sub} />
+                        </ViewAuthor>
+                    </div>
                     <ProfileContentSwith />
-                    <ViewAuthor payload_id={user[0]?.id} reverse>
-                        <ButtonSubscription init={!!sub} />
-                    </ViewAuthor>
                     <ProfileContent />
-                    <ViewAuthor payload_id={user[0]?.id}>
-                        <LinkPrime
-                            className="mt-3 pl-2"
-                            path='/edit-profile'
-                        >Изменить профиль</LinkPrime>
-                        <p className="pl-2 text-red-800 cursor-pointer" onClick={logout} >Выход</p>
-                    </ViewAuthor>
                 </div>
+                <ViewAuthor payload_id={user?.id}>
+                    <LinkPrime
+                        className="mt-3 pl-2"
+                        path='/edit-profile'
+                    >Изменить профиль</LinkPrime>
+                    <Logout />
+                </ViewAuthor>
+                <BanAction ban={user?.ban ?? false} />
             </Page >
             <BanReason id={id ?? 0} />
         </>

@@ -18,7 +18,7 @@ export const EntityMenu: React.FC<Props> = (item: Props) => {
     const removeHandler = () => dispath(removeEntity({ id: item.id }))
     const moreHandler = () => dispath(swapTmpObject({ payload: { id: item.idInBestiary }, key: 'more-entity' }))
     const actionHandler = () => { pushQ(item.id.toString()) }
-    const { pushQ } = useQueryParam(qParamName.actionEntity)
+    const { pushQ } = useQueryParam(qParamName.actionentity)
 
     return (
         <ContextMenu className='z-20'>

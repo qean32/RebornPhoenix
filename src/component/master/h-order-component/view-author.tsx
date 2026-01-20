@@ -11,7 +11,7 @@ interface Props {
 export const ViewAuthor: React.FC<Props> = ({ children, payload_id, reverse = false }: Props) => {
     const user = useUser()
 
-    if (reverse && payload_id != user.id && payload_id) {
+    if (reverse && payload_id != user?.id && payload_id) {
         return (
             <>
                 {children}
@@ -19,7 +19,7 @@ export const ViewAuthor: React.FC<Props> = ({ children, payload_id, reverse = fa
         )
     }
 
-    if (payload_id == user.id && payload_id) {
+    if (payload_id == user?.id && payload_id) {
         return (
             <>
                 {children}

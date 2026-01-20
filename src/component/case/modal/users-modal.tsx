@@ -13,7 +13,7 @@ interface Props {
 
 
 export const Users: React.FC<Props> = ({ view, swap }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.pCharacter)
+    const { pushQ } = useQueryParam(qParamName.pushcharacter)
 
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         pushQ(getHTMLData(e, true).id)

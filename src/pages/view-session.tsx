@@ -15,12 +15,12 @@ export const ViewSession = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
     const dispath = useAppDispatch()
-    const { finaldata: session } = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const [session] = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
     React.useEffect(() => {
         dispath(setSession({
             bestiary: [],
             imgs: '',
-            session: session[0]
+            session: session
         }))
     }, [session])
 
@@ -37,13 +37,13 @@ export const ViewSession = () => {
 }
 
 const Modal: React.FC = () => {
-    const { param, clearQParam } = useQueryParam(qParamName.vImg)
+    const { param, clearQParam } = useQueryParam(qParamName.viewimg)
 
 
     return (
         <>
             <ObjectMoreDetailed />
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!param} />
+            <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={!!param} />
         </>
     )
 }

@@ -1,0 +1,20 @@
+import { setUser } from "@/store/user-store"
+import { useAppDispatch } from "../castom-hook/redux"
+import { userDto } from "@/model"
+import { useUser } from "../castom-hook"
+import { profileService } from "@/service"
+
+export const initSetUser = async (force: boolean = false) => {
+    const dispath = useAppDispatch()
+    const user = useUser()
+
+    if (!user || force) {
+        // @ts-ignore
+        const userData: userDto = await profileService.me()
+
+        if (await userData?.id) {
+
+            dispath(setUser(userData))
+        }
+    }
+}

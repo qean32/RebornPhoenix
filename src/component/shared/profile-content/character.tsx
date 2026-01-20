@@ -15,7 +15,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const { finaldata, loading } = useRequest<characterDto>(() => profileService.getCharacters(id ?? 0), [`profile-characters-${id}`])
+    const [characters, loading] = useRequest<characterDto[]>(() => profileService.getCharacters(id ?? 0), [`profile-characters-${id}`])
 
     React.useEffect(() => {
         if (view) {
@@ -31,15 +31,15 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
 
     return (
         <>
-            {!finaldata.length && !loading &&
+            {!characters?.length && !loading &&
                 <div className="w-full">
 
                     <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[360px]" view={true} />
                 </div>
             }
             <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
-                {!!finaldata.length &&
-                    finaldata.map((item, _) =>
+                {!!characters?.length &&
+                    characters?.map((item, _) =>
                         <LinkCharacterItem
                             {...item}
                             number={_ + 1}

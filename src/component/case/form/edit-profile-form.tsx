@@ -4,7 +4,8 @@ import { FormProvider } from 'react-hook-form'
 import { editProfileFormDto, editProfileSchema } from '@/model/schema'
 import { useMyForm, useToast, useUser } from '@/lib/castom-hook'
 import { profileService } from '@/service'
-import { setUser } from '@/lib/function'
+import { useNavigate } from 'react-router-dom'
+import { qParamName } from '@/export'
 
 interface Props {
 }
@@ -12,6 +13,7 @@ interface Props {
 const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
+    const navigate = useNavigate()
     const toast = useToast()
     const returnformData = (file: any, name: string) => {
         const form = new FormData()
@@ -28,17 +30,19 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
             editProfileSchema,
             (data: editProfileFormDto) => {
                 profileService.updateProfile(returnformData(data.ava, data.name))
-                    .then(({ status, data }) => {
-                        if (status == 200) {
+                    .then(({ status }) => {
+                        if (status == 200 || status == 201) {
                             toast('message', { text: ACCEESS_ACTION })
-                            setUser(data)
+                            setTimeout(() => {
+                                navigate(`/?${qParamName.forceupadeteuser}=true`)
+                            }, 600)
                         }
                     })
                     .catch(() => toast('message', { text: 'Ошибка!' }))
             },
             () => { }
         )
-    const { name, ava } = useUser()
+    const user = useUser()
 
     return (
         <FormProvider {...form}>
@@ -52,12 +56,12 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                             <TextInput
                                 placeHolder="никнейм"
                                 name='name'
-                                defaultValue={name}
+                                defaultValue={user?.name ?? ''}
                                 className='outline-bg-light'
                             />
 
                             <ImgInput name='ava'
-                                defaultValue={ava}
+                                defaultValue={user?.ava ?? ''}
                                 title='фото профиля'
                                 className='pl-1 pt-5'
                             />

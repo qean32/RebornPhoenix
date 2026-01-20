@@ -13,7 +13,7 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const { finaldata, loading } = useRequest<sessionDto>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`])
+    const [sessions, loading] = useRequest<sessionDto[]>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`])
 
     React.useEffect(() => {
         if (view) {
@@ -29,11 +29,11 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
 
     return (
         <div className='flex flex-col py-3'>
-            {!!finaldata.length &&
-                finaldata.map(item =>
+            {!!sessions?.length &&
+                sessions?.map(item =>
                     <SessionItem key={item.id} {...item} />
                 )}
-            <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!finaldata.length && !loading} />
+            <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!sessions?.length && !loading} />
             <ViewAuthor payload_id={id}>
                 <Modal.Root modal={Modal.PushSession}>
                     <div className="px-4">

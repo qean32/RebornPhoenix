@@ -7,11 +7,14 @@ import {
     MainBanner,
     Map
 } from "@/component/ui/main";
-import { title } from "@/export";
-import { usePage } from "@lib/castom-hook";
+import { qParamName, title } from "@/export";
+import { initSetUser } from "@/lib/function";
+import { usePage, useQueryParam } from "@lib/castom-hook";
 
 export const Main = () => {
     const { } = usePage(title.main)
+    const { param } = useQueryParam(qParamName.forceupadeteuser)
+    initSetUser(!!param)
 
     return (
         <main>

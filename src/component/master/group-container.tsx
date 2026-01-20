@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
-import { useDinamickPagination, useQueryParam } from '@/lib/castom-hook';
+import { useDynamickPagination, useQueryParam } from '@/lib/castom-hook';
 import { userDto } from '@/model';
 import { qParamName } from '@/export';
 
@@ -31,18 +31,19 @@ export const GroupContainer: React.FC<Props> = ({
 }: Props) => {
     const { param } = useQueryParam(qParamName.search)
     const { allQ } = useQueryParam('')
-    const { finaldata, loading, refHandler, isEnd } = useDinamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam, allQ['date'], allQ['tags']])
+    const { response, loading, refHandler, isEnd } =
+        useDynamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ['date'], allQ['tags'])
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
             {loading && <>{sceleton()}</>}
-            {finaldata.map(item => {
+            {response.map(item => {
                 return (
                     <React.Fragment key={item.id}>
                         {renderItem(item)}</React.Fragment>
                 )
             })}
-            <NoFindData title={noFindDataText} view={!finaldata.length && !loading} />
+            <NoFindData title={noFindDataText} view={!response.length && !loading} />
             {isEnd && <p className='pt-3 text-center'></p>}
             <div className='w-100 min-h-[50px]' ref={refHandler} ></div>
         </div>

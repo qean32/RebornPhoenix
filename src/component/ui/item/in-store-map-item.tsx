@@ -5,7 +5,7 @@ import { qParamName } from '@/export'
 
 
 export const InStoreMapItem: React.FC<mapDto> = (item: mapDto) => {
-    const { pushQ } = useQueryParam(qParamName.vImg)
+    const { pushQ } = useQueryParam(qParamName.viewimg)
 
     const clickHAndler = () => {
         pushQ(item.path)

@@ -10,7 +10,7 @@ interface Props {
 
 
 export const ShortVariant: React.FC<Props> = ({ swap }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.sContent)
+    const { pushQ } = useQueryParam(qParamName.contentsession)
 
     const swapGameView = (e: React.MouseEvent<HTMLButtonElement>) => {
         pushQ(getHTMLData(e, false, 'value'))

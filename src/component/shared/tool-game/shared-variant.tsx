@@ -24,7 +24,7 @@ export const SharedVariant: React.FC<Props> = ({
     bestiary,
     id
 }: Props) => {
-    const { param } = useQueryParam(qParamName.sContent)
+    const { param } = useQueryParam(qParamName.contentsession)
     if (id == null) {
         return <></>
     }

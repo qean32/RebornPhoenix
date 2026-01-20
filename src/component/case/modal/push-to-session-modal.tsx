@@ -3,7 +3,6 @@ import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { ModalCross } from '@component/ui'
 import { FilterPushToSession, GroupTokenInModal } from '@component/shared'
-import { f_entity, f_map, f_object } from '@/f'
 
 interface Props {
     view: boolean
@@ -22,7 +21,7 @@ export const PushToSession: React.FC<Props> = ({
     accept: Accept
 }: Props) => {
     let primeItems = {};
-    const data = type == 'entity' ? f_entity : type == 'map' ? f_map : f_object
+    const data = type == 'entity' ? [] : type == 'map' ? [] : []
     data.forEach(item => {
         // @ts-ignore
         primeItems[item.source.name] = [

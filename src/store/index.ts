@@ -5,6 +5,7 @@ import { sessionReducer } from './session-store'
 import { objectBeingPushedToSessionReducer } from './object-being-pushed-to-session-store'
 import { tmpObjectReducer } from './tmp-object'
 import { notesReducer } from './notes-store'
+import { userReducer } from './user-store'
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     pushedObject: objectBeingPushedToSessionReducer,
     tmpObject: tmpObjectReducer,
     notes: notesReducer,
+    user: userReducer,
 })
 
 export const store = configureStore({

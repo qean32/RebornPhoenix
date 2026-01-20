@@ -11,7 +11,7 @@ interface Props {
 
 
 export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
-    const { param } = useQueryParam(qParamName.vImg)
+    const { param } = useQueryParam(qParamName.viewimg)
     const [statePath, setStatePath] = React.useState(param)
 
     React.useEffect(() => {

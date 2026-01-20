@@ -10,7 +10,7 @@ interface Props {
 
 
 export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
-    const { param } = useQueryParam(qParamName.anchorLink)
+    const { param } = useQueryParam(qParamName.anchorlink)
 
 
     return (

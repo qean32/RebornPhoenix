@@ -17,8 +17,10 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
-    const { finaldata: isLike } = useRequest<boolean>(() => forumService.myLike(id ?? 0), [`my-like-${id}`])
-    const { finaldata } = useRequest<postDto>(() => forumService.getPost(id ?? 0), [`post-${id}`])
+
+    const [myLike] = useRequest<boolean>(() => forumService.myLike(id ?? 0), [`my-like-${id}`])
+    const [post] = useRequest<postDto>(() => forumService.getPost(id ?? 0), [`post-${id}`])
+
     const deletePost = () => {
         forumService.deletePost(id ?? 0)
             .then(() => {
@@ -27,35 +29,34 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
             })
     }
 
-    return (
-        <>
-            {finaldata[0] &&
-                <>
-                    <p className="text-4xl mb-1.5">{finaldata[0].title}</p>
+    if (post?.id) {
 
-                    <ViewAuthor payload_id={finaldata[0].user.id ?? 0}>
-                        <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
-                            <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
-                    </ViewAuthor>
-                    <ViewAdmin>
-                        <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
-                            <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
-                    </ViewAdmin>
+        return (
+            <>
+                <p className="text-4xl mb-1.5">{post.title}</p>
 
-                    <PostInfo {...finaldata[0].user} />
-                    <MainBlock content={finaldata[0].content} description={finaldata[0].description}>
-                        <CountBlock
-                            likeCount={finaldata[0].likes}
-                            userLike={isLike[0] ?? false}
-                        />
-                    </MainBlock>
-                    <UnwrapFiles
-                        className='my-5'
-                        imgView
-                        files={!!finaldata[0]?.files?.length ? finaldata[0]?.files?.split(',').map(item => { return { path: item } }) : []} />
-                    <CommentBlock />
-                </>
-            }
-        </>
-    )
+                <ViewAuthor payload_id={post.user.id ?? 0}>
+                    <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
+                        <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
+                </ViewAuthor>
+                <ViewAdmin>
+                    <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
+                        <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
+                </ViewAdmin>
+
+                <PostInfo {...post.user} />
+                <MainBlock content={post.content} description={post.description}>
+                    <CountBlock
+                        likeCount={post.likes}
+                        userLike={myLike ?? false}
+                    />
+                </MainBlock>
+                <UnwrapFiles
+                    className='my-5'
+                    imgView
+                    files={!!post?.files?.length ? post?.files?.split(',').map(item => { return { path: item } }) : []} />
+                <CommentBlock />
+            </>
+        )
+    }
 }

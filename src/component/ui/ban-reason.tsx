@@ -11,27 +11,28 @@ interface Props {
 
 
 export const BanReason: React.FC<Props> = ({ id }: Props) => {
-    const { finaldata: reason } = useRequest<banReasonDto>(() => profileService.getBanReason(id), [`ban-reason-${id}`])
+    const [reason] = useRequest<banReasonDto>(() => profileService.getBanReason(id), [`ban-reason-${id}`])
 
-    return (
-        <Page size="w-[65%]">
-            {/* @ts-ignore */}
-            {reason[0] && reason[0] != "no" &&
+    //@ts-ignore
+    if (reason?.admin && reason != "no") {
+
+        return (
+            <Page size="w-[65%]">
                 <div className="rounded-sm pb-15 mb-2 text-2xl">
                     <p>ПРИЧИНЫ БЛОКИРОВКИ</p>
                     <div className="grid grid-cols-2">
                         <p>дата блокировки: </p>
-                        <p>{reason[0].date}</p>
+                        <p>{reason.date}</p>
                         <p>время до разблокировки:</p>
-                        <p>{reason[0].date}</p>
+                        <p>{reason.date}</p>
                         <p>администратор выдавший блокировку:</p>
-                        <Link to={`/profile/${reason[0].admin.id}/${reason[0].admin.name}`}
-                        >{reason[0].admin.name}</Link>
+                        <Link to={`/profile/${reason.admin.id}/${reason.admin.name}`}
+                        >{reason.admin.name}</Link>
                         <p>причина:</p>
-                        <p>{reason[0].reason}</p>
+                        <p>{reason.reason}</p>
                     </div>
                 </div>
-            }
-        </Page>
-    )
+            </Page>
+        )
+    }
 }

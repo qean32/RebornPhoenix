@@ -33,6 +33,9 @@ export const ButtonSubscription: React.FC<Props> = ({
     }, 1000)
 
     return (
-        <Button fn={clickHandler} className='mt-2 w-fit'><img src={boolean ? "/icon/subscribe.svg" : "/icon/unsubscribe.svg"} className='icon-sm' alt="" /></Button>
+        <div className="w-fit" title='Подписка'>
+
+            <Button fn={clickHandler} className='mt-2 w-fit'><img src={boolean ? "/icon/subscribe.svg" : "/icon/unsubscribe.svg"} className='icon-sm' alt="" /></Button>
+        </div>
     )
 }

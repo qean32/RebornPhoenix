@@ -7,7 +7,7 @@ import { useQueryParam } from "../use-query-param";
 
 export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
     const [image] = useImage(path);
-    const { pushQ } = useQueryParam(qParamName.actionEntity)
+    const { pushQ } = useQueryParam(qParamName.actionentity)
 
     const rectRef = React.useRef<null | HTMLCanvasElement | any>();
 

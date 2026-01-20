@@ -1,21 +1,7 @@
-import { useRequest } from "./use-request"
-import { profileService } from "@/service"
-import { userDto } from "@/model"
-import Cookies from "js-cookie"
-import { userStorageKey } from "@/export"
-import { setUser } from "../function"
+import { useAppSelector } from "./redux"
 
-export const useUser = (set: boolean = false): userDto => {
-    const cookie = Cookies.get(userStorageKey) ?? null
-    const user = cookie ? JSON.parse(cookie) : null
+export const useUser = () => {
+    const { user } = useAppSelector(state => state.user)
 
-    if (set) {
-        const { finaldata } = useRequest<userDto>(profileService.me, ['me'])
-
-        if (finaldata[0]) {
-            setUser(finaldata[0])
-        }
-    }
-
-    return { ...user }
+    return user
 }

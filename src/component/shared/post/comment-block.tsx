@@ -12,7 +12,7 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
-    const { finaldata: comments, setFinalData: setComments } = useRequest<commentDto>(() => forumService.getComments(id ?? 0), [`post-comment-${id}`])
+    const [comments, _, setComments] = useRequest<commentDto[]>(() => forumService.getComments(id ?? 0), [`post-comment-${id}`])
     const pushComment = (comment: commentDto) => {
         setComments(prev => [comment, ...prev])
     }
@@ -27,9 +27,13 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
         <div className="bg-color-dark rounded-lg pb-2">
             <CommentForm update={updateComment}
                 push={pushComment} delete_={deleteComment} />
-            {!!comments.length && <p className='pl-6 py-2 text-2xl'>Коментарии</p>}
-            {!comments.length && <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>}
-            {comments.map(item => {
+            {!!comments?.length
+                ?
+                <p className='pl-6 py-2 text-2xl'>Коментарии</p>
+                :
+                <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>
+            }
+            {comments?.map(item => {
                 return <CommentItem {...item} key={item.id} />
             })}
         </div>

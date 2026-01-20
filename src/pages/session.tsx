@@ -16,12 +16,12 @@ export const Session = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
     const dispath = useAppDispatch()
-    const { finaldata: session } = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const [session] = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
     React.useEffect(() => {
         dispath(setSession({
             bestiary: [],
             imgs: '',
-            session: session[0]
+            session: session
         }))
     }, [session])
 
@@ -43,10 +43,10 @@ const Modal: React.FC = () => {
 
     return (
         <>
-            <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
+            <PushCharacterInSession swap={() => clearQParam(qParamName.pushcharacter)} view={!!allQ[qParamName.pushcharacter]} />
+            <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={!!allQ[qParamName.viewimg]} />
             <ObjectMoreDetailed />
-            <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
+            <ActionEntity swap={() => clearQParam(qParamName.actionentity)} view={allQ[qParamName.actionentity]} />
         </>
     )
 }

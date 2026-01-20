@@ -1,17 +1,23 @@
 export { axiosInstance } from './service/instance'
 
 export const tokenStorageKey = 'token-storage'
-export const userStorageKey = 'user-storage'
 export const invalidTokenMessage = 'invalid token!'
 export const qParamName = {
-    pContent: 'pContent',
-    vImg: 'vImg',
-    sContent: 'sContent',
-    pCharacter: 'pCharacter',
-    actionEntity: 'actionEntity',
-    anchorLink: "anchorLink",
-    search: 'search'
+    contentprofile: 'contentprofile',
+    viewimg: 'viewimg',
+    contentsession: 'contentsession',
+    pushcharacter: 'pushcharacter',
+    actionentity: 'actionentity',
+    anchorlink: "anchorlink",
+    search: 'search',
+    forceupadeteuser: 'forceupadeteuser'
 }
+
+export const tagsArray = [
+    'dnd',
+    'zxccursed',
+    'web'
+]
 
 export const nameProject = 'Reborn Phoenix'
 export const slogan = 'Играйте вместе с нами!'

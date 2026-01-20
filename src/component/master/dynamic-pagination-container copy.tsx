@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@/lib/function'
-import { useDinamickPaginationFake } from '@/lib/castom-hook/use-dinamick-pagination-fake'
+import { useDynamickPaginationFake } from '@/lib/castom-hook/use-dinamick-pagination-fake'
 import { Loader, NoFindData } from '../ui'
 
 interface Props {
@@ -17,7 +17,7 @@ export const GroupContainer: React.FC<Props> = ({
     items,
     noFindDataText = 'По вашему запросу ничего не найдено'
 }: Props) => {
-    const { finaldata, loading, refHandler, isEnd } = useDinamickPaginationFake(0, '', items)
+    const { finaldata, loading, refHandler, isEnd } = useDynamickPaginationFake(0, '', items)
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
