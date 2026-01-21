@@ -1,4 +1,5 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
+import { modalAnimationEnum } from "@/export"
 import { useBoolean, useRequest } from "@/lib/castom-hook"
 import { characterDto } from "@/model"
 import { profileService } from "@/service"
@@ -47,7 +48,9 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                         />
                     )}
                 <ViewAuthor payload_id={id}>
-                    <Modal.Root modal={Modal.PushCharacterInProfile}>
+                    <Modal.Root
+                        animation={modalAnimationEnum['modal-dft']}
+                        modal={Modal.PushCharacterInProfile}>
                         <PlusButton className='h-[106px]' iconSize='icon-sm' />
                     </Modal.Root>
                 </ViewAuthor>

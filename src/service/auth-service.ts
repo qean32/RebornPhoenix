@@ -11,11 +11,11 @@ export class authService {
         return requestPost(`${instance}/auth`, data)
     }
 
-    async changePassword(data: changePasswordFormDto) {
-        return requestPost(`${instance}/change-password`, data)
+    async changePassword(data: changePasswordFormDto, token: string) {
+        return requestPost(`profile/change-password`, { ...data, token })
     }
 
     async resetPassword(data: resetPasswordFormDto) {
-        return requestPost(`${instance}/reset-password`, data)
+        return requestPost(`profile/reset-password`, data)
     }
 }

@@ -1,5 +1,3 @@
 export { ForumSceleton } from './forum'
-export { CommentSceleton } from './comment'
-export { PostSceleton } from './post'
-export { UserSceleton } from './user'
+export { CommunitySceleton } from './community'
 export { ProfileInfoSceleton } from './item/profile-info'

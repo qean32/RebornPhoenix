@@ -7,6 +7,7 @@ import { useRequest, useToast } from '@/lib/castom-hook'
 import { postDto } from '@/model/post.dto'
 import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
+import { modalAnimationEnum } from '@/export'
 
 interface Props {
     className?: string
@@ -36,11 +37,19 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                 <p className="text-4xl mb-1.5">{post.title}</p>
 
                 <ViewAuthor payload_id={post.user.id ?? 0}>
-                    <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
+                    <Modal.Root
+                        modal={Modal.AccessAction}
+                        props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
                 </ViewAuthor>
                 <ViewAdmin>
-                    <Modal.Root modal={Modal.AccessAction} props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
+                    <Modal.Root
+                        modal={Modal.AccessAction}
+                        props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
                 </ViewAdmin>
 

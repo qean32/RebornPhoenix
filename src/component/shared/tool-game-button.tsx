@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonInGroup, GroupButton } from '@component/ui'
 import { Modal } from '@component/case/modal'
 import { useAppSelector } from '@lib/castom-hook/redux'
-import { slogan } from '@/export'
+import { modalAnimationEnum, slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
@@ -35,13 +35,19 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <ButtonInGroup children={<img className='icon-sm' src='/icon/game.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Карты'>
-                    <Modal.Root modal={Modal.MapsGame}>
+                    <Modal.Root
+                        modal={Modal.MapsGame}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/map.svg' />} /></Modal.Root>
                 </FillHoverHint>
             </GroupButton>
             <GroupButton>
                 <FillHoverHint title='Игроки'>
-                    <Modal.Root modal={Modal.Users}>
+                    <Modal.Root
+                        modal={Modal.Users}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Сетка'>
@@ -54,19 +60,33 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <ButtonInGroup fn={saveGame} children={<img className='icon-sm' src='/icon/save.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Сущности'>
-                    <Modal.Root modal={Modal.PushToSession} props={{ type: 'entity', renderItem: (item: entityDto) => <InStoreEntityItem {...item} />, accept: PushEntity }}>
+                    <Modal.Root
+                        modal={Modal.PushToSession}
+                        animation={modalAnimationEnum['modal-dft']}
+                        props={{ type: 'entity', renderItem: (item: entityDto) => <InStoreEntityItem {...item} />, accept: PushEntity }}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/dragon.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Объекты'>
-                    <Modal.Root modal={Modal.PushToSession} props={{ type: 'object', renderItem: (item: objectDto) => <InStoreObjectItem {...item} />, accept: PushObject }}>
+                    <Modal.Root
+                        modal={Modal.PushToSession}
+                        props={{ type: 'object', renderItem: (item: objectDto) => <InStoreObjectItem {...item} />, accept: PushObject }}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/object.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Изображения'>
-                    <Modal.Root modal={Modal.ImgCarousel}>
+                    <Modal.Root
+                        modal={Modal.ImgCarousel}
+                        animation={modalAnimationEnum['modal-bottom']}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/img-carousel.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Заметки'>
-                    <Modal.Root modal={Modal.Notes}>
+                    <Modal.Root
+                        modal={Modal.Notes}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/edit.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Экран'>

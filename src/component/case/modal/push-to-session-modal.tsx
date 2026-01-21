@@ -1,8 +1,10 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
-import { Modal } from '@component/master/h-order-component'
 import { ModalCross } from '@component/ui'
 import { FilterPushToSession, GroupTokenInModal } from '@component/shared'
+import { useRequest } from '@/lib/castom-hook'
+import { sessionService } from '@/service/session-service'
+import { entityDto, mapDto, objectDto } from '@/model'
 
 interface Props {
     view: boolean
@@ -14,15 +16,17 @@ interface Props {
 
 
 export const PushToSession: React.FC<Props> = ({
-    view,
     swap,
     renderItem,
     type,
     accept: Accept
 }: Props) => {
     let primeItems = {};
-    const data = type == 'entity' ? [] : type == 'map' ? [] : []
-    data.forEach(item => {
+    const [data] = type == 'entity' ? useRequest<entityDto[]>(() => sessionService.getEntities(), [`entities`])
+        : type == 'map' ? useRequest<mapDto[]>(() => sessionService.getMaps(), [`maps`])
+            :
+            useRequest<objectDto[]>(() => sessionService.getObjects(), [`objects`])
+    data?.forEach(item => {
         // @ts-ignore
         primeItems[item.source.name] = [
             // @ts-ignore
@@ -32,27 +36,19 @@ export const PushToSession: React.FC<Props> = ({
     })
 
     return (
-        <Modal
-            swap={swap}
-            view={view}
-            animation={{
-                open: 'modal-open',
-                close: 'modal-close'
-            }}
-        >
-            <div className="relative bg-color w-9/12 h-10/12 rounded-md flex overflow-hidden" onClick={stopPropagation}>
-                <ModalCross fn={swap} />
-                <div className="w-9/12 h-full overflow-scroll relative">
-                    <FilterPushToSession />
-                    {
-                        Object.values(primeItems).map((item: any) => {
-                            return <GroupTokenInModal key={item.id} items={item} renderItem={renderItem} />
-                        })
-                    }
-                </div>
-                <Accept swap={swap}
-                />
+        <div className="relative bg-color w-9/12 h-10/12 rounded-md flex overflow-hidden" onClick={stopPropagation}>
+            <ModalCross fn={swap} />
+            <div className="w-9/12 h-full overflow-scroll relative">
+                <FilterPushToSession />
+                {
+                    Object.values(primeItems).map((item: any) => {
+                        return <GroupTokenInModal key={item.id} items={item} renderItem={renderItem} />
+                    })
+                }
             </div>
-        </Modal>
+            <Accept swap={swap}
+            />
+        </div>
     )
 }
+

@@ -6,8 +6,23 @@ import { generateId } from "@/lib/function";
 type stateDto = { session: sessionDto, bestiary: bestiaryItem[], imgs: string }
 
 const initialState: stateDto = {
-    // @ts-ignore
-    session: {},
+    session: {
+        characters: [],
+        imgs: '',
+        // @ts-ignore
+        currentMap: null,
+        DungeonMaster: { ava: '', email: '', id: 0, name: '', role: 0, ban: false },
+        id: 0,
+        maps: [],
+        mapsData: {
+            '0': {
+                objects: [],
+                queue: [],
+                characters: []
+            }
+        },
+        name: ''
+    },
     bestiary: [],
     imgs: ''
 }
@@ -17,9 +32,8 @@ const sessionSlice = createSlice({
     initialState,
     reducers: {
 
-        setSession: (state: stateDto, { payload: { session, bestiary, imgs } }: PayloadAction<{ session: sessionDto, bestiary: bestiaryItem[], imgs: string }>) => {
+        setSession: (state: stateDto, { payload: { session, bestiary } }: PayloadAction<{ session: sessionDto, bestiary: bestiaryItem[], imgs: string }>) => {
             state.session = session
-            state.imgs = imgs
             state.bestiary = bestiary
         },
 

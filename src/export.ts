@@ -1,3 +1,5 @@
+import { modalAnimationDto } from './model'
+
 export { axiosInstance } from './service/instance'
 
 export const tokenStorageKey = 'token-storage'
@@ -18,6 +20,23 @@ export const tagsArray = [
     'zxccursed',
     'web'
 ]
+
+export const modalAnimationEnum: {
+    [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationDto
+} = {
+    'modal-right': {
+        close: "right-modal-close",
+        open: 'right-modal-open'
+    },
+    'modal-dft': {
+        close: 'modal-close',
+        open: 'modal-open'
+    },
+    'modal-bottom': {
+        close: "modal-close-bottom",
+        open: 'modal-open-bottom'
+    }
+}
 
 export const nameProject = 'Reborn Phoenix'
 export const slogan = 'Играйте вместе с нами!'

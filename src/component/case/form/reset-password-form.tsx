@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-const ACCEESS_ACTION = 'Проверьте почту'
+const ACCEESS_ACTION = 'На вашу почту отпраленно сообщение!'
 
 export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
     const auth = new authService()
@@ -20,13 +20,13 @@ export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
             resetPasswordSchema,
             (data: resetPasswordFormDto) => {
                 auth.resetPassword(data)
-                    // @ts-ignore
-                    .then(({ code }) => {
-                        if (code == 200) {
-                            toast('message', { text: ACCEESS_ACTION })
+
+                    .then(({ status }) => {
+                        if (status == 200) {
+                            toast('message', { text: ACCEESS_ACTION }, 10000)
                         }
                     })
-                    .catch(error => toast('message', { text: error }))
+                    .catch(() => toast('message', { text: 'Ошибка!' }))
             },
             () => { }
         )

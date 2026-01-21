@@ -4,26 +4,30 @@ import { pushSessionFormDto, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { sessionService } from '@/service/session-service'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     children: React.ReactNode
 }
 
-const ACCEESS_ACTION = 'Сессия создан'
+const ACCEESS_ACTION = 'Сессия создана'
 
 export const PushSessionForm: React.FC<Props> = ({ children }: Props) => {
     const toast = useToast()
+    const navigate = useNavigate()
+
     const { form, submitHandler } =
         useMyForm<pushSessionFormDto>(
             pushSessionSchema,
             (data: pushSessionFormDto) => {
                 sessionService.createSession(data)
-                    .then(({ code }) => {
-                        if (code == 200) {
+                    .then(({ status, data }) => {
+                        if (status == 201) {
                             toast('message', { text: ACCEESS_ACTION })
+                            navigate(`/session/${data.id}/${data.name}`)
                         }
                     })
-                    .catch(error => toast('message', { text: error }))
+                    .catch(() => toast('message', { text: 'Ошибка!' }))
             },
             () => { }
         )

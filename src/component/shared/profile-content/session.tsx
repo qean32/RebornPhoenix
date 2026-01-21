@@ -1,4 +1,5 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
+import { modalAnimationEnum } from "@/export"
 import { useBoolean, useRequest } from "@/lib/castom-hook"
 import { sessionDto } from "@/model"
 import { profileService } from "@/service"
@@ -35,7 +36,9 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
                 )}
             <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!sessions?.length && !loading} />
             <ViewAuthor payload_id={id}>
-                <Modal.Root modal={Modal.PushSession}>
+                <Modal.Root
+                    animation={modalAnimationEnum['modal-dft']}
+                    modal={Modal.PushSession}>
                     <div className="px-4">
                         <PlusButton className='h-[85px] my-5 mb-2' iconSize='icon-sm' />
                     </div>

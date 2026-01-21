@@ -8,11 +8,11 @@ export const sessionService = {
     },
 
     createSession: (data: any) => {
-        return requestPost(`${instance}/create/session`, data)
+        return requestPost(`${instance}`, data)
     },
 
     deleteSession: (id: string | number) => {
-        return requestDelete(`${instance}/delete/session/${id}`)
+        return requestDelete(`${instance}/${id}/`)
     },
 
     createEntity: (data: any) => {
@@ -29,5 +29,17 @@ export const sessionService = {
 
     pushImgToSession: (data: any, id: string | number) => {
         return requestPost(`${instance}/${id}/push/img`, data)
+    },
+
+    getEntities: () => {
+        return requestGet(`s/entities`)
+    },
+
+    getObjects: () => {
+        return requestGet(`s/objects`)
+    },
+
+    getMaps: () => {
+        return requestGet(`s/maps`)
     }
 }

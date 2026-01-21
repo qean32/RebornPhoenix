@@ -15,8 +15,8 @@ export const ProfileInfoSceleton: React.FC<Props> = ({ }: Props) => {
             foregroundColor="#0e0e0e"
             className='mt-4'
         >
-            <circle cx="45" cy="45" r="35" />
-            <rect x="100" y="15" rx="" ry="" width="105" height="55" radius='100%' />
+            <circle cx="45" cy="45" r="40" />
+            <rect x="110" y="15" rx="" ry="" width="105" height="55" radius='100%' />
         </ContentLoader>
     )
 }

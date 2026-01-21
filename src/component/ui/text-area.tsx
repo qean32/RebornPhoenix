@@ -3,7 +3,7 @@ import { cn, generateId } from '../../lib/function'
 import { useFormContext } from 'react-hook-form'
 import { HoverHint } from '../master/h-order-component'
 import { DangerIcon } from '.'
-import { separator } from '@/export'
+import { separator, separatorLink } from '@/export'
 
 interface Props {
     className?: string
@@ -41,8 +41,6 @@ export const TextArea: React.FC<Props> = ({
             document.getElementById(id).innerHTML = '';
         }
     }, [watch(name)])
-
-
     return (
         <div className={cn("relative", parentDivclassName)}>
             {textError &&
@@ -55,12 +53,16 @@ export const TextArea: React.FC<Props> = ({
                 {...register(name)}
                 ref={ref}
                 onInput={e => {
+                    // @ts-ignore
+                    const links = e.target.innerHTML.match(/\{(.*?)\}/g)
+                    // @ts-ignore
+                    const text = e.target.innerHTML.replaceAll('/', '').replaceAll('&nbsp;', '').split('<div>')
                     setValue(name,
                         !convertHTML ?
                             e.currentTarget.textContent
                             :
                             // @ts-ignore
-                            e.target.innerHTML.replaceAll('/', '').replaceAll('&nbsp;', '').split('<div>').join(separator)
+                            `${text.join(separator)}${separatorLink}${links?.join(separator).replaceAll('/', ';')}`
                         , { shouldValidate: true }
                     )
                 }}

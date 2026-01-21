@@ -2,13 +2,14 @@ import { entityDto, mapDto, objectDto, userDto } from "."
 import { characterDto } from "./entities.dto"
 
 export interface sessionDto {
-    id: string
+    id: string | number
     name: string
     currentMap: mapDto
     DungeonMaster: userDto
     maps: mapDto[]
     characters: characterDto[]
     mapsData: mapsDataDto,
+    imgs: string
 }
 
 export interface bestiaryItem extends entityDto {

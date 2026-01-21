@@ -6,6 +6,7 @@ import { AccessAction } from '../case/modal/access-action-modal'
 import { profileService } from '@/service'
 import { useToast } from '@/lib/castom-hook'
 import { useParams } from 'react-router-dom'
+import { modalAnimationEnum } from '@/export'
 
 interface Props {
     ban: boolean
@@ -32,11 +33,16 @@ export const BanAction: React.FC<Props> = ({ ban }: Props) => {
             <div className="flex gap-2">
                 {
                     ban ?
-                        <Modal.Root modal={AccessAction} props={{ fn: banAction, warning: "Вы собираетесь снять блокировку?", warningButtonText: 'Снять блокировку' }}>
+                        <Modal.Root
+                            animation={modalAnimationEnum['modal-dft']}
+                            modal={AccessAction}
+                            props={{ fn: banAction, warning: "Вы собираетесь снять блокировку?", warningButtonText: 'Снять блокировку' }}>
                             <Button className='mt-3 w-fit'>Снять блокировку</Button>
                         </Modal.Root>
                         :
-                        <Modal.Root modal={Modal.Ban}>
+                        <Modal.Root
+                            animation={modalAnimationEnum['modal-dft']}
+                            modal={Modal.Ban}>
                             <Button className='mt-3 w-fit'>Выдать блокировку</Button>
                         </Modal.Root>
                 }

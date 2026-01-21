@@ -1,29 +1,17 @@
-import { PushCharacterInSession, ViewImg, ActionEntity } from "@component/case/modal/index-group"
+import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame } from "@component/shared"
 import { usePage, useQueryParam, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
 import React from "react"
 import { GameArea } from "@/component/master"
 import { qParamName } from "@/export"
-import { ObjectMoreDetailed } from "@/component/case/modal/object-more-detailed"
-import { sessionDto } from "@/model"
 import { useParams } from "react-router-dom"
 import { sessionService } from "@/service/session-service"
-import { useAppDispatch } from "@/store"
-import { setSession } from "@/store/session-store"
 
 export const Session = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const dispath = useAppDispatch()
-    const [session] = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
-    React.useEffect(() => {
-        dispath(setSession({
-            bestiary: [],
-            imgs: '',
-            session: session
-        }))
-    }, [session])
+    const [] = useRequest<{ data: string, bestiary: string }>(() => sessionService.getSession(Number(id)), [`session-${id}`])
 
     return (
         <>

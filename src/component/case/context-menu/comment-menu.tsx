@@ -17,9 +17,8 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
     const remove = () => {
         dispath(swapTmpObject({ key: 'delete-comment', payload: item }))
         forumService.deleteComment(item.id)
-            // @ts-ignore
-            .then(({ code }) => {
-                if (code == 200) {
+            .then(({ status }) => {
+                if (status == 200) {
                     toast('message', { text: ACCEESS_ACTION })
                 }
             })
