@@ -31,8 +31,8 @@ export const CommentItem: React.FC<Props> = (item: Props) => {
                 </div>
             </div>
             <div className="flex items-end flex-col relative">
-                <p className='text-sm w-[100px] pl-5'>
-                    {item.date}
+                <p className='text-sm w-[150px] text-right pl-5 pb-2'>
+                    {item.created_at?.slice(0, 16)}
                 </p>
                 <ViewAuthor payload_id={item.user.id}>
                     <CommentMenu {...item} />

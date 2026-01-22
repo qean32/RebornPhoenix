@@ -10,7 +10,7 @@ export const ToastArea: React.FC<Props> = ({ }: Props) => {
     const { toasts } = useAppSelector(state => state.toast)
 
     return (
-        <div className='fixed z-50 pointer-events-none' style={{ inset: '70px 40px' }}>
+        <div className='fixed pointer-events-none' style={{ inset: '70px 40px', zIndex: 1000 }}>
             {!!toasts.length && toasts.map(({ id, key, payload, view }) => {
                 return toastHook(
                     {

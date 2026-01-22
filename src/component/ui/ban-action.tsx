@@ -6,22 +6,20 @@ import { AccessAction } from '../case/modal/access-action-modal'
 import { profileService } from '@/service'
 import { useToast } from '@/lib/castom-hook'
 import { useParams } from 'react-router-dom'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum, REJECT_SERVER } from '@/export'
 
 interface Props {
     ban: boolean
 }
 
 const ACCEESS_ACTION = 'Пользовтель разбанен'
-const REJECT_ACTION = 'Ошибка'
-
 export const BanAction: React.FC<Props> = ({ ban }: Props) => {
     const { id } = useParams()
     const toast = useToast()
     const banAction = () => {
         profileService.banAction({}, id ?? 0)
             .then(() => toast('message', { text: ACCEESS_ACTION }))
-            .catch(() => toast('message', { text: REJECT_ACTION }))
+            .catch(() => toast('message', { text: REJECT_SERVER }))
             .finally(() => {
                 setTimeout(() => {
                     window.location.reload()

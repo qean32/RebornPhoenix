@@ -1,11 +1,13 @@
 import React from 'react'
-import { stopPropagation } from '@/lib/function'
+import { fromDataToFormData, stopPropagation } from '@/lib/function'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
-import { useParams } from 'react-router-dom'
+import { REJECT_SERVER } from '@/export'
+import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { pushImg } from '@/store/session-store'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
@@ -13,15 +15,22 @@ interface Props {
 
 const ACCEESS_ACTION = 'Изображение добавленно'
 export const PushImg: React.FC<Props> = ({ swap }: Props) => {
-    const { id } = useParams()
     const toast = useToast()
+    const dispath = useAppDispatch()
+
     const { form, submitHandler } = useMyForm<{ img: any }>(
         z.object({
             img: z.any()
         }),
         (data: { img: any }) => {
-            sessionService.pushImgToSession(data, id ?? 0)
-                .then(() => toast('message', { text: ACCEESS_ACTION }))
+            sessionService.pushImgToSession(fromDataToFormData(data))
+                .then(({ status, data }) => {
+                    if (status == 201) {
+                        toast('message', { text: ACCEESS_ACTION })
+                        dispath(pushImg({ img: data }))
+                    }
+                })
+                .catch(() => toast('message', { text: REJECT_SERVER }))
         },
         () => { }
     )

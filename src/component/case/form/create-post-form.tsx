@@ -5,15 +5,13 @@ import { FormProvider } from 'react-hook-form'
 import { createPostFormDto, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { forumService } from '@/service'
-import { departmentOptions } from '@/export'
+import { departmentOptions, REJECT_SERVER } from '@/export'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Пост создан!'
-const REJECT_ACTION = 'Ошибка!'
-
 export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
     const ref = React.useRef<HTMLDivElement | null>(null);
     const toast = useToast()
@@ -33,7 +31,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                         }
                     })
                     .catch(() => {
-                        toast('message', { text: REJECT_ACTION })
+                        toast('message', { text: REJECT_SERVER })
                     })
             },
             () => { }

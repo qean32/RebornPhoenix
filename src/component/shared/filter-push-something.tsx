@@ -15,9 +15,9 @@ export const FilterPushToSession: React.FC<Props> = ({ className }: Props) => {
                 <Search className='w-2/3' />
                 <SelectToQuery
                     options={[
-                        { value: '1', title: 'Базовый набор', id: 1 },
-                        { value: '1', title: 'Набор Хелойвин', id: 2 },
-                        { value: '1', title: 'Кастомный набор', id: 3 }
+                        { value: '0', title: 'Все', id: 0 },
+                        { value: '1', title: 'Кастомный', id: 1 },
+                        { value: '2', title: 'Хелуин', id: 2 }
                     ]}
                 />
             </div>

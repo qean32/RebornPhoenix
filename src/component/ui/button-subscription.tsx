@@ -3,6 +3,7 @@ import { Button } from '.'
 import { useBoolean, useDebounceFunction, useToast } from '@/lib/castom-hook'
 import { profileService } from '@/service'
 import { useParams } from 'react-router-dom'
+import { REJECT_SERVER } from '@/export'
 
 interface Props {
     init: boolean
@@ -27,7 +28,7 @@ export const ButtonSubscription: React.FC<Props> = ({
     const subscribe = useDebounceFunction(() => {
         profileService.subscribeAction(id ?? 0)
             .catch(() => {
-                toast('message', { text: 'Ошибка!' })
+                toast('message', { text: REJECT_SERVER })
                 swap()
             })
     }, 1000)

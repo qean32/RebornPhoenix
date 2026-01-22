@@ -1,8 +1,11 @@
 import { Button, TextArea, TextInput, UploadImgArea } from '@/component/ui'
+import { dftSource, REJECT_SERVER } from '@/export'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/castom-hook'
-import { initPushDataToSession } from '@/lib/function'
+import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { fromDataToFormData, initPushDataToSession } from '@/lib/function'
 import { pushEntityToSessionFormDto, pushEntityToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
+import { swapTmpObject } from '@/store/tmp-object'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 
@@ -15,6 +18,8 @@ interface Props {
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     const push = initPushDataToSession('entity')
     const toast = useToast()
+    const dispath = useAppDispatch()
+
     const pushHandler = (data: any) => {
         push(data);
         // @ts-ignore
@@ -25,12 +30,19 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
         useMyForm<pushEntityToSessionFormDto>(
             pushEntityToSessionSchema,
             (data: pushEntityToSessionFormDto) => {
-                sessionService.createEntity(data)
-                    .then(data => {
-                        pushHandler(data);
-                        toast('push-entity', { text: data.name })
+                sessionService.createEntity(fromDataToFormData(data))
+                    .then(({ data, status }) => {
+                        if (status == 201) {
+                            toast('push-entity', { text: data.name })
+                            dispath(swapTmpObject(
+                                {
+                                    key: 'push-entity',
+                                    payload: { ...data, source: dftSource }
+                                }))
+                            pushHandler(data);
+                        }
                     })
-                    .catch(error => toast(error))
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
             },
             () => { }
         )
@@ -42,7 +54,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                 <div className="flex-1 pt-15">
                     <div className="h-[180px] flex justify-center items-start">
                         <UploadImgArea
-                            name='path'
+                            name='img'
                             className='w-full flex justify-center'
                             iconSize='icon-lg'
                             labelClass='p-0 w-1/2 aspect-square overflow-hidden rounded-full outline-bg-light cursor-pointer bg-color-dark'
@@ -74,7 +86,11 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                         <Button fn={switcher.on} variant='ghost'>
                             <p className='pointer-events-none'>Назад</p></Button>
                     </div>
-                    <Button variant='acceess' fn={switcher.on} className='mt-3 w-11/12'><p>Добавить</p></Button>
+                    <Button
+                        variant='acceess'
+                        type='submit'
+                        className='mt-3 w-11/12'
+                    ><p>Добавить</p></Button>
                 </div>
             </form>
         </FormProvider>

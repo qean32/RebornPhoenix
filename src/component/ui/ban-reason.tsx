@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Page } from '@component/master/h-order-component'
 import { useRequest } from '@/lib/castom-hook'
 import { profileService } from '@/service'
@@ -14,7 +13,7 @@ export const BanReason: React.FC<Props> = ({ id }: Props) => {
     const [reason] = useRequest<banReasonDto>(() => profileService.getBanReason(id), [`ban-reason-${id}`])
 
     //@ts-ignore
-    if (reason?.admin && reason != "no") {
+    if (reason && reason != "no") {
 
         return (
             <Page size="w-[65%]">
@@ -22,12 +21,16 @@ export const BanReason: React.FC<Props> = ({ id }: Props) => {
                     <p>ПРИЧИНЫ БЛОКИРОВКИ</p>
                     <div className="grid grid-cols-2">
                         <p>дата блокировки: </p>
-                        <p>{reason.date}</p>
+                        {/* @ts-ignore */}
+                        <p>{reason.banTime}</p>
                         <p>время до разблокировки:</p>
-                        <p>{reason.date}</p>
+                        {/* @ts-ignore */}
+                        <p>{reason.unbanTime}</p>
                         <p>администратор выдавший блокировку:</p>
-                        <Link to={`/profile/${reason.admin.id}/${reason.admin.name}`}
-                        >{reason.admin.name}</Link>
+                        <p>
+                            {/* @ts-ignore */}
+                            {reason.nameAdmin}
+                        </p>
                         <p>причина:</p>
                         <p>{reason.reason}</p>
                     </div>

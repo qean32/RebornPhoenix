@@ -38,6 +38,9 @@ export const modalAnimationEnum: {
     }
 }
 
+export const REJECT_SERVER = 'Ошибка со стороны сервера!'
+export const dftSource = { id: 1, name: 'Кастомный' }
+
 export const nameProject = 'Reborn Phoenix'
 export const slogan = 'Играйте вместе с нами!'
 

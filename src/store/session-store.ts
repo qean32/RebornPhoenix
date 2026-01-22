@@ -3,7 +3,7 @@ import { sessionDto, mapDto, idDto, bestiaryItem } from "@/model";
 import { characterDto, entityDto, objectDto } from "@/model/entities.dto";
 import { generateId } from "@/lib/function";
 
-type stateDto = { session: sessionDto, bestiary: bestiaryItem[], imgs: string }
+type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
 
 const initialState: stateDto = {
     session: {
@@ -24,7 +24,6 @@ const initialState: stateDto = {
         name: ''
     },
     bestiary: [],
-    imgs: ''
 }
 
 const sessionSlice = createSlice({
@@ -32,9 +31,16 @@ const sessionSlice = createSlice({
     initialState,
     reducers: {
 
-        setSession: (state: stateDto, { payload: { session, bestiary } }: PayloadAction<{ session: sessionDto, bestiary: bestiaryItem[], imgs: string }>) => {
+        setSession: (state: stateDto, { payload: { session, bestiary } }: PayloadAction<{ session: sessionDto, bestiary: bestiaryItem[] }>) => {
             state.session = session
             state.bestiary = bestiary
+        },
+
+        pushImg: (state: stateDto, { payload: { img } }: PayloadAction<{ img: string }>) => {
+            state.session = {
+                ...state.session,
+                imgs: state.session.imgs + ',' + img
+            }
         },
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
@@ -236,5 +242,6 @@ export const {
     scaleObject,
     pushCharacter,
     removeCharacter,
-    setSession
+    setSession,
+    pushImg
 } = sessionSlice.actions

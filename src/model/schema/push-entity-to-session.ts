@@ -6,8 +6,8 @@ export const pushEntityToSessionSchema = z.object({
         .max(20, { message: 'Максимальная длина - 20' })
         .min(4, { message: 'Минимальная длина - 8' })
     ,
-    path: z
-        .any()
+    img: z
+        .file()
     ,
     description: z.string().max(255, { message: 'Максимальная длина 255 символа' }),
     initiative: z.string()
@@ -15,7 +15,7 @@ export const pushEntityToSessionSchema = z.object({
 
 export type pushEntityToSessionFormDto = {
     name: string
-    path: any
+    img: any
     description: string
     initiative: string
 }

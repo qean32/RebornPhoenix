@@ -6,7 +6,7 @@ import { AccessAction } from '../modal/access-action-modal'
 import { ContextMenuItem } from './context-menu-item'
 import { useToast } from '@/lib/castom-hook'
 import { sessionDto } from '@/model'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum, REJECT_SERVER } from '@/export'
 import { sessionService } from '@/service/session-service'
 
 interface Props extends sessionDto {
@@ -25,7 +25,7 @@ export const SessionMenu: React.FC<Props> = (item: Props) => {
                     }, 600)
                 }
             })
-            .catch(() => toast('message', { text: "Ошибка!" }))
+            .catch(() => toast('message', { text: REJECT_SERVER }))
     }
 
     return (

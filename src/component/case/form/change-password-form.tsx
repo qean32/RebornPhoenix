@@ -4,12 +4,12 @@ import { changePasswordFormDto, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useQueryParam, useToast } from '@/lib/castom-hook'
 import { authService } from '@/service'
+import { REJECT_SERVER } from '@/export'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Вы сменили пароль!'
-
 export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
     const auth = new authService()
     const toast = useToast()
@@ -28,7 +28,7 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
                             }, 10000)
                         }
                     })
-                    .catch(() => toast('message', { text: 'Ошибка!' }))
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
             },
             () => { }
         )

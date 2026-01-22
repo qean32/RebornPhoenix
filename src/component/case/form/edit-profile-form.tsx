@@ -5,13 +5,12 @@ import { editProfileFormDto, editProfileSchema } from '@/model/schema'
 import { useMyForm, useToast, useUser } from '@/lib/castom-hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qParamName } from '@/export'
+import { qParamName, REJECT_SERVER } from '@/export'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Профиль успешно обновлен!'
-
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
     const toast = useToast()
@@ -38,7 +37,7 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                             }, 600)
                         }
                     })
-                    .catch(() => toast('message', { text: 'Ошибка!' }))
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
             },
             () => { }
         )

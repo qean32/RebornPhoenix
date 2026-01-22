@@ -1,4 +1,5 @@
 import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
+import { REJECT_SERVER } from '@/export'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { stopPropagation } from '@/lib/function'
 import { banFormDto, banSchema } from '@/model/schema'
@@ -14,8 +15,6 @@ interface Props {
 
 
 const ACCEESS_ACTION = 'Пользовтель забанен'
-const REJECT_ACTION = 'Ошибка'
-
 export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
     const { id: idUser } = useParams()
     const toast = useToast()
@@ -23,7 +22,7 @@ export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
         (data: banFormDto) => {
             profileService.banAction(data, idUser ?? 0)
                 .then(() => toast('message', { text: ACCEESS_ACTION }))
-                .catch(() => toast('message', { text: REJECT_ACTION }))
+                .catch(() => toast('message', { text: REJECT_SERVER }))
                 .finally(() => {
                     setTimeout(() => {
                         window.location.reload()

@@ -8,4 +8,5 @@ export type commentDto = idDto & {
     content: string
     files: fileDto[]
     date: string
+    created_at?: string
 }

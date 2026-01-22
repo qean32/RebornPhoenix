@@ -16,19 +16,19 @@ export const sessionService = {
     },
 
     createEntity: (data: any) => {
-        return requestPost(`${instance}/create/entity`, data)
+        return requestPost(`${instance}/entity`, data, true)
     },
 
     createMap: (data: any) => {
-        return requestPost(`${instance}/create/map`, data)
+        return requestPost(`${instance}/map`, data, true)
     },
 
     createObject: (data: any) => {
-        return requestPost(`${instance}/create/object`, data)
+        return requestPost(`${instance}/object`, data, true)
     },
 
-    pushImgToSession: (data: any, id: string | number) => {
-        return requestPost(`${instance}/${id}/push/img`, data)
+    pushImgToSession: (data: any) => {
+        return requestPost(`s/push-img`, data, true)
     },
 
     getEntities: () => {

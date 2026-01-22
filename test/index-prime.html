@@ -10,14 +10,24 @@
 <body>
 
     <script>
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('https://www.youtube.com/watch?v=i24wqyUhywc&list=RDFmF1maxDKEI&index=2')
-        fetch('http://localhost:8000/api/forum/departments')
-        fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('https://www.youtube.com/watch?v=i24wqyUhywc&list=RDFmF1maxDKEI&index=2')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+
+        fetch('http://localhost:8000/storage/5HNRFYAUcbOJlMqgRWWgv9NY9CD4P7u0.json', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+            .then(data => data.json())
+            .then(data => console.log(data))
     </script>
 </body>
 

@@ -5,13 +5,13 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import { sessionService } from '@/service/session-service'
 import { useNavigate } from 'react-router-dom'
+import { REJECT_SERVER } from '@/export'
 
 interface Props {
     children: React.ReactNode
 }
 
 const ACCEESS_ACTION = 'Сессия создана'
-
 export const PushSessionForm: React.FC<Props> = ({ children }: Props) => {
     const toast = useToast()
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ export const PushSessionForm: React.FC<Props> = ({ children }: Props) => {
                             navigate(`/session/${data.id}/${data.name}`)
                         }
                     })
-                    .catch(() => toast('message', { text: 'Ошибка!' }))
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
             },
             () => { }
         )

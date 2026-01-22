@@ -6,11 +6,11 @@ export const pushObjectToSessionSchema = z.object({
         .max(20, { message: 'Максимальная длина - 20' })
         .min(4, { message: 'Минимальная длина - 8' })
     ,
-    path: z.any(),
+    img: z.file(),
     // description: z.string().max(255, { message: 'Мексимальная длина 255 символа' }),
 });
 
 export type pushObjectToSessionFormDto = {
     name: string
-    path: any
+    img: any
 }

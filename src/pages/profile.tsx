@@ -41,7 +41,9 @@ export const Profile = () => {
                 </ViewAuthor>
                 <BanAction ban={user?.ban ?? false} />
             </Page >
-            <BanReason id={id ?? 0} />
+            {user?.ban &&
+                <BanReason id={id ?? 0} />
+            }
         </>
     )
 }
