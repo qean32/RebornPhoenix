@@ -31,7 +31,7 @@ const Modal: React.FC = () => {
 
     return (
         <>
-            <PushCharacterInSession swap={() => clearQParam(qParamName.pushcharacter)} view={!!allQ[qParamName.pushcharacter]} />
+            <PushCharacterInSession swap={() => clearQParam(qParamName.pushcharacter)} view={Number(allQ[qParamName.pushcharacter])} />
             <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={!!allQ[qParamName.viewimg]} />
             <ObjectMoreDetailed />
             <ActionEntity swap={() => clearQParam(qParamName.actionentity)} view={allQ[qParamName.actionentity]} />

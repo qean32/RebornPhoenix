@@ -6,7 +6,7 @@ export const useQueryParam = (key: string, defaultValue?: string) => {
     const searchParams = new URLSearchParams(window.location.search);
 
     React.useEffect(() => {
-        if (defaultValue)
+        if (defaultValue && !param)
             pushQ(defaultValue)
     }, [])
 

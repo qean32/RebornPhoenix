@@ -25,6 +25,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
         // @ts-ignore
         swap();
     }
+
     const { form, submitHandler } =
         useMyForm<pushObjectToSessionFormDto>(
             pushObjectToSessionSchema,
@@ -32,7 +33,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                 sessionService.createObject(fromDataToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {
-                            toast('push-entity', { text: data.name })
+                            toast('push-entity', { name: data.name })
                             dispath(swapTmpObject(
                                 {
                                     key: 'push-entity',

@@ -2,6 +2,7 @@ import React from 'react'
 import { cn } from '@lib/function'
 import { NavigateButton } from '@component/ui'
 import { useUser } from '@/lib/castom-hook'
+import { qParamName } from '@/export'
 
 interface Props {
     className?: string
@@ -17,7 +18,7 @@ export const Navigate: React.FC<Props> = ({ className }: Props) => {
             <NavigateButton link='/forum' path='/icon/news.svg' />
             <NavigateButton link='/community' path='/icon/community.svg' />
             <NavigateButton link={user?.id ? `/profile/${user.id}/${user.name}` : '/auth'} path='/icon/user.svg' />
-            <NavigateButton link={user?.id ? `/profile/${user.id}/${user.name}` : '/auth'} path='/icon/dice.svg' />
+            <NavigateButton link={user?.id ? `/profile/${user.id}/${user.name}?${qParamName.contentprofile}=session` : '/auth'} path='/icon/dice.svg' />
             <NavigateButton link='/faq' path='/icon/faq.svg' />
         </div>
     )

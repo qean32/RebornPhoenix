@@ -1,9 +1,13 @@
 import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
-import { ModalCross, NoFindData } from '@component/ui'
+import { ModalCross, NoFindData, Search } from '@component/ui'
 import { UserInModal } from '@/component/ui/item'
-import { useQueryParam } from '@/lib/castom-hook'
+import { useQueryParam, useRequest, useToast } from '@/lib/castom-hook'
 import { qParamName } from '@/export'
+import { communityService } from '@/service'
+import { userDto } from '@/model'
+import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
+import { pushUser } from '@/store/session-store'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -12,21 +16,47 @@ interface Props {
 
 export const Users: React.FC<Props> = ({ swap }: Props) => {
     const { pushQ } = useQueryParam(qParamName.pushcharacter)
+    const dispath = useAppDispatch()
+    const { session } = useAppSelector(state => state.session)
+    const toast = useToast()
 
-    const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const pushCharacterHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         pushQ(getHTMLData(e, true).id)
     }
+
+    const pushUserHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        dispath(pushUser({ id: getHTMLData(e, true).id }))
+        toast('message', { text: 'Обработка..' })
+    }
+
+    const { param } = useQueryParam(qParamName.search)
+    const [users, loading] = useRequest<userDto[]>(() => communityService.searchUsers(param), ['search-users', param])
+    const [myusers] = useRequest<userDto[]>(() => communityService.getUsersByArray(session?.users.slice(1) ?? ''), ['search-users', session.users])
+
     return (
-        <div className='relative bg-color h-full w-[320px]' onClick={stopPropagation} >
+        <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >
             <ModalCross fn={swap} />
-            <div className="pt-10" onClick={clickHandler}>
-                <p className='pl-5 pb-5'>Добавить персонажа игрока</p>
-                {[1, 2, 2, 2, 2].map(() => {
-                    return (
-                        <UserInModal ava='' id={1} email='' name='' />
-                    )
-                })}
-                <NoFindData title='В компании нет игроков!' view={!true} className='pt-10' />
+            <div className="pt-10" onClick={pushUserHandler}>
+                <p className='pl-5 pb-5'>Добавить игрока</p>
+                <Search className='mx-2 mb-4' />
+                <div className="h-[300px] overflow-scroll pointer-events-none">
+                    <NoFindData title='По вашему запросу не найдены пользователи!' view={!loading && !users?.length} className='pt-5' />
+                    {!!users?.length &&
+                        users.map(item => {
+                            return (
+                                <UserInModal {...item} />
+                            )
+                        })}
+                </div>
+            </div>
+            <div className="" onClick={pushCharacterHandler}>
+                <p className='pl-5 pb-5'>Ваши игроки</p>
+                {!!myusers?.length &&
+                    myusers.map(item => {
+                        return (
+                            <UserInModal {...item} />
+                        )
+                    })}
             </div>
         </div>
     )

@@ -11,6 +11,7 @@ export interface sessionDto {
     mapsData: mapsDataDto,
     imgs: string
     note: string
+    users: string
 }
 
 export interface bestiaryItem extends entityDto {

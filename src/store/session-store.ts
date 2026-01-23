@@ -7,6 +7,7 @@ type stateDto = { session: sessionDto, bestiary: bestiaryItem[] }
 
 const initialState: stateDto = {
     session: {
+        users: '',
         characters: [],
         imgs: '',
         note: '',
@@ -46,6 +47,10 @@ const sessionSlice = createSlice({
 
         pushNote: (state: stateDto, { payload: { note } }: PayloadAction<{ note: string }>) => {
             state.session.note = note
+        },
+
+        pushUser: (state: stateDto, { payload: { id } }: PayloadAction<{ id: number }>) => {
+            state.session.users = state.session.users + ',' + id
         },
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
@@ -249,5 +254,6 @@ export const {
     removeCharacter,
     setSession,
     pushImg,
-    pushNote
+    pushNote,
+    pushUser
 } = sessionSlice.actions

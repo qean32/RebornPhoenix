@@ -13,6 +13,7 @@ interface Props {
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     const { object: data } = useAppSelector(state => state.pushedObject)
     const push = initPushDataToSession('map')
+
     const pushHandler = () => {
         // @ts-ignore
         swap()
