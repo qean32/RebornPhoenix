@@ -19,7 +19,6 @@ export const ViewSession = () => {
     React.useEffect(() => {
         dispath(setSession({
             bestiary: [],
-            imgs: '',
             session: session
         }))
     }, [session])

@@ -6,6 +6,7 @@ import { useMyForm, useToast, useUser } from '@/lib/castom-hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
 import { qParamName, REJECT_SERVER } from '@/export'
+import { fromDataToFormData } from '@/lib/function'
 
 interface Props {
 }
@@ -14,21 +15,14 @@ const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
     const toast = useToast()
-    const returnformData = (file: any, name: string) => {
-        const form = new FormData()
-        if (file) {
-            form.append('ava', file[0])
-        }
-        form.append('name', name)
-
-        return form
-    }
 
     const { form, submitHandler } =
         useMyForm<editProfileFormDto>(
             editProfileSchema,
             (data: editProfileFormDto) => {
-                profileService.updateProfile(returnformData(data.ava, data.name))
+                console.log(data);
+
+                profileService.updateProfile(fromDataToFormData(data))
                     .then(({ status }) => {
                         if (status == 200 || status == 201) {
                             toast('message', { text: ACCEESS_ACTION })

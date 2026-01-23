@@ -13,7 +13,7 @@ interface Props {
     className?: string
 }
 
-
+const ACCEESS_ACTION = 'Пост удален!'
 export const PostContent: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
     const toast = useToast()
@@ -25,7 +25,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const deletePost = () => {
         forumService.deletePost(id ?? 0)
             .then(() => {
-                toast('message', { text: 'Пост удален!' })
+                toast('message', { text: ACCEESS_ACTION })
                 navigate('/');
             })
     }

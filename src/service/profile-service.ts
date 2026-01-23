@@ -36,11 +36,11 @@ export const profileService = {
     },
 
     createCharacter: (data: any) => {
-        return requestPost(`${instance}/create/character`, data)
+        return requestPost(`${instance}/create/character`, data, true)
     },
 
     deleteCharacter: (id: string | number) => {
-        return requestDelete(`${instance}/delete/character/${id}`)
+        return requestDelete(`${instance}/${id}/delete/character`)
     },
 
     updateProfile: (data: any) => {

@@ -5,8 +5,8 @@ import { FilterPushToSession, GroupTokenInModal } from '@component/shared'
 import { useQueryParam, useRequest } from '@/lib/castom-hook'
 import { sessionService } from '@/service/session-service'
 import { entityDto, mapDto, objectDto } from '@/model'
-import { useAppSelector } from '@/lib/castom-hook/redux'
 import { qParamName } from '@/export'
+import { useTmpObject } from '@/lib/castom-hook/'
 
 interface Props {
     view: boolean
@@ -25,7 +25,7 @@ export const PushToSession: React.FC<Props> = ({
 }: Props) => {
     const [primeList, setPrimeList] = React.useState({})
     const [memoryList, setMemoryList] = React.useState({})
-    const { key, tmpObject } = useAppSelector(state => state.tmpObject)
+    const { tmpObject, key } = useTmpObject()
     const { allQ } = useQueryParam('')
 
     React.useEffect(() => {

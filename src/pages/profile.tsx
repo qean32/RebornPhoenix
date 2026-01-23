@@ -15,8 +15,8 @@ export const Profile = () => {
 
     return (
         <>
-            <Page size="w-[65%]">
-                <div className="flex-col flex h-full pb-3 overflow-hidden">
+            <Page size="w-[65%]" className="overflow-hidden" >
+                <div className="flex-col flex h-full pb-3">
                     <UserInfo user={user} />
                     <div className="flex gap-5 mt-1">
                         <ViewAuthor payload_id={user?.id}>
@@ -41,7 +41,7 @@ export const Profile = () => {
                 </ViewAuthor>
                 <BanAction ban={user?.ban ?? false} />
             </Page >
-            {user?.ban &&
+            {!!user?.ban &&
                 <BanReason id={id ?? 0} />
             }
         </>

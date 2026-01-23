@@ -4,7 +4,7 @@ import React from 'react'
 import { Modal } from '../modal'
 import { AccessAction } from '../modal/access-action-modal'
 import { ContextMenuItem } from './context-menu-item'
-import { useToast } from '@/lib/castom-hook'
+import { useTmpObject, useToast } from '@/lib/castom-hook'
 import { sessionDto } from '@/model'
 import { modalAnimationEnum, REJECT_SERVER } from '@/export'
 import { sessionService } from '@/service/session-service'
@@ -15,14 +15,15 @@ interface Props extends sessionDto {
 const ACCEESS_ACTION = 'Сессия удалена'
 export const SessionMenu: React.FC<Props> = (item: Props) => {
     const toast = useToast()
+    const { setTmp } = useTmpObject()
+
     const remove = () => {
         sessionService.deleteSession(item.id)
-            .then(({ status }) => {
+            .then(({ status, data }) => {
                 if (status == 200) {
                     toast('message', { text: ACCEESS_ACTION })
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 600)
+                    // @ts-ignore
+                    setTmp({ key: 'delete-session', payload: data })
                 }
             })
             .catch(() => toast('message', { text: REJECT_SERVER }))

@@ -15,6 +15,9 @@ interface Props {
         renderItem?: (item: any) => React.ReactNode
         accept?: any
         id?: string
+    },
+    propsModal?: {
+        className: string
     }
 }
 
@@ -23,6 +26,7 @@ export const Root: React.FC<Props> = React.memo(({
     children,
     modal: ModalChildren,
     props,
+    propsModal,
     animation
 }: Props) => {
     const { boolean, swap } = useBoolean()
@@ -35,9 +39,10 @@ export const Root: React.FC<Props> = React.memo(({
             <Modal
                 swap={swap}
                 view={boolean}
+                {...propsModal}
                 animation={animation}
             >
-                <ModalChildren {...props} />
+                <ModalChildren swap={swap} {...props} />
             </Modal>
         </>
     )

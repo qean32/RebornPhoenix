@@ -3,28 +3,27 @@ import { commentFormDto, commentSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
 import { useMyForm, useToast } from '@/lib/castom-hook'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 import { REJECT_SERVER } from '@/export'
-import { clearTmpObject } from '@/store/tmp-object'
+import { useTmpObject } from '@/lib/castom-hook'
 
 interface Props {
     push: Function
     update: Function
-    delete_: Function
+    _delete: Function
 }
 
 const ACCEESS_ACTION_UPDATE = 'Коментарий обновлен!'
 const ACCEESS_ACTION_CREATE = 'Коментарий оставлен!'
-export const CommentForm: React.FC<Props> = ({ push, update, delete_ }: Props) => {
+export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) => {
     const { id } = useParams()
-    const dispath = useAppDispatch()
-    const { tmpObject, key } = useAppSelector(state => state.tmpObject)
+    const { tmpObject, key, clearTmp } = useTmpObject()
 
     React.useEffect(() => {
         if (key == 'delete-comment') {
-            delete_(tmpObject)
+            _delete(tmpObject)
+            clearTmp()
             toast('message', { text: 'Коментарий удален' })
         }
     }, [key, tmpObject])
@@ -41,7 +40,7 @@ export const CommentForm: React.FC<Props> = ({ push, update, delete_ }: Props) =
                             if (status == 200) {
                                 toast('message', { text: ACCEESS_ACTION_UPDATE })
                                 update(data)
-                                dispath(clearTmpObject())
+                                clearTmp()
                             }
                         })
                         .catch(() => toast('message', { text: REJECT_SERVER }))

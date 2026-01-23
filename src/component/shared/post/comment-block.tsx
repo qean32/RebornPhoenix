@@ -12,21 +12,12 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
-    const [comments, _, setComments] = useRequest<commentDto[]>(() => forumService.getComments(id ?? 0), [`post-comment-${id}`])
-    const pushComment = (comment: commentDto) => {
-        setComments(prev => [comment, ...prev])
-    }
-    const updateComment = (comment: commentDto) => {
-        setComments(prev => [comment, ...prev.filter(item => item.id != comment.id)])
-    }
-    const deleteComment = (comment: commentDto) => {
-        setComments(prev => prev.filter(item => item.id != comment.id))
-    }
+    const [comments, _, push, _delete, update] = useRequest<commentDto[]>(() => forumService.getComments(id ?? 0), [`post-comment-${id}`], true)
 
     return (
         <div className="bg-color-dark rounded-lg pb-2">
-            <CommentForm update={updateComment}
-                push={pushComment} delete_={deleteComment} />
+            <CommentForm update={update}
+                push={push} _delete={_delete} />
             {!!comments?.length
                 ?
                 <p className='pl-6 py-2 text-2xl'>Коментарии</p>

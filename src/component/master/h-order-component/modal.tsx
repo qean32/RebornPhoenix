@@ -21,9 +21,11 @@ export const Modal: React.FC<Props> = ({
     swap
 }: Props) => {
     const dispay = useMount(view)
+
     if (!dispay) {
         return null
     }
+
 
     return (
         <Portal>

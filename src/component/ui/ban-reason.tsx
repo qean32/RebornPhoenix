@@ -14,7 +14,6 @@ export const BanReason: React.FC<Props> = ({ id }: Props) => {
 
     //@ts-ignore
     if (reason && reason != "no") {
-
         return (
             <Page size="w-[65%]">
                 <div className="rounded-sm pb-15 mb-2 text-2xl">

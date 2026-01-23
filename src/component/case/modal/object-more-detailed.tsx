@@ -4,7 +4,7 @@ import { Modal } from '@component/master/h-order-component'
 import { useAppSelector } from '@/lib/castom-hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
 import { EditBestiaryForm } from '../form'
-import { useObjectMoreDetailed } from '@/lib/castom-hook'
+import { useTmpObject } from '@/lib/castom-hook'
 
 interface Props {
 }
@@ -14,7 +14,7 @@ export const ObjectMoreDetailed: React.FC<Props> = ({ }: Props) => {
     const { bestiary, session: { mapsData, currentMap } } = useAppSelector(state => state.session)
     if (currentMap) {
 
-        const { key, clearTmp, tmpObject } = useObjectMoreDetailed()
+        const { key, clearTmp, tmpObject } = useTmpObject()
         const object =
             key == 'more-entity' ?
                 bestiary.find(item => item.idInBestiary == tmpObject?.id)

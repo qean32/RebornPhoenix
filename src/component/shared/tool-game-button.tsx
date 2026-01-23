@@ -45,8 +45,9 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
             <GroupButton>
                 <FillHoverHint title='Игроки'>
                     <Modal.Root
+                        propsModal={{ className: 'justify-end' }}
                         modal={Modal.Users}
-                        animation={modalAnimationEnum['modal-dft']}
+                        animation={modalAnimationEnum['modal-right']}
                     >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
                 </FillHoverHint>

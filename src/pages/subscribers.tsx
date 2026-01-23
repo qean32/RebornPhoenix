@@ -1,10 +1,11 @@
 import { Page } from "@component/master/h-order-component"
-import { BackArrow, ScrollTop, TextInfo } from "@component/ui"
+import { BackArrow, NoFindData, ScrollTop, TextInfo } from "@component/ui"
 import { title } from "@/export"
 import { usePage, useRequest } from "@lib/castom-hook"
 import { profileService } from "@/service"
 import { userDto } from "@/model"
 import { UserItem } from "@/component/ui/item"
+import { CommunitySceleton } from "@/component/case/sceleton"
 
 export const Subscribers = () => {
     const { } = usePage(title.subscribers)
@@ -16,7 +17,8 @@ export const Subscribers = () => {
             <BackArrow />
             <div className="relative">
                 <TextInfo title="Ваши подписки" />
-                {loading && <p>загрузка</p>}
+                {loading && <CommunitySceleton />}
+                <NoFindData title="У вас нет подписок!" view={!subscribers?.length} className="h-[50vh]" />
                 {
                     !!subscribers?.length &&
                     subscribers.map(item => {

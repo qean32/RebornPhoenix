@@ -10,6 +10,7 @@ import { getParamName } from "@lib/function"
 import { forumService } from "@/service"
 import { departmentOptions } from "@/export"
 import { postDto } from "@/model/post.dto"
+import { DepartmentSceleton } from "@/component/case/sceleton"
 
 
 export const Department = () => {
@@ -42,7 +43,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
                 <PostItem {...post} fixed={true} className="pl-2" />
             </div>
             <GroupContainer
-                sceleton={() => <></>}
+                sceleton={() => <DepartmentSceleton />}
                 rq={{
                     fetch: forumService.getDepartmentPost,
                     RQKey: [`department-post-${name}`],

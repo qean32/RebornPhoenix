@@ -1,6 +1,6 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/export"
-import { useBoolean, useRequest } from "@/lib/castom-hook"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
 import { characterDto } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
@@ -16,7 +16,19 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [characters, loading] = useRequest<characterDto[]>(() => profileService.getCharacters(id ?? 0), [`profile-characters-${id}`])
+    const [characters, loading, push, _delete] = useRequest<characterDto[]>(() => profileService.getCharacters(id ?? 0), [`profile-characters-${id}`], true)
+    const { clearTmp, key, tmpObject } = useTmpObject()
+
+    React.useEffect(() => {
+        if (key == 'create-character') {
+            push(tmpObject)
+            clearTmp()
+        }
+        if (key == 'delete-character') {
+            _delete(tmpObject)
+            clearTmp()
+        }
+    }, [tmpObject])
 
     React.useEffect(() => {
         if (view) {
@@ -32,28 +44,25 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
 
     return (
         <>
-            {!characters?.length && !loading &&
-                <div className="w-full">
+            <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
 
-                    <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[360px]" view={true} />
-                </div>
-            }
             <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
                         <LinkCharacterItem
                             {...item}
-                            number={_ + 1}
                             key={item.id}
                         />
                     )}
+
                 <ViewAuthor payload_id={id}>
                     <Modal.Root
                         animation={modalAnimationEnum['modal-dft']}
                         modal={Modal.PushCharacterInProfile}>
-                        <PlusButton className='h-[106px]' iconSize='icon-sm' />
+                        <PlusButton className='h-[110px] min-w-[85px]' iconSize='icon-sm' />
                     </Modal.Root>
                 </ViewAuthor>
+
             </div>
         </>
     )

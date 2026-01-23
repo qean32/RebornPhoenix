@@ -1,6 +1,6 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/export"
-import { useBoolean, useRequest } from "@/lib/castom-hook"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
 import { sessionDto } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
@@ -14,7 +14,19 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [sessions, loading] = useRequest<sessionDto[]>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`])
+    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`], true)
+    const { clearTmp, key, tmpObject } = useTmpObject()
+
+    React.useEffect(() => {
+        if (key == 'create-session') {
+            push(tmpObject)
+            clearTmp()
+        }
+        if (key == 'delete-session') {
+            _delete(tmpObject)
+            clearTmp()
+        }
+    }, [tmpObject])
 
     React.useEffect(() => {
         if (view) {
@@ -35,6 +47,7 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
                     <SessionItem key={item.id} {...item} />
                 )}
             <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!sessions?.length && !loading} />
+
             <ViewAuthor payload_id={id}>
                 <Modal.Root
                     animation={modalAnimationEnum['modal-dft']}

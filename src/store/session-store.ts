@@ -9,6 +9,7 @@ const initialState: stateDto = {
     session: {
         characters: [],
         imgs: '',
+        note: '',
         // @ts-ignore
         currentMap: null,
         DungeonMaster: { ava: '', email: '', id: 0, name: '', role: 0, ban: false },
@@ -41,6 +42,10 @@ const sessionSlice = createSlice({
                 ...state.session,
                 imgs: state.session.imgs + ',' + img
             }
+        },
+
+        pushNote: (state: stateDto, { payload: { note } }: PayloadAction<{ note: string }>) => {
+            state.session.note = note
         },
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
@@ -243,5 +248,6 @@ export const {
     pushCharacter,
     removeCharacter,
     setSession,
-    pushImg
+    pushImg,
+    pushNote
 } = sessionSlice.actions

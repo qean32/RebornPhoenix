@@ -10,6 +10,7 @@ export interface sessionDto {
     characters: characterDto[]
     mapsData: mapsDataDto,
     imgs: string
+    note: string
 }
 
 export interface bestiaryItem extends entityDto {

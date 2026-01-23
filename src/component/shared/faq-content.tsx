@@ -47,7 +47,7 @@ const q: { content: { text: string, image?: string, subTitle?: string }[], title
                 image: "/img/dnd.jpg"
             }
         ],
-        title: "Что такое d&d",
+        title: "Что такое d&d?",
     },
     {
         content: [
