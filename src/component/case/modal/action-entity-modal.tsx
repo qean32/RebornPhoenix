@@ -55,7 +55,7 @@ export const ActionEntity: React.FC<Props> = ({
     swap,
 }: Props) => {
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
-    const entity = mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view))
+    const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
     const change = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)

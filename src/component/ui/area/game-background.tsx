@@ -10,7 +10,9 @@ interface Props {
 
 export const GameBackground: React.FC<Props> = ({ }: Props) => {
     const { session: { currentMap } } = useAppSelector(state => state.session)
-    const [bgGameArea] = useImage(currentMap?.path ?? '', 'anonymous');
+    const [bgGameArea] = useImage(
+        // @ts-ignore
+        `${process.env.SERVER_HOST}api/static/${currentMap?.path.split('/').at(-1)}/`, 'anonymous');
 
     if (!currentMap) {
         return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />

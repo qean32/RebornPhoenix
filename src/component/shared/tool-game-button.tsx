@@ -9,6 +9,7 @@ import { entityDto, objectDto } from '@/model'
 import { useGrid, useToast } from '@/lib/castom-hook'
 import { FillHoverHint } from '../master/h-order-component'
 import { toggleFullScreen } from '@/lib/function'
+import { sessionService } from '@/service/session-service'
 
 interface Props {
 }
@@ -16,10 +17,15 @@ interface Props {
 
 export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
-    const { session, bestiary } = useAppSelector(state => state.session)
+    const { session, bestiary, info } = useAppSelector(state => state.session)
     const saveGame = () => {
         localStorage.setItem("game-storage", JSON.stringify(session));
         localStorage.setItem("bestiary-storage", JSON.stringify(bestiary));
+        sessionService.saveJSON({
+            path: info.session,
+            data: session
+        }, info.session)
+
         toast("message", { text: 'Сохранено' });
     }
     const forwardClick = React.useCallback(() => {

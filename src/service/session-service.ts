@@ -41,5 +41,9 @@ export const sessionService = {
 
     getMaps: () => {
         return requestGet(`s/maps`)
+    },
+
+    saveJSON: (data: any, path: string) => {
+        return requestPost(`JSON/${path}/`, data)
     }
 }

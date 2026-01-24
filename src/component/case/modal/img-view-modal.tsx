@@ -35,7 +35,7 @@ export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
             }}
         >
             <div className="max-w-[98%] h-[95%] overflow-hidden rounded-md flex justify-center items-center" onClick={stopPropagation}>
-                <img src={statePath} alt="" style={{ maxHeight: '100%' }} />
+                <img src={statePath} alt="" style={{ maxHeight: '95%' }} />
             </div>
         </Modal>
     )

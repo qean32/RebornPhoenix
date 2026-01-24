@@ -6,6 +6,7 @@ import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { profileService } from "@/service"
 import { postDto } from "@/model/post.dto"
+import { DepartmentSceleton } from "@/component/case/sceleton"
 
 interface Props {
     view: boolean
@@ -31,6 +32,7 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
     return (
         <div className='pt-2 pb-4'>
             <PostColumn />
+            {loading && <DepartmentSceleton />}
             {!!posts?.length &&
                 posts?.map(item => {
                     return <PostItem

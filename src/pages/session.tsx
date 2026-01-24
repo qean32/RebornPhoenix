@@ -7,11 +7,35 @@ import { GameArea } from "@/component/master"
 import { qParamName } from "@/export"
 import { useParams } from "react-router-dom"
 import { sessionService } from "@/service/session-service"
+import { useAppDispatch } from "@/lib/castom-hook/redux"
+import { setSession } from "@/store/session-store"
 
 export const Session = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const [] = useRequest<{ data: string, bestiary: string }>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const [session] = useRequest<{ data: string, bestiary: string }>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const dispath = useAppDispatch()
+
+    React.useEffect(() => {
+        const fn = async () => {
+            const data = fetch(`${process.env.SERVER_HOST}api/static/${session.data}/`)
+            const bestiary = fetch(`${process.env.SERVER_HOST}api/static/${session.bestiary}/`)
+            const res = (await data).json()
+            const res_ = (await bestiary).json()
+
+            dispath(setSession({
+                bestiary: await res_,
+                session: await res,
+                info: {
+                    bestiary: session.bestiary,
+                    session: session.data
+                }
+            }))
+        }
+        if (session?.data)
+            fn();
+    }, [session])
+
 
     return (
         <>
