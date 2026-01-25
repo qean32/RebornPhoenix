@@ -7,6 +7,6 @@ interface Props {
 
 export const SessionSceleton: React.FC<Props> = ({ y }: Props) => {
     return (
-        <rect x="0" y={y} width="100%" height="220" />
+        <rect x="0" y={y} width="100%" height="100" />
     )
 }

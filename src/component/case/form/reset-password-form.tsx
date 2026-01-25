@@ -19,8 +19,7 @@ export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<resetPasswordFormDto>(
             resetPasswordSchema,
             (data: resetPasswordFormDto) => {
-                auth.resetPassword(data)
-
+                auth.RESET_PASSWORD(data)
                     .then(({ status }) => {
                         if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION }, 10000)

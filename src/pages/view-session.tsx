@@ -15,11 +15,15 @@ export const ViewSession = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
     const dispath = useAppDispatch()
-    const [session] = useRequest<sessionDto>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const [session] = useRequest<sessionDto>(() => sessionService.GET_SESSION(Number(id)), [`session-${id}`])
     React.useEffect(() => {
         dispath(setSession({
             bestiary: [],
-            session: session
+            session: session,
+            info: {
+                bestiary: '',
+                session: ''
+            }
         }))
     }, [session])
 

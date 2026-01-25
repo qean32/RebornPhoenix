@@ -3,51 +3,51 @@ import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
 const instance = 'profile'
 
 export const profileService = {
-    getUserInfo: (id: string | number) => {
+    GET_USER_INFO: (id: string | number) => {
         return requestGet(`${instance}/${id}/info/`)
     },
 
-    getCharacters: (id: string | number) => {
+    GET_CHARACTERS: (id: string | number) => {
         return requestGet(`${instance}/${id}/characters/`)
     },
 
-    getPosts: (id: string | number) => {
+    GET_POSTS: (id: string | number) => {
         return requestGet(`${instance}/${id}/posts/`)
     },
 
-    getSessions: (id: string | number) => {
+    GET_SESSIONS: (id: string | number) => {
         return requestGet(`${instance}/${id}/sessions/`)
     },
 
-    banAction: (data: any, id: string | number) => {
+    BAN_ACTION: (data: any, id: string | number) => {
         return requestPost(`${instance}/${id}/ban-action/`, data)
     },
 
-    getBanReason: (id: string | number) => {
+    GET_BAN_REASON: (id: string | number) => {
         return requestGet(`${instance}/${id}/ban-reason/`)
     },
 
-    subscribeAction: (id: string | number) => {
+    SUBSCRIBE_ACTION: (id: string | number) => {
         return requestPost(`${instance}/${id}/follow`, {})
     },
 
-    getSubscribe: (id: string | number) => {
+    GET_SUBSCRIBE: (id: string | number) => {
         return requestGet(`${instance}/${id}/my-follow/`)
     },
 
-    createCharacter: (data: any) => {
+    CREATE_CHARACTER: (data: any) => {
         return requestPost(`${instance}/create/character`, data, true)
     },
 
-    deleteCharacter: (id: string | number) => {
+    DELETE_CHARACTER: (id: string | number) => {
         return requestDelete(`${instance}/${id}/delete/character`)
     },
 
-    updateProfile: (data: any) => {
+    UPDATE_PROFILE: (data: any) => {
         return requestPost(`${instance}/update`, data, !!data.get('ava'))
     },
 
-    getSubscribers: () => {
+    GET_SUBSCRIBERS: () => {
         return requestGet(`${instance}/followers`)
     },
 

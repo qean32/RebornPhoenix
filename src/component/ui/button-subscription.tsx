@@ -26,7 +26,7 @@ export const ButtonSubscription: React.FC<Props> = ({
         subscribe()
     }
     const subscribe = useDebounceFunction(() => {
-        profileService.subscribeAction(id ?? 0)
+        profileService.SUBSCRIBE_ACTION(id ?? 0)
             .catch(() => {
                 toast('message', { text: REJECT_SERVER })
                 swap()

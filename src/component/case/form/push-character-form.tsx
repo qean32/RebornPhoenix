@@ -22,7 +22,7 @@ export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => 
             pushCharacterSchema,
             (data: pushCharacterDto) => {
                 swap()
-                profileService.createCharacter(fromDataToFormData(data))
+                profileService.CREATE_CHARACTER(fromDataToFormData(data))
                     .then(({ status, data }) => {
                         if (status == 201) {
                             toast('message', { text: ACCEESS_ACTION })

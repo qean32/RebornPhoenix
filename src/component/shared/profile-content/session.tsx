@@ -1,3 +1,4 @@
+import { SessionsSceleton } from "@/component/case/sceleton/sessions-sceleton"
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/export"
 import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
@@ -14,7 +15,7 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.getSessions(id ?? 0), [`profile-session-${id}`], true)
+    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], true)
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {
@@ -42,6 +43,7 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
 
     return (
         <div className='flex flex-col py-3'>
+            {!!loading && <SessionsSceleton />}
             {!!sessions?.length &&
                 sessions?.map(item =>
                     <SessionItem key={item.id} {...item} />
@@ -52,7 +54,7 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
                 <Modal.Root
                     animation={modalAnimationEnum['modal-dft']}
                     modal={Modal.PushSession}>
-                    <div className="px-4">
+                    <div>
                         <PlusButton className='h-[85px] my-5 mb-2' iconSize='icon-sm' />
                     </div>
                 </Modal.Root>

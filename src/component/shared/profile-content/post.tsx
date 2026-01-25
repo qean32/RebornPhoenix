@@ -15,7 +15,7 @@ interface Props {
 
 export const Post: React.FC<Props> = ({ view, id }: Props) => {
     const { on, off } = useBoolean(view)
-    const [posts, loading] = useRequest<postDto[]>(() => profileService.getPosts(id ?? 0), [`profile-post-${id}`])
+    const [posts, loading] = useRequest<postDto[]>(() => profileService.GET_POSTS(id ?? 0), [`profile-post-${id}`])
 
     React.useEffect(() => {
         if (view) {
@@ -32,7 +32,7 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
     return (
         <div className='pt-2 pb-4'>
             <PostColumn />
-            {loading && <DepartmentSceleton />}
+            {!!loading && <DepartmentSceleton />}
             {!!posts?.length &&
                 posts?.map(item => {
                     return <PostItem
@@ -44,7 +44,7 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
             <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={!posts?.length && !loading} />
 
             <ViewAuthor payload_id={id ?? 0}>
-                <div className="px-1 mt-4">
+                <div className="mt-4">
                     <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>
             </ViewAuthor>

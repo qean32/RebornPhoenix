@@ -23,7 +23,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
             img: z.any()
         }),
         (data: { img: any }) => {
-            sessionService.pushImgToSession(fromDataToFormData(data))
+            sessionService.PUSH_IMG_TO_SESSION(fromDataToFormData(data))
                 .then(({ status, data }) => {
                     if (status == 201) {
                         toast('message', { text: ACCEESS_ACTION })

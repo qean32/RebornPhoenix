@@ -13,10 +13,10 @@ export const Ava: React.FC<Props> = ({
     className,
     size = 'ava-md',
     path,
-    blob
+    blob = false
 }: Props) => {
     return (
         <div className={cn('z-10 bg-img bg-color cursor-pointer rounded-full', size, className)}
-            style={{ backgroundImage: `url(${blob ? path : `${process.env.SERVER_HOST}storage/${path}`})` }} ></div>
+            style={{ backgroundImage: `url(${blob ? path : `${process.env.SERVER_HOST_STORAGE}${path}`})` }} ></div>
     )
 }

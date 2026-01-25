@@ -30,8 +30,8 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     }
 
     const { param } = useQueryParam(qParamName.search)
-    const [users, loading] = useRequest<userDto[]>(() => communityService.searchUsers(param), ['search-users', param])
-    const [myusers] = useRequest<userDto[]>(() => communityService.getUsersByArray(session?.users.slice(1) ?? ''), ['search-users', session.users])
+    const [users, loading] = useRequest<userDto[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
+    const [myusers] = useRequest<userDto[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users.slice(1) ?? ''), ['search-users', session.users])
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >

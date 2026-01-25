@@ -7,6 +7,7 @@ import { sessionService } from '@/service/session-service'
 import { entityDto, mapDto, objectDto } from '@/model'
 import { qParamName } from '@/export'
 import { useTmpObject } from '@/lib/castom-hook/'
+import { ShopSceleton } from '../sceleton'
 
 interface Props {
     view: boolean
@@ -75,10 +76,10 @@ export const PushToSession: React.FC<Props> = ({
             })
         }
     }, [key, tmpObject])
-    const [data] = type == 'entity' ? useRequest<entityDto[]>(() => sessionService.getEntities(), [`entities`])
-        : type == 'map' ? useRequest<mapDto[]>(() => sessionService.getMaps(), [`maps`])
+    const [data, loading] = type == 'entity' ? useRequest<entityDto[]>(() => sessionService.GET_ENTITIES(), [`entities`])
+        : type == 'map' ? useRequest<mapDto[]>(() => sessionService.GET_MAPS(), [`maps`])
             :
-            useRequest<objectDto[]>(() => sessionService.getObjects(), [`objects`])
+            useRequest<objectDto[]>(() => sessionService.GET_OBJECTS(), [`objects`])
 
     React.useEffect(() => {
         const fn = () => {
@@ -102,6 +103,7 @@ export const PushToSession: React.FC<Props> = ({
             <ModalCross fn={swap} />
             <div className="w-9/12 h-full overflow-scroll relative">
                 <FilterPushToSession />
+                {!!loading && <ShopSceleton />}
                 {
                     Object.values(primeList).map((item: any) => {
                         return <GroupTokenInModal key={item.id} items={item} renderItem={renderItem} />

@@ -20,7 +20,7 @@ export const PushSessionForm: React.FC<Props> = ({ children, swap }: Props) => {
         useMyForm<pushSessionFormDto>(
             pushSessionSchema,
             (data: pushSessionFormDto) => {
-                sessionService.createSession(data)
+                sessionService.CREATE_SESSION(data)
                     .then(({ status, data }) => {
                         if (status == 201) {
                             toast('message', { text: ACCEESS_ACTION })

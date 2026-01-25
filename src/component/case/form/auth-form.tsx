@@ -19,7 +19,7 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<authFormDto>(
             authSchema,
             (data: authFormDto) => {
-                auth.auth(data)
+                auth.AUTH(data)
                     // @ts-ignore
                     .then(({ data, status }) => {
                         if (status == 200) {

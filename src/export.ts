@@ -21,6 +21,12 @@ export const tagsArray = [
     'web'
 ]
 
+export const contentLoaderProps = {
+    backgroundColor: "#0c0c0c",
+    foregroundColor: "#0e0e0e",
+    speed: 3
+}
+
 export const modalAnimationEnum: {
     [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationDto
 } = {

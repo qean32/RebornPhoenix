@@ -20,15 +20,6 @@ export const Main = () => {
     React.useEffect(() => {
         clearQ()
     }, [])
-    // fetch('http://localhost:8000/storage/5HNRFYAUcbOJlMqgRWWgv9NY9CD4P7u0.json', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-
-    //     }
-    // })
-    //     .then(data => data.json())
-    //     .then(data => console.log(data))
 
     return (
         <main>

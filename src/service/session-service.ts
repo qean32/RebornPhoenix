@@ -3,47 +3,47 @@ import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
 const instance = 'session'
 
 export const sessionService = {
-    getSession: (id: string | number) => {
+    GET_SESSION: (id: string | number) => {
         return requestGet(`${instance}/${id}`)
     },
 
-    createSession: (data: any) => {
+    CREATE_SESSION: (data: any) => {
         return requestPost(`${instance}`, data)
     },
 
-    deleteSession: (id: string | number) => {
+    DELETE_SESSION: (id: string | number) => {
         return requestDelete(`${instance}/${id}/`)
     },
 
-    createEntity: (data: any) => {
+    CREATE_ENTITY: (data: any) => {
         return requestPost(`${instance}/entity`, data, true)
     },
 
-    createMap: (data: any) => {
+    CREATE_MAP: (data: any) => {
         return requestPost(`${instance}/map`, data, true)
     },
 
-    createObject: (data: any) => {
+    CREATE_OBJECT: (data: any) => {
         return requestPost(`${instance}/object`, data, true)
     },
 
-    pushImgToSession: (data: any) => {
+    PUSH_IMG_TO_SESSION: (data: any) => {
         return requestPost(`s/push-img`, data, true)
     },
 
-    getEntities: () => {
+    GET_ENTITIES: () => {
         return requestGet(`s/entities`)
     },
 
-    getObjects: () => {
+    GET_OBJECTS: () => {
         return requestGet(`s/objects`)
     },
 
-    getMaps: () => {
+    GET_MAPS: () => {
         return requestGet(`s/maps`)
     },
 
-    saveJSON: (data: any, path: string) => {
+    SAVE_JSON: (data: any, path: string) => {
         return requestPost(`JSON/${path}/`, data)
     }
 }

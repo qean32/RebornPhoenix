@@ -20,9 +20,7 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<editProfileFormDto>(
             editProfileSchema,
             (data: editProfileFormDto) => {
-                console.log(data);
-
-                profileService.updateProfile(fromDataToFormData(data))
+                profileService.UPDATE_PROFILE(fromDataToFormData(data))
                     .then(({ status }) => {
                         if (status == 200 || status == 201) {
                             toast('message', { text: ACCEESS_ACTION })

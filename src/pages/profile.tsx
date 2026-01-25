@@ -10,8 +10,8 @@ import { profileService } from "@/service"
 export const Profile = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const [user] = useRequest<Omit<userDto, 'email'>>(() => profileService.getUserInfo(id ?? 0), [`profile-info-${id}`])
-    const [sub] = useRequest(() => profileService.getSubscribe(Number(id)), [`get-subscribe-${id}`])
+    const [user] = useRequest<Omit<userDto, 'email'>>(() => profileService.GET_USER_INFO(id ?? 0), [`profile-info-${id}`])
+    const [sub] = useRequest(() => profileService.GET_SUBSCRIBE(Number(id)), [`get-subscribe-${id}`])
 
     return (
         <>

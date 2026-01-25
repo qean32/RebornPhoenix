@@ -13,19 +13,19 @@ import { setSession } from "@/store/session-store"
 export const Session = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const [session] = useRequest<{ data: string, bestiary: string }>(() => sessionService.getSession(Number(id)), [`session-${id}`])
+    const [session] = useRequest<{ data: string, bestiary: string }>(() => sessionService.GET_SESSION(Number(id)), [`session-${id}`])
     const dispath = useAppDispatch()
 
     React.useEffect(() => {
         const fn = async () => {
             const data = fetch(`${process.env.SERVER_HOST}api/static/${session.data}/`)
             const bestiary = fetch(`${process.env.SERVER_HOST}api/static/${session.bestiary}/`)
-            const res = (await data).json()
-            const res_ = (await bestiary).json()
+            const jsonData = (await data).json()
+            const jsonBestiary = (await bestiary).json()
 
             dispath(setSession({
-                bestiary: await res_,
-                session: await res,
+                bestiary: await jsonBestiary,
+                session: await jsonData,
                 info: {
                     bestiary: session.bestiary,
                     session: session.data

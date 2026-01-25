@@ -36,7 +36,7 @@ export const GroupContainer: React.FC<Props> = ({
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
-            {loading && <>{sceleton()}</>}
+            {!!loading && <>{sceleton()}</>}
             {response.map(item => {
                 return (
                     <React.Fragment key={item.id}>

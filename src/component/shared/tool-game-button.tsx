@@ -1,15 +1,13 @@
 import React from 'react'
 import { ButtonInGroup, GroupButton } from '@component/ui'
 import { Modal } from '@component/case/modal'
-import { useAppSelector } from '@lib/castom-hook/redux'
 import { modalAnimationEnum, slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
 import { useGrid, useToast } from '@/lib/castom-hook'
 import { FillHoverHint } from '../master/h-order-component'
-import { toggleFullScreen } from '@/lib/function'
-import { sessionService } from '@/service/session-service'
+import { saveJson, toggleFullScreen } from '@/lib/function'
 
 interface Props {
 }
@@ -17,17 +15,8 @@ interface Props {
 
 export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
-    const { session, bestiary, info } = useAppSelector(state => state.session)
-    const saveGame = () => {
-        localStorage.setItem("game-storage", JSON.stringify(session));
-        localStorage.setItem("bestiary-storage", JSON.stringify(bestiary));
-        sessionService.saveJSON({
-            path: info.session,
-            data: session
-        }, info.session)
+    const save = saveJson(toast)
 
-        toast("message", { text: 'Сохранено' });
-    }
     const forwardClick = React.useCallback(() => {
         navigator.clipboard.writeText(`${slogan} \n${process.env.CLIENT_HOST}${window.location.pathname.slice(1)}`);
         toast("message", { text: 'Ссылка скопирована' })
@@ -64,7 +53,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <ButtonInGroup fn={forwardClick} children={<img className='icon-sm' src='/icon/forward.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Сохранить'>
-                    <ButtonInGroup fn={saveGame} children={<img className='icon-sm' src='/icon/save.svg' />} />
+                    <ButtonInGroup fn={save} children={<img className='icon-sm' src='/icon/save.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Сущности'>
                     <Modal.Root

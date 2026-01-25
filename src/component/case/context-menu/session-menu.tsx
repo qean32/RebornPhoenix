@@ -18,7 +18,7 @@ export const SessionMenu: React.FC<Props> = (item: Props) => {
     const { setTmp } = useTmpObject()
 
     const remove = () => {
-        sessionService.deleteSession(item.id)
+        sessionService.DELETE_SESSION(item.id)
             .then(({ status, data }) => {
                 if (status == 200) {
                     toast('message', { text: ACCEESS_ACTION })

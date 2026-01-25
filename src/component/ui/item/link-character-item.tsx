@@ -15,7 +15,7 @@ export const LinkCharacterItem: React.FC<Props> = ({
 }: Props) => {
     return (
         <div
-            style={{ backgroundImage: `url(${process.env.SERVER_HOST}storage/${path})` }}
+            style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${path})` }}
             className='bg-img prime-hover bg-color-dark relative rounded-md running-line-parent h-fit bg-color-hover transition-300 cursor-pointer'
         >
             <div className='py-3 items-center flex flex-col gap-2 h-[110px]'>

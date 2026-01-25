@@ -17,7 +17,7 @@ export const BanAction: React.FC<Props> = ({ ban }: Props) => {
     const { id } = useParams()
     const toast = useToast()
     const banAction = () => {
-        profileService.banAction({}, id ?? 0)
+        profileService.BAN_ACTION({}, id ?? 0)
             .then(() => toast('message', { text: ACCEESS_ACTION }))
             .catch(() => toast('message', { text: REJECT_SERVER }))
             .finally(() => {

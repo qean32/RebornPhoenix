@@ -15,7 +15,7 @@ export const CountBlock: React.FC<Props> = ({ likeCount, userLike, viewCount = 0
     const { id } = useParams()
 
     const request = useDebounceFunction(() => {
-        forumService.likeAction(id ?? 0)
+        forumService.LIKE_ACTION(id ?? 0)
     }, 1500)
 
     function clickHandler() {

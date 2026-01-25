@@ -30,7 +30,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
         useMyForm<pushEntityToSessionFormDto>(
             pushEntityToSessionSchema,
             (data: pushEntityToSessionFormDto) => {
-                sessionService.createEntity(fromDataToFormData(data))
+                sessionService.CREATE_ENTITY(fromDataToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {
                             toast('push-entity', { name: data.name })

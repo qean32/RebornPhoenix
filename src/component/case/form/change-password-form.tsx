@@ -19,7 +19,7 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<changePasswordFormDto>(
             changePasswordSchema,
             (data: changePasswordFormDto) => {
-                auth.changePassword(data, token)
+                auth.CHANGE_PASSWORD(data, token)
                     .then(({ status }) => {
                         if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION })

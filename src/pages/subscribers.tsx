@@ -9,7 +9,7 @@ import { CommunitySceleton } from "@/component/case/sceleton"
 
 export const Subscribers = () => {
     const { } = usePage(title.subscribers)
-    const [subscribers, loading] = useRequest<userDto[]>(profileService.getSubscribers, ['my-subscribers'])
+    const [subscribers, loading] = useRequest<userDto[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'])
 
     return (
         <Page size="w-[70%]">
@@ -17,7 +17,7 @@ export const Subscribers = () => {
             <BackArrow />
             <div className="relative">
                 <TextInfo title="Ваши подписки" />
-                {loading && <CommunitySceleton />}
+                {!!loading && <CommunitySceleton />}
                 <NoFindData title="У вас нет подписок!" view={!subscribers?.length} className="h-[50vh]" />
                 {
                     !!subscribers?.length &&

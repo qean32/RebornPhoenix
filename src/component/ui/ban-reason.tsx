@@ -10,7 +10,7 @@ interface Props {
 
 
 export const BanReason: React.FC<Props> = ({ id }: Props) => {
-    const [reason] = useRequest<banReasonDto>(() => profileService.getBanReason(id), [`ban-reason-${id}`])
+    const [reason] = useRequest<banReasonDto>(() => profileService.GET_BAN_REASON(id), [`ban-reason-${id}`])
 
     //@ts-ignore
     if (reason && reason != "no") {

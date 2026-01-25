@@ -21,7 +21,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<createPostFormDto>(
             createPostSchema,
             (data: createPostFormDto) => {
-                forumService.createPost(data)
+                forumService.CREATE_POST(data)
                     .then(({ status }) => {
                         if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION })

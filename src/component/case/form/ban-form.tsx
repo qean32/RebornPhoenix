@@ -20,7 +20,7 @@ export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
     const toast = useToast()
     const { form, submitHandler } = useMyForm<banFormDto>(banSchema,
         (data: banFormDto) => {
-            profileService.banAction(data, idUser ?? 0)
+            profileService.BAN_ACTION(data, idUser ?? 0)
                 .then(() => toast('message', { text: ACCEESS_ACTION }))
                 .catch(() => toast('message', { text: REJECT_SERVER }))
                 .finally(() => {

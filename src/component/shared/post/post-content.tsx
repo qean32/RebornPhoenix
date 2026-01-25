@@ -19,11 +19,11 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
     const navigate = useNavigate()
 
-    const [myLike] = useRequest<boolean>(() => forumService.myLike(id ?? 0), [`my-like-${id}`])
-    const [post] = useRequest<postDto>(() => forumService.getPost(id ?? 0), [`post-${id}`])
+    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [`my-like-${id}`])
+    const [post] = useRequest<postDto>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
     const deletePost = () => {
-        forumService.deletePost(id ?? 0)
+        forumService.DELETE_POST(id ?? 0)
             .then(() => {
                 toast('message', { text: ACCEESS_ACTION })
                 navigate('/');

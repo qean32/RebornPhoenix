@@ -19,7 +19,7 @@ export const Community = () => {
                 <GroupContainer
                     sceleton={() => <CommunitySceleton />}
                     rq={{
-                        fetch: communityService.getUsers,
+                        fetch: communityService.GET_USERS,
                         RQKey: ['community'],
                         staticParam: []
                     }}

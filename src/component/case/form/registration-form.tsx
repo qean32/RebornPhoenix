@@ -19,7 +19,7 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<registrationFormDto>(
             registrationSchema,
             (data: registrationFormDto) => {
-                auth.registration(data)
+                auth.REGISTRATION(data)
                     // @ts-ignore
                     .then(({ data, status }) => {
                         if (status == 200) {

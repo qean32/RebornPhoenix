@@ -35,7 +35,7 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
             (data: commentFormDto) => {
                 clear()
                 if (key == 'update-comment') {
-                    forumService.updateComment(data, tmpObject?.id ?? 0)
+                    forumService.UPDATE_COMMENT(data, tmpObject?.id ?? 0)
                         .then(({ status, data }) => {
                             if (status == 200) {
                                 toast('message', { text: ACCEESS_ACTION_UPDATE })
@@ -45,7 +45,7 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
                         })
                         .catch(() => toast('message', { text: REJECT_SERVER }))
                 } else {
-                    forumService.createComment(data, id ?? 0)
+                    forumService.CREATE_COMMENT(data, id ?? 0)
                         .then(({ status, data }) => {
                             if (status == 200) {
                                 toast('message', { text: ACCEESS_ACTION_CREATE })

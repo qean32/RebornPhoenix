@@ -11,7 +11,7 @@ export const ProtectedRouteTechWork: React.FC<Props> = ({ children }: Props) => 
     const [response, setResponse] = React.useState(true)
     React.useEffect(() => {
         if (response) {
-            serverService.server()
+            serverService.SERVER()
                 .catch(() => setResponse(false))
         }
     }, [])

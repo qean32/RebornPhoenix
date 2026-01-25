@@ -17,7 +17,7 @@ export const CharacterMenu: React.FC<Props> = ({ id }: Props) => {
 
     const remove = () => {
         toast('message', { text: 'Отправка..' }, 2000)
-        profileService.deleteCharacter(id)
+        profileService.DELETE_CHARACTER(id)
             .then(({ status, data }) => {
                 if (status == 200) {
                     toast('message', { text: ACCEESS_ACTION })

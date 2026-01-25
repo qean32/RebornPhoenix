@@ -24,7 +24,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             dispath(pushCharacter(data))
         }
     }
-    const [characters, loading] = useRequest<characterDto[]>(() => profileService.getCharacters(view ?? 0), [`profile-characters-${view}`])
+    const [characters, loading] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(view ?? 0), [`profile-characters-${view}`])
 
     return (
         <Modal
