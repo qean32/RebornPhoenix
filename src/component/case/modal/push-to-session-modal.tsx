@@ -106,7 +106,11 @@ export const PushToSession: React.FC<Props> = ({
                 {!!loading && <ShopSceleton />}
                 {
                     Object.values(primeList).map((item: any) => {
-                        return <GroupTokenInModal key={item.id} items={item} renderItem={renderItem} />
+                        return <GroupTokenInModal
+                            key={item.id}
+                            items={item}
+                            renderItem={renderItem}
+                        />
                     })
                 }
             </div>

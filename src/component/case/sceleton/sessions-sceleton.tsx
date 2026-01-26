@@ -17,7 +17,7 @@ export const SessionsSceleton: React.FC<Props> = ({ }: Props) => {
             {
                 // @ts-ignore
                 Array(3).fill().map((_, i) => {
-                    return <SessionSceleton y={i * 110} />
+                    return <SessionSceleton key={i} y={i * 110} />
                 })
             }
         </ContentLoader>

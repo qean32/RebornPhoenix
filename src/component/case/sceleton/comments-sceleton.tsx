@@ -18,7 +18,7 @@ export const CommentsSceleton: React.FC<Props> = ({ }: Props) => {
                 {
                     // @ts-ignore
                     Array(2).fill().map((_, i) => {
-                        return <CommentSceleton y={i * 110} />
+                        return <CommentSceleton key={i} y={i * 110} />
                     })
                 }
             </ContentLoader>

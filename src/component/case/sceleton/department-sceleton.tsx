@@ -17,7 +17,7 @@ export const DepartmentSceleton: React.FC<Props> = ({ }: Props) => {
             {
                 // @ts-ignore
                 Array(5).fill().map((_, i) => {
-                    return <PostSceleton y={i * 230} />
+                    return <PostSceleton key={i} y={i * 230} />
                 })
             }
         </ContentLoader>

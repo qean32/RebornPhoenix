@@ -31,7 +31,7 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
 
     const { param } = useQueryParam(qParamName.search)
     const [users, loading] = useRequest<userDto[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
-    const [myusers] = useRequest<userDto[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users.slice(1) ?? ''), ['search-users', session.users])
+    const [myusers] = useRequest<userDto[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >
@@ -44,7 +44,10 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
                     {!!users?.length &&
                         users.map(item => {
                             return (
-                                <UserInModal {...item} />
+                                <UserInModal
+                                    key={item.id}
+                                    {...item}
+                                />
                             )
                         })}
                 </div>
@@ -54,7 +57,10 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
                 {!!myusers?.length &&
                     myusers.map(item => {
                         return (
-                            <UserInModal {...item} />
+                            <UserInModal
+                                key={item.id}
+                                {...item}
+                            />
                         )
                     })}
             </div>

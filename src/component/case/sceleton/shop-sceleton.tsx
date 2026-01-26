@@ -11,7 +11,7 @@ export const ShopSceleton: React.FC<Props> = ({ }: Props) => {
             {
                 // @ts-ignore
                 Array(2).fill().map((_, i) => {
-                    return <ShopItemSceleton />
+                    return <ShopItemSceleton key={i} />
                 })
             }
         </>

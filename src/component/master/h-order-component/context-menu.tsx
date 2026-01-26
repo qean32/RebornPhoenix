@@ -17,7 +17,7 @@ export const ContextMenu: React.FC<Props> = ({
     useClickOutside(ref, off)
 
     return (
-        <div ref={ref}>
+        <div ref={ref} className='relative'>
             <div
                 className={cn(
                     "relative p-2 white-opacity rounded-full cursor-pointer transition-300 w-fit h-fit",

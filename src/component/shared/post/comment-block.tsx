@@ -20,18 +20,23 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
             <CommentForm update={update}
                 push={push} _delete={_delete} />
 
-            {!!comments?.length
-                ?
-                <p className='pl-6 py-2 text-2xl'>Коментарии</p>
-                :
-                <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>
+            {
+                !loading &&
+                    !!comments?.length
+                    ?
+                    <p className='pl-6 py-2 text-2xl'>Коментарии</p>
+                    :
+                    <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>
             }
 
             {!!loading && <CommentsSceleton />}
 
             {comments?.length &&
                 comments?.map(item => {
-                    return <CommentItem {...item} key={item.id} />
+                    return <CommentItem
+                        {...item}
+                        key={item.id}
+                    />
                 })
             }
 

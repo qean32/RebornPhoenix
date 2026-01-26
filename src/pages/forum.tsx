@@ -24,7 +24,7 @@ export const Forum = () => {
                             !!departments?.length &&
                             departments?.map(item => {
                                 return (
-                                    <DepartmentItem {...item} />
+                                    <DepartmentItem key={item.id} {...item} />
                                 )
                             })
                         }

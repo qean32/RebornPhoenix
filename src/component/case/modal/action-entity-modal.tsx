@@ -84,8 +84,8 @@ export const ActionEntity: React.FC<Props> = ({
                             <p className='pb-4'>Статус</p>
                             {actionMap.map(item => {
                                 return <Square
-                                    key={item.status}
                                     value={entity?.status == item.status}
+                                    key={item.status}
                                     data={{ key: 'status', value: item.status }}
                                 >
                                     {item.icon}
@@ -96,8 +96,8 @@ export const ActionEntity: React.FC<Props> = ({
                             <p className='pb-4'>Размер</p>
                             {sizeMap.map(item => {
                                 return <Square
-                                    key={item.id}
                                     value={entity?.size == item.id}
+                                    key={item.id}
                                     data={{ key: 'size', value: item.id }}
                                 >
                                     <p className='text-2xl'>
@@ -122,13 +122,13 @@ export const ActionEntity: React.FC<Props> = ({
 }
 
 
-interface Props_ {
+interface PropsSquare {
     children: React.ReactNode,
     value: boolean
     data: { key: string, value: string | number }
 }
 
-const Square: React.FC<Props_> = ({ children, data, value }: Props_) => {
+const Square: React.FC<PropsSquare> = ({ children, data, value }: PropsSquare) => {
     return (
         <div
             data={JSON.stringify(data)}

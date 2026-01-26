@@ -33,16 +33,16 @@ export const FaqBlock: React.FC<Props> = React.memo(({
     return (
         <div className='pt-20' ref={refHandler} id={id.toString()}>
             <p className="text-3xl uppercase">{title}</p>
-            {content.map(({ text, image, subTitle }) => {
+            {content.map(item => {
                 return (
-                    <React.Fragment key={text}>
-                        {subTitle && <p className="text-2xl uppercase pt-5 pb-2">{subTitle}</p>}
+                    <React.Fragment key={item.text}>
+                        {item.subTitle && <p className="text-2xl uppercase pt-5 pb-2">{item.subTitle}</p>}
                         <p className='text-md text-justify'>
-                            {text}
+                            {item.text}
                         </p>
-                        {image &&
+                        {item.image &&
                             <FaqImage
-                                path={image}
+                                path={item.image}
                                 pushQ={pushQ}
                             />
                         }

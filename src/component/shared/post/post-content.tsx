@@ -2,12 +2,13 @@ import React from 'react'
 import { Button, UnwrapFiles } from '@component/ui'
 import { ViewAdmin, ViewAuthor } from '@component/master/h-order-component'
 import { Modal } from '@component/case/modal'
-import { MainBlock, CommentBlock, PostInfo, CountBlock } from '.'
+import { MainBlock, PostInfo, CountBlock } from '.'
 import { useRequest, useToast } from '@/lib/castom-hook'
 import { postDto } from '@/model/post.dto'
 import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { modalAnimationEnum } from '@/export'
+import { PostContentSceleton } from '@/component/case/sceleton'
 
 interface Props {
     className?: string
@@ -31,7 +32,6 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     }
 
     if (post?.id) {
-
         return (
             <>
                 <p className="text-4xl mb-1.5">{post.title}</p>
@@ -64,8 +64,9 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                     className='my-5'
                     imgView
                     files={!!post?.files?.length ? post?.files?.split(',').map(item => { return { path: item } }) : []} />
-                <CommentBlock />
             </>
         )
     }
+
+    return <PostContentSceleton />
 }

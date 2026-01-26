@@ -25,9 +25,18 @@ export const MapsGame: React.FC<Props> = ({ swap }: Props) => {
             <ModalCross fn={swap} />
             <p className='pl-5 pt-2 text-2xl'>Карты</p>
             <div className='grid gap-5 p-5 grid-cols-6 adaptive2k-grid-column-7' onClick={swapHandler}>
-                {!!maps?.length && maps.map((item) =>
-                    <SelectMapItem value={currentMap ? currentMap.id : 'null'} data={item} path={item.path} key={item.id} name={item.name} />
-                )}
+
+                {!!maps?.length
+                    && maps.map((item) =>
+                        <SelectMapItem
+                            value={currentMap ? currentMap.id : 'null'}
+                            data={item}
+                            path={item.path}
+                            key={item.id}
+                            name={item.name}
+                        />
+                    )}
+
                 <ModalGroup.Root
                     modal={ModalGroup.PushToSession}
                     props={{ type: 'map', renderItem: InStoreMapItem, accept: PushMap }}

@@ -22,7 +22,7 @@ export const Subscribers = () => {
                 {
                     !!subscribers?.length &&
                     subscribers.map(item => {
-                        return <UserItem {...item} />
+                        return <UserItem {...item} key={item.id} />
                     })
                 }
             </div>

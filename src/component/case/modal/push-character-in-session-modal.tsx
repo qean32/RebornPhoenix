@@ -39,15 +39,18 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
                 <ModalCross fn={swap} />
                 <p className='pb-4 text-2xl'>Персонажи игрока</p>
                 <NoFindData title='У игрока нет персонажей!' view={!characters?.length && !loading} className='py-5' />
-                <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>
-                    {!!characters?.length &&
-                        characters.map(item =>
-                            <CharacterItemInPush
-                                {...item}
-                                key={item.id}
-                            />
-                        )}
-                </div>
+                {
+                    !!characters?.length &&
+                    <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>
+                        {!!characters?.length &&
+                            characters.map(item =>
+                                <CharacterItemInPush
+                                    {...item}
+                                    key={item.id}
+                                />
+                            )}
+                    </div>
+                }
                 <div className="flex justify-end gap-2">
                     <><Button fn={swap} variant='ghost'><p>Отмена</p></Button>
                         <Button variant='acceess' ><p>Добавить</p></Button></>

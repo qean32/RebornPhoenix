@@ -36,7 +36,11 @@ export const ImgCarousel: React.FC<Props> = ({ }: Props) => {
             <div ref={ref} className="flex w-full gap-5 overflow-x-scroll px-[40px]">
                 {session?.imgs &&
                     (session.imgs).slice(1).split(',').map(item => {
-                        return <ViewImgCarouselItem path={item} value={value} />
+                        return <ViewImgCarouselItem
+                            path={item}
+                            key={item}
+                            value={value}
+                        />
                     })
                 }
                 <ModalGroup.Root

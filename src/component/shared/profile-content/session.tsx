@@ -46,7 +46,10 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
             {!!loading && <SessionsSceleton />}
             {!!sessions?.length &&
                 sessions?.map(item =>
-                    <SessionItem key={item.id} {...item} />
+                    <SessionItem
+                        key={item.id}
+                        {...item}
+                    />
                 )}
             <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!sessions?.length && !loading} />
 

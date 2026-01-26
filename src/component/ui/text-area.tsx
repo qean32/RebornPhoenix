@@ -36,7 +36,7 @@ export const TextArea: React.FC<Props> = ({
         }
     }, [])
     React.useEffect(() => {
-        if (!watch(name)) {
+        if (!watch(name) && !initValue) {
             // @ts-ignore
             document.getElementById(id).innerHTML = '';
         }

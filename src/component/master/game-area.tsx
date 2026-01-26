@@ -13,7 +13,6 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
     const { handleWheel, stage } = useStage()
     const { innerHeight, innerWidth } = useWindowSize()
 
-
     return (
         <Stage
             onWheel={handleWheel}
@@ -32,17 +31,30 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
                 <GameBackground />
                 {!!currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.queue.map((item) => {
-                        return <EntityDM action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id} {...item} key={item.id} />
+                        return (
+                            <EntityDM
+                                action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id}
+                                {...item}
+                                key={item.id}
+                            />
+                        )
                     })
                 }
                 {!!currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
-                        return <ObjectDM {...item} key={item.id} />
+                        return <ObjectDM
+                            {...item}
+                            key={item.id}
+                        />
                     })
                 }
                 {!!currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.characters.map((item) => {
-                        return <CharacterDM action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id} {...item} key={item.id} />
+                        return <CharacterDM
+                            action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id}
+                            {...item}
+                            key={item.id}
+                        />
                     })
                 }
             </Layer>

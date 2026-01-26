@@ -17,7 +17,7 @@ export const CommunitySceleton: React.FC<Props> = ({ }: Props) => {
             {
                 // @ts-ignore
                 Array(4).fill().map((_, i) => {
-                    return <UserSceleton y={i * 100} />
+                    return <UserSceleton key={i} y={i * 100} />
                 })
             }
         </ContentLoader>

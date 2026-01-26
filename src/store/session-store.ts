@@ -62,7 +62,11 @@ const sessionSlice = createSlice({
         },
 
         pushUser: (state: stateDto, { payload: { id } }: PayloadAction<{ id: number }>) => {
-            state.session.users = state.session.users + ',' + id
+            if (!state?.session?.users) {
+                state.session.users = id.toString()
+            } else if (state?.session?.users?.length < 10) {
+                state.session.users = state.session.users + ',' + id
+            }
         },
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
@@ -91,18 +95,21 @@ const sessionSlice = createSlice({
             source,
             status
         } }: PayloadAction<entityDto>) => {
-            const id = generateId()
+            if (state.session.mapsData[state.session.currentMap.id].queue.length < 16) {
 
-            state.session.mapsData[state.session.currentMap.id].queue = [
-                ...state.session.mapsData[state.session.currentMap.id].queue,
-                { id, idInBestiary, initiative, status, source, size, path, name }
-            ]
+                const id = generateId()
 
-            if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
-                state.bestiary = [
-                    ...state.bestiary,
-                    { id, idInBestiary, initiative, source, path, name, description, size, status }
+                state.session.mapsData[state.session.currentMap.id].queue = [
+                    ...state.session.mapsData[state.session.currentMap.id].queue,
+                    { id, idInBestiary, initiative, status, source, size, path, name }
                 ]
+
+                if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
+                    state.bestiary = [
+                        ...state.bestiary,
+                        { id, idInBestiary, initiative, source, path, name, description, size, status }
+                    ]
+                }
             }
         },
 
@@ -114,10 +121,13 @@ const sessionSlice = createSlice({
         // """"""""""""""""""""""""""""""""""""""""""" { object action } """"""""""""""""""""""""""""""""""""""""""" //
 
         pushObject: (state: stateDto, { payload }: PayloadAction<objectDto>) => {
-            state.session.mapsData[state.session.currentMap.id].objects = [
-                ...state.session.mapsData[state.session.currentMap.id].objects,
-                { ...payload, id: generateId() }
-            ]
+            if (state?.session?.mapsData[state?.session?.currentMap?.id].objects?.length < 10) {
+
+                state.session.mapsData[state.session.currentMap.id].objects = [
+                    ...state.session.mapsData[state.session.currentMap.id].objects,
+                    { ...payload, id: generateId() }
+                ]
+            }
         },
 
         changeObject: (state: stateDto, { payload: { payload } }: PayloadAction<{
@@ -140,12 +150,13 @@ const sessionSlice = createSlice({
         },
 
         scaleObject: (state: stateDto, { payload: { object, operation } }: PayloadAction<{ object: objectDto, operation: -1 | 1 }>) => {
-            let newSize = object.size
+            let newSize = object.size ?? 1
             if (newSize > 3) {
                 newSize = 1
             } else {
                 newSize += operation
             }
+
             state.session.mapsData[state.session.currentMap.id].objects
                 = [
                     // @ts-ignore
@@ -167,21 +178,24 @@ const sessionSlice = createSlice({
         },
 
         pushMap: (state: stateDto, { payload }: PayloadAction<mapDto>) => {
-            const id = generateId()
-            if (!state.session.maps) {
-                state.session.maps = [
-                    { ...payload, id }
-                ]
-            } else {
-                state.session.maps = [
-                    ...state.session.maps,
-                    { ...payload, id }
-                ]
-            }
-            state.session.mapsData[id] = {
-                objects: [],
-                queue: [],
-                characters: []
+            if (state?.session?.maps?.length < 30) {
+
+                const id = generateId()
+                if (!state.session.maps) {
+                    state.session.maps = [
+                        { ...payload, id }
+                    ]
+                } else {
+                    state.session.maps = [
+                        ...state.session.maps,
+                        { ...payload, id }
+                    ]
+                }
+                state.session.mapsData[id] = {
+                    objects: [],
+                    queue: [],
+                    characters: []
+                }
             }
         },
 
@@ -204,7 +218,7 @@ const sessionSlice = createSlice({
         // """"""""""""""""""""""""""""""""""""""""""" { character action } """"""""""""""""""""""""""""""""""""""""""" //
 
         pushCharacter: (state: stateDto, { payload }: PayloadAction<characterDto>) => {
-            if (!state.session.characters.find(item => item.name == payload.name)) {
+            if (!state?.session?.characters?.find(item => item.name == payload.name)) {
                 state.session.characters = [
                     ...state.session.characters,
                     { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
@@ -216,9 +230,10 @@ const sessionSlice = createSlice({
                 // @ts-ignore
                 ...state.session.mapsData[state.session.currentMap.id].queue,
                 // @ts-ignore
-                { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 } }
+                { ...payload, id: generateId(), size: 2, status: 'stable', position: { x: 0, y: 0 }, path: `${process.env.SERVER_HOST_STORAGE}${payload.path}` }
             ]
         },
+
         removeCharacter: (state: stateDto, { payload: { id } }: PayloadAction<idDto>) => {
             state.session.characters = state.session.characters.filter(item => item.id != id)
         },
@@ -228,6 +243,7 @@ const sessionSlice = createSlice({
         changeQueue: (state: stateDto, { payload: { queue } }: PayloadAction<{ queue: any[] }>) => {
             state.session.mapsData[state.session.currentMap.id].queue = queue
         },
+
         nextQueue: (state: stateDto) => {
             if (state.session.mapsData[state.session.currentMap.id].queue[1]) {
 
@@ -238,6 +254,7 @@ const sessionSlice = createSlice({
                 ]
             }
         },
+
         prevQueue: (state: stateDto) => {
             if (state.session.mapsData[state.session.currentMap.id].queue[1]) {
 
@@ -258,6 +275,7 @@ const sessionSlice = createSlice({
                 { ...state.bestiary.find(item => item.idInBestiary == payload.id), ...payload }
             ]
         },
+
         pushToBestiary: (state: stateDto, { payload }: PayloadAction<entityDto>) => {
             state.bestiary = [...state.bestiary, payload]
         },
