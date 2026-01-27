@@ -35,9 +35,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
         <div className="relative w-full">
             <ScrollTop />
             <TextInfo title={name ? name.toUpperCase() : ''} />
-            <>
-                <Search />
-            </>
+            <Search />
             <PostColumn />
             <div className="pb-4">
                 <PostItem {...post} fixed={true} className="pl-2" />

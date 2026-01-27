@@ -16,7 +16,7 @@ export const CountBlock: React.FC<Props> = ({ likeCount, userLike, viewCount = 0
 
     const request = useDebounceFunction(() => {
         forumService.LIKE_ACTION(id ?? 0)
-    }, 1500)
+    }, 1000)
 
     function clickHandler() {
         swap()

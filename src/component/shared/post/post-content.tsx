@@ -31,7 +31,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
             })
     }
 
-    if (post?.id) {
+    if (post?.title) {
         return (
             <>
                 <p className="text-4xl mb-1.5">{post.title}</p>
@@ -53,7 +53,11 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                         <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
                 </ViewAdmin>
 
-                <PostInfo {...post.user} />
+                <PostInfo
+                    id={post.id}
+                    date=''
+                    user={post.user}
+                />
                 <MainBlock content={post.content} description={post.description}>
                     <CountBlock
                         likeCount={post.likes}

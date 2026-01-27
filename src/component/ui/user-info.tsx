@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const UserInfo: React.FC<Props> = ({ user }: Props) => {
+export const UserInfo: React.FC<Props> = React.memo(({ user }: Props) => {
     if (user?.id) {
 
         return (
@@ -24,4 +24,4 @@ export const UserInfo: React.FC<Props> = ({ user }: Props) => {
     }
 
     return <ProfileInfoSceleton />
-}
+})

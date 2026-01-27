@@ -3,22 +3,25 @@ import { Ava } from '@component/ui'
 import { Link } from 'react-router-dom'
 import { userDto } from '@/model'
 
-interface Props extends Omit<userDto, 'email'> {
+interface Props {
+    user: Omit<userDto, 'email'>,
+    id: number
+    date: string
 }
 
 
-export const PostInfo: React.FC<Props> = ({ ava, name, id }: Props) => {
-    if (name)
+export const PostInfo: React.FC<Props> = ({ date, id, user }: Props) => {
+    if (user)
         return (
             <div className="flex items-end gap-2 py-3 pt-4">
-                <Link to={`/profile/${id}/${name}`}>
-                    <Ava size="ava-sm" path={ava ?? "/img/auth.jpg"} />
+                <Link to={`/profile/${user.id}/${user.name}`}>
+                    <Ava size="ava-sm" path={user.ava ?? ""} />
                 </Link>
-                <Link to={`/profile/${id}/${name}`}>
-                    <p className='ml-2'>zxccursed</p>
+                <Link to={`/profile/${user.id}/${user.name}`}>
+                    <p className='ml-2'>{user.name}</p>
                 </Link>
-                <p>20.05.2002</p>
-                <p># 764</p>
+                <p>{date}</p>
+                <p># {id}</p>
             </div>
         )
 }

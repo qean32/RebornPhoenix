@@ -24,11 +24,11 @@ export const DepartmentItem: React.FC<Props> = ({
                         <img src="/icon/news.svg" alt="" className='icon-sm-' />
                         <p>{count}</p>
                     </div>
-                    <PostItem {...fixed} fixed className='pl-2 -translate-x-2' />
+                    <PostItem {...fixed} department={name} fixed className='pl-2 -translate-x-2' />
                 </div>
                 <div className='w-1/6 pb-4 pt-0'>
                     <div className="rounded-lg w-full bg-img bg-shadow h-full"
-                        style={{ backgroundImage: `url(${img})` }}
+                        style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${img})` }}
                     ></div>
                 </div>
             </div>

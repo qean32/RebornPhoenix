@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const Title: React.FC<Props> = ({
+export const Title: React.FC<Props> = React.memo(({
     className,
     children
 }: Props) => {
@@ -16,4 +16,4 @@ export const Title: React.FC<Props> = ({
             {children}
         </p>
     )
-}
+})

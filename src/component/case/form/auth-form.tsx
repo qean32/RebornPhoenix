@@ -20,7 +20,6 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
             authSchema,
             (data: authFormDto) => {
                 auth.AUTH(data)
-                    // @ts-ignore
                     .then(({ data, status }) => {
                         if (status == 200) {
                             // @ts-ignore

@@ -31,7 +31,7 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
 
             {!!loading && <CommentsSceleton />}
 
-            {comments?.length &&
+            {!!comments?.length &&
                 comments?.map(item => {
                     return <CommentItem
                         {...item}

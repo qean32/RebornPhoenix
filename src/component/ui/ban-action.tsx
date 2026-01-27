@@ -26,11 +26,12 @@ export const BanAction: React.FC<Props> = ({ ban }: Props) => {
                 }, 1000)
             })
     }
+
     return (
         <ViewAdmin>
             <div className="flex gap-2">
                 {
-                    ban ?
+                    !!ban ?
                         <Modal.Root
                             animation={modalAnimationEnum['modal-dft']}
                             modal={AccessAction}
