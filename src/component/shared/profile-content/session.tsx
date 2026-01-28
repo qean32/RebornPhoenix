@@ -15,7 +15,7 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], true)
+    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

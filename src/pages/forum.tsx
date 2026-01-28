@@ -6,31 +6,39 @@ import { usePage, useRequest } from "@lib/castom-hook"
 import { forumService } from "@/service"
 import { departmentDto } from "@/model"
 import { ForumSceleton } from "@/component/case/sceleton"
+import React from "react"
 
 
 export const Forum = () => {
     const { } = usePage(title.forum)
-    const [departments, loading] = useRequest<departmentDto[]>(forumService.GET_DEPARTAMENTS, ['departments'])
 
     return (
         <Page size="w-[70%]">
             <div className="flex gap-5">
                 <div className="w-full">
                     <TextInfo title="Форум" />
-
-                    <div className="flex flex-col gap-7">
-                        {!!loading && <ForumSceleton />}
-                        {
-                            !!departments?.length &&
-                            departments?.map(item => {
-                                return (
-                                    <DepartmentItem key={item.id} {...item} />
-                                )
-                            })
-                        }
-                    </div>
+                    <React.Suspense fallback={<ForumSceleton />}>
+                        <Content />
+                    </React.Suspense>
                 </div>
             </div>
         </Page>
+    )
+}
+
+const Content: React.FC<{}> = ({ }: {}) => {
+    const [departments] = useRequest<departmentDto[]>(forumService.GET_DEPARTAMENTS, ['departments'], { suspense: true })
+
+    return (
+        <div className="flex flex-col gap-7">
+            {
+                !!departments?.length &&
+                departments?.map(item => {
+                    return (
+                        <DepartmentItem key={item.id} {...item} />
+                    )
+                })
+            }
+        </div>
     )
 }

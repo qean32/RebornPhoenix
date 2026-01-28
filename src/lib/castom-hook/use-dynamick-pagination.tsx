@@ -18,7 +18,7 @@ export const useDynamickPagination = <T,>(
     const { boolean: isEnd, on: onIsEnd, off: offIsEnd } = useBoolean()
     const { boolean: loading, off, on } = useBoolean(true)
     const RQData = useQuery([...RQkey, skip, search, date, tags],
-        () => fetch_(skip, take, search, ...staticParam, date, tags), { keepPreviousData: false, refetchOnWindowFocus: false })
+        () => fetch_(skip, take, search, ...staticParam, date, tags), { keepPreviousData: false, refetchOnWindowFocus: false, suspense: true })
 
     React.useEffect(() => {
         offIsEnd()

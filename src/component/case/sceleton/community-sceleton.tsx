@@ -12,6 +12,7 @@ export const CommunitySceleton: React.FC<Props> = ({ }: Props) => {
         <ContentLoader
             width='100%'
             height='600px'
+            className='mt-5'
             {...contentLoaderProps}
         >
             {

@@ -24,8 +24,10 @@ export const tagsArray = [
 export const contentLoaderProps = {
     backgroundColor: "#0c0c0c",
     foregroundColor: "#0e0e0e",
-    speed: 3
+    speed: 2
 }
+
+export const developers = 'wtfit & Snake Eyes Teams'
 
 export const modalAnimationEnum: {
     [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationDto

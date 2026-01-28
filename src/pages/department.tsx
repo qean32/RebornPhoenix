@@ -40,15 +40,16 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
             <div className="pb-4">
                 <PostItem {...post} fixed={true} className="pl-2" />
             </div>
-            <GroupContainer
-                sceleton={() => <DepartmentSceleton />}
-                rq={{
-                    fetch: forumService.GET_DEPARTAMENT_POST,
-                    RQKey: [`department-post-${name}`],
-                    staticParam: [departmentId]
-                }}
-                renderItem={(item) => <PostItem {...item} className="pl-2" />}
-            />
+            <React.Suspense fallback={<DepartmentSceleton />}>
+                <GroupContainer
+                    rq={{
+                        fetch: forumService.GET_DEPARTAMENT_POST,
+                        RQKey: [`department-post-${name}`],
+                        staticParam: [departmentId]
+                    }}
+                    renderItem={(item) => <PostItem {...item} className="pl-2" />}
+                />
+            </React.Suspense>
         </div>
     )
 }

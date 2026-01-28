@@ -16,7 +16,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [characters, loading, push, _delete] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], true)
+    const [characters, loading, push, _delete] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

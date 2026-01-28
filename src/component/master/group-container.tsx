@@ -14,7 +14,6 @@ interface Props {
         RQKey: string[],
         staticParam: any[]
     }
-    sceleton(): React.ReactNode
 }
 
 
@@ -27,16 +26,13 @@ export const GroupContainer: React.FC<Props> = ({
         fetch,
         staticParam
     },
-    sceleton
 }: Props) => {
-    const { param } = useQueryParam(qParamName.search)
-    const { allQ } = useQueryParam('')
+    const { param, allQ } = useQueryParam(qParamName.search)
     const { response, loading, refHandler, isEnd } =
         useDynamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ['date'], allQ['tags'])
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
-            {!!loading && <>{sceleton()}</>}
             {response.map(item => {
                 return (
                     <React.Fragment key={item.id}>

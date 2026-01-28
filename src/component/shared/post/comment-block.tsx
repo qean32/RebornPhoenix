@@ -13,7 +13,7 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
-    const [comments, loading, push, _delete, update] = useRequest<commentDto[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], true)
+    const [comments, loading, push, _delete, update] = useRequest<commentDto[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
 
     return (
         <div className="bg-color-dark rounded-lg pb-2">

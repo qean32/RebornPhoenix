@@ -6,6 +6,7 @@ import { title } from "@/export"
 import { usePage } from "@lib/castom-hook"
 import { communityService } from "@/service"
 import { CommunitySceleton } from "@/component/case/sceleton"
+import React from "react"
 
 export const Community = () => {
     const { } = usePage(title.communty)
@@ -16,16 +17,17 @@ export const Community = () => {
             <div className="relative">
                 <TextInfo title="Сообщество" />
                 <Search />
-                <GroupContainer
-                    sceleton={() => <CommunitySceleton />}
-                    rq={{
-                        fetch: communityService.GET_USERS,
-                        RQKey: ['community'],
-                        staticParam: []
-                    }}
-                    className="pt-5"
-                    renderItem={(item) => <UserItem {...item} />}
-                />
+                <React.Suspense fallback={<CommunitySceleton />}>
+                    <GroupContainer
+                        rq={{
+                            fetch: communityService.GET_USERS,
+                            RQKey: ['community'],
+                            staticParam: []
+                        }}
+                        className="pt-5"
+                        renderItem={(item) => <UserItem {...item} />}
+                    />
+                </React.Suspense>
             </div>
         </Page>
     )
