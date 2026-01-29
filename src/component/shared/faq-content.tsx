@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaqBlock } from '../ui'
-import { qParamName } from '@/export'
-import { useQueryParam } from '@/lib/castom-hook'
+import { qpk } from '@/export'
+import { useQ } from '@/lib/castom-hook'
 import { ViewImg } from '../case/modal/img-view-modal'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 
 export const FaqContent: React.FC<Props> = ({ }: Props) => {
-    const { pushQ, pushQParam, clearQParam, param } = useQueryParam(qParamName.viewimg)
+    const { pushQ, pushQParam } = useQ()
 
     return (
         <>
@@ -29,8 +29,16 @@ export const FaqContent: React.FC<Props> = ({ }: Props) => {
                 })}
             </div>
 
-            <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={param} />
+            <Modal />
+            {/* <ViewImg swap={() => clearQParam(qpk.viewimg)} view={param} /> */}
         </>
+    )
+}
+
+const Modal = () => {
+    const { param, clearQParam } = useQ()
+    return (
+        <ViewImg swap={() => clearQParam(qpk.viewimg)} view={param} />
     )
 }
 

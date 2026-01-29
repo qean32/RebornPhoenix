@@ -2,10 +2,10 @@ import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { ModalCross } from '@component/ui'
 import { FilterPushToSession, GroupTokenInModal } from '@component/shared'
-import { useQueryParam, useRequest } from '@/lib/castom-hook'
+import { useQ, useRequest } from '@/lib/castom-hook'
 import { sessionService } from '@/service/session-service'
 import { entityDto, mapDto, objectDto } from '@/model'
-import { qParamName } from '@/export'
+import { qpk } from '@/export'
 import { useTmpObject } from '@/lib/castom-hook/'
 import { ShopSceleton } from '../sceleton'
 
@@ -27,10 +27,10 @@ export const PushToSession: React.FC<Props> = ({
     const [primeList, setPrimeList] = React.useState({})
     const [memoryList, setMemoryList] = React.useState({})
     const { tmpObject, key } = useTmpObject()
-    const { allQ } = useQueryParam('')
+    const { allQ } = useQ(qpk.search)
 
     React.useEffect(() => {
-        if (allQ[qParamName.search]) {
+        if (allQ[qpk.search]) {
             setPrimeList(prev => {
                 return Object.fromEntries(
                     Object.entries(prev).map(item => {
@@ -38,14 +38,14 @@ export const PushToSession: React.FC<Props> = ({
                             item[0],
                             // @ts-ignore
                             item[1].filter(item =>
-                                item.name.includes(allQ[qParamName.search]))]
+                                item.name.includes(allQ[qpk.search]))]
                     })
                 )
             })
         } else {
             setPrimeList(memoryList)
         }
-    }, [allQ[qParamName.search]])
+    }, [allQ[qpk.search]])
 
     React.useEffect(() => {
         setPrimeList(memoryList)
@@ -102,7 +102,7 @@ export const PushToSession: React.FC<Props> = ({
         <div className="relative bg-color w-9/12 h-10/12 rounded-md flex overflow-hidden" onClick={stopPropagation}>
             <ModalCross fn={swap} />
             <div className="w-9/12 h-full overflow-scroll relative">
-                <FilterPushToSession />
+                <FilterPushToSession type={type} />
                 {!!loading && <ShopSceleton />}
                 {
                     Object.values(primeList).map((item: any) => {

@@ -5,4 +5,8 @@ export const serverService = {
     SERVER: () => {
         return requestGet(`${instance}`)
     },
+
+    STATIC: (path: string) => {
+        return requestGet(`${path}`)
+    }
 }

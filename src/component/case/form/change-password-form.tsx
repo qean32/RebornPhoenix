@@ -2,9 +2,9 @@ import React from 'react'
 import { Title, PasswordInput, Button } from '@component/ui'
 import { changePasswordFormDto, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useQueryParam, useToast } from '@/lib/castom-hook'
+import { useMyForm, useQ, useToast } from '@/lib/castom-hook'
 import { authService } from '@/service'
-import { REJECT_SERVER } from '@/export'
+import { qpk, REJECT_SERVER } from '@/export'
 
 interface Props {
 }
@@ -13,7 +13,7 @@ const ACCEESS_ACTION = 'Вы сменили пароль!'
 export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
     const auth = new authService()
     const toast = useToast()
-    const { param: token } = useQueryParam('token')
+    const { param: token } = useQ(qpk.token)
 
     const { form, submitHandler } =
         useMyForm<changePasswordFormDto>(

@@ -1,8 +1,8 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 
 interface Props {
     view: boolean | string
@@ -11,7 +11,7 @@ interface Props {
 
 
 export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
-    const { param } = useQueryParam(qParamName.viewimg)
+    const { param } = useQ(qpk.viewimg)
     const [statePath, setStatePath] = React.useState(param)
 
     React.useEffect(() => {

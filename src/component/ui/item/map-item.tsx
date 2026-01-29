@@ -1,13 +1,13 @@
 import React from 'react'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 
 interface Props {
 }
 
 
 export const MapItem: React.FC<Props> = ({ }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.viewimg)
+    const { pushQ } = useQ(qpk.viewimg)
 
     const clickHAndler = () => {
         pushQ('/img/carousel-item-1.jpg')

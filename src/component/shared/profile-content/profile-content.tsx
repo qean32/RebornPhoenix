@@ -1,8 +1,8 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { Character, Post, Session } from '.'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 import { useParams } from 'react-router-dom'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const classParent = "w-1/3 min-h-full flex flex-col gap-2 rounded-md"
 export const ProfileContent: React.FC<Props> = ({ }: Props) => {
-    const { param } = useQueryParam(qParamName.contentprofile, 'post')
+    const { param } = useQ(qpk.contentprofile, 'post')
     const { id } = useParams()
 
     return (

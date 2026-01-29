@@ -1,12 +1,17 @@
-import { commentDto, entityDto, idDto, objectDto } from "@/model";
+import { commentDto, entityDto, idDto, mapDto, objectDto } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type state = entityDto | objectDto | null | idDto | commentDto
+type state_ = entityDto | objectDto | mapDto
+type stateT = state_ & {
+    isEntity?: boolean
+    isObject?: boolean
+    isMap?: boolean
+}
+export type state = entityDto | objectDto | null | idDto | commentDto | stateT
 export type key =
     'push-entity' |
     'push-object' |
     'push-map' |
-    null |
     'more-entity' |
     'more-character' |
     'more-object' |
@@ -15,7 +20,9 @@ export type key =
     'delete-character' |
     'create-character' |
     'delete-session' |
-    'create-session'
+    'create-session' |
+    'push-object' |
+    null
 type stateDto = { tmpObject: state, key: key }
 
 const initialState: stateDto = { tmpObject: null, key: null }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { fromDataToFormData, stopPropagation } from '@/lib/function'
+import { conventToFormData, stopPropagation } from '@/lib/function'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
 import { useMyForm, useToast } from '@/lib/castom-hook'
 import z from 'zod'
@@ -23,7 +23,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
             img: z.any()
         }),
         (data: { img: any }) => {
-            sessionService.PUSH_IMG_TO_SESSION(fromDataToFormData(data))
+            sessionService.PUSH_IMG_TO_SESSION(conventToFormData(data))
                 .then(({ status, data }) => {
                     if (status == 201) {
                         toast('message', { text: ACCEESS_ACTION })

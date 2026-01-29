@@ -2,11 +2,11 @@ import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormDto, editProfileSchema } from '@/model/schema'
-import { useMyForm, useToast, useUser } from '@/lib/castom-hook'
+import { useMyForm, useQ, useToast, useUser } from '@/lib/castom-hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qParamName, REJECT_SERVER } from '@/export'
-import { fromDataToFormData } from '@/lib/function'
+import { qpk, REJECT_SERVER } from '@/export'
+import { conventToFormData } from '@/lib/function'
 
 interface Props {
 }
@@ -15,17 +15,19 @@ const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
     const toast = useToast()
+    const { pushQ } = useQ('forceupadeteuser')
 
     const { form, submitHandler } =
         useMyForm<editProfileFormDto>(
             editProfileSchema,
             (data: editProfileFormDto) => {
-                profileService.UPDATE_PROFILE(fromDataToFormData(data))
+                profileService.UPDATE_PROFILE(conventToFormData(data))
                     .then(({ status }) => {
                         if (status == 200 || status == 201) {
                             toast('message', { text: ACCEESS_ACTION })
+                            pushQ('true')
                             setTimeout(() => {
-                                navigate(`/?${qParamName.forceupadeteuser}=true`)
+                                navigate(`/?${qpk.forceupadeteuser}=true`)
                             }, 600)
                         }
                     })

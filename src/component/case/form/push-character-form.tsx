@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
 import { profileService } from '@/service'
 import { REJECT_SERVER } from '@/export'
-import { fromDataToFormData } from '@/lib/function'
+import { conventToFormData } from '@/lib/function'
 
 interface Props {
     children: React.ReactNode
@@ -22,7 +22,7 @@ export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => 
             pushCharacterSchema,
             (data: pushCharacterDto) => {
                 swap()
-                profileService.CREATE_CHARACTER(fromDataToFormData(data))
+                profileService.CREATE_CHARACTER(conventToFormData(data))
                     .then(({ status, data }) => {
                         if (status == 201) {
                             toast('message', { text: ACCEESS_ACTION })

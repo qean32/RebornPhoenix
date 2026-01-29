@@ -1,7 +1,8 @@
-import { useQueryParam } from "./use-query-param"
+import { qpk } from "@/export"
+import { useQ } from "./use-q"
 
 export const useGrid = () => {
-    const { param, pushQ, clearQ } = useQueryParam('grid')
+    const { param, pushQ, clearQ } = useQ(qpk.grid)
 
     const swap = () => {
         if (param) {

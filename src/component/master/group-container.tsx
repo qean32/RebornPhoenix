@@ -1,9 +1,9 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
-import { useDynamickPagination, useQueryParam } from '@/lib/castom-hook';
+import { useDynamickPagination, useQ } from '@/lib/castom-hook';
 import { userDto } from '@/model';
-import { qParamName } from '@/export';
+import { qpk } from '@/export';
 
 interface Props {
     className?: string
@@ -27,9 +27,9 @@ export const GroupContainer: React.FC<Props> = ({
         staticParam
     },
 }: Props) => {
-    const { param, allQ } = useQueryParam(qParamName.search)
+    const { param, allQ } = useQ(qpk.search)
     const { response, loading, refHandler, isEnd } =
-        useDynamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ['date'], allQ['tags'])
+        useDynamickPagination<userDto>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ[qpk.date], allQ[qpk.tags])
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>

@@ -48,6 +48,7 @@ export const TextArea: React.FC<Props> = ({
                     <DangerIcon />
                 </HoverHint>}
             <div
+                suppressetContentEditableWarning={true}
                 contentEditable={true}
                 id={id}
                 {...register(name)}
@@ -68,7 +69,6 @@ export const TextArea: React.FC<Props> = ({
                 }}
                 // @ts-ignore
                 placeholder={title}
-                suppressetContentEditableWarning={true}
                 className={cn("outline-0 bg-color-dark w-full rounded-md min-h-[200px]", className)}
             >
                 {children}

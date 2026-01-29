@@ -2,8 +2,8 @@ import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
 import { ModalCross, NoFindData, Search } from '@component/ui'
 import { UserInModal } from '@/component/ui/item'
-import { useQueryParam, useRequest, useToast } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ, useRequest, useToast } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 import { communityService } from '@/service'
 import { userDto } from '@/model'
 import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
@@ -15,7 +15,7 @@ interface Props {
 
 
 export const Users: React.FC<Props> = ({ swap }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.pushcharacter)
+    const { pushQ } = useQ(qpk.pushcharacter)
     const dispath = useAppDispatch()
     const { session } = useAppSelector(state => state.session)
     const toast = useToast()
@@ -29,7 +29,7 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
         toast('message', { text: 'Обработка..' })
     }
 
-    const { param } = useQueryParam(qParamName.search)
+    const { param } = useQ(qpk.search)
     const [users, loading] = useRequest<userDto[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
     const [myusers] = useRequest<userDto[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
 

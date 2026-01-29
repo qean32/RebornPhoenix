@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props) => {
+export const GroupTokenInModal: React.FC<Props> = React.memo(({ renderItem, items }: Props) => {
     const dispath = useAppDispatch()
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const object = getHTMLData(e, true)
@@ -32,4 +32,4 @@ export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props)
             </div>
         </div>
     )
-}
+})

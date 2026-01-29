@@ -1,4 +1,4 @@
-export const fromDataToFormData = (data: any) => {
+export const conventToFormData = (data: any) => {
     const form = new FormData()
 
     Object.entries(data).forEach(item => {

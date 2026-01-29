@@ -1,41 +1,24 @@
 import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame } from "@component/shared"
-import { usePage, useQueryParam, useRequest } from "@lib/castom-hook"
-import { getParamName } from "@lib/function"
+import { usePage, useQ, useRequest } from "@lib/castom-hook"
+import { getParamName, initSetSession } from "@lib/function"
 import React from "react"
 import { GameArea } from "@/component/master"
-import { qParamName } from "@/export"
+import { qpk } from "@/export"
 import { useParams } from "react-router-dom"
 import { sessionService } from "@/service/session-service"
-import { useAppDispatch } from "@/lib/castom-hook/redux"
-import { setSession } from "@/store/session-store"
 
 export const Session = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
     const [session] = useRequest<{ data: string, bestiary: string }>(() => sessionService.GET_SESSION(Number(id)), [`session-${id}`])
-    const dispath = useAppDispatch()
+    const setSession = initSetSession()
 
     React.useEffect(() => {
-        const fn = async () => {
-            const data = fetch(`${process.env.SERVER_HOST}api/static/${session.data}/`)
-            const bestiary = fetch(`${process.env.SERVER_HOST}api/static/${session.bestiary}/`)
-            const jsonData = (await data).json()
-            const jsonBestiary = (await bestiary).json()
-
-            dispath(setSession({
-                bestiary: await jsonBestiary,
-                session: await jsonData,
-                info: {
-                    bestiary: session.bestiary,
-                    session: session.data
-                }
-            }))
+        if (session?.data) {
+            setSession(session)
         }
-        if (session?.data)
-            fn();
     }, [session])
-
 
     return (
         <>
@@ -50,15 +33,15 @@ export const Session = () => {
 }
 
 const Modal: React.FC = () => {
-    const { allQ, clearQParam } = useQueryParam('')
+    const { allQ, clearQParam } = useQ()
 
 
     return (
         <>
-            <PushCharacterInSession swap={() => clearQParam(qParamName.pushcharacter)} view={Number(allQ[qParamName.pushcharacter])} />
-            <ViewImg swap={() => clearQParam(qParamName.viewimg)} view={!!allQ[qParamName.viewimg]} />
+            <PushCharacterInSession swap={() => clearQParam(qpk.pushcharacter)} view={Number(allQ[qpk.pushcharacter])} />
+            <ViewImg swap={() => clearQParam(qpk.viewimg)} view={!!allQ[qpk.viewimg]} />
             <ObjectMoreDetailed />
-            <ActionEntity swap={() => clearQParam(qParamName.actionentity)} view={allQ[qParamName.actionentity]} />
+            <ActionEntity swap={() => clearQParam(qpk.actionentity)} view={allQ[qpk.actionentity] ?? ''} />
         </>
     )
 }

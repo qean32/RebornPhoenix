@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaqImage } from './faq-image'
 import { useHandlerScrollBetween } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { qpk } from '@/export'
 
 interface Props {
     title: string
@@ -26,7 +26,7 @@ export const FaqBlock: React.FC<Props> = React.memo(({
     const { boolean, refHandler } = useHandlerScrollBetween()
     React.useEffect(() => {
         if (boolean) {
-            pushQParam(qParamName.anchorlink, title)
+            pushQParam(qpk.anchorlink, title)
         }
     }, [boolean])
 

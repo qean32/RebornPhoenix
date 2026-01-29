@@ -2,7 +2,7 @@ import { UploadImgArea, Button, TextInput } from '@/component/ui'
 import { dftSource, REJECT_SERVER } from '@/export'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/castom-hook'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { fromDataToFormData, initPushDataToSession } from '@/lib/function'
+import { conventToFormData, initPushDataToSession } from '@/lib/function'
 import { pushMapToSessionFormDto, pushMapToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object'
@@ -30,7 +30,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
         useMyForm<pushMapToSessionFormDto>(
             pushMapToSessionSchema,
             (data: pushMapToSessionFormDto) => {
-                sessionService.CREATE_MAP(fromDataToFormData(data))
+                sessionService.CREATE_MAP(conventToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {
                             toast('push-entity', { name: data.name })

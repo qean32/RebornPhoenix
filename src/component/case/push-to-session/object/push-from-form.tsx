@@ -1,7 +1,7 @@
 import { Button, TextInput, UploadImgArea } from '@/component/ui'
 import { dftSource, REJECT_SERVER } from '@/export'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/castom-hook'
-import { fromDataToFormData, initPushDataToSession } from '@/lib/function'
+import { conventToFormData, initPushDataToSession } from '@/lib/function'
 import { pushObjectToSessionFormDto, pushObjectToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/store'
@@ -30,7 +30,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
         useMyForm<pushObjectToSessionFormDto>(
             pushObjectToSessionSchema,
             (data: pushObjectToSessionFormDto) => {
-                sessionService.CREATE_OBJECT(fromDataToFormData(data))
+                sessionService.CREATE_OBJECT(conventToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {
                             toast('push-entity', { name: data.name })

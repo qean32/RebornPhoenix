@@ -1,22 +1,23 @@
-import { useQueryParam } from "@/lib/castom-hook"
+import { qpk } from "@/export"
+import { useQ } from "@/lib/castom-hook"
 import { cn } from "@/lib/function"
 
 interface SelectProps {
     className?: string
-    options: { value: string, title: string, id: number }[]
+    options: { value: string, title: string }[]
 }
 
 
 export const SelectToQuery: React.FC<SelectProps> = ({ className = 'w-fit', options }: SelectProps) => {
-    const { pushQ } = useQueryParam('select')
+    const { pushQ } = useQ(qpk.select)
 
     return (
         <select
             className={cn('flex-1', className)}
             onChange={e => pushQ(e.target.value)}
         >
-            {options.map(({ title, value, id }) => {
-                return <option key={id} value={value}>{title}</option>
+            {options.map(({ title, value }) => {
+                return <option key={value} value={value}>{title}</option>
             })}
         </select>
     )

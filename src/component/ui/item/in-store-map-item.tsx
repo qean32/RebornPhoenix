@@ -1,11 +1,11 @@
 import React from 'react'
 import { mapDto } from '@/model'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 
 
 export const InStoreMapItem: React.FC<mapDto> = (item: mapDto) => {
-    const { pushQ } = useQueryParam(qParamName.viewimg)
+    const { pushQ } = useQ(qpk.viewimg)
 
     const clickHAndler = () => {
         pushQ(item.path)

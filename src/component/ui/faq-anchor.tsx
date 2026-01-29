@@ -1,5 +1,5 @@
-import { qParamName } from '@/export';
-import { useQueryParam } from '@/lib/castom-hook';
+import { qpk } from '@/export';
+import { useQ } from '@/lib/castom-hook';
 import { cn } from '@/lib/function';
 import React from 'react'
 // @ts-ignore
@@ -10,7 +10,7 @@ interface Props {
 
 
 export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
-    const { param } = useQueryParam(qParamName.anchorlink)
+    const { param } = useQ(qpk.anchorlink)
 
 
     return (

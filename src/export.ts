@@ -1,10 +1,12 @@
 import { modalAnimationDto } from './model'
+import { keys } from './store/q-store'
 
 export { axiosInstance } from './service/instance'
 
 export const tokenStorageKey = 'token-storage'
 export const invalidTokenMessage = 'invalid token!'
-export const qParamName = {
+
+export const qpk: { [key in keys]: keys } = {
     contentprofile: 'contentprofile',
     viewimg: 'viewimg',
     contentsession: 'contentsession',
@@ -12,12 +14,17 @@ export const qParamName = {
     actionentity: 'actionentity',
     anchorlink: "anchorlink",
     search: 'search',
-    forceupadeteuser: 'forceupadeteuser'
+    forceupadeteuser: 'forceupadeteuser',
+    date: 'date',
+    grid: 'grid',
+    tags: 'tags',
+    select: 'select',
+    token: 'token',
 }
 
 export const tagsArray = [
-    'dnd',
-    'zxccursed',
+    'd&d',
+    'wtfit',
     'web'
 ]
 
@@ -65,6 +72,23 @@ export const title = {
     profile: 'Профиль',
     reserPassword: 'Востановление аккаунта',
     faq: 'Часто задаваемые вопросы',
+}
+
+export const sourses = {
+    map: [
+        { value: '0', title: 'Все' },
+        { value: '2', title: 'Карты' },
+    ],
+    entity: [
+        { value: '0', title: 'Все' },
+        { value: '3', title: 'Люди' },
+        { value: '4', title: 'Звери' },
+        { value: '5', title: 'Фентези сущеста' }
+    ],
+    object: [
+        { value: '0', title: 'Все' },
+        { value: '6', title: 'Сооружения' },
+    ]
 }
 
 export const tip = [

@@ -2,12 +2,12 @@ import React from "react";
 import useImage from "use-image";
 import { changeEntity } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
-import { qParamName } from "@/export";
-import { useQueryParam } from "../use-query-param";
+import { qpk } from "@/export";
+import { useQ } from "../use-q";
 
 export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
     const [image] = useImage(path);
-    const { pushQ } = useQueryParam(qParamName.actionentity)
+    const { pushQ } = useQ(qpk.actionentity)
 
     const rectRef = React.useRef<null | HTMLCanvasElement | any>();
 
