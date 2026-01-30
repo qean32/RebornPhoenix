@@ -1,5 +1,5 @@
 import { Page, ViewAuthor } from "@component/master/h-order-component"
-import { BanAction, BanReason, ButtonSubscription, LinkPrime, Logout, UserInfo } from "@component/ui"
+import { BanAction, BanReason, ButtonSubscription, LinkPrime, Logout, NoFindData, UserInfo } from "@component/ui"
 import { ProfileContent, ProfileContentSwith } from "@component/shared/profile-content"
 import { usePage, useRequest } from "@lib/castom-hook"
 import { getParamName } from "@lib/function"
@@ -10,8 +10,12 @@ import { profileService } from "@/service"
 export const Profile = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const [user] = useRequest<Omit<userDto, 'email'>>(() => profileService.GET_USER_INFO(id ?? 0), [`profile-info-${id}`])
+    const [user, loading] = useRequest<Omit<userDto, 'email'>>(() => profileService.GET_USER_INFO(id ?? 0), [`profile-info-${id}`])
     const [sub] = useRequest(() => profileService.GET_SUBSCRIBE(Number(id)), [`get-subscribe-${id}`])
+
+    if (!user?.id && !loading) {
+        return <NoFindData title="Пользователь не найден!" view className="py-5" />
+    }
 
     return (
         <>

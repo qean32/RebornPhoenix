@@ -5,7 +5,6 @@ import { commentDto } from '@/model'
 import { useRequest } from '@/lib/castom-hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
-import { CommentsSceleton } from '@/component/case/sceleton/comments-sceleton'
 
 interface Props {
 }
@@ -26,10 +25,10 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
                     ?
                     <p className='pl-6 py-2 text-2xl'>Коментарии</p>
                     :
-                    <p className='pl-6 pb-2 text-xl'>Пока у поста нет коментариев!</p>
+                    <p className='pl-6 pb-2 text-xl'>У поста пока нет коментариев!</p>
             }
 
-            {!!loading && <CommentsSceleton />}
+            {/* {!!loading && <CommentsSceleton />} */}
 
             {!!comments?.length &&
                 comments?.map(item => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, UnwrapFiles } from '@component/ui'
+import { Button, NoFindData, UnwrapFiles } from '@component/ui'
 import { ViewAdmin, ViewAuthor } from '@component/master/h-order-component'
 import { Modal } from '@component/case/modal'
 import { MainBlock, PostInfo, CountBlock } from '.'
@@ -21,7 +21,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [`my-like-${id}`])
-    const [post] = useRequest<postDto>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
+    const [post, loading] = useRequest<postDto>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
     const deletePost = () => {
         forumService.DELETE_POST(id ?? 0)
@@ -29,6 +29,10 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                 toast('message', { text: ACCEESS_ACTION })
                 navigate('/');
             })
+    }
+
+    if (!loading && !post?.id) {
+        return <NoFindData title='Пост не найден!' view className='py-5' />
     }
 
     if (post?.title) {

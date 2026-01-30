@@ -12,7 +12,7 @@ export const CommentsSceleton: React.FC<Props> = ({ }: Props) => {
         <div className="px-5">
             <ContentLoader
                 width='100%'
-                height='220px'
+                height='120px'
                 {...contentLoaderProps}
             >
                 {
