@@ -1,22 +1,19 @@
 import React from 'react'
-import { FaqImage } from './faq-image'
+import { InfoImage } from './info-image'
 import { useHandlerScrollBetween } from '@/lib/castom-hook'
 import { qpk } from '@/export'
+import { infoBlockContentDto } from '@/model'
 
 interface Props {
     title: string
     pushQ: any
     pushQParam: any
-    content: {
-        image?: string,
-        text: string,
-        subTitle?: string
-    }[],
+    content: infoBlockContentDto,
     id: number
 }
 
 
-export const FaqBlock: React.FC<Props> = React.memo(({
+export const InfoBlock: React.FC<Props> = React.memo(({
     content,
     title,
     pushQ,
@@ -41,7 +38,7 @@ export const FaqBlock: React.FC<Props> = React.memo(({
                             {item.text}
                         </p>
                         {item.image &&
-                            <FaqImage
+                            <InfoImage
                                 path={item.image}
                                 pushQ={pushQ}
                             />

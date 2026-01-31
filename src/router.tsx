@@ -32,6 +32,7 @@ export const Router = () => {
                 <Route element={<pages.Main />} path="/" />
                 <Route element={<pages.Community />} path="/community" />
                 <Route element={<pages.Faq />} path="/faq" />
+                <Route element={<pages.CommunityRules />} path="/community-rules" />
 
                 <Route element={<pages.Forum />} path="/forum" />
                 <Route element={<pages.Department />} path="/department/:name" />

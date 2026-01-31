@@ -6,10 +6,11 @@ import React from 'react'
 import { HashLink as Link } from 'react-router-hash-link';
 
 interface Props {
+    qa: string[]
 }
 
 
-export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
+export const InfoAnchor: React.FC<Props> = ({ qa }: Props) => {
     const { param } = useQ(qpk.anchorlink)
 
 
@@ -26,12 +27,3 @@ export const FaqAnchor: React.FC<Props> = ({ }: Props) => {
         </div>
     )
 }
-
-const qa = [
-    "Что такое d&d",
-    "Как играть?",
-    'Понятие "слабое d&d"',
-    "Кастомные сценарии",
-    "Форум",
-    "Мне выдали блокировку",
-]

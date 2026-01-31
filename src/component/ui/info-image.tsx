@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const FaqImage: React.FC<Props> = ({
+export const InfoImage: React.FC<Props> = ({
     path,
     pushQ
 }: Props) => {

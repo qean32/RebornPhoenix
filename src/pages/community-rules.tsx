@@ -1,19 +1,23 @@
 import { Page } from "@component/master/h-order-component"
 import { title } from "@/export"
-import { FaqContent } from "@/component/shared"
-import { FaqAnchor } from "@/component/ui"
+import { InfoContent } from "@/component/shared"
+import { InfoAnchor } from "@/component/ui"
 import { usePage } from "@/lib/castom-hook"
+import { infoBlockDto } from "@/model"
 
 export const CommunityRules = () => {
-    const { } = usePage(title.faq)
+    const { } = usePage(title.communityRules)
 
 
     return (
         <Page size="w-[85%]" className="pb-20 bg-color-dark">
             <div className="flex gap-5">
-                <FaqContent />
-                <FaqAnchor />
+                <InfoContent q={q} title={['правила нашего', 'сообщества']} />
+                <InfoAnchor qa={qa} />
             </div>
         </Page>
     )
 }
+
+const qa: string[] = []
+const q: infoBlockDto[] = []
