@@ -23,7 +23,7 @@ export const qpk: { [key in keys]: keys } = {
 }
 
 export const tagsArray = [
-    'd&d',
+    'dnd',
     'wtfit',
     'web'
 ]

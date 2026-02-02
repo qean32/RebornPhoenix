@@ -19,13 +19,13 @@ export const ImgCarousel: React.FC<Props> = ({ }: Props) => {
         setValue(getHTMLData(e, false, 'value'))
     }
 
-    const scroll = (value: number) => {
+    const scroll = React.useCallback((value: number) => {
         if (ref.current)
             ref.current.scrollTo({
                 top: 0,
                 left: ref.current.scrollLeft + value,
             })
-    }
+    }, [])
 
     return (
         <div className="relative bg-color w-11/12 h-[140px] p-5 pb-0 rounded-md translate-y-[250%] flex gap-5" onClick={(e) => { stopPropagation(e); clickHandler(e) }}>

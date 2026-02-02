@@ -12,7 +12,7 @@ interface Props {
 
 
 export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
-    const { pushQ, pushQParam } = useQ()
+    const { pushQ, pushQParam } = useQ(qpk.viewimg)
 
     return (
         <>
@@ -38,7 +38,7 @@ export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
 }
 
 const Modal = () => {
-    const { param, clearQParam } = useQ()
+    const { param, clearQParam } = useQ(qpk.viewimg)
     return (
         <ViewImg swap={() => clearQParam(qpk.viewimg)} view={param} />
     )

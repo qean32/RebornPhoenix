@@ -20,14 +20,14 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     const { session } = useAppSelector(state => state.session)
     const toast = useToast()
 
-    const pushCharacterHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const pushCharacterHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         pushQ(getHTMLData(e, true).id)
-    }
+    }, [])
 
-    const pushUserHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const pushUserHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         dispath(pushUser({ id: getHTMLData(e, true).id }))
         toast('message', { text: 'Обработка..' })
-    }
+    }, [])
 
     const { param } = useQ(qpk.search)
     const [users, loading] = useRequest<userDto[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])

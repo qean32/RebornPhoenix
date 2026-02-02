@@ -8,7 +8,7 @@ interface Props extends postDto {
     className?: string
 }
 
-export const PostItem: React.FC<Props> = ({
+export const PostItem: React.FC<Props> = React.memo(({
     tags,
     title,
     user,
@@ -39,4 +39,4 @@ export const PostItem: React.FC<Props> = ({
             </Link>
         )
     }
-}
+})
