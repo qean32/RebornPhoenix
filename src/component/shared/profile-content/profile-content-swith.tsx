@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 
 interface Props {
 }
@@ -14,7 +14,7 @@ const map = new Map([
 
 
 export const ProfileContentSwith: React.FC<Props> = ({ }: Props) => {
-    const { pushQ, param } = useQueryParam(qParamName.pContent)
+    const { pushQ, param } = useQ(qpk.contentprofile)
 
     const swap = (e: React.MouseEvent<HTMLDivElement>) => {
         // @ts-ignore

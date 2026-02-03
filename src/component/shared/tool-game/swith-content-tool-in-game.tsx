@@ -1,7 +1,7 @@
 import React from 'react'
 import { ButtonInGroup } from '@component/ui'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 import { getHTMLData, initFunctionRoll } from '@/lib/function'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 
 export const SwithContentLiftSideGame: React.FC<Props> = ({ }: Props) => {
-    const { pushQ } = useQueryParam(qParamName.sContent)
+    const { pushQ } = useQ(qpk.contentsession)
 
     const swapGameView = (e: React.MouseEvent<HTMLButtonElement>) => {
         pushQ(getHTMLData(e, false, 'value'))

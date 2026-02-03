@@ -2,8 +2,8 @@ import React from 'react'
 import { useBoolean } from '@/lib/castom-hook'
 import { cn } from '@/lib/function'
 import { UnwrapTags } from '@component/ui'
-import { f_tag } from '@/f'
 import { useFormContext } from 'react-hook-form'
+import { tagsArray } from '@/export'
 
 interface Props {
     className?: string
@@ -70,7 +70,7 @@ export const PushTagInForm: React.FC<Props> = ({
             {
                 view &&
                 <div className="pointer-events-none absolute bottom-0 translate-y-[120%]" onClick={clickHandlerPush}>
-                    <UnwrapTags className='z-50 bg-color-dark px-2' tags={f_tag.join(',')} />
+                    <UnwrapTags className='z-50 bg-color-dark px-2' tags={tagsArray.join(',')} />
                 </div>
             }
         </div>

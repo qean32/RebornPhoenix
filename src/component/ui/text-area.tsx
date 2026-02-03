@@ -1,9 +1,9 @@
 import React from 'react'
-import { cn } from '../../lib/function'
+import { cn, generateId } from '../../lib/function'
 import { useFormContext } from 'react-hook-form'
 import { HoverHint } from '../master/h-order-component'
 import { DangerIcon } from '.'
-import { separator } from '@/export'
+import { separator, separatorLink } from '@/export'
 
 interface Props {
     className?: string
@@ -27,15 +27,20 @@ export const TextArea: React.FC<Props> = ({
     convertHTML = false,
     initValue = false
 }: Props) => {
-    const { register, formState: { errors }, setValue } = useFormContext()
+    const { register, formState: { errors }, setValue, watch } = useFormContext()
+    const id = generateId().toString()
     const textError = errors[name]?.message as string;
     React.useEffect(() => {
         if (initValue) {
             setValue(name, children)
         }
     }, [])
-
-
+    React.useEffect(() => {
+        if (!watch(name) && !initValue) {
+            // @ts-ignore
+            document.getElementById(id).innerHTML = '';
+        }
+    }, [watch(name)])
     return (
         <div className={cn("relative", parentDivclassName)}>
             {textError &&
@@ -43,22 +48,27 @@ export const TextArea: React.FC<Props> = ({
                     <DangerIcon />
                 </HoverHint>}
             <div
+                suppressetContentEditableWarning={true}
                 contentEditable={true}
+                id={id}
                 {...register(name)}
                 ref={ref}
                 onInput={e => {
+                    // @ts-ignore
+                    const links = e.target.innerHTML.match(/\{(.*?)\}/g)
+                    // @ts-ignore
+                    const text = e.target.innerHTML.replaceAll('/', '').replaceAll('&nbsp;', '').split('<div>')
                     setValue(name,
                         !convertHTML ?
                             e.currentTarget.textContent
                             :
                             // @ts-ignore
-                            e.target.innerHTML.replaceAll('/', '').replaceAll('&nbsp;', '').split('<div>').join(separator)
+                            `${text.join(separator)}${separatorLink}${links?.join(separator).replaceAll('/', ';')}`
                         , { shouldValidate: true }
                     )
                 }}
                 // @ts-ignore
                 placeholder={title}
-                suppressContentEditableWarning={true}
                 className={cn("outline-0 bg-color-dark w-full rounded-md min-h-[200px]", className)}
             >
                 {children}

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useBoolean, useQueryParam } from '@/lib/castom-hook'
+import { useBoolean, useQ } from '@/lib/castom-hook'
 import { cn } from '@/lib/function'
 import { UnwrapTags } from '@component/ui'
-import { f_tag } from '@/f'
+import { qpk, tagsArray } from '@/export'
 
 interface Props {
     className?: string
@@ -12,7 +12,7 @@ interface Props {
 export const PushTagInFilter: React.FC<Props> = ({
     className,
 }: Props) => {
-    const { param: tags, pushQ } = useQueryParam('tags')
+    const { param: tags, pushQ } = useQ(qpk.tags)
     const { boolean: view, swap } = useBoolean()
 
     const clickHandlerPush = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -42,7 +42,7 @@ export const PushTagInFilter: React.FC<Props> = ({
             {
                 view &&
                 <div className="pointer-events-none absolute bottom-0 translate-y-[120%]" onClick={clickHandlerPush}>
-                    <UnwrapTags className='z-50 bg-color-darkness px-2' tags={f_tag.join(',')} />
+                    <UnwrapTags className='z-50 bg-color-darkness px-2' tags={tagsArray.join(',')} />
                 </div>
             }
         </div>

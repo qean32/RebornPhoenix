@@ -2,17 +2,31 @@ import React from 'react'
 import { Title, Button, TextInput } from '@component/ui'
 import { resetPasswordFormDto, resetPasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { authService } from '@/service'
+import { REJECT_SERVER } from '@/export'
 
 interface Props {
 }
 
 
+const ACCEESS_ACTION = 'На вашу почту отпраленно сообщение!'
 export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
+    const auth = new authService()
+    const toast = useToast()
+
     const { form, submitHandler } =
         useMyForm<resetPasswordFormDto>(
             resetPasswordSchema,
-            () => { },
+            (data: resetPasswordFormDto) => {
+                auth.RESET_PASSWORD(data)
+                    .then(({ status }) => {
+                        if (status == 200) {
+                            toast('message', { text: ACCEESS_ACTION }, 10000)
+                        }
+                    })
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
+            },
             () => { }
         )
 

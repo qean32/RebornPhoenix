@@ -1,3 +1,4 @@
+import { CommentBlock } from "@/component/shared/post"
 import { Page } from "@component/master/h-order-component"
 import { PostContent } from "@component/shared"
 import { Crumb } from "@component/ui"
@@ -11,6 +12,7 @@ export const Post = () => {
         <Page size="w-[65%]">
             <Crumb />
             <PostContent />
+            <CommentBlock />
         </Page>
     )
 }

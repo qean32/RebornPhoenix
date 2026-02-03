@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props) => {
+export const GroupTokenInModal: React.FC<Props> = React.memo(({ renderItem, items }: Props) => {
     const dispath = useAppDispatch()
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const object = getHTMLData(e, true)
@@ -21,15 +21,15 @@ export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props)
 
     return (
         <div className="ml-5 rounded-sm pb-2 pt-2">
-            <Title className='pb-2 pl-3'>{items[0].source.name}</Title>
+            <Title className='pb-2 pl-3'>{items[0]?.source?.name}</Title>
             <div className={cn('grid gap-y-2 grid-cols-5 adaptive2k-grid-column-6')} onClick={clickHandler}>
                 {
                     !!items.length &&
                     items.map(item => {
-                        return renderItem(item)
+                        return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
                     })
                 }
             </div>
         </div>
     )
-}
+})

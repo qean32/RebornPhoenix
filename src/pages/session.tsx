@@ -1,15 +1,24 @@
-import { PushCharacterInSession, ViewImg, ActionEntity } from "@component/case/modal/index-group"
+import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame } from "@component/shared"
-import { usePage, useQueryParam } from "@lib/castom-hook"
-import { getParamName } from "@lib/function"
+import { usePage, useQ, useRequest } from "@lib/castom-hook"
+import { getParamName, initSetSession } from "@lib/function"
 import React from "react"
 import { GameArea } from "@/component/master"
-import { qParamName } from "@/export"
-import { ObjectMoreDetailed } from "@/component/case/modal/object-more-detailed"
+import { qpk } from "@/export"
+import { useParams } from "react-router-dom"
+import { sessionService } from "@/service/session-service"
 
 export const Session = () => {
     const { } = usePage(getParamName())
+    const { id } = useParams()
+    const [session] = useRequest<{ data: string, bestiary: string }>(() => sessionService.GET_SESSION(Number(id)), [`session-${id}`])
+    const setSession = initSetSession()
 
+    React.useEffect(() => {
+        if (session?.data) {
+            setSession(session)
+        }
+    }, [session])
 
     return (
         <>
@@ -24,15 +33,15 @@ export const Session = () => {
 }
 
 const Modal: React.FC = () => {
-    const { allQ, clearQParam } = useQueryParam('')
+    const { allQ, clearQParam } = useQ()
 
 
     return (
         <>
-            <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
+            <PushCharacterInSession swap={() => clearQParam(qpk.pushcharacter)} view={Number(allQ[qpk.pushcharacter])} />
+            <ViewImg swap={() => clearQParam(qpk.viewimg)} view={!!allQ[qpk.viewimg]} />
             <ObjectMoreDetailed />
-            <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
+            <ActionEntity swap={() => clearQParam(qpk.actionentity)} view={allQ[qpk.actionentity] ?? ''} />
         </>
     )
 }

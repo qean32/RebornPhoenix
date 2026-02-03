@@ -3,7 +3,8 @@ import DatePicker from "react-datepicker";
 import { ru } from 'date-fns/locale/ru';
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useQueryParam } from "@/lib/castom-hook";
+import { useQ } from "@/lib/castom-hook";
+import { qpk } from "@/export";
 
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -11,7 +12,7 @@ import { useQueryParam } from "@/lib/castom-hook";
 export const DatePickerInFilter = () => {
     const ref = useRef(new Date())
     const [startDate, setStartDate] = useState(ref.current);
-    const { pushQ } = useQueryParam('date')
+    const { pushQ } = useQ(qpk.date)
 
     useEffect(() => {
         if (startDate != ref.current)

@@ -28,6 +28,7 @@ export const Button: React.FC<Props> = ({
     return (
         <button
             onClick={fn}
+            value={'button'}
             type={type}
             className={cn(
                 'transition-300 rounded-md cursor-pointer px-2 py-2',

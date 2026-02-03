@@ -1,62 +1,67 @@
 import React from 'react'
-import { stopPropagation } from '@/lib/function'
-import { Modal } from '@component/master/h-order-component'
+import { conventToFormData, stopPropagation } from '@/lib/function'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
+import { sessionService } from '@/service/session-service'
+import { REJECT_SERVER } from '@/export'
+import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { pushImg } from '@/store/session-store'
 
 interface Props {
-    view: boolean
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
+const ACCEESS_ACTION = 'Изображение добавленно'
+export const PushImg: React.FC<Props> = ({ swap }: Props) => {
+    const toast = useToast()
+    const dispath = useAppDispatch()
 
-export const PushImg: React.FC<Props> = ({ view, swap }: Props) => {
-    const { form, submitHandler } = useMyForm<{ path: any }>(
+    const { form, submitHandler } = useMyForm<{ img: any }>(
         z.object({
-            path: z.any()
+            img: z.any()
         }),
-        () => { },
+        (data: { img: any }) => {
+            sessionService.PUSH_IMG_TO_SESSION(conventToFormData(data))
+                .then(({ status, data }) => {
+                    if (status == 201) {
+                        toast('message', { text: ACCEESS_ACTION })
+                        dispath(pushImg({ img: data }))
+                    }
+                })
+                .catch(() => toast('message', { text: REJECT_SERVER }))
+        },
         () => { }
     )
 
 
     return (
-        <Modal
-            swap={swap}
-            view={view}
-            animation={{
-                open: 'modal-open',
-                close: 'modal-close'
-            }}
-        >
-            <FormProvider {...form}>
+        <FormProvider {...form}>
 
-                <form
-                    className="bg-color w-5/12 h-8/12 rounded-md flex flex-col overflow-hidden relative"
-                    onClick={stopPropagation}
-                    onSubmit={submitHandler}
-                >
-                    <ModalCross fn={swap} />
-                    <div className="m-7 h-10/12">
-                        <UploadImgArea
-                            className='h-full w-full'
-                            name='path'
-                        />
-                    </div>
-                    <div className="flex gap-5 justify-end p-5 flex-1 items-end">
-                        <Button
-                            variant='ghost'
-                            fn={swap}
-                        ><p>Отмена</p></Button>
-                        <Button
-                            variant='acceess'
-                            type='submit'
-                        ><p>Добавить</p></Button>
-                    </div>
-                </form>
-            </FormProvider>
-        </Modal>
+            <form
+                className="bg-color w-5/12 h-8/12 rounded-md flex flex-col overflow-hidden relative"
+                onClick={stopPropagation}
+                onSubmit={submitHandler}
+            >
+                <ModalCross fn={swap} />
+                <div className="m-7 h-10/12">
+                    <UploadImgArea
+                        className='h-full w-full'
+                        name='img'
+                    />
+                </div>
+                <div className="flex gap-5 justify-end p-5 flex-1 items-end">
+                    <Button
+                        variant='ghost'
+                        fn={swap}
+                    ><p>Отмена</p></Button>
+                    <Button
+                        variant='acceess'
+                        type='submit'
+                    ><p>Добавить</p></Button>
+                </div>
+            </form>
+        </FormProvider>
     )
 }

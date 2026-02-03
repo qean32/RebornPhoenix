@@ -1,29 +1,47 @@
 import React from 'react'
-import { Title, TextInput } from '@component/ui'
+import { Title, TextInput, ImgInput } from '@component/ui'
 import { pushCharacterDto, pushCharacterSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
+import { profileService } from '@/service'
+import { REJECT_SERVER } from '@/export'
+import { conventToFormData } from '@/lib/function'
 
 interface Props {
     children: React.ReactNode
+    swap: Function
 }
 
+const ACCEESS_ACTION = 'Персонаж создан'
+export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => {
+    const toast = useToast()
+    const { setTmp } = useTmpObject()
 
-export const PushCharaterForm: React.FC<Props> = ({ children }: Props) => {
     const { form, submitHandler } =
         useMyForm<pushCharacterDto>(
             pushCharacterSchema,
-            () => { },
+            (data: pushCharacterDto) => {
+                swap()
+                profileService.CREATE_CHARACTER(conventToFormData(data))
+                    .then(({ status, data }) => {
+                        if (status == 201) {
+                            toast('message', { text: ACCEESS_ACTION })
+                            setTmp({ payload: data, key: 'create-character' })
+                        }
+                    })
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
+            },
             () => { }
         )
 
     return (
         <FormProvider {...form}>
 
-            <form action="" onSubmit={submitHandler} className='flex flex-col h-full'>
+            <form action="" onSubmit={submitHandler} className='flex flex-col h-full gap-4'>
                 <Title className='mb-1'>ДОБАВЛЕНИЕ ИГРЫ</Title>
-                <p className='pb-6'>используйте персонажей с сайта <a href="">aternia.games</a>!</p>
-                <TextInput placeHolder='Ссылка' name='path' />
+                <TextInput placeHolder='Имя' name='name' />
+                <TextInput placeHolder='Инициатива' name='initiative' />
+                <ImgInput name='img' title='Изображение' />
                 <div className="flex flex-1 gap-4 justify-end items-end">
                     {children}
                 </div>

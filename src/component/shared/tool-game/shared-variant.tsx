@@ -5,8 +5,8 @@ import { SwithContentLiftSideGame } from './swith-content-tool-in-game'
 import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './utils'
 import { bestiaryItem, mapsDataDto, characterDto } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
-import { useQueryParam } from '@/lib/castom-hook'
-import { qParamName } from '@/export'
+import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/export'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { nextQueue, prevQueue } from '@/store/session-store'
 
@@ -24,7 +24,7 @@ export const SharedVariant: React.FC<Props> = ({
     bestiary,
     id
 }: Props) => {
-    const { param } = useQueryParam(qParamName.sContent)
+    const { param } = useQ(qpk.contentsession)
     if (id == null) {
         return <></>
     }

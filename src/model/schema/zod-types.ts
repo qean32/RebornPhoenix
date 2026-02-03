@@ -9,14 +9,21 @@ export const password = z
     .max(20, { message: 'Максимальная длина - 20' })
     .min(8, { message: 'Минимальная длина - 8' })
 
+export const initiative = z
+    .string()
+    .regex(
+        /^[0-9]+$/,
+        'Никнейм должен состоять из латиница и цифр'
+    )
+
 export const name = z
     .string()
     .regex(
         /^[A-Za-z0-9]+$/,
         'Никнейм должен состоять из латиница и цифр'
     )
-    .max(20, { message: 'Максимальная длина - 20' })
-    .min(8, { message: 'Минимальная длина - 8' })
+    .max(16, { message: 'Максимальная длина - 16' })
+    .min(3, { message: 'Минимальная длина - 3' })
 
 export const email = z
     .string()

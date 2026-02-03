@@ -2,19 +2,40 @@ import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormDto, editProfileSchema } from '@/model/schema'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useQ, useToast, useUser } from '@/lib/castom-hook'
+import { profileService } from '@/service'
+import { useNavigate } from 'react-router-dom'
+import { qpk, REJECT_SERVER } from '@/export'
+import { conventToFormData } from '@/lib/function'
 
 interface Props {
 }
 
-
+const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
+    const navigate = useNavigate()
+    const toast = useToast()
+    const { pushQ } = useQ('forceupadeteuser')
+
     const { form, submitHandler } =
         useMyForm<editProfileFormDto>(
             editProfileSchema,
-            () => { },
+            (data: editProfileFormDto) => {
+                profileService.UPDATE_PROFILE(conventToFormData(data))
+                    .then(({ status }) => {
+                        if (status == 200 || status == 201) {
+                            toast('message', { text: ACCEESS_ACTION })
+                            pushQ('true')
+                            setTimeout(() => {
+                                navigate(`/?${qpk.forceupadeteuser}=true`)
+                            }, 600)
+                        }
+                    })
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
+            },
             () => { }
         )
+    const user = useUser()
 
     return (
         <FormProvider {...form}>
@@ -24,16 +45,23 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
                     <Title>РЕДАКТОР</Title>
                     <div className="flex-1 w-[35vh] pt-2 flex flex-col justify-between pb-3">
                         <div className="flex gap-2 flex-col">
+
                             <TextInput
                                 placeHolder="никнейм"
                                 name='name'
+                                defaultValue={user?.name ?? ''}
                                 className='outline-bg-light'
                             />
-                            <ImgInput title='фото профиля' className='pl-1 pt-5' />
+
+                            <ImgInput name='ava'
+                                defaultValue={user?.ava ?? ''}
+                                title='фото профиля'
+                                className='pl-1 pt-5'
+                            />
                         </div>
                         <LinkPrime
-                            path='/change-password'
-                        >Востановить пароль</LinkPrime>
+                            path='/reset-password'
+                        >Изменить пароль</LinkPrime>
                     </div>
                     <Button
                         variant='acceess'

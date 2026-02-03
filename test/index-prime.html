@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('https://www.youtube.com/watch?v=i24wqyUhywc&list=RDFmF1maxDKEI&index=2')
+        // fetch('http://localhost:8000/api/forum/departments')
+        // fetch('http://localhost:8000/api/forum/departments')
+
+        fetch('http://localhost:8000/api/zxc', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(data => data.json())
+            .then(data => console.log(data))
+    </script>
+</body>
+
+</html>

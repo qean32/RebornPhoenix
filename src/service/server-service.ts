@@ -2,7 +2,11 @@ import { requestGet } from "@lib/function/request"
 const instance = 'server';
 
 export const serverService = {
-    server: () => {
+    SERVER: () => {
         return requestGet(`${instance}`)
     },
+
+    STATIC: (path: string) => {
+        return requestGet(`${path}`)
+    }
 }

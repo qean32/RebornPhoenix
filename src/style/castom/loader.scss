@@ -1,10 +1,10 @@
 .loader {
-    width: 20px;
+    width: 40px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     position: absolute;
-    transition: .7s;
-    animation: rotate 1.6s linear infinite;
+    transition: 2s;
+    animation: rotate 2.6s linear infinite;
 }
 
 .loader::before {
@@ -13,8 +13,8 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 4px solid white;
-    animation: prixClipFix 1s linear infinite;
+    border: 5px solid white;
+    animation: prixClipFix 2s linear infinite;
 }
 
 @media screen and (max-width: 1600px) {

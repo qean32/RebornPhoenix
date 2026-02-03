@@ -1,19 +1,44 @@
 import React from 'react'
 import { CommentItem } from '@component/ui/item'
 import { CommentForm } from '@/component/case/form'
+import { commentDto } from '@/model'
+import { useRequest } from '@/lib/castom-hook'
+import { forumService } from '@/service'
+import { useParams } from 'react-router-dom'
 
 interface Props {
 }
 
 
 export const CommentBlock: React.FC<Props> = ({ }: Props) => {
+    const { id } = useParams()
+    const [comments, loading, push, _delete, update] = useRequest<commentDto[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
+
     return (
         <div className="bg-color-dark rounded-lg pb-2">
-            <CommentForm />
-            <p className='pl-6 py-2 text-2xl'>Коментарии</p>
-            {[{}].map(item => {
-                return (<CommentItem {...item} date='20.05.2006' files={[]} id={1} text='lorem zxc' user={{ ava: '', email: '', id: 1, name: 'Zxccurser' }} />)
-            })}
+            <CommentForm update={update}
+                push={push} _delete={_delete} />
+
+            {
+                !loading &&
+                    !!comments?.length
+                    ?
+                    <p className='pl-6 py-2 text-2xl'>Коментарии</p>
+                    :
+                    <p className='pl-6 pb-2 text-xl'>У поста пока нет коментариев!</p>
+            }
+
+            {/* {!!loading && <CommentsSceleton />} */}
+
+            {!!comments?.length &&
+                comments?.map(item => {
+                    return <CommentItem
+                        {...item}
+                        key={item.id}
+                    />
+                })
+            }
+
         </div>
     )
 }

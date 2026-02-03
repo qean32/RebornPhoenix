@@ -2,18 +2,34 @@ import React from 'react'
 import { Title, TextInput, SelectSessionBG } from '@component/ui'
 import { pushSessionFormDto, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
+import { sessionService } from '@/service/session-service'
+import { REJECT_SERVER } from '@/export'
 
 interface Props {
     children: React.ReactNode
+    swap: Function
 }
 
+const ACCEESS_ACTION = 'Сессия создана'
+export const PushSessionForm: React.FC<Props> = ({ children, swap }: Props) => {
+    const toast = useToast()
+    const { setTmp } = useTmpObject()
 
-export const PushSessionForm: React.FC<Props> = ({ children }: Props) => {
     const { form, submitHandler } =
         useMyForm<pushSessionFormDto>(
             pushSessionSchema,
-            () => { },
+            (data: pushSessionFormDto) => {
+                sessionService.CREATE_SESSION(data)
+                    .then(({ status, data }) => {
+                        if (status == 201) {
+                            toast('message', { text: ACCEESS_ACTION })
+                            setTmp({ payload: data, key: 'create-session' })
+                            swap()
+                        }
+                    })
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
+            },
             () => { }
         )
 

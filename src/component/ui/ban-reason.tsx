@@ -1,27 +1,40 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Page } from '@component/master/h-order-component'
+import { useRequest } from '@/lib/castom-hook'
+import { profileService } from '@/service'
+import { banReasonDto } from '@/model'
 
 interface Props {
+    id: string | number
 }
 
 
-export const BanReason: React.FC<Props> = ({ }: Props) => {
-    return (
-        <Page size="w-[65%]">
-            <div className="rounded-sm pb-15 mb-2 text-2xl">
-                <p>ПРИЧИНЫ БЛОКИРОВКИ</p>
-                <div className="grid grid-cols-2">
-                    <p>дата блокировки: </p>
-                    <p>20.11.2025</p>
-                    <p>время до разблокировки:</p>
-                    <p>14 лет</p>
-                    <p>администратор выдавший блокировку:</p>
-                    <Link to={''}>zxccursed</Link>
-                    <p>причина:</p>
-                    <p>нарушение правил сообщесва</p>
+export const BanReason: React.FC<Props> = ({ id }: Props) => {
+    const [reason] = useRequest<banReasonDto>(() => profileService.GET_BAN_REASON(id), [`ban-reason-${id}`])
+
+    //@ts-ignore
+    if (reason && reason != "no") {
+        return (
+            <Page size="w-[65%]">
+                <div className="rounded-sm pb-15 mb-2 text-2xl">
+                    <p>ПРИЧИНЫ БЛОКИРОВКИ</p>
+                    <div className="grid grid-cols-2">
+                        <p>дата блокировки: </p>
+                        {/* @ts-ignore */}
+                        <p>{reason.banTime}</p>
+                        <p>время до разблокировки:</p>
+                        {/* @ts-ignore */}
+                        <p>{reason.unbanTime}</p>
+                        <p>администратор выдавший блокировку:</p>
+                        <p>
+                            {/* @ts-ignore */}
+                            {reason.nameAdmin}
+                        </p>
+                        <p>причина:</p>
+                        <p>{reason.reason}</p>
+                    </div>
                 </div>
-            </div>
-        </Page>
-    )
+            </Page>
+        )
+    }
 }

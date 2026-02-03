@@ -1,14 +1,19 @@
 import z from "zod";
+import { initiative } from "./zod-types";
 
 export const pushCharacterSchema = z.object({
-    path: z
+    name: z
         .string()
-        .regex(
-            /^[A-Za-z0-9]+$/,
-            'Используйте персонажей с сайта aternia.games!'
-        )
+        .max(20, { message: 'Максимальная длина - 20' })
+        .min(4, { message: 'Минимальная длина - 4' }),
+    img: z
+        .file()
+    ,
+    initiative: initiative
 });
 
 export type pushCharacterDto = {
-    path: string
+    name: string
+    initiative: number
+    img: any
 }

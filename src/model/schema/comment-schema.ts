@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const commentSchema = z.object({
-    text: z
+    payload_content: z
         .string()
         .max(255, { message: 'Максимальная длина - 255 символа' }),
     files: z
@@ -9,6 +9,6 @@ export const commentSchema = z.object({
 });
 
 export type commentFormDto = {
-    text: string
+    payload_content: string
     files: any
 }

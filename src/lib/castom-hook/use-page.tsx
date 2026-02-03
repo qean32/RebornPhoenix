@@ -1,8 +1,12 @@
-import { changeTitle } from "@lib/function"
+import { changeTitle, initSetUser } from "@lib/function"
+import React from "react"
 
 export const usePage = (title: string) => {
-    changeTitle(title)
-    window.scrollTo({ top: 0 })
+    initSetUser()
+    React.useEffect(() => {
+        changeTitle(title)
+        window.scrollTo({ top: 0 })
+    }, [])
 
     return {}
 }

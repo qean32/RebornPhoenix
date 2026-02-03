@@ -13,10 +13,12 @@ interface Props {
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     const { object: data } = useAppSelector(state => state.pushedObject)
     const push = initPushDataToSession('map')
-    const pushHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+    const pushHandler = () => {
+        // @ts-ignore
+        swap()
         // @ts-ignore
         push(data)
-        swap(e)
     }
 
     React.useEffect(() => {

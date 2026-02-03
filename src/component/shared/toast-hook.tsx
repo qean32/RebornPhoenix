@@ -18,6 +18,6 @@ export const toastHook = (
 ) => {
     if (keyMessage == "push-entity") return <ToastPushEntity view={view} key={id} {...payload} backToast={firstId != id} />
     if (keyMessage == "event-message") return <ToastEventMessage view={view} key={id} {...payload} backToast={firstId != id} />
-    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...payload} backToast={firstId != id} />
+    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...{ text: '' }} {...payload} backToast={firstId != id} />
     return <>WTFIT!</>
 }

@@ -9,7 +9,7 @@ const userSlice = createSlice({
     name: 'user-store',
     initialState,
     reducers: {
-        setUser(state: stateDto, { payload }: PayloadAction<userDto>) {
+        setUser(state: stateDto, { payload }: PayloadAction<userDto | null>) {
             state.user = payload
         },
     },

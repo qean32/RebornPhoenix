@@ -1,3 +1,3 @@
-export interface tokenKeyDto {
+export interface tokenStorageKeyDto {
     token: string
 }

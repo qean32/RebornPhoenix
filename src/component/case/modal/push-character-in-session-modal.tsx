@@ -2,13 +2,15 @@ import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { Button, ModalCross, NoFindData } from '@component/ui'
-import { f_post } from '@/f'
 import { CharacterItemInPush } from '@component/ui/item'
 import { useAppDispatch } from '@/lib/castom-hook/redux'
 import { pushCharacter } from '@/store/session-store'
+import { useRequest } from '@/lib/castom-hook'
+import { characterDto } from '@/model'
+import { profileService } from '@/service'
 
 interface Props {
-    view: boolean
+    view: number
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
@@ -22,10 +24,12 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             dispath(pushCharacter(data))
         }
     }
+    const [characters, loading] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(view ?? 0), [`profile-characters-${view}`])
+
     return (
         <Modal
             swap={swap}
-            view={view}
+            view={!!view}
             animation={{
                 open: 'modal-open',
                 close: 'modal-close'
@@ -34,12 +38,19 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             <div className="relative bg-color p-5 w-3/7 px-7 rounded-md overflow-scroll flex flex-col -translate-y-1/12" onClick={stopPropagation}>
                 <ModalCross fn={swap} />
                 <p className='pb-4 text-2xl'>Персонажи игрока</p>
-                <NoFindData title='У игрока нет персонажей!' view={false} className='py-5' />
-                <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>
-                    {f_post.slice(0, 14).map((__, _) =>
-                        <CharacterItemInPush key={_} id={_ + 1} name='КлиганКлиган' status={'stable'} user={{ ava: '', email: '', id: 1, name: '' }} path={'/img/carousel-item-7.jpg'} size={1} />
-                    )}
-                </div>
+                <NoFindData title='У игрока нет персонажей!' view={!characters?.length && !loading} className='py-5' />
+                {
+                    !!characters?.length &&
+                    <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>
+                        {!!characters?.length &&
+                            characters.map(item =>
+                                <CharacterItemInPush
+                                    {...item}
+                                    key={item.id}
+                                />
+                            )}
+                    </div>
+                }
                 <div className="flex justify-end gap-2">
                     <><Button fn={swap} variant='ghost'><p>Отмена</p></Button>
                         <Button variant='acceess' ><p>Добавить</p></Button></>

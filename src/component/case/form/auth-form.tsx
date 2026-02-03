@@ -2,16 +2,36 @@ import React from 'react'
 import { TextInput, Button, PasswordInput, Title, LinkPrime } from '@component/ui'
 import { authFormDto, authSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useNavigate } from 'react-router-dom'
+import { authService } from '@/service'
+import { getFirstError, setToken } from '@/lib/function'
 
 interface Props {
 }
 
 export const AuthForm: React.FC<Props> = ({ }: Props) => {
+    const auth = new authService()
+    const toast = useToast()
+    const navigate = useNavigate()
+
     const { form, submitHandler } =
         useMyForm<authFormDto>(
             authSchema,
-            () => { },
+            (data: authFormDto) => {
+                auth.AUTH(data)
+                    .then(({ data, status }) => {
+                        if (status == 200) {
+                            // @ts-ignore
+                            setToken(data?.token);
+                            toast('message', { text: 'Успешная авторизация' })
+                            setTimeout(() => {
+                                navigate('/')
+                            }, 500)
+                        }
+                    })
+                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
+            },
             () => { }
         )
 
@@ -40,8 +60,10 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
                     <Button
                         className="px-5 py-3"
                         variant='acceess'
-                        children={<p>Вход</p>}
-                    />
+                        type='submit'
+                    >
+                        <p>Вход</p>
+                    </Button>
                 </div>
             </form>
         </FormProvider>

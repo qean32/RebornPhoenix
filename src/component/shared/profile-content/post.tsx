@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom"
-import { f_post } from "@/f"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
-import { useBoolean } from "@lib/castom-hook"
+import { useBoolean, useRequest } from "@lib/castom-hook"
 import React from "react"
 import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"
+import { profileService } from "@/service"
+import { postDto } from "@/model/post.dto"
+import { DepartmentSceleton } from "@/component/case/sceleton"
 
 interface Props {
     view: boolean
+    id: number | string
 }
 
-export const Post: React.FC<Props> = ({ view }: Props) => {
+export const Post: React.FC<Props> = ({ view, id }: Props) => {
     const { on, off } = useBoolean(view)
+    const [posts, loading] = useRequest<postDto[]>(() => profileService.GET_POSTS(id ?? 0), [`profile-post-${id}`])
 
     React.useEffect(() => {
         if (view) {
@@ -28,14 +32,19 @@ export const Post: React.FC<Props> = ({ view }: Props) => {
     return (
         <div className='pt-2 pb-4'>
             <PostColumn />
-            {!!f_post.length &&
-                f_post.slice(0, 6).map(item => {
-                    return <PostItem {...item} key={item.title} className="pl-2 -translate-x-1" />
+            {!!loading && <DepartmentSceleton />}
+            {!!posts?.length &&
+                posts?.map(item => {
+                    return <PostItem
+                        {...item}
+                        className="pl-2 -translate-x-1"
+                        key={item.id}
+                    />
                 })}
-            <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={false} />
+            <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={!posts?.length && !loading} />
 
-            <ViewAuthor>
-                <div className="px-1 mt-4">
+            <ViewAuthor payload_id={id ?? 0}>
+                <div className="mt-4">
                     <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>
             </ViewAuthor>

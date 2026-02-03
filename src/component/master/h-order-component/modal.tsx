@@ -2,16 +2,14 @@ import React from 'react'
 import { cn } from '@lib/function'
 import { useMount } from '@lib/castom-hook'
 import { Portal } from '../portal'
+import { modalAnimationDto } from '@/model'
 
 interface Props {
     className?: string
     children: React.ReactNode
     view: boolean
     swap: React.MouseEventHandler<HTMLDivElement>
-    animation: {
-        open: 'right-modal-open' | 'modal-open' | 'modal-open-bottom'
-        close: 'right-modal-close' | 'modal-close' | 'modal-close-bottom'
-    }
+    animation: modalAnimationDto
 }
 
 
@@ -23,9 +21,11 @@ export const Modal: React.FC<Props> = ({
     swap
 }: Props) => {
     const dispay = useMount(view)
+
     if (!dispay) {
         return null
     }
+
 
     return (
         <Portal>
@@ -34,6 +34,7 @@ export const Modal: React.FC<Props> = ({
                 !view && 'shadow-close'
             )}
                 onClick={swap}
+                value='context-menu'
                 style={{ zIndex: 100 }}
             >
                 <div

@@ -2,7 +2,11 @@ import { Page } from "@component/master/h-order-component"
 import { TextInfo } from "@component/ui"
 import { DepartmentItem } from "@component/ui/item"
 import { title } from "@/export"
-import { usePage } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/castom-hook"
+import { forumService } from "@/service"
+import { departmentDto } from "@/model"
+import { ForumSceleton } from "@/component/case/sceleton"
+import React from "react"
 
 
 export const Forum = () => {
@@ -13,19 +17,28 @@ export const Forum = () => {
             <div className="flex gap-5">
                 <div className="w-full">
                     <TextInfo title="Форум" />
-
-                    <div className="flex flex-col gap-7">
-                        <DepartmentItem path="/img/carousel-item-3.jpg" count={42}
-                            description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi facere saepe vel quisquam quibusdam, adipisci minima officiis nemo explicabo est." name="web" />
-                        <DepartmentItem path="/img/carousel-item-3.jpg" count={42}
-                            description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi facere saepe vel quisquam quibusdam, adipisci minima officiis nemo explicabo est." name="d&d" />
-                        <DepartmentItem path="/img/carousel-item-3.jpg" count={42}
-                            description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi facere saepe vel quisquam quibusdam, adipisci minima officiis nemo explicabo est." name="прочее" />
-                        <DepartmentItem path="/img/carousel-item-3.jpg" count={42}
-                            description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi facere saepe vel quisquam quibusdam, adipisci minima officiis nemo explicabo est." name="faq" />
-                    </div>
+                    <React.Suspense fallback={<ForumSceleton />}>
+                        <Content />
+                    </React.Suspense>
                 </div>
             </div>
         </Page>
+    )
+}
+
+const Content: React.FC<{}> = ({ }: {}) => {
+    const [departments] = useRequest<departmentDto[]>(forumService.GET_DEPARTAMENTS, ['departments'], { suspense: true })
+
+    return (
+        <div className="flex flex-col gap-7">
+            {
+                !!departments?.length &&
+                departments?.map(item => {
+                    return (
+                        <DepartmentItem key={item.id} {...item} />
+                    )
+                })
+            }
+        </div>
     )
 }

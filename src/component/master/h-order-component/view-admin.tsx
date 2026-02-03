@@ -1,3 +1,4 @@
+import { useUser } from '@/lib/castom-hook'
 import React from 'react'
 
 interface Props {
@@ -6,9 +7,14 @@ interface Props {
 
 
 export const ViewAdmin: React.FC<Props> = ({ children }: Props) => {
-    return (
-        <div className='w-fit'>
-            {children}
-        </div>
-    )
+    const user = useUser()
+
+    if (user?.role == 2) {
+
+        return (
+            <div className='w-fit'>
+                {children}
+            </div>
+        )
+    }
 }

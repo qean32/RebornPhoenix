@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   // <HookFormProvider>
   <ProtectedRouteTechWork>
 
-    <QueryClientProvider client={new QueryClient()}>
+    <QueryClientProvider client={new QueryClient({})}>
       <Provider store={store} >
         <MainLoader />
         <Router />

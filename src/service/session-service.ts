@@ -3,31 +3,47 @@ import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
 const instance = 'session'
 
 export const sessionService = {
-    getSession: (id: number) => {
+    GET_SESSION: (id: string | number) => {
         return requestGet(`${instance}/${id}`)
     },
 
-    createSession: (data: any) => {
-        return requestPost(`${instance}/create/session`, data)
+    CREATE_SESSION: (data: any) => {
+        return requestPost(`${instance}`, data)
     },
 
-    deleteSession: (id: number) => {
-        return requestDelete(`${instance}/delete/session/${id}`)
+    DELETE_SESSION: (id: string | number) => {
+        return requestDelete(`${instance}/${id}/`)
     },
 
-    createEntity: (data: any) => {
-        return requestPost(`${instance}/create/entity`, data)
+    CREATE_ENTITY: (data: any) => {
+        return requestPost(`${instance}/entity`, data, true)
     },
 
-    createMap: (data: any) => {
-        return requestPost(`${instance}/create/map`, data)
+    CREATE_MAP: (data: any) => {
+        return requestPost(`${instance}/map`, data, true)
     },
 
-    createObject: (data: any) => {
-        return requestPost(`${instance}/create/object`, data)
+    CREATE_OBJECT: (data: any) => {
+        return requestPost(`${instance}/object`, data, true)
     },
 
-    pushImgToSession: (data: any, id: number) => {
-        return requestPost(`${instance}/${id}/push/img`, data)
+    PUSH_IMG_TO_SESSION: (data: any) => {
+        return requestPost(`s/push-img`, data, true)
+    },
+
+    GET_ENTITIES: () => {
+        return requestGet(`s/entities`)
+    },
+
+    GET_OBJECTS: () => {
+        return requestGet(`s/objects`)
+    },
+
+    GET_MAPS: () => {
+        return requestGet(`s/maps`)
+    },
+
+    SAVE_JSON: (data: any, path: string) => {
+        return requestPost(`JSON/${path}/`, data)
     }
 }

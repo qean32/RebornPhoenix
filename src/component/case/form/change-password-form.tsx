@@ -2,17 +2,34 @@ import React from 'react'
 import { Title, PasswordInput, Button } from '@component/ui'
 import { changePasswordFormDto, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm } from '@/lib/castom-hook'
+import { useMyForm, useQ, useToast } from '@/lib/castom-hook'
+import { authService } from '@/service'
+import { qpk, REJECT_SERVER } from '@/export'
 
 interface Props {
 }
 
-
+const ACCEESS_ACTION = 'Вы сменили пароль!'
 export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
+    const auth = new authService()
+    const toast = useToast()
+    const { param: token } = useQ(qpk.token)
+
     const { form, submitHandler } =
         useMyForm<changePasswordFormDto>(
             changePasswordSchema,
-            () => { },
+            (data: changePasswordFormDto) => {
+                auth.CHANGE_PASSWORD(data, token)
+                    .then(({ status }) => {
+                        if (status == 200) {
+                            toast('message', { text: ACCEESS_ACTION })
+                            setTimeout(() => {
+                                toast('message', { text: 'Вы можете закрывать страницу!' })
+                            }, 10000)
+                        }
+                    })
+                    .catch(() => toast('message', { text: REJECT_SERVER }))
+            },
             () => { }
         )
 

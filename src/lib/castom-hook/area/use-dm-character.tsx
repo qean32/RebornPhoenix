@@ -4,6 +4,8 @@ import { changeObject } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
 
 export const useDMCharacter = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
+    console.log(path);
+    
     const [image] = useImage(path);
 
     const rectRef = React.useRef<null | HTMLCanvasElement | any>();
