@@ -1,5 +1,5 @@
-import { useDMObject } from '@/lib/castom-hook/area'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useDMObject } from '@/lib/hook/area'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { objectDto } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'

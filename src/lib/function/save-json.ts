@@ -1,6 +1,6 @@
 import { sessionService } from "@/service/session-service";
-import { useAppSelector } from "../castom-hook/redux";
-import { useToast } from "../castom-hook";
+import { useAppSelector } from "../hook/redux";
+import { useToast } from "../hook";
 import { REJECT_SERVER } from "@/export";
 
 export const saveJson = (toast: ReturnType<typeof useToast>) => {

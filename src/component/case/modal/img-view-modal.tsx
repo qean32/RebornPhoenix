@@ -1,7 +1,7 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
-import { useQ } from '@/lib/castom-hook'
+import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 
 interface Props {

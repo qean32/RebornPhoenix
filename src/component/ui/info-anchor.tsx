@@ -1,5 +1,5 @@
 import { qpk } from '@/export';
-import { useQ } from '@/lib/castom-hook';
+import { useQ } from '@/lib/hook';
 import { cn } from '@/lib/function';
 import React from 'react'
 // @ts-ignore

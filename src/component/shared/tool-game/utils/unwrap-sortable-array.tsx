@@ -13,7 +13,7 @@ import {
     sortableKeyboardCoordinates
 } from "@dnd-kit/sortable";
 import { SortableOverlay } from '.';
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux';
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux';
 import { changeQueue } from '@/store/session-store';
 
 interface Props {

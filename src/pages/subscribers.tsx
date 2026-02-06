@@ -1,7 +1,7 @@
 import { Page } from "@component/master/h-order-component"
 import { BackArrow, NoFindData, ScrollTop, TextInfo } from "@component/ui"
 import { title } from "@/export"
-import { usePage, useRequest } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/hook"
 import { profileService } from "@/service"
 import { userDto } from "@/model"
 import { UserItem } from "@/component/ui/item"

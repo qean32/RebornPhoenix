@@ -1,4 +1,4 @@
-import { useToast } from "../castom-hook"
+import { useToast } from "../hook"
 
 export const initFunctionRoll = () => {
     const toast = useToast()

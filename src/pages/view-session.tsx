@@ -1,6 +1,6 @@
 import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
 import { ToolGameSubscriber } from "@component/shared"
-import { usePage, useQ, useRequest } from "@lib/castom-hook"
+import { usePage, useQ, useRequest } from "@lib/hook"
 import { getParamName, initSetSession } from "@lib/function"
 import React from "react"
 import { GameAreaSubscriber } from "@/component/master"

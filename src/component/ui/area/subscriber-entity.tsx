@@ -2,8 +2,8 @@ import React from 'react'
 import { Circle, Group } from "react-konva"
 import { entityDto } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
-import { useSubscriber } from '@/lib/castom-hook/area';
-import { useAppDispatch } from '@/lib/castom-hook/redux';
+import { useSubscriber } from '@/lib/hook/area';
+import { useAppDispatch } from '@/lib/hook/redux';
 
 
 export const EntitySubscriber: React.FC<Omit<entityDto, 'description'>> = (props: Omit<entityDto, 'description'>) => {

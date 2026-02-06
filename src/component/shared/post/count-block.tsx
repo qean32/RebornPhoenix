@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconAndCount, IconAndNumber } from '@/component/ui'
-import { useBoolean, useDebounceFunction } from '@/lib/castom-hook'
+import { useBoolean, useDebounceFunction } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 

@@ -5,7 +5,7 @@ import { modalAnimationEnum, slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityDto, objectDto } from '@/model'
-import { useGrid, useToast } from '@/lib/castom-hook'
+import { useGrid, useToast } from '@/lib/hook'
 import { FillHoverHint } from '../master/h-order-component'
 import { saveJson, toggleFullScreen } from '@/lib/function'
 

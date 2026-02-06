@@ -1,7 +1,7 @@
 import { SessionsSceleton } from "@/component/case/sceleton/sessions-sceleton"
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/export"
-import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
 import { sessionDto } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"

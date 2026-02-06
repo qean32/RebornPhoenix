@@ -21,7 +21,7 @@ export const NoFindData: React.FC<Props> = ({
     return (
         <div className={cn("flex-1 flex justify-center items-center flex-col gap-8", className)}>
             <img src={ref.current} className='icon-4xl' />
-            <p className='text-sm'>{title}</p>
+            <p className='text-sm-prime'>{title}</p>
         </div>
     )
 }

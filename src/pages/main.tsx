@@ -9,7 +9,7 @@ import {
 } from "@/component/ui/main";
 import { qpk, title } from "@/export";
 import { initSetUser } from "@/lib/function";
-import { usePage, useQ } from "@lib/castom-hook";
+import { usePage, useQ } from "@lib/hook";
 import React from "react";
 
 

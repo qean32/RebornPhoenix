@@ -1,8 +1,8 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
-import { useDMEntity } from '@lib/castom-hook/area';
+import { useDMEntity } from '@lib/hook/area';
 import { entityDto } from '@/model';
-import { useAppDispatch } from '@lib/castom-hook/redux';
+import { useAppDispatch } from '@lib/hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
 
 type Props = {

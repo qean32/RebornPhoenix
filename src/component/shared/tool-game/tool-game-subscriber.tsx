@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonInGroup } from '@component/ui'
 import { initFunctionRoll, toggleFullScreen } from '@/lib/function'
 import { FillHoverHint } from '@/component/master/h-order-component'
-import { useGrid } from '@/lib/castom-hook'
+import { useGrid } from '@/lib/hook'
 
 interface Props {
 }

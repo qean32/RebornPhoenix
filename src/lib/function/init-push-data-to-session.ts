@@ -1,7 +1,7 @@
 import { entityDto, mapDto, objectDto } from "@/model"
-import { useAppDispatch } from "../castom-hook/redux"
+import { useAppDispatch } from "../hook/redux"
 import { pushEntity, pushMap, pushObject } from "@/store/session-store"
-import { useToast } from "../castom-hook"
+import { useToast } from "../hook"
 
 export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     const dispath = useAppDispatch()

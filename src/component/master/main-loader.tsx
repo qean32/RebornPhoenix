@@ -1,6 +1,6 @@
 import React from 'react'
 import { Logo } from '@component/ui'
-import { useBoolean } from '@/lib/castom-hook'
+import { useBoolean } from '@/lib/hook'
 import { cn, getBetweenNumber } from '@/lib/function'
 import { tip } from '@/export'
 

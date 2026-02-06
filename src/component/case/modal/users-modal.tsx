@@ -2,11 +2,11 @@ import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
 import { ModalCross, NoFindData, Search } from '@component/ui'
 import { UserInModal } from '@/component/ui/item'
-import { useQ, useRequest, useToast } from '@/lib/castom-hook'
+import { useQ, useRequest, useToast } from '@/lib/hook'
 import { qpk } from '@/export'
 import { communityService } from '@/service'
 import { userDto } from '@/model'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { pushUser } from '@/store/session-store'
 
 interface Props {

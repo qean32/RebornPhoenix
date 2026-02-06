@@ -1,5 +1,5 @@
 import React from 'react'
-import { useQ } from '@/lib/castom-hook'
+import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 
 interface Props {

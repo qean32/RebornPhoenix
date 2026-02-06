@@ -3,7 +3,7 @@ import { cn } from '@lib/function'
 import { Ava, IsOnline, Logo } from '@component/ui'
 import { Link } from 'react-router-dom'
 import { slogan } from '@/export'
-import { useUser } from '@/lib/castom-hook'
+import { useUser } from '@/lib/hook'
 
 interface Props {
     className?: string

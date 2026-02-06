@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stage, Layer } from "react-konva"
 import { CharacterDM, EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
-import { useAppSelector } from '@lib/castom-hook/redux';
-import { useStage, useWindowSize } from '@lib/castom-hook';
+import { useAppSelector } from '@lib/hook/redux';
+import { useStage, useWindowSize } from '@lib/hook';
 
 interface Props {
 }

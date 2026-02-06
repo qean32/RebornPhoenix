@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
-import { useDynamickPagination, useQ } from '@/lib/castom-hook';
+import { useDynamickPagination, useQ } from '@/lib/hook';
 import { userDto } from '@/model';
 import { qpk } from '@/export';
 

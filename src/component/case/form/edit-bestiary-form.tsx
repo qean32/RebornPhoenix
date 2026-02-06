@@ -1,6 +1,6 @@
 import { TextInput, TextArea, Initiative, Button } from '@/component/ui'
-import { useMyForm } from '@/lib/castom-hook'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useMyForm } from '@/lib/hook'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { stopPropagation } from '@/lib/function'
 import { entityDto } from '@/model'
 import { pushEntityToSessionFormDto, pushEntityToSessionSchema } from '@/model/schema'

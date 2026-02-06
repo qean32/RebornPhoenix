@@ -5,9 +5,9 @@ import { SwithContentLiftSideGame } from './swith-content-tool-in-game'
 import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './utils'
 import { bestiaryItem, mapsDataDto, characterDto } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
-import { useQ } from '@/lib/castom-hook'
+import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { nextQueue, prevQueue } from '@/store/session-store'
 
 interface Props {

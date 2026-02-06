@@ -2,7 +2,7 @@ import React from 'react'
 import { Title, PasswordInput, Button } from '@component/ui'
 import { changePasswordFormDto, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useQ, useToast } from '@/lib/castom-hook'
+import { useMyForm, useQ, useToast } from '@/lib/hook'
 import { authService } from '@/service'
 import { qpk, REJECT_SERVER } from '@/export'
 

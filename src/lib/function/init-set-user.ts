@@ -1,7 +1,7 @@
 import { setUser } from "@/store/user-store"
-import { useAppDispatch } from "../castom-hook/redux"
+import { useAppDispatch } from "../hook/redux"
 import { userDto } from "@/model"
-import { useUser } from "../castom-hook"
+import { useUser } from "../hook"
 import { profileService } from "@/service"
 
 export const initSetUser = async (force: boolean = false) => {

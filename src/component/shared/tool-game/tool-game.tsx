@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { useBoolean } from '@lib/castom-hook'
-import { useAppSelector } from '@lib/castom-hook/redux'
+import { useBoolean } from '@lib/hook'
+import { useAppSelector } from '@lib/hook/redux'
 import { SharedVariant, ShortVariant } from '.'
 import { Arrow } from './utils'
 

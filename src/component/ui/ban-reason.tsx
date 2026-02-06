@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page } from '@component/master/h-order-component'
-import { useRequest } from '@/lib/castom-hook'
+import { useRequest } from '@/lib/hook'
 import { profileService } from '@/service'
 import { banReasonDto } from '@/model'
 

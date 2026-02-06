@@ -1,4 +1,4 @@
-import { useUser } from '@/lib/castom-hook'
+import { useUser } from '@/lib/hook'
 import React from 'react'
 
 interface Props {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useBoolean, useThrottleFunction } from '@lib/castom-hook'
+import { useBoolean, useThrottleFunction } from '@lib/hook'
 import { cn } from '@lib/function'
 
 interface Props {

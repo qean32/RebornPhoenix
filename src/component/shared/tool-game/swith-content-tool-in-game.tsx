@@ -1,6 +1,6 @@
 import React from 'react'
 import { ButtonInGroup } from '@component/ui'
-import { useQ } from '@/lib/castom-hook'
+import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 import { getHTMLData, initFunctionRoll } from '@/lib/function'
 

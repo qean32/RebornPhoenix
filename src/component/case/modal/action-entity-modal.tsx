@@ -2,7 +2,7 @@ import React from 'react'
 import { cn, getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { Ava, Button, ModalCross, Title } from '@component/ui'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusDto } from '@/model'
 import { changeEntity } from '@/store/session-store'
 

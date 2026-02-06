@@ -1,6 +1,6 @@
 import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
 import { REJECT_SERVER } from '@/export'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import { stopPropagation } from '@/lib/function'
 import { banFormDto, banSchema } from '@/model/schema'
 import { profileService } from '@/service'

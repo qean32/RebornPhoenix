@@ -1,8 +1,8 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { ModalCross } from '@component/ui'
-import { useAppSelector } from '@/lib/castom-hook/redux'
-import { useDebounce } from '@/lib/castom-hook'
+import { useAppSelector } from '@/lib/hook/redux'
+import { useDebounce } from '@/lib/hook'
 import { useAppDispatch } from '@/store'
 import { pushNote } from '@/store/session-store'
 

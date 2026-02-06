@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { pushEntity } from '@/store/session-store'
 import { entityDto } from '@/model'
 import { Initiative } from '@/component/ui'

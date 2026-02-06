@@ -1,5 +1,5 @@
 import React from 'react'
-import { useOnline } from '@/lib/castom-hook'
+import { useOnline } from '@/lib/hook'
 import { cn } from '@/lib/function'
 
 interface Props {

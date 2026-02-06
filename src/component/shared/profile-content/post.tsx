@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
-import { useBoolean, useRequest } from "@lib/castom-hook"
+import { useBoolean, useRequest } from "@lib/hook"
 import React from "react"
 import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"

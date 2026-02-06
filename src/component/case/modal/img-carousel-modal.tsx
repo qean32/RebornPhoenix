@@ -4,7 +4,7 @@ import { PlusButton, ScrollXArrow } from '@component/ui'
 import { ViewImgCarouselItem } from '@component/ui/item'
 import * as ModalGroup from './index-group'
 import { modalAnimationEnum } from '@/export'
-import { useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppSelector } from '@/lib/hook/redux'
 
 interface Props {
 }
@@ -39,7 +39,7 @@ export const ImgCarousel: React.FC<Props> = ({ }: Props) => {
                         return <ViewImgCarouselItem
                             path={item}
                             key={item}
-                            value={value}
+                            isActive={value == item}
                         />
                     })
                 }

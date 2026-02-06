@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoImage } from './info-image'
-import { useHandlerScrollBetween } from '@/lib/castom-hook'
+import { useHandlerScrollBetween } from '@/lib/hook'
 import { qpk } from '@/export'
 import { infoBlockContentDto } from '@/model'
 

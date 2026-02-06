@@ -1,5 +1,5 @@
 import { setSession } from "@/store/session-store"
-import { useAppDispatch } from "../castom-hook/redux"
+import { useAppDispatch } from "../hook/redux"
 
 export const initSetSession = () => {
     const dispath = useAppDispatch()

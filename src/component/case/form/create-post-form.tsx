@@ -3,7 +3,7 @@ import { PushTagInForm, FakeTextInput, Button, UploadFilesInCreatePost, Select, 
 import { previewPost } from '@/lib/function'
 import { FormProvider } from 'react-hook-form'
 import { createPostFormDto, createPostSchema } from '@/model/schema'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
 import { departmentOptions, REJECT_SERVER } from '@/export'
 import { useNavigate } from 'react-router-dom'

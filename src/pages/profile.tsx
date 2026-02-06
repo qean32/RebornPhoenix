@@ -1,7 +1,7 @@
 import { Page, ViewAuthor } from "@component/master/h-order-component"
 import { BanAction, BanReason, ButtonSubscription, LinkPrime, Logout, NoFindData, UserInfo } from "@component/ui"
 import { ProfileContent, ProfileContentSwith } from "@component/shared/profile-content"
-import { usePage, useRequest } from "@lib/castom-hook"
+import { usePage, useRequest } from "@lib/hook"
 import { getParamName } from "@lib/function"
 import { useParams } from "react-router-dom"
 import { userDto } from "@/model"

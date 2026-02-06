@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppSelector } from '@/lib/hook/redux'
 import { toastHook } from '@component/shared'
 
 interface Props {

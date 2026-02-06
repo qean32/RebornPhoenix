@@ -2,7 +2,7 @@ import { EditProfileForm } from "@component/case/form"
 import { Page } from "@component/master/h-order-component"
 import { AuthBackground } from "@component/ui"
 import { title } from "@/export"
-import { usePage } from "@lib/castom-hook"
+import { usePage } from "@lib/hook"
 
 export const EditProfile = () => {
     const { } = usePage(title.editProfile)

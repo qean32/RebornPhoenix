@@ -2,8 +2,8 @@ import React from 'react'
 import { Circle, Group } from "react-konva"
 import { characterDto } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
-import { useSubscriber } from '@/lib/castom-hook/area';
-import { useAppDispatch } from '@/lib/castom-hook/redux';
+import { useSubscriber } from '@/lib/hook/area';
+import { useAppDispatch } from '@/lib/hook/redux';
 
 
 export const CharacterSubscriber: React.FC<characterDto> = (props: characterDto) => {

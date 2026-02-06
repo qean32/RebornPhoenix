@@ -2,11 +2,11 @@ import React from 'react'
 import { commentFormDto, commentSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 import { REJECT_SERVER } from '@/export'
-import { useTmpObject } from '@/lib/castom-hook'
+import { useTmpObject } from '@/lib/hook'
 
 interface Props {
     push: Function

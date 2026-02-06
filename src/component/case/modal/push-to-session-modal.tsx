@@ -2,7 +2,7 @@ import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { ModalCross } from '@component/ui'
 import { FilterPushToSession, GroupTokenInModal } from '@component/shared'
-import { useStore } from '@/lib/castom-hook'
+import { useStore } from '@/lib/hook'
 import { ShopSceleton } from '../sceleton'
 
 interface Props {

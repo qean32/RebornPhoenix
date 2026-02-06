@@ -2,7 +2,7 @@ import { objectDto } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
 import { utils } from './utils'
-import { useSubscriber } from '@/lib/castom-hook/area'
+import { useSubscriber } from '@/lib/hook/area'
 import { useAppDispatch } from '@/store'
 
 interface Props extends objectDto {

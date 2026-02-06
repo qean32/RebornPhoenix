@@ -2,7 +2,7 @@ import { ContextMenu } from '@/component/master/h-order-component'
 import { stopPropagation } from '@/lib/function'
 import React from 'react'
 import { ContextMenuItem } from './context-menu-item'
-import { useTmpObject, useToast } from '@/lib/castom-hook'
+import { useTmpObject, useToast } from '@/lib/hook'
 import { REJECT_SERVER } from '@/export'
 import { profileService } from '@/service'
 

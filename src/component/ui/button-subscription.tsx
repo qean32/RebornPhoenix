@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '.'
-import { useBoolean, useDebounceFunction, useToast } from '@/lib/castom-hook'
+import { useBoolean, useDebounceFunction, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useParams } from 'react-router-dom'
 import { REJECT_SERVER } from '@/export'

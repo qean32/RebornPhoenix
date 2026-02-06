@@ -1,6 +1,6 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
-import { TypeUseBoolen } from '@/lib/castom-hook'
-import { useAppSelector } from '@/lib/castom-hook/redux'
+import { TypeUseBoolen } from '@/lib/hook'
+import { useAppSelector } from '@/lib/hook/redux'
 import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
 

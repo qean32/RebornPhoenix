@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { ru } from 'date-fns/locale/ru';
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useQ } from "@/lib/castom-hook";
+import { useQ } from "@/lib/hook";
 import { qpk } from "@/export";
 
 // CSS Modules, react-datepicker-cssmodules.css

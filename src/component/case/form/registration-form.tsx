@@ -2,7 +2,7 @@ import React from 'react'
 import { TextInput, Button, PasswordInput, Checkbox, Title } from '@component/ui'
 import { registrationFormDto, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useToast } from '@/lib/castom-hook';
+import { useMyForm, useToast } from '@/lib/hook';
 import { authService } from '@/service';
 import { getFirstError, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';

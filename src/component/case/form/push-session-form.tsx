@@ -2,7 +2,7 @@ import React from 'react'
 import { Title, TextInput, SelectSessionBG } from '@component/ui'
 import { pushSessionFormDto, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
+import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { sessionService } from '@/service/session-service'
 import { REJECT_SERVER } from '@/export'
 

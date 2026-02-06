@@ -1,7 +1,7 @@
 import React from 'react'
 import { Title } from '@component/ui'
 import { cn, getHTMLData } from '@/lib/function'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { swapObjectBeingPushedToSession } from '@/store/object-being-pushed-to-session-store'
 
 interface Props {

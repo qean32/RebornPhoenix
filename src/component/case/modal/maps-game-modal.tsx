@@ -4,7 +4,7 @@ import { ModalCross, PlusButton } from '@component/ui'
 import * as ModalGroup from './index-group'
 import { InStoreMapItem, SelectMapItem } from '@component/ui/item'
 import { PushMap } from '@/component/case/push-to-session'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { swapCurrentMap } from '@/store/session-store'
 import { modalAnimationEnum } from '@/export'
 

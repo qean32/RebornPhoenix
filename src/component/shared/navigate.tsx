@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavigateButton } from '@component/ui'
-import { useUser } from '@/lib/castom-hook'
+import { useUser } from '@/lib/hook'
 
 interface Props {
 }

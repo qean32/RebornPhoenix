@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { PushFromJSON } from './push-from-json'
-import { useBoolean } from '@/lib/castom-hook'
+import { useBoolean } from '@/lib/hook'
 import { PushFromForm } from './push-from-form'
 
 interface Props {
