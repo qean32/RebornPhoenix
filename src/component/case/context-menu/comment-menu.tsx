@@ -2,13 +2,13 @@ import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { commentDto } from '@/model'
+import { commentType } from '@/model'
 import { swapTmpObject } from '@/store/tmp-object'
 import { forumService } from '@/service'
 import { useToast } from '@/lib/hook'
 import { REJECT_SERVER } from '@/export'
 
-interface Props extends commentDto {
+interface Props extends commentType {
 }
 
 const ACCEESS_ACTION = 'Комментарий удален'

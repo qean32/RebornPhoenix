@@ -1,15 +1,15 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { useMount } from '@lib/hook'
-import { Portal } from '../portal'
-import { modalAnimationDto } from '@/model'
+import { Portal } from './portal'
+import { modalAnimationType } from '@/model'
 
 interface Props {
     className?: string
     children: React.ReactNode
     view: boolean
     swap: React.MouseEventHandler<HTMLDivElement>
-    animation: modalAnimationDto
+    animation: modalAnimationType
 }
 
 

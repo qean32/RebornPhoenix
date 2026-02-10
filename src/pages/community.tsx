@@ -1,4 +1,4 @@
-import { GroupContainer } from "@component/master"
+import { DynamicPagination } from "@component/master"
 import { Page } from "@component/master/h-order-component"
 import { ScrollTop, Search, TextInfo } from "@component/ui"
 import { UserItem } from "@component/ui/item"
@@ -18,7 +18,7 @@ export const Community = () => {
                 <TextInfo title="Сообщество" />
                 <Search />
                 <React.Suspense fallback={<CommunitySceleton />}>
-                    <GroupContainer
+                    <DynamicPagination
                         rq={{
                             fetch: communityService.GET_USERS,
                             RQKey: ['community'],

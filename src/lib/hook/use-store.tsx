@@ -1,5 +1,5 @@
 import { qpk } from "@/export"
-import { entityDto, mapDto, objectDto } from "@/model"
+import { entityInterface, mapInterface, objectInterface } from "@/model"
 import { sessionService } from "@/service/session-service"
 import React from "react"
 import { useQ } from "./use-q"
@@ -60,10 +60,10 @@ export const useStore = (type: string) => {
         }
     }, [key, tmpObject])
 
-    const [data, loading] = type == 'entity' ? useRequest<entityDto[]>(() => sessionService.GET_ENTITIES(), [`entities`])
-        : type == 'map' ? useRequest<mapDto[]>(() => sessionService.GET_MAPS(), [`maps`])
+    const [data, loading] = type == 'entity' ? useRequest<entityInterface[]>(() => sessionService.GET_ENTITIES(), [`entities`])
+        : type == 'map' ? useRequest<mapInterface[]>(() => sessionService.GET_MAPS(), [`maps`])
             :
-            useRequest<objectDto[]>(() => sessionService.GET_OBJECTS(), [`objects`])
+            useRequest<objectInterface[]>(() => sessionService.GET_OBJECTS(), [`objects`])
 
     const init = React.useCallback(() => {
         const tmp = {}

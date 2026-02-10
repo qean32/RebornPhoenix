@@ -1,13 +1,13 @@
-import { commentDto, entityDto, idDto, mapDto, objectDto } from "@/model";
+import { commentType, entityInterface, idType, mapInterface, objectInterface } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type state_ = entityDto | objectDto | mapDto
+type state_ = entityInterface | objectInterface | mapInterface
 type stateT = state_ & {
     isEntity?: boolean
     isObject?: boolean
     isMap?: boolean
 }
-export type state = entityDto | objectDto | null | idDto | commentDto | stateT
+export type state = entityInterface | objectInterface | null | idType | commentType | stateT
 export type key =
     'push-entity' |
     'push-object' |

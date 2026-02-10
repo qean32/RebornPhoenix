@@ -4,7 +4,7 @@ import { useBoolean } from '@lib/hook'
 import { Ava, DangerIcon } from '.'
 import { HoverHint } from '../master/h-order-component'
 import { useFormContext } from 'react-hook-form'
-import { xPositionHint, yPositionHint } from '@/model'
+import { xPositionHintType, yPositionHintType } from '@/model'
 
 interface SelectProps {
     className?: string
@@ -36,8 +36,8 @@ interface TextInputProps {
     placeHolder: string
     name: string
     validate?: boolean
-    xHint?: xPositionHint,
-    yHint?: yPositionHint,
+    xHint?: xPositionHintType,
+    yHint?: yPositionHintType,
     defaultValue?: string
 }
 
@@ -75,8 +75,8 @@ interface PasswordInputProps {
     className?: string,
     placeHolder: string
     name: string
-    xHint?: xPositionHint,
-    yHint?: yPositionHint,
+    xHint?: xPositionHintType,
+    yHint?: yPositionHintType,
 }
 
 
@@ -212,8 +212,8 @@ interface FakeTextProps {
     className?: string
     title: string
     name: string
-    xHint?: xPositionHint
-    yHint?: yPositionHint
+    xHint?: xPositionHintType
+    yHint?: yPositionHintType
 }
 
 export const FakeTextInput: React.FC<FakeTextProps> = ({

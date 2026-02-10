@@ -3,7 +3,7 @@ import { dftSource, REJECT_SERVER } from '@/export'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { conventToFormData, initPushDataToSession } from '@/lib/function'
-import { pushMapToSessionFormDto, pushMapToSessionSchema } from '@/model/schema'
+import { pushMapToSessionFormSchema, pushMapToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object'
 import React from 'react'
@@ -27,9 +27,9 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     }
 
     const { form, submitHandler } =
-        useMyForm<pushMapToSessionFormDto>(
+        useMyForm<pushMapToSessionFormSchema>(
             pushMapToSessionSchema,
-            (data: pushMapToSessionFormDto) => {
+            (data: pushMapToSessionFormSchema) => {
                 sessionService.CREATE_MAP(conventToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {

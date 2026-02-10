@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput, Button, PasswordInput, Checkbox, Title } from '@component/ui'
-import { registrationFormDto, registrationSchema } from '@/model/schema'
+import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook';
 import { authService } from '@/service';
@@ -16,9 +16,9 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const { form, submitHandler } =
-        useMyForm<registrationFormDto>(
+        useMyForm<registrationFormSchema>(
             registrationSchema,
-            (data: registrationFormDto) => {
+            (data: registrationFormSchema) => {
                 auth.REGISTRATION(data)
                     // @ts-ignore
                     .then(({ data, status }) => {

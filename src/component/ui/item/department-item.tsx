@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { PostItem } from './post-item'
-import { departmentDto } from '@/model'
+import { departmentType } from '@/model'
 
-interface Props extends departmentDto {
+interface Props extends departmentType {
 }
 
 

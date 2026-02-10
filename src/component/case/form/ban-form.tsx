@@ -2,7 +2,7 @@ import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
 import { REJECT_SERVER } from '@/export'
 import { useMyForm, useToast } from '@/lib/hook'
 import { stopPropagation } from '@/lib/function'
-import { banFormDto, banSchema } from '@/model/schema'
+import { banFormSchema, banSchema } from '@/model/schema'
 import { profileService } from '@/service'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
@@ -18,8 +18,8 @@ const ACCEESS_ACTION = 'Пользовтель забанен'
 export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
     const { id: idUser } = useParams()
     const toast = useToast()
-    const { form, submitHandler } = useMyForm<banFormDto>(banSchema,
-        (data: banFormDto) => {
+    const { form, submitHandler } = useMyForm<banFormSchema>(banSchema,
+        (data: banFormSchema) => {
             profileService.BAN_ACTION(data, idUser ?? 0)
                 .then(() => toast('message', { text: ACCEESS_ACTION }))
                 .catch(() => toast('message', { text: REJECT_SERVER }))

@@ -1,5 +1,5 @@
 import React from "react"
-import { GroupContainer } from "@component/master"
+import { DynamicPagination } from "@component/master"
 import { PostColumn, ScrollTop, Search, TextInfo } from "@component/ui"
 import { Page } from "@component/master/h-order-component"
 import { useParams } from "react-router-dom"
@@ -9,7 +9,7 @@ import { usePage, useRequest } from "@lib/hook"
 import { getParamName } from "@lib/function"
 import { forumService } from "@/service"
 import { departmentOptions } from "@/export"
-import { postDto } from "@/model/post.dto"
+import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/case/sceleton"
 
 
@@ -29,7 +29,7 @@ export const Department = () => {
 const MainSideForum: React.FC<{}> = ({ }: {}) => {
     const { name } = useParams()
     const departmentId = departmentOptions.find(item => item.value.toLocaleLowerCase() == (name ?? '').toLocaleLowerCase())?.id
-    const [post] = useRequest<postDto>(() => forumService.GET_FIXED_POST(departmentId ?? 0), [`get-fixed-${departmentId}`])
+    const [post] = useRequest<postType>(() => forumService.GET_FIXED_POST(departmentId ?? 0), [`get-fixed-${departmentId}`])
 
     return (
         <div className="relative w-full">
@@ -41,7 +41,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
                 <PostItem {...post} fixed={true} className="pl-2" />
             </div>
             <React.Suspense fallback={<DepartmentSceleton />}>
-                <GroupContainer
+                <DynamicPagination
                     rq={{
                         fetch: forumService.GET_DEPARTAMENT_POST,
                         RQKey: [`department-post-${name}`],

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ViewSession } from '../'
-import { MainLoader } from '@/component/master'
+import { MainLoader } from '@/component/shared'
 
 interface Props {
     children: React.ReactNode

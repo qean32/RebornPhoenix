@@ -1,11 +1,11 @@
 import React from 'react'
 import { Ava, BanPlate } from '.'
-import { userDto } from '@/model'
+import { userInterface } from '@/model'
 import { ProfileInfoSceleton } from '../case/sceleton'
 
 interface Props {
     className?: string
-    user: Omit<userDto, 'email'>
+    user: Omit<userInterface, 'email'>
 }
 
 

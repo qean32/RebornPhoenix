@@ -1,8 +1,8 @@
 import React from 'react'
 import { Ava } from '../'
-import { userDto } from '@/model'
+import { userInterface } from '@/model'
 
-interface Props extends userDto {
+interface Props extends userInterface {
 }
 
 

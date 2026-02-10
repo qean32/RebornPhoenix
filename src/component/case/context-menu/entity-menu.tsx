@@ -3,13 +3,13 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { removeEntity } from '@/store/session-store'
-import { entityDto } from '@/model'
+import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
 import { swapTmpObject } from '@/store/tmp-object'
 import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 
-interface Props extends entityDto {
+interface Props extends entityInterface {
 }
 
 

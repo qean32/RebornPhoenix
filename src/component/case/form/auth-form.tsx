@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput, Button, PasswordInput, Title, LinkPrime } from '@component/ui'
-import { authFormDto, authSchema } from '@/model/schema'
+import { authFormSchema, authSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
@@ -16,9 +16,9 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const { form, submitHandler } =
-        useMyForm<authFormDto>(
+        useMyForm<authFormSchema>(
             authSchema,
-            (data: authFormDto) => {
+            (data: authFormSchema) => {
                 auth.AUTH(data)
                     .then(({ data, status }) => {
                         if (status == 200) {

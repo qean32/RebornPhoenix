@@ -1,13 +1,13 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
 import { useDMCharacter } from '@lib/hook/area';
-import { characterDto } from '@/model';
+import { characterInterface } from '@/model';
 import { useAppDispatch } from '@lib/hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
 
 type Props = {
     action?: boolean
-} & characterDto
+} & characterInterface
 
 export const CharacterDM: React.FC<Props> = (props: Props) => {
     const dispath = useAppDispatch()

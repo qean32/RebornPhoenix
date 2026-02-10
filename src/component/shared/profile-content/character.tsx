@@ -1,7 +1,7 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/export"
 import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
-import { characterDto } from "@/model"
+import { characterInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
 import { NoFindData, PlusButton } from "@component/ui"
@@ -16,7 +16,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [characters, loading, push, _delete] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
+    const [characters, loading, push, _delete] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

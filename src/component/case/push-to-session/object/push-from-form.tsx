@@ -2,7 +2,7 @@ import { Button, TextInput, UploadImgArea } from '@/component/ui'
 import { dftSource, REJECT_SERVER } from '@/export'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { conventToFormData, initPushDataToSession } from '@/lib/function'
-import { pushObjectToSessionFormDto, pushObjectToSessionSchema } from '@/model/schema'
+import { pushObjectToSessionFormSchema, pushObjectToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/store'
 import { swapTmpObject } from '@/store/tmp-object'
@@ -27,9 +27,9 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     }
 
     const { form, submitHandler } =
-        useMyForm<pushObjectToSessionFormDto>(
+        useMyForm<pushObjectToSessionFormSchema>(
             pushObjectToSessionSchema,
-            (data: pushObjectToSessionFormDto) => {
+            (data: pushObjectToSessionFormSchema) => {
                 sessionService.CREATE_OBJECT(conventToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {

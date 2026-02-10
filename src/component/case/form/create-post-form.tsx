@@ -2,7 +2,7 @@ import React from 'react'
 import { PushTagInForm, FakeTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
 import { previewPost } from '@/lib/function'
 import { FormProvider } from 'react-hook-form'
-import { createPostFormDto, createPostSchema } from '@/model/schema'
+import { createPostFormSchema, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
 import { departmentOptions, REJECT_SERVER } from '@/export'
@@ -18,9 +18,9 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const { form, submitHandler } =
-        useMyForm<createPostFormDto>(
+        useMyForm<createPostFormSchema>(
             createPostSchema,
-            (data: createPostFormDto) => {
+            (data: createPostFormSchema) => {
                 forumService.CREATE_POST(data)
                     .then(({ status }) => {
                         if (status == 200) {

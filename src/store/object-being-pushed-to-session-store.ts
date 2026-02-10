@@ -1,7 +1,7 @@
-import { entityDto, mapDto, objectDto } from "@/model";
+import { entityInterface, mapInterface, objectInterface } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type state = entityDto | objectDto | mapDto
+type state = entityInterface | objectInterface | mapInterface
 type stateT = state & {
     isEntity?: boolean
     isObject?: boolean

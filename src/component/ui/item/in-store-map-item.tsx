@@ -1,10 +1,10 @@
 import React from 'react'
-import { mapDto } from '@/model'
+import { mapInterface } from '@/model'
 import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 
 
-export const InStoreMapItem: React.FC<mapDto> = (item: mapDto) => {
+export const InStoreMapItem: React.FC<mapInterface> = (item: mapInterface) => {
     const { pushQ } = useQ(qpk.viewimg)
 
     const clickHAndler = () => {

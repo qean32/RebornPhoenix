@@ -4,7 +4,7 @@ import { Modal } from '@component/case/modal'
 import { modalAnimationEnum, slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
-import { entityDto, objectDto } from '@/model'
+import { entityInterface, objectInterface } from '@/model'
 import { useGrid, useToast } from '@/lib/hook'
 import { FillHoverHint } from '../master/h-order-component'
 import { saveJson, toggleFullScreen } from '@/lib/function'
@@ -59,14 +59,14 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                     <Modal.Root
                         modal={Modal.PushToSession}
                         animation={modalAnimationEnum['modal-dft']}
-                        props={{ type: 'entity', renderItem: (item: entityDto) => <InStoreEntityItem {...item} />, accept: PushEntity }}
+                        props={{ type: 'entity', renderItem: (item: entityInterface) => <InStoreEntityItem {...item} />, accept: PushEntity }}
                     >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/dragon.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Объекты'>
                     <Modal.Root
                         modal={Modal.PushToSession}
-                        props={{ type: 'object', renderItem: (item: objectDto) => <InStoreObjectItem {...item} />, accept: PushObject }}
+                        props={{ type: 'object', renderItem: (item: objectInterface) => <InStoreObjectItem {...item} />, accept: PushObject }}
                         animation={modalAnimationEnum['modal-dft']}
                     >
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/object.svg' />} /></Modal.Root>

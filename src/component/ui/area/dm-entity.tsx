@@ -1,13 +1,13 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
 import { useDMEntity } from '@lib/hook/area';
-import { entityDto } from '@/model';
+import { entityInterface } from '@/model';
 import { useAppDispatch } from '@lib/hook/redux';
 import { Dead, Gray, Hidden, utils } from './utils';
 
 type Props = {
     action?: boolean
-} & Omit<entityDto, 'description'>
+} & Omit<entityInterface, 'description'>
 
 
 export const EntityDM: React.FC<Props> = (props: Props) => {

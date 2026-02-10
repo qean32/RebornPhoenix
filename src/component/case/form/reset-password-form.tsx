@@ -1,6 +1,6 @@
 import React from 'react'
 import { Title, Button, TextInput } from '@component/ui'
-import { resetPasswordFormDto, resetPasswordSchema } from '@/model/schema'
+import { resetPasswordFormSchema, resetPasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { authService } from '@/service'
@@ -16,9 +16,9 @@ export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
 
     const { form, submitHandler } =
-        useMyForm<resetPasswordFormDto>(
+        useMyForm<resetPasswordFormSchema>(
             resetPasswordSchema,
-            (data: resetPasswordFormDto) => {
+            (data: resetPasswordFormSchema) => {
                 auth.RESET_PASSWORD(data)
                     .then(({ status }) => {
                         if (status == 200) {

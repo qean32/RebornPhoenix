@@ -1,11 +1,11 @@
 import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
-import { objectDto } from '@/model'
+import { objectInterface } from '@/model'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { scaleObject, removeObject, changeObject, pushObject } from '@/store/session-store'
 
-interface Props extends objectDto {
+interface Props extends objectInterface {
 }
 
 

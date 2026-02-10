@@ -1,10 +1,10 @@
 import React from 'react'
 import { Ava } from '@component/ui'
-import { entityDto } from '@/model'
+import { entityInterface } from '@/model'
 import { BestiaryMenu } from '@component/case/context-menu'
 
 
-export const InToolEntityItem: React.FC<entityDto> = (item: entityDto) => {
+export const InToolEntityItem: React.FC<entityInterface> = (item: entityInterface) => {
     return (
         <div
             className='flex items-center justify-between px-3 pr-3 py-4 bg-color-hover transition-300 mount-opacity'

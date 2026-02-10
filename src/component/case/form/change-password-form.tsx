@@ -1,6 +1,6 @@
 import React from 'react'
 import { Title, PasswordInput, Button } from '@component/ui'
-import { changePasswordFormDto, changePasswordSchema } from '@/model/schema'
+import { changePasswordFormSchema, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useQ, useToast } from '@/lib/hook'
 import { authService } from '@/service'
@@ -16,9 +16,9 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
     const { param: token } = useQ(qpk.token)
 
     const { form, submitHandler } =
-        useMyForm<changePasswordFormDto>(
+        useMyForm<changePasswordFormSchema>(
             changePasswordSchema,
-            (data: changePasswordFormDto) => {
+            (data: changePasswordFormSchema) => {
                 auth.CHANGE_PASSWORD(data, token)
                     .then(({ status }) => {
                         if (status == 200) {

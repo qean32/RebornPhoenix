@@ -1,5 +1,5 @@
 import React from 'react'
-import { commentFormDto, commentSchema } from '@/model/schema'
+import { commentFormSchema, commentSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
 import { useMyForm, useToast } from '@/lib/hook'
@@ -30,9 +30,9 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
     const toast = useToast()
 
     const { form, submitHandler, clear } =
-        useMyForm<commentFormDto>(
+        useMyForm<commentFormSchema>(
             commentSchema,
-            (data: commentFormDto) => {
+            (data: commentFormSchema) => {
                 clear()
                 if (key == 'update-comment') {
                     forumService.UPDATE_COMMENT(data, tmpObject?.id ?? 0)

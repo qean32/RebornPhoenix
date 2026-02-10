@@ -5,11 +5,11 @@ import { Modal } from '../modal'
 import { AccessAction } from '../modal/access-action-modal'
 import { ContextMenuItem } from './context-menu-item'
 import { useTmpObject, useToast } from '@/lib/hook'
-import { sessionDto } from '@/model'
+import { sessionInterface } from '@/model'
 import { modalAnimationEnum, REJECT_SERVER } from '@/export'
 import { sessionService } from '@/service/session-service'
 
-interface Props extends sessionDto {
+interface Props extends sessionInterface {
 }
 
 const ACCEESS_ACTION = 'Сессия удалена'

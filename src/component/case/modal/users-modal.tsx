@@ -5,7 +5,7 @@ import { UserInModal } from '@/component/ui/item'
 import { useQ, useRequest, useToast } from '@/lib/hook'
 import { qpk } from '@/export'
 import { communityService } from '@/service'
-import { userDto } from '@/model'
+import { userInterface } from '@/model'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { pushUser } from '@/store/session-store'
 
@@ -30,8 +30,8 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     }, [])
 
     const { param } = useQ(qpk.search)
-    const [users, loading] = useRequest<userDto[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
-    const [myusers] = useRequest<userDto[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
+    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
+    const [myusers] = useRequest<userInterface[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >

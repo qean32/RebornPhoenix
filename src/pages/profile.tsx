@@ -4,13 +4,13 @@ import { ProfileContent, ProfileContentSwith } from "@component/shared/profile-c
 import { usePage, useRequest } from "@lib/hook"
 import { getParamName } from "@lib/function"
 import { useParams } from "react-router-dom"
-import { userDto } from "@/model"
+import { userInterface } from "@/model"
 import { profileService } from "@/service"
 
 export const Profile = () => {
     const { } = usePage(getParamName())
     const { id } = useParams()
-    const [user, loading] = useRequest<Omit<userDto, 'email'>>(() => profileService.GET_USER_INFO(id ?? 0), [`profile-info-${id}`])
+    const [user, loading] = useRequest<Omit<userInterface, 'email'>>(() => profileService.GET_USER_INFO(id ?? 0), [`profile-info-${id}`])
     const [sub] = useRequest(() => profileService.GET_SUBSCRIBE(Number(id)), [`get-subscribe-${id}`])
 
     if (!user?.id && !loading) {

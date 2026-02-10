@@ -1,6 +1,6 @@
 import { setUser } from "@/store/user-store"
 import { useAppDispatch } from "../hook/redux"
-import { userDto } from "@/model"
+import { userInterface } from "@/model"
 import { useUser } from "../hook"
 import { profileService } from "@/service"
 
@@ -10,7 +10,7 @@ export const initSetUser = async (force: boolean = false) => {
 
     if (!user || force) {
         // @ts-ignore
-        const userData: userDto = await profileService.me()
+        const userData: userInterface = await profileService.me()
 
         if (await userData?.id) {
 

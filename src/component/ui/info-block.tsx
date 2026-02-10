@@ -2,13 +2,13 @@ import React from 'react'
 import { InfoImage } from './info-image'
 import { useHandlerScrollBetween } from '@/lib/hook'
 import { qpk } from '@/export'
-import { infoBlockContentDto } from '@/model'
+import { infoBlockContentType } from '@/model'
 
 interface Props {
     title: string
     pushQ: any
     pushQParam: any
-    content: infoBlockContentDto,
+    content: infoBlockContentType,
     id: number
 }
 

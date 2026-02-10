@@ -1,4 +1,4 @@
-import { modalAnimationDto } from './model'
+import { modalAnimationType } from './model'
 import { keys } from './store/q-store'
 
 export { axiosInstance } from './service/instance'
@@ -37,7 +37,7 @@ export const contentLoaderProps = {
 export const developers = 'wtfit & Snake Eyes Teams'
 
 export const modalAnimationEnum: {
-    [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationDto
+    [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationType
 } = {
     'modal-right': {
         close: "right-modal-close",
@@ -131,3 +131,5 @@ export const departmentOptions = [
     { title: "WEB", value: "WEB", id: 2 },
     { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
 ]
+
+export const webSocketChannel = `channel_for_everyone`;

@@ -4,7 +4,7 @@ import { DepartmentItem } from "@component/ui/item"
 import { title } from "@/export"
 import { usePage, useRequest } from "@lib/hook"
 import { forumService } from "@/service"
-import { departmentDto } from "@/model"
+import { departmentType } from "@/model"
 import { ForumSceleton } from "@/component/case/sceleton"
 import React from "react"
 
@@ -27,7 +27,7 @@ export const Forum = () => {
 }
 
 const Content: React.FC<{}> = ({ }: {}) => {
-    const [departments] = useRequest<departmentDto[]>(forumService.GET_DEPARTAMENTS, ['departments'], { suspense: true })
+    const [departments] = useRequest<departmentType[]>(forumService.GET_DEPARTAMENTS, ['departments'], { suspense: true })
 
     return (
         <div className="flex flex-col gap-7">
