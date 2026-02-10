@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
-import { useDynamickPagination, useQ } from '@/lib/hook';
+import { useDynamicPagination, useQ } from '@/lib/hook';
 import { userInterface } from '@/model';
 import { qpk } from '@/export';
 
@@ -29,7 +29,7 @@ export const DynamicPagination: React.FC<Props> = ({
 }: Props) => {
     const { param, allQ } = useQ(qpk.search)
     const { response, loading, refHandler, isEnd } =
-        useDynamickPagination<userInterface>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ[qpk.date], allQ[qpk.tags])
+        useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, param, [staticParam], allQ[qpk.date], allQ[qpk.tags])
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>

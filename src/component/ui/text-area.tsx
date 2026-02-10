@@ -48,7 +48,7 @@ export const TextArea: React.FC<Props> = ({
                     <DangerIcon />
                 </HoverHint>}
             <div
-                suppressetContentEditableWarning={true}
+                suppressContentEditableWarning={true}
                 contentEditable={true}
                 id={id}
                 {...register(name)}
