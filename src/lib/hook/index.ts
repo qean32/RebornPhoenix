@@ -1,7 +1,7 @@
 export { useBoolean, type TypeUseBoolen } from './use-boolean'
 export { useDebounce } from './use-debounce'
 export { useDebounceFunction } from './use-debounce-function'
-export { useDynamickPagination } from './use-dynamick-pagination'
+export { useDynamicPagination } from './use-dynamic-pagination'
 export { useHandlerScroll } from './use-handler-scroll'
 export { useOnline } from './use-online'
 export { useRequest } from './use-request'

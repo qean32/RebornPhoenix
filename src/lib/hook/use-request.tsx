@@ -1,5 +1,5 @@
 import React from "react"
-import { useQuery } from "react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 
 export function useRequest<T,>(
     fetch_: any,
@@ -13,7 +13,13 @@ export function useRequest<T,>(
         }
 ): [T, boolean, Function, Function, Function] {
     const [response, setData] = React.useState<T>()
-    const RQData = useQuery(RQkey, fetch_, { keepPreviousData: true, refetchOnWindowFocus: false, suspense: config.suspense })
+    const RQData = config.suspense ? useSuspenseQuery({
+        queryKey: RQkey,
+        queryFn: fetch_,
+    }) : useQuery({
+        queryKey: RQkey,
+        queryFn: fetch_,
+    })
 
     React.useEffect(() => {
         RQData.data &&

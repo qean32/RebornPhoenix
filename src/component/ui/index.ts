@@ -1,4 +1,4 @@
-export { Select, TextInput, PasswordInput, ImgInput, Checkbox, FileInput, FakeTextInput } from './input'
+export { Select, TextInput, PasswordInput, ImgInput, Checkbox, FileInput, HiddenTextInput } from './input'
 export { Button } from './button'
 export { Ava } from './ava'
 export { Logo } from './logo'

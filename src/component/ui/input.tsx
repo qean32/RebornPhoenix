@@ -216,7 +216,7 @@ interface FakeTextProps {
     yHint?: yPositionHintType
 }
 
-export const FakeTextInput: React.FC<FakeTextProps> = ({
+export const HiddenTextInput: React.FC<FakeTextProps> = ({
     title,
     className,
     name,

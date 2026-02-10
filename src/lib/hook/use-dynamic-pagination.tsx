@@ -1,8 +1,8 @@
 import React from "react"
-import { useQuery } from "react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import { useBoolean, useHandlerScroll } from "."
 
-export const useDynamickPagination = <T,>(
+export const useDynamicPagination = <T,>(
     fetch_: Function,
     RQkey: string[],
     skip_: number = 0,
@@ -17,8 +17,12 @@ export const useDynamickPagination = <T,>(
     const [response, setResponse] = React.useState<T[]>([])
     const { boolean: isEnd, on: onIsEnd, off: offIsEnd } = useBoolean()
     const { boolean: loading, off, on } = useBoolean(true)
-    const RQData = useQuery([...RQkey, skip, search, date, tags],
-        () => fetch_(skip, take, search, ...staticParam, date, tags), { keepPreviousData: false, refetchOnWindowFocus: false, suspense: true })
+    const RQData = useSuspenseQuery(
+        {
+            queryKey: [...RQkey, skip, search, date, tags],
+            queryFn: () => fetch_(skip, take, search, ...staticParam, date, tags)
+        }
+    )
 
     React.useEffect(() => {
         offIsEnd()
