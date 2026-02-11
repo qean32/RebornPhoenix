@@ -4,6 +4,7 @@ import { changeEntity } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
 import { qpk } from "@/export";
 import { useQ } from "../use-q";
+import { serverService } from "@/service";
 
 export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
     const [image] = useImage(path);
@@ -34,6 +35,7 @@ export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: st
                 }
             }
         }))
+        serverService.event(6, { type: 'zxc' });
         // rectRef.current.to({
         //     y: e.target.attrs.y,
         //     x: e.target.attrs.x,

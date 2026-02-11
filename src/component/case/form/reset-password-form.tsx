@@ -3,7 +3,7 @@ import { Title, Button, TextInput } from '@component/ui'
 import { resetPasswordFormSchema, resetPasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
-import { authService } from '@/service'
+import { authServiceItem } from '@/service'
 import { REJECT_SERVER } from '@/export'
 
 interface Props {
@@ -12,14 +12,13 @@ interface Props {
 
 const ACCEESS_ACTION = 'На вашу почту отпраленно сообщение!'
 export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
-    const auth = new authService()
     const toast = useToast()
 
     const { form, submitHandler } =
         useMyForm<resetPasswordFormSchema>(
             resetPasswordSchema,
             (data: resetPasswordFormSchema) => {
-                auth.RESET_PASSWORD(data)
+                authServiceItem.RESET_PASSWORD(data)
                     .then(({ status }) => {
                         if (status == 200) {
                             toast('message', { text: ACCEESS_ACTION }, 10000)

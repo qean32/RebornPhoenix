@@ -3,7 +3,7 @@ import { TextInput, Button, PasswordInput, Checkbox, Title } from '@component/ui
 import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook';
-import { authService } from '@/service';
+import { authServiceItem } from '@/service';
 import { getFirstError, initSetUser, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
-    const auth = new authService()
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -19,7 +18,7 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<registrationFormSchema>(
             registrationSchema,
             (data: registrationFormSchema) => {
-                auth.REGISTRATION(data)
+                authServiceItem.REGISTRATION(data)
                     // @ts-ignore
                     .then(({ data, status }) => {
                         if (status == 200) {

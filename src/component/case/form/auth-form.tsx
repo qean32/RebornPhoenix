@@ -4,14 +4,13 @@ import { authFormSchema, authSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
-import { authService } from '@/service'
+import { authServiceItem } from '@/service'
 import { getFirstError, initSetUser, setToken } from '@/lib/function'
 
 interface Props {
 }
 
 export const AuthForm: React.FC<Props> = ({ }: Props) => {
-    const auth = new authService()
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -19,7 +18,7 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
         useMyForm<authFormSchema>(
             authSchema,
             (data: authFormSchema) => {
-                auth.AUTH(data)
+                authServiceItem.AUTH(data)
                     .then(({ data, status }) => {
                         if (status == 200) {
                             // @ts-ignore

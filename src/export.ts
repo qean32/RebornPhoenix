@@ -132,4 +132,6 @@ export const departmentOptions = [
     { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
 ]
 
+export const eventKey = ".throwEvent";
+
 export const webSocketChannel = `channel_for_everyone`;

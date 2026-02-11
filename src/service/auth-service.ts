@@ -19,3 +19,5 @@ export class authService {
         return requestPost(`profile/reset-password`, data)
     }
 }
+
+export const authServiceItem = new authService()

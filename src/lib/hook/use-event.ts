@@ -1,15 +1,17 @@
-import { changeEvent, keysEvant } from "@/store/event-store"
-import { useAppDispatch, useAppSelector } from "./redux"
-import { entityInterface, objectInterface, idType } from "@/model"
+import { eventKey } from "@/export";
+import { useEchoPublic } from "@laravel/echo-react";
+import React from "react";
+import { useParams } from 'react-router-dom';
+
 
 export const useEvent = () => {
-    const dispatch = useAppDispatch()
-    const event = useAppSelector(state => state.event)
+    const { id } = useParams()
+    const { listen, leave } = useEchoPublic(
+        `session.${id}`, eventKey, (e) => { console.log(e) }
+    );
 
-    const _changeEvent = (payload: {
-        payload: entityInterface | objectInterface | idType | null,
-        key: keysEvant
-    }) => dispatch(changeEvent(payload))
-
-    return { event, changeEvent: _changeEvent }
+    React.useEffect(() => {
+        listen()
+        return () => { leave() }
+    }, [])
 }
