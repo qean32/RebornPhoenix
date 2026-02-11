@@ -1,12 +1,12 @@
 import { modalAnimationType } from './model'
-import { keys } from './store/q-store'
+import { keysQ } from './store/q-store'
 
 export { axiosInstance } from './service/instance'
 
 export const tokenStorageKey = 'token-storage'
 export const invalidTokenMessage = 'invalid token!'
 
-export const qpk: { [key in keys]: keys } = {
+export const qpk: { [key in keysQ]: keysQ } = {
     contentprofile: 'contentprofile',
     viewimg: 'viewimg',
     contentsession: 'contentsession',

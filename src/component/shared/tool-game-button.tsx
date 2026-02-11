@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonInGroup, GroupButton } from '@component/ui'
+import { ButtonInGroup, GameMode, GroupButton } from '@component/ui'
 import { Modal } from '@component/case/modal'
 import { modalAnimationEnum, slogan } from '@/export'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
@@ -26,9 +26,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
     return (
         <div className='absolute flex z-10 right-35 gap-4'>
             <GroupButton>
-                <FillHoverHint title='Режим'>
-                    <ButtonInGroup children={<img className='icon-sm' src='/icon/game.svg' />} />
-                </FillHoverHint>
+                <GameMode />
                 <FillHoverHint title='Карты'>
                     <Modal.Root
                         modal={Modal.MapsGame}

@@ -1,8 +1,8 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "./redux";
-import { keys, pushQuery, clearQuery } from "@/store/q-store";
+import { keysQ, pushQuery, clearQuery } from "@/store/q-store";
 
-export const useQ = (key: keys = 'grid', defaultValue?: string) => {
+export const useQ = (key: keysQ = 'grid', defaultValue?: string) => {
     const { q } = useAppSelector(state => state.q)
     const dispath = useAppDispatch()
 
@@ -15,11 +15,11 @@ export const useQ = (key: keys = 'grid', defaultValue?: string) => {
         dispath(pushQuery({ key, value }))
     }
 
-    const clearQParam = (key: keys) => {
+    const clearQParam = (key: keysQ) => {
         dispath(pushQuery({ key, value: '' }))
     }
 
-    const pushQParam = (key: keys, value: string) => {
+    const pushQParam = (key: keysQ, value: string) => {
         dispath(pushQuery({ key, value }))
     }
 

@@ -2,13 +2,13 @@ import React from 'react'
 import { Circle, Group } from "react-konva"
 import { characterInterface } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
-import { useSubscriber } from '@/lib/hook/area';
+import { useSubscriberEntity } from '@/lib/hook/area';
 import { useAppDispatch } from '@/lib/hook/redux';
 
 
 export const CharacterSubscriber: React.FC<characterInterface> = (props: characterInterface) => {
     const dispath = useAppDispatch()
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-character')
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriberEntity(dispath, props.path, 'more-character')
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
 

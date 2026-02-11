@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
 import { authService } from '@/service'
-import { getFirstError, setToken } from '@/lib/function'
+import { getFirstError, initSetUser, setToken } from '@/lib/function'
 
 interface Props {
 }
@@ -24,6 +24,7 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
                         if (status == 200) {
                             // @ts-ignore
                             setToken(data?.token);
+                            initSetUser(true)
                             toast('message', { text: 'Успешная авторизация' })
                             setTimeout(() => {
                                 navigate('/')

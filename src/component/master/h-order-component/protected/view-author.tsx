@@ -9,7 +9,7 @@ interface Props {
 
 
 export const ViewAuthor: React.FC<Props> = ({ children, payload_id, reverse = false }: Props) => {
-    const user = useUser()
+    const { user } = useUser()
     if (reverse && payload_id == user?.id && payload_id) {
         return
     }

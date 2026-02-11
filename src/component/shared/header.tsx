@@ -11,7 +11,7 @@ interface Props {
 
 
 export const Header: React.FC<Props> = ({ className }: Props) => {
-    const user = useUser()
+    const { user } = useUser()
 
     return (
         <header className={cn('bg-color-darkness z-50 flex justify-around py-2.5 items-center', className)}>

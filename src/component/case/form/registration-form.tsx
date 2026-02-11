@@ -4,7 +4,7 @@ import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook';
 import { authService } from '@/service';
-import { getFirstError, setToken } from '@/lib/function';
+import { getFirstError, initSetUser, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -25,6 +25,7 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
                         if (status == 200) {
                             // @ts-ignore
                             setToken(data.token);
+                            initSetUser(true)
                             toast('message', { text: 'Успешная авторизация' })
                             setTimeout(() => {
                                 navigate('/')

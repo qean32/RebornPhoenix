@@ -4,15 +4,18 @@ import { characterInterface, entityInterface, objectInterface } from "@/model/en
 import { generateId } from "@/lib/function";
 
 type stateDto = {
+    isDevMode: boolean
     session: sessionInterface, bestiary: bestiaryItemInterface[],
     info: infoDto
 }
+
 type infoDto = {
     session: string,
     bestiary: string
 }
 
 const initialState: stateDto = {
+    isDevMode: true,
     session: {
         users: '',
         characters: [],
@@ -43,6 +46,14 @@ const sessionSlice = createSlice({
     name: 'session-store',
     initialState,
     reducers: {
+
+        // """"""""""""""""""""""""""""""""""""""""""" { other action } """"""""""""""""""""""""""""""""""""""""""" //
+
+        swapMode: (state: stateDto) => {
+            state.isDevMode = !state.isDevMode
+        },
+
+        // """"""""""""""""""""""""""""""""""""""""""" { other action } """"""""""""""""""""""""""""""""""""""""""" //
 
         setSession: (state: stateDto, { payload: { session, bestiary, info } }: PayloadAction<{ session: sessionInterface, bestiary: bestiaryItemInterface[], info: infoDto }>) => {
             state.session = session
@@ -304,5 +315,6 @@ export const {
     setSession,
     pushImg,
     pushNote,
-    pushUser
+    pushUser,
+    swapMode
 } = sessionSlice.actions

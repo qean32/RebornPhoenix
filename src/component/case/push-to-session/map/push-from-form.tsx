@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/hook/redux'
 import { conventToFormData, initPushDataToSession } from '@/lib/function'
 import { pushMapToSessionFormSchema, pushMapToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
-import { swapTmpObject } from '@/store/tmp-object'
+import { swapTmpObject } from '@/store/tmp-object-store'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 

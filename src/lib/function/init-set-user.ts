@@ -15,7 +15,7 @@ export const initSetUser = async (force: boolean = false) => {
         // @ts-ignore
         const userData: userInterface = await profileService.me()
 
-        if (await userData?.id) {
+        if (userData?.id) {
 
             dispath(setUser(userData))
         }

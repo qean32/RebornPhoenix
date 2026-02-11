@@ -3,10 +3,10 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { pushEntity } from '@/store/session-store'
-import { entityDto } from '@/model'
+import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-object'
-interface Props extends entityDto {
+import { swapTmpObject } from '@/store/tmp-object-store'
+interface Props extends entityInterface {
 }
 
 

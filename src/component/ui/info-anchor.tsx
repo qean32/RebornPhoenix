@@ -19,7 +19,7 @@ export const InfoAnchor: React.FC<Props> = ({ qa }: Props) => {
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
                     return (
-                        <Link key={item} to={`/faq#${index}`}>
+                        <Link key={item} to={`#${index}`}>
                             <p className={cn('transition-300 text-lg hover:text-red-800', (param == item && "text-red-800"))}>{item}</p></Link>
                     )
                 })}

@@ -7,7 +7,7 @@ interface Props {
 
 
 export const Navigate: React.FC<Props> = ({ }: Props) => {
-    const user = useUser()
+    const { user } = useUser()
 
     return (
         <div className='fixed z-50 flex hover:-translate-y-0.5 gap-2 left-1/2 bottom-3 -translate-x-1/2 bg-color-darkness p-2 rounded-md transition-300 hover:py-3'>

@@ -7,7 +7,7 @@ interface Props {
 
 
 export const ViewAdmin: React.FC<Props> = ({ children }: Props) => {
-    const user = useUser()
+    const { user } = useUser()
 
     if (user?.role == 2) {
 

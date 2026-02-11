@@ -8,7 +8,7 @@ type stateT = state_ & {
     isMap?: boolean
 }
 export type state = entityInterface | objectInterface | null | idType | commentType | stateT
-export type key =
+export type keysTmp =
     'push-entity' |
     'push-object' |
     'push-map' |
@@ -23,7 +23,7 @@ export type key =
     'create-session' |
     'push-object' |
     null
-type stateDto = { tmpObject: state, key: key }
+type stateDto = { tmpObject: state, key: keysTmp }
 
 const initialState: stateDto = { tmpObject: null, key: null }
 
@@ -31,7 +31,7 @@ const tmpObjectSlice = createSlice({
     name: 'temp-object-store',
     initialState,
     reducers: {
-        swapTmpObject(state: stateDto, { payload: { key, payload } }: PayloadAction<{ payload: state, key: key }>) {
+        swapTmpObject(state: stateDto, { payload: { key, payload } }: PayloadAction<{ payload: state, key: keysTmp }>) {
             if (payload && state.tmpObject?.id == payload.id) {
                 state.tmpObject = null
                 state.key = null

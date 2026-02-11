@@ -35,7 +35,7 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
             },
             () => { }
         )
-    const user = useUser()
+    const { user } = useUser()
 
     return (
         <FormProvider {...form}>

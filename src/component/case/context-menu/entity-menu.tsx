@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/hook/redux'
 import { removeEntity } from '@/store/session-store'
 import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-object'
+import { swapTmpObject } from '@/store/tmp-object-store'
 import { useQ } from '@/lib/hook'
 import { qpk } from '@/export'
 

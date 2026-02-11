@@ -24,3 +24,5 @@ export interface mapsDataInterface {
         characters: characterInterface[]
     }
 }
+
+export type sessionModeType = 'game' | 'dev'

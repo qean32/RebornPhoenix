@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type keys =
+export type keysQ =
     'contentprofile' |
     'pushcharacter' |
     'viewimg' |
@@ -16,21 +16,7 @@ export type keys =
     'token'
 
 type stateDto = {
-    q: {
-        contentprofile: string
-        viewimg: string
-        contentsession: string
-        pushcharacter: string
-        actionentity: string
-        anchorlink: string
-        search: string
-        forceupadeteuser: string
-        grid: string
-        select: string
-        date: string
-        tags: string
-        token: string
-    }
+    q: Record<keysQ, string>
 }
 
 const initialState: stateDto = {
@@ -55,7 +41,7 @@ const qSlice = createSlice({
     name: 'other-q-store',
     initialState,
     reducers: {
-        pushQuery: (state: stateDto, { payload: { key, value } }: PayloadAction<{ key: keys, value: string }>) => {
+        pushQuery: (state: stateDto, { payload: { key, value } }: PayloadAction<{ key: keysQ, value: string }>) => {
             state.q[key] = value
         },
         clearQuery: (state: stateDto) => {

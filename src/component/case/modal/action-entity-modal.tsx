@@ -3,7 +3,7 @@ import { cn, getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { Ava, Button, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
-import { statusDto } from '@/model'
+import { statusType } from '@/model'
 import { changeEntity } from '@/store/session-store'
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
-const actionMap: { status: statusDto, icon: any }[] = [
+const actionMap: { status: statusType, icon: any }[] = [
     {
         icon: <img src={'/icon/dead.svg'} alt="" className='icon-lg' />,
         status: 'dead'
