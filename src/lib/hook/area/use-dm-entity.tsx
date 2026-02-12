@@ -4,9 +4,14 @@ import { changeEntity } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
 import { qpk } from "@/export";
 import { useQ } from "../use-q";
-import { serverService } from "@/service";
+import { coordinateType } from "@/model";
+import { eventMiddleware } from "@/lib/middleware";
 
-export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
+export const useDMEntity = (position: coordinateType, path: string) => {
+    const dispath = useAppDispatch()
+    const _position = React.useMemo(() => position, [])
+    const dragEnd = eventMiddleware()
+
     const [image] = useImage(path);
     const { pushQ } = useQ(qpk.actionentity)
 
@@ -25,22 +30,15 @@ export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: st
     };
 
     const dragEndHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
+        const payload = {
+            id: e.currentTarget.attrs.id,
+            position: {
+                y: e.target.attrs.y,
+                x: e.target.attrs.x,
+            },
+        }
+        dragEnd({ payload, type: "change-entity" }, () => { dispath(changeEntity({ payload })) })
         e.target.getStage().container().style.cursor = 'pointer';
-        dispath(changeEntity({
-            payload: {
-                id: e.currentTarget.attrs.id,
-                position: {
-                    y: e.target.attrs.y,
-                    x: e.target.attrs.x,
-                }
-            }
-        }))
-        serverService.event(6, { type: 'zxc' });
-        // rectRef.current.to({
-        //     y: e.target.attrs.y,
-        //     x: e.target.attrs.x,
-        //     duration: 0.7,
-        // })
     };
 
     const dragMoveHandler = () => {
@@ -51,5 +49,5 @@ export const useDMEntity = (dispath: ReturnType<typeof useAppDispatch>, path: st
         pushQ(e.currentTarget.attrs.id)
     }
 
-    return { mouseOutHandler, mouseOverHandler, dragMoveHandler, clickHandler, dragEndHandler, dragStartHandler, image, rectRef }
+    return { mouseOutHandler, mouseOverHandler, dragMoveHandler, clickHandler, dragEndHandler, dragStartHandler, image, rectRef, _position }
 }

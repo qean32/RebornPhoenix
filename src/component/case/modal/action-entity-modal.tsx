@@ -5,6 +5,7 @@ import { Ava, Button, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusType } from '@/model'
 import { changeEntity } from '@/store/session-store'
+import { eventMiddleware } from '@/lib/middleware'
 
 interface Props {
     view: boolean | string
@@ -57,12 +58,15 @@ export const ActionEntity: React.FC<Props> = ({
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
-    const change = (e: React.MouseEvent<HTMLDivElement>) => {
+    const change = eventMiddleware()
+    const changeHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
-
-        if (entity) {
-            dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
-        }
+        change(
+            { payload: { [key]: value }, type: 'change-entity' }, () => {
+                if (entity) {
+                    dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
+                }
+            })
     }
 
 
@@ -80,7 +84,7 @@ export const ActionEntity: React.FC<Props> = ({
                 <Title className='p-2 pl-10 uppercase letter-spacing-2px'>Редактор токена</Title>
                 <div className="p-5 px-10 flex">
                     <div className="flex flex-col gap-5">
-                        <div className="flex gap-5" onClick={change}>
+                        <div className="flex gap-5" onClick={changeHandler}>
                             <p className='pb-4'>Статус</p>
                             {actionMap.map(item => {
                                 return <Square
@@ -92,7 +96,7 @@ export const ActionEntity: React.FC<Props> = ({
                                 </Square>
                             })}
                         </div>
-                        <div className="flex gap-5" onClick={change}>
+                        <div className="flex gap-5" onClick={changeHandler}>
                             <p className='pb-4'>Размер</p>
                             {sizeMap.map(item => {
                                 return <Square
@@ -108,7 +112,7 @@ export const ActionEntity: React.FC<Props> = ({
                         </div>
                     </div>
                     <div className="w-full flex justify-start items-center flex-col gap-5 pl-5">
-                        <Ava path={entity?.path ?? ''} size='ava-xl' className='-translate-y-0.5' />
+                        <Ava path={entity?.path ?? ''} size='ava-xl' className='-translate-y-0.5' blob />
                         <p>{entity?.name}</p>
                     </div>
                 </div>

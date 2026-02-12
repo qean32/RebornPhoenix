@@ -7,6 +7,7 @@ import { PushMap } from '@/component/case/push-to-session'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { swapCurrentMap } from '@/store/session-store'
 import { modalAnimationEnum } from '@/export'
+import { eventMiddleware } from '@/lib/middleware'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -16,8 +17,13 @@ interface Props {
 export const MapsGame: React.FC<Props> = ({ swap }: Props) => {
     const { session: { maps, currentMap } } = useAppSelector(state => state.session)
     const dispath = useAppDispatch()
+    const _swap = eventMiddleware()
     const swapHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        dispath(swapCurrentMap({ id: getHTMLData(e, true)?.id }))
+        const payload = { id: getHTMLData(e, true)?.id };
+
+        _swap({ payload, type: 'swap-map' }, () => {
+            dispath(swapCurrentMap(payload))
+        })
     }
 
     return (

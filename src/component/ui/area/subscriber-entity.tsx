@@ -3,18 +3,22 @@ import { Circle, Group } from "react-konva"
 import { entityInterface } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
 import { useSubscriberEntity } from '@/lib/hook/area';
-import { useAppDispatch } from '@/lib/hook/redux';
 
 
 export const EntitySubscriber: React.FC<Omit<entityInterface, 'description'>> = (props: Omit<entityInterface, 'description'>) => {
-    const dispath = useAppDispatch()
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriberEntity(dispath, props.path, 'more-entity', props.idInBestiary)
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriberEntity(
+        // @ts-ignore
+        props.position,
+        props.path,
+        'more-object'
+    )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
         <Group
             id={props.id.toString()}
-            {...props.position}
+            ref={rectRef}
+            {..._position}
             onMouseOver={mouseOverHandler}
             onClick={clickHandler}
             onMouseOut={mouseOutHandler}

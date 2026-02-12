@@ -7,6 +7,7 @@ type stateDto = {
     isDevMode: boolean
     session: sessionInterface, bestiary: bestiaryItemInterface[],
     info: infoDto
+    isSet: boolean
 }
 
 type infoDto = {
@@ -15,6 +16,7 @@ type infoDto = {
 }
 
 const initialState: stateDto = {
+    isSet: false,
     isDevMode: true,
     session: {
         users: '',
@@ -55,10 +57,11 @@ const sessionSlice = createSlice({
 
         // """"""""""""""""""""""""""""""""""""""""""" { other action } """"""""""""""""""""""""""""""""""""""""""" //
 
-        setSession: (state: stateDto, { payload: { session, bestiary, info } }: PayloadAction<{ session: sessionInterface, bestiary: bestiaryItemInterface[], info: infoDto }>) => {
+        setSession: (state: stateDto, { payload: { session, bestiary, info, isSet } }: PayloadAction<stateDto>) => {
             state.session = session
             state.bestiary = bestiary
             state.info = info
+            state.isSet = isSet
         },
 
         pushImg: (state: stateDto, { payload: { img } }: PayloadAction<{ img: string }>) => {
@@ -88,6 +91,8 @@ const sessionSlice = createSlice({
             Pick<entityInterface, 'id' | 'size'> |
             Pick<entityInterface, 'position' | 'id'>
         }>) => {
+            console.log(payload);
+
             state.session.mapsData[state.session.currentMap.id].queue = [
                 // @ts-ignore
                 ...state.session.mapsData[state.session.currentMap.id].queue.filter(item => item.id != payload.id),
