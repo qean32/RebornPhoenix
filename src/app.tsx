@@ -23,3 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  *   value?: string;
  * }
 */
+
+// need VITE_
+// import.meta.env.VITE_SERVER_HOST
