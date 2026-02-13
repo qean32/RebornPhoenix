@@ -18,7 +18,7 @@ const playModeMiddleware = (store: any) => (next: any) => (action: any) => {
         type[0] == 'session-store' &&
         rejectMwthods.includes(type[1])
         && !store.getState('')
-            .session.isDevMode
+            .log.isDevMode
     ) {
         const payload = generateRejectToastPayload()
         next(payload)

@@ -10,7 +10,8 @@ export const CharacterSubscriber: React.FC<Omit<entityInterface, 'description'>>
         // @ts-ignore
         props.position,
         props.path,
-        'more-entity'
+        'more-entity',
+        0
     )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 

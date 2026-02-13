@@ -15,7 +15,7 @@ type infoDto = {
 }
 
 const initialState: stateDto = {
-    isSet: true,
+    isSet: false,
     session: {
         users: '',
         characters: [],

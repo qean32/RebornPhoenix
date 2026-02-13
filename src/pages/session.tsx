@@ -9,7 +9,7 @@ export const Session = () => {
     return (
         <>
             <ToolGame />
-            <main className="h-full z-0 relative">
+            <main className="h-full max-h-[100vh] z-0 relative">
                 <ToolGameButton />
                 <GameArea />
             </main >

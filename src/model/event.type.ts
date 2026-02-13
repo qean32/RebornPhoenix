@@ -7,4 +7,5 @@ export type keysEvent =
     'swap-map' |
     'change-object' |
     'change-entity' |
-    'dice'
+    'dice' |
+    'view-img'

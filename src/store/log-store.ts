@@ -18,8 +18,8 @@ const logSlice = createSlice({
             console.log(payload.log);
 
             state.logs = [
+                payload.log,
                 ...state.logs,
-                payload.log
             ]
         },
         swapMode: (state: stateDto) => {

@@ -5,6 +5,7 @@ import { ViewImgCarouselItem } from '@component/ui/item'
 import * as ModalGroup from './index-group'
 import { modalAnimationEnum } from '@/config'
 import { useAppSelector } from '@/lib/hook/redux'
+import { EventMiddleware } from '@/lib/middleware'
 
 interface Props {
 }
@@ -15,8 +16,13 @@ export const ImgCarousel: React.FC<Props> = ({ }: Props) => {
     const { session } = useAppSelector(state => state.session)
     const ref = React.useRef<null | HTMLDivElement>(null)
 
+    const event = EventMiddleware()
+
     const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        setValue(getHTMLData(e, false, 'value'))
+        const img = getHTMLData(e, false, 'value')
+        event({ type: 'view-img', payload: { img: process.env.SERVER_HOST_STORAGE + img } }, () => {
+            setValue(img)
+        })
     }
 
     const scroll = React.useCallback((value: number) => {
