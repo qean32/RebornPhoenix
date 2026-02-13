@@ -1,4 +1,4 @@
-import { qpk } from "@/export"
+import { qpk } from "@/config"
 import { useQ } from "./use-q"
 
 export const useGrid = () => {

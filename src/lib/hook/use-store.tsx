@@ -1,4 +1,4 @@
-import { qpk } from "@/export"
+import { qpk } from "@/config"
 import { entityInterface, mapInterface, objectInterface } from "@/model"
 import { sessionService } from "@/service/session-service"
 import React from "react"

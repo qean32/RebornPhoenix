@@ -3,7 +3,7 @@ import { stopPropagation } from '@/lib/function'
 import React from 'react'
 import { ContextMenuItem } from './context-menu-item'
 import { useTmpObject, useToast } from '@/lib/hook'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { profileService } from '@/service'
 
 interface Props {

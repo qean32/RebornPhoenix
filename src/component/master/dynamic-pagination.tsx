@@ -3,7 +3,7 @@ import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
 import { useDynamicPagination, useQ } from '@/lib/hook';
 import { userInterface } from '@/model';
-import { qpk } from '@/export';
+import { qpk } from '@/config';
 
 interface Props {
     className?: string

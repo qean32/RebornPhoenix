@@ -2,7 +2,7 @@ import React from 'react'
 import { Stage, Layer } from "react-konva"
 import { EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
 import { useAppSelector } from '@lib/hook/redux';
-import { useStage, useWindowSize } from '@lib/hook';
+import { useEventListenDM, useStage, useWindowSize } from '@lib/hook';
 import { MainLoader } from '../shared';
 
 interface Props {
@@ -13,6 +13,7 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
     const { session: { currentMap, mapsData }, isSet } = useAppSelector(state => state.session)
     const { handleWheel, stage } = useStage()
     const { innerHeight, innerWidth } = useWindowSize()
+    useEventListenDM()
 
     if (!isSet) {
         return <MainLoader infinity />

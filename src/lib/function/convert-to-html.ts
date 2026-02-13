@@ -1,4 +1,4 @@
-import { customMarkup, separator } from "@/export"
+import { customMarkup, separator } from "@/config"
 
 export const convertToHTML = (text: string, link?: string) => {
     function* generatorFn() {

@@ -5,7 +5,7 @@ import { useAppSelector } from '@/lib/hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
 import { EditBestiaryForm } from '../form'
 import { useQ, useTmpObject } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 
 interface Props {
 }

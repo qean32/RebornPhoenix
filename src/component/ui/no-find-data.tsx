@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn, getBetweenNumber } from '../../lib/function'
-import { noFindDataIcon } from '@/export'
+import { noFindDataIcon } from '@/config'
 
 interface Props {
     className?: string

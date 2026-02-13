@@ -3,7 +3,7 @@ import { ToolGameSubscriber } from "@component/shared"
 import { useQ } from "@lib/hook"
 import React from "react"
 import { GameAreaSubscriber } from "@/component/master"
-import { qpk } from "@/export"
+import { qpk } from "@/config"
 
 export const ViewSession = () => {
     return (

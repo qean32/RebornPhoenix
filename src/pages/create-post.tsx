@@ -1,5 +1,5 @@
 import { Page } from "@component/master/h-order-component"
-import { title } from "@/export"
+import { title } from "@/config"
 import { usePage } from "@lib/hook"
 import { CreatePostForm } from "@/component/case/form"
 

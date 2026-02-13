@@ -1,5 +1,5 @@
 import { Page } from "@component/master/h-order-component"
-import { title } from "@/export"
+import { title } from "@/config"
 import { InfoContent } from "@/component/shared"
 import { InfoAnchor } from "@/component/ui"
 import { usePage } from "@/lib/hook"

@@ -4,7 +4,7 @@ import { changePasswordFormSchema, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useQ, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
-import { qpk, REJECT_SERVER } from '@/export'
+import { qpk, REJECT_SERVER } from '@/config'
 
 interface Props {
 }

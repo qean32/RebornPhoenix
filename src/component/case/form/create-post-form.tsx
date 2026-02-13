@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { createPostFormSchema, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
-import { departmentOptions, REJECT_SERVER } from '@/export'
+import { departmentOptions, REJECT_SERVER } from '@/config'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {

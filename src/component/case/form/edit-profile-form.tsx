@@ -5,7 +5,7 @@ import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
 import { useMyForm, useQ, useToast, useUser } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qpk, REJECT_SERVER } from '@/export'
+import { qpk, REJECT_SERVER } from '@/config'
 import { conventToFormData } from '@/lib/function'
 
 interface Props {

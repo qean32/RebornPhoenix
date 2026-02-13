@@ -1,6 +1,6 @@
 import { Page } from "@component/master/h-order-component"
 import { BackArrow, NoFindData, ScrollTop, TextInfo } from "@component/ui"
-import { title } from "@/export"
+import { title } from "@/config"
 import { usePage, useRequest } from "@lib/hook"
 import { profileService } from "@/service"
 import { userInterface } from "@/model"

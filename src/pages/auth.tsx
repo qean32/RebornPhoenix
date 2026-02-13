@@ -1,7 +1,7 @@
 import { AuthForm, RegistrationForm } from "@component/case/form"
 import { Page } from "@component/master/h-order-component"
 import { AuthBackground } from "@component/ui"
-import { title } from "@/export"
+import { title } from "@/config"
 import { usePage } from "@lib/hook"
 
 export const Auth = () => {

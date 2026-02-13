@@ -5,7 +5,7 @@ import { useMyForm, useToast } from '@/lib/hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { pushImg } from '@/store/session-store'
 

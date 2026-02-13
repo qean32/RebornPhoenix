@@ -4,7 +4,7 @@ import { pushSessionFormSchema, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 
 interface Props {
     children: React.ReactNode

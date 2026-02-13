@@ -1,4 +1,4 @@
-import { nameProject } from '@/export'
+import { nameProject } from '@/config'
 import React from 'react'
 import { Logo } from '../ui'
 

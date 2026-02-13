@@ -3,7 +3,7 @@ import { cn, generateId } from '../../lib/function'
 import { useFormContext } from 'react-hook-form'
 import { HoverHint } from '../master/h-order-component'
 import { DangerIcon } from '.'
-import { separator, separatorLink } from '@/export'
+import { separator, separatorLink } from '@/config'
 
 interface Props {
     className?: string

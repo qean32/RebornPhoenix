@@ -4,7 +4,7 @@ import { ru } from 'date-fns/locale/ru';
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useQ } from "@/lib/hook";
-import { qpk } from "@/export";
+import { qpk } from "@/config";
 
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';

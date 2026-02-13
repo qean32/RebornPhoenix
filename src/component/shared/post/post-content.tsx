@@ -7,7 +7,7 @@ import { useRequest, useToast } from '@/lib/hook'
 import { postType } from '@/model/post.type'
 import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum } from '@/config'
 import { PostContentSceleton } from '@/component/case/sceleton'
 
 interface Props {

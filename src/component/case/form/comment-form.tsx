@@ -5,7 +5,7 @@ import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { useTmpObject } from '@/lib/hook'
 
 interface Props {

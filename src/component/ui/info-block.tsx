@@ -1,7 +1,7 @@
 import React from 'react'
 import { InfoImage } from './info-image'
 import { useHandlerScrollBetween } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 import { infoBlockContentType } from '@/model'
 
 interface Props {

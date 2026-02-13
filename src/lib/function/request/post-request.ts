@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/export"
+import { axiosInstance } from "@/config"
 import { getAuthHeaders } from ".."
 
 export const requestPost = async <T>(path: string, body: T, file: boolean = false) => {

@@ -1,9 +1,9 @@
 import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/case/modal/index-group"
-import { ToolGameButton, ToolGame } from "@component/shared"
+import { ToolGameButton, ToolGame, SessionLog } from "@component/shared"
 import { useQ } from "@lib/hook"
 import React from "react"
 import { GameArea } from "@/component/master"
-import { qpk } from "@/export"
+import { qpk } from "@/config"
 
 export const Session = () => {
     return (
@@ -24,6 +24,7 @@ const Modal: React.FC = () => {
 
     return (
         <>
+            <SessionLog />
             <PushCharacterInSession swap={() => clearQParam(qpk.pushcharacter)} view={Number(allQ[qpk.pushcharacter])} />
             <ViewImg swap={() => clearQParam(qpk.viewimg)} view={!!allQ[qpk.viewimg]} />
             <ObjectMoreDetailed />

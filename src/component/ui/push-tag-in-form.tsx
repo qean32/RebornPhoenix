@@ -3,7 +3,7 @@ import { useBoolean } from '@/lib/hook'
 import { cn } from '@/lib/function'
 import { UnwrapTags } from '@component/ui'
 import { useFormContext } from 'react-hook-form'
-import { tagsArray } from '@/export'
+import { tagsArray } from '@/config'
 
 interface Props {
     className?: string

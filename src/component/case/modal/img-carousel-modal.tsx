@@ -3,7 +3,7 @@ import { getHTMLData, stopPropagation } from '@/lib/function'
 import { PlusButton, ScrollXArrow } from '@component/ui'
 import { ViewImgCarouselItem } from '@component/ui/item'
 import * as ModalGroup from './index-group'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum } from '@/config'
 import { useAppSelector } from '@/lib/hook/redux'
 
 interface Props {

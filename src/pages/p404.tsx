@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import { title } from "@/export";
+import { title } from "@/config";
 import { usePage } from "@lib/hook";
 
 export const P404 = () => {

@@ -1,4 +1,4 @@
-import { qpk } from '@/export';
+import { qpk } from '@/config';
 import { useQ } from '@/lib/hook';
 import { cn } from '@/lib/function';
 import React from 'react'

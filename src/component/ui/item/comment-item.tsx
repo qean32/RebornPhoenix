@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { commentType } from '@/model'
 import { CommentMenu } from '@/component/case/context-menu'
 import { ViewAuthor } from '@/component/master/h-order-component'
-import { separator } from '@/export'
+import { separator } from '@/config'
 
 interface Props extends commentType {
 }

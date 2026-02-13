@@ -1,4 +1,4 @@
-import { eventKey } from "@/export";
+import { eventKey } from "@/config";
 import { useEchoPublic } from "@laravel/echo-react";
 import React from "react";
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useAppDispatch } from "./redux";
 import { eventType } from "@/model";
 import { changeEntity, changeObject, scaleObject, swapCurrentMap } from "@/store/session-store";
 import { useToast } from "./use-toast";
+import { pushLog } from "@/store/log-store";
 
 
 export const useEventListen = () => {
@@ -17,6 +18,7 @@ export const useEventListen = () => {
         console.log(payload, type)
         if (type == 'change-entity') {
             dispath(changeEntity({ payload }))
+            dispath(pushLog({ log: `выпало ${payload.roll}!` }))
             return
         }
         if (type == 'dice') {

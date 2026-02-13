@@ -4,7 +4,7 @@ import { resetPasswordFormSchema, resetPasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 
 interface Props {
 }

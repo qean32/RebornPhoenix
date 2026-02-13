@@ -1,10 +1,8 @@
-import { modalAnimationType } from './model'
-import { keysQ } from './store/q-store'
+import { modalAnimationType } from '@/model'
+import { slogan } from './project'
+import { keysQ } from '@/store/q-store'
 
-export { axiosInstance } from './service/instance'
-
-export const tokenStorageKey = 'token-storage'
-export const invalidTokenMessage = 'invalid token!'
+export { axiosInstance } from '@/service/instance'
 
 export const qpk: { [key in keysQ]: keysQ } = {
     contentprofile: 'contentprofile',
@@ -34,8 +32,6 @@ export const contentLoaderProps = {
     speed: 2
 }
 
-export const developers = 'wtfit & Snake Eyes Teams'
-
 export const modalAnimationEnum: {
     [key in 'modal-right' | 'modal-dft' | 'modal-bottom']: modalAnimationType
 } = {
@@ -53,27 +49,7 @@ export const modalAnimationEnum: {
     }
 }
 
-export const REJECT_SERVER = 'Ошибка со стороны сервера!'
 export const dftSource = { id: 1, name: 'Кастомный' }
-
-export const nameProject = 'Reborn Phoenix'
-export const slogan = 'Играйте вместе с нами!'
-
-export const title = {
-    communityRules: 'Правила сообщества',
-    authorization: 'Авторизация',
-    p404: 'Страница 404',
-    changePassword: 'Изменение пароля',
-    communty: 'Сообщество',
-    subscribers: 'Подписчики',
-    createPost: 'Конструктор статьи',
-    editProfile: 'Редактор профиля',
-    forum: 'Форум',
-    main: 'Главная',
-    profile: 'Профиль',
-    reserPassword: 'Востановление аккаунта',
-    faq: 'Часто задаваемые вопросы',
-}
 
 export const sourses = {
     map: [
@@ -106,16 +82,18 @@ export const tip = [
     slogan,
 ]
 
+export const rollText = [
+    'вам выпало2',
+    'вам выпало3',
+    'вам выпало5',
+    'вам выпало6',
+]
+
 export const noFindDataIcon = [
     '/icon/no-find-data-1.svg',
     '/icon/no-find-data-2.svg',
     '/icon/no-find-data-3.svg',
 ]
-
-export const separator = ':separator:'
-export const separatorLink = ':separator-link:'
-
-export const serverWork = 'ok'
 
 export const customMarkup = {
     h1: "*",
@@ -131,7 +109,3 @@ export const departmentOptions = [
     { title: "WEB", value: "WEB", id: 2 },
     { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
 ]
-
-export const eventKey = ".throwEvent";
-
-export const webSocketChannel = `channel_for_everyone`;

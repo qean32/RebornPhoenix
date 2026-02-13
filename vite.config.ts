@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
         '@component': path.resolve(__dirname, 'src/component'),
         '@lib': path.resolve(__dirname, 'src/lib'),
         '@service': path.resolve(__dirname, 'src/service'),
+        '@config': path.resolve(__dirname, 'src/config'),
       }
     },
     css: {

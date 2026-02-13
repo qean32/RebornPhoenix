@@ -4,7 +4,7 @@ import { pushCharacterFormSchema, pushCharacterSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { conventToFormData } from '@/lib/function'
 
 interface Props {

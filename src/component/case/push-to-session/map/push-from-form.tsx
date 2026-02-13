@@ -1,5 +1,5 @@
 import { UploadImgArea, Button, TextInput } from '@/component/ui'
-import { dftSource, REJECT_SERVER } from '@/export'
+import { dftSource, REJECT_SERVER } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { conventToFormData, initPushDataToSession } from '@/lib/function'

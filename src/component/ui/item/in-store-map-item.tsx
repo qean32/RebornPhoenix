@@ -1,7 +1,7 @@
 import React from 'react'
 import { mapInterface } from '@/model'
 import { useQ } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 
 
 export const InStoreMapItem: React.FC<mapInterface> = (item: mapInterface) => {

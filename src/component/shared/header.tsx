@@ -2,7 +2,7 @@ import React from 'react'
 import { cn } from '@lib/function'
 import { Ava, IsOnline, Logo } from '@component/ui'
 import { Link } from 'react-router-dom'
-import { slogan } from '@/export'
+import { slogan } from '@/config'
 import { useUser } from '@/lib/hook'
 
 interface Props {

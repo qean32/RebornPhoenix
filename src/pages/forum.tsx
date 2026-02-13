@@ -1,7 +1,7 @@
 import { Page } from "@component/master/h-order-component"
 import { TextInfo } from "@component/ui"
 import { DepartmentItem } from "@component/ui/item"
-import { title } from "@/export"
+import { title } from "@/config"
 import { usePage, useRequest } from "@lib/hook"
 import { forumService } from "@/service"
 import { departmentType } from "@/model"

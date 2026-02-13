@@ -1,9 +1,14 @@
+import { userStorageKey } from "@/config";
 import { userInterface } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 type stateDto = { user: userInterface | null, _try: boolean }
 
-const initialState: stateDto = { user: null, _try: false }
+const userdata = Cookies.get(userStorageKey)
+const initialState: stateDto = {
+    user: userdata ? JSON.parse(Cookies.get(userStorageKey) as string) : null, _try: false
+}
 
 const userSlice = createSlice({
     name: 'user-store',

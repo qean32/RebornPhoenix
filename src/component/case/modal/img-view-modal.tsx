@@ -2,7 +2,7 @@ import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { useQ } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 
 interface Props {
     view: boolean | string

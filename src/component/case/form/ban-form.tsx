@@ -1,5 +1,5 @@
 import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { useMyForm, useToast } from '@/lib/hook'
 import { stopPropagation } from '@/lib/function'
 import { banFormSchema, banSchema } from '@/model/schema'

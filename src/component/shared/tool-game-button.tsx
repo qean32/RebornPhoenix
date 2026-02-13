@@ -1,7 +1,7 @@
 import React from 'react'
 import { ButtonInGroup, GameMode, GroupButton } from '@component/ui'
 import { Modal } from '@component/case/modal'
-import { modalAnimationEnum, slogan } from '@/export'
+import { modalAnimationEnum, slogan } from '@/config'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityInterface, objectInterface } from '@/model'

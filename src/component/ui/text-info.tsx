@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { developers } from '@/export'
+import { developers } from '@/config'
 
 interface Props {
     className?: string

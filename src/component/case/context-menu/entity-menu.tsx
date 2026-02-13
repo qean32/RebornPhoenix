@@ -7,7 +7,7 @@ import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
 import { swapTmpObject } from '@/store/tmp-object-store'
 import { useQ } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 
 interface Props extends entityInterface {
 }

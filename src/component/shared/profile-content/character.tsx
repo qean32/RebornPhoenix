@@ -1,5 +1,5 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
-import { modalAnimationEnum } from "@/export"
+import { modalAnimationEnum } from "@/config"
 import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
 import { characterInterface } from "@/model"
 import { profileService } from "@/service"

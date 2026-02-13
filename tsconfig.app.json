@@ -31,6 +31,9 @@
       ],
       "@service/*": [
         "src/service/*"
+      ],
+      "@config/*": [
+        "src/config/*"
       ]
     },
     "jsx": "react-jsx",

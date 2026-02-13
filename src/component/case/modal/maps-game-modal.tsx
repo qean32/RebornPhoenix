@@ -6,7 +6,7 @@ import { InStoreMapItem, SelectMapItem } from '@component/ui/item'
 import { PushMap } from '@/component/case/push-to-session'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { swapCurrentMap } from '@/store/session-store'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum } from '@/config'
 import { EventMiddleware } from '@/lib/middleware'
 
 interface Props {

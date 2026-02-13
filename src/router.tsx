@@ -3,7 +3,7 @@ import * as pages from './pages'
 import { MainLoader } from "./component/shared"
 import { RefreshToken, ToastArea } from "@component/master"
 import { Header, Navigate } from "./component/shared"
-import { ProtectedRouteSession } from "./pages/protected-route"
+import { ProtectedRouteAuth, ProtectedRouteSession } from "./pages/protected-route"
 
 
 export const Router = () => {
@@ -18,8 +18,11 @@ export const Router = () => {
 
                 <Route element={
                     <ProtectedRouteSession>
-                        <MainLoader />
-                        <pages.Session />
+                        <ProtectedRouteAuth >
+
+                            <MainLoader />
+                            <pages.Session />
+                        </ProtectedRouteAuth>
                     </ProtectedRouteSession>
                 } path="/session/:id/:name" />
 

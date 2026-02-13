@@ -6,7 +6,7 @@ import { commentType } from '@/model'
 import { swapTmpObject } from '@/store/tmp-object-store'
 import { forumService } from '@/service'
 import { useToast } from '@/lib/hook'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 
 interface Props extends commentType {
 }

@@ -7,7 +7,7 @@ import {
     MainBanner,
     Map
 } from "@/component/ui/main";
-import { qpk, title } from "@/export";
+import { qpk, title } from "@/config";
 import { changeTitle, initSetUser } from "@/lib/function";
 import { useQ } from "@lib/hook";
 import React from "react";

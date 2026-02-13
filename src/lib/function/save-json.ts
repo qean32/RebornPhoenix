@@ -1,7 +1,7 @@
 import { sessionService } from "@/service/session-service";
 import { useAppSelector } from "../hook/redux";
 import { useToast } from "../hook";
-import { REJECT_SERVER } from "@/export";
+import { REJECT_SERVER } from "@/config";
 
 export const saveJson = (toast: ReturnType<typeof useToast>) => {
     const { session, bestiary, info } = useAppSelector(state => state.session)

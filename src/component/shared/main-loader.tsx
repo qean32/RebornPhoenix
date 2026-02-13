@@ -2,7 +2,7 @@ import React from 'react'
 import { Logo } from '@component/ui'
 import { useBoolean } from '@/lib/hook'
 import { cn, getBetweenNumber } from '@/lib/function'
-import { tip } from '@/export'
+import { tip } from '@/config'
 import { Portal } from '../master/h-order-component'
 
 interface Props {

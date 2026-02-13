@@ -4,7 +4,7 @@ import { useAppDispatch } from "../redux";
 import React from "react";
 import { coordinateType } from "@/model";
 
-export const useSubscriber = (position: coordinateType, path: string, key: keysTmp, payloadId?: number) => {
+export const useSubscriber = (position: coordinateType, path: string, key: keysTmp, idInBestiary: number) => {
     const dispath = useAppDispatch()
     const _position = React.useMemo(() => position, [])
 
@@ -30,7 +30,7 @@ export const useSubscriber = (position: coordinateType, path: string, key: keysT
     };
 
     const clickHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
-        dispath(swapTmpObject({ payload: { id: payloadId ?? e.currentTarget.attrs.id }, key }))
+        dispath(swapTmpObject({ payload: { id: idInBestiary ?? e.currentTarget.attrs.id }, key }))
     }
 
     const [image] = useImage(path)

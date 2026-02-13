@@ -3,7 +3,7 @@ import { Button } from '.'
 import { useBoolean, useDebounceFunction, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useParams } from 'react-router-dom'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 
 interface Props {
     init: boolean

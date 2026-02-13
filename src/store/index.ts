@@ -7,6 +7,7 @@ import { userReducer } from './user-store'
 import { objectBeingPushedToSessionReducer } from './object-being-pushed-to-session-store'
 import { qReducer } from './q-store'
 import { generateAddToastPayload, generateRejectToastPayload } from '@/lib/function'
+import { logReducer } from './log-store'
 
 const rejectMwthods = ['pushImg', 'pushUser', 'pushEntity', 'removeEntity', 'pushObject', 'removeObject', 'pushMap',
     'removeMap', 'pushCharacter', 'removeCharacter', 'editBestiary', 'pushToBestiary']
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     pushedObject: objectBeingPushedToSessionReducer,
     q: qReducer,
+    log: logReducer,
 })
 
 export const store = configureStore({

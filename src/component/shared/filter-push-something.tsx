@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { Search, SelectToQuery } from '@component/ui'
-import { sourses } from '@/export'
+import { sourses } from '@/config'
 
 interface Props {
     className?: string

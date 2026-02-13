@@ -8,7 +8,7 @@ import { FilterForum } from "@component/shared"
 import { usePage, useRequest } from "@lib/hook"
 import { getParamName } from "@lib/function"
 import { forumService } from "@/service"
-import { departmentOptions } from "@/export"
+import { departmentOptions } from "@/config"
 import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/case/sceleton"
 

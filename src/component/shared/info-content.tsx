@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoBlock } from '../ui'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 import { useQ } from '@/lib/hook'
 import { ViewImg } from '../case/modal/img-view-modal'
 import { infoBlockType } from '@/model'

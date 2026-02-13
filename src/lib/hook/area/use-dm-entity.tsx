@@ -2,7 +2,7 @@ import React from "react";
 import useImage from "use-image";
 import { changeEntity } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
-import { qpk } from "@/export";
+import { qpk } from "@/config";
 import { useQ } from "../use-q";
 import { coordinateType } from "@/model";
 import { EventMiddleware } from "@/lib/middleware";

@@ -4,7 +4,6 @@ import { characterInterface, entityInterface, objectInterface } from "@/model/en
 import { generateId } from "@/lib/function";
 
 type stateDto = {
-    isDevMode: boolean
     session: sessionInterface, bestiary: bestiaryItemInterface[],
     info: infoDto
     isSet: boolean
@@ -16,8 +15,7 @@ type infoDto = {
 }
 
 const initialState: stateDto = {
-    isSet: false,
-    isDevMode: true,
+    isSet: true,
     session: {
         users: '',
         characters: [],
@@ -50,10 +48,6 @@ const sessionSlice = createSlice({
     reducers: {
 
         // """"""""""""""""""""""""""""""""""""""""""" { other action } """"""""""""""""""""""""""""""""""""""""""" //
-
-        swapMode: (state: stateDto) => {
-            state.isDevMode = !state.isDevMode
-        },
 
         // """"""""""""""""""""""""""""""""""""""""""" { other action } """"""""""""""""""""""""""""""""""""""""""" //
 
@@ -91,8 +85,6 @@ const sessionSlice = createSlice({
             Pick<entityInterface, 'id' | 'size'> |
             Pick<entityInterface, 'position' | 'id'>
         }>) => {
-            console.log(payload);
-
             state.session.mapsData[state.session.currentMap.id].queue = [
                 // @ts-ignore
                 ...state.session.mapsData[state.session.currentMap.id].queue.filter(item => item.id != payload.id),
@@ -321,5 +313,4 @@ export const {
     pushImg,
     pushNote,
     pushUser,
-    swapMode
 } = sessionSlice.actions

@@ -1,7 +1,7 @@
 import React from 'react'
 import { UserSceleton } from './item'
 import ContentLoader from 'react-content-loader'
-import { contentLoaderProps } from '@/export'
+import { contentLoaderProps } from '@/config'
 
 interface Props {
 }

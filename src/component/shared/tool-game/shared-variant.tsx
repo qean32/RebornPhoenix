@@ -6,7 +6,7 @@ import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './ut
 import { bestiaryItemInterface, mapsDataInterface, characterInterface } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
 import { useQ } from '@/lib/hook'
-import { qpk } from '@/export'
+import { qpk } from '@/config'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { nextQueue, prevQueue } from '@/store/session-store'
 
