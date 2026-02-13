@@ -4,7 +4,7 @@ import { useAppDispatch } from "../redux";
 import React from "react";
 import { coordinateType } from "@/model";
 
-export const useSubscriberEntity = (position: coordinateType, path: string, key: keysTmp, payloadId?: number) => {
+export const useSubscriber = (position: coordinateType, path: string, key: keysTmp, payloadId?: number) => {
     const dispath = useAppDispatch()
     const _position = React.useMemo(() => position, [])
 

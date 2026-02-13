@@ -4,7 +4,7 @@ import { useAppSelector } from "../hook/redux"
 import { eventType } from "@/model"
 
 
-export const eventMiddleware = () => {
+export const EventMiddleware = () => {
     const throwEvent = initThrowEvent()
     const { isDevMode } = useAppSelector(state => state.session)
 

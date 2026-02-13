@@ -6,7 +6,7 @@ import { tmpObjectReducer } from './tmp-object-store'
 import { userReducer } from './user-store'
 import { objectBeingPushedToSessionReducer } from './object-being-pushed-to-session-store'
 import { qReducer } from './q-store'
-import { generateRejectToastPayload } from '@/lib/function'
+import { generateAddToastPayload, generateRejectToastPayload } from '@/lib/function'
 
 const rejectMwthods = ['pushImg', 'pushUser', 'pushEntity', 'removeEntity', 'pushObject', 'removeObject', 'pushMap',
     'removeMap', 'pushCharacter', 'removeCharacter', 'editBestiary', 'pushToBestiary']
@@ -27,6 +27,18 @@ const playModeMiddleware = (store: any) => (next: any) => (action: any) => {
         }, 3000)
 
         return
+    }
+
+    if (
+        type[0] == 'session-store' &&
+        (type[1] == 'pushEntity' || type[1] == 'pushObject' || type[1] == 'pushMap')
+    ) {
+        const payload = generateAddToastPayload(action.payload.name)
+        next(payload)
+
+        setTimeout(() => {
+            next({ type: 'toast-store/removeToast', payload: { id: payload.payload.id } })
+        }, 3000)
     }
 
     return next(action);

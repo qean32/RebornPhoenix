@@ -1,27 +1,28 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
-import { characterInterface } from '@/model';
-import { Dead, Gray, Hidden, utils } from './utils';
-import { useSubscriberEntity } from '@/lib/hook/area';
+import { entityInterface } from '@/model';
+import { Dead, Gray, utils } from './utils';
+import { useSubscriber } from '@/lib/hook/area';
 
 
-export const CharacterSubscriber: React.FC<characterInterface> = (props: characterInterface) => {
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriberEntity(
+export const CharacterSubscriber: React.FC<Omit<entityInterface, 'description'>> = (props: Omit<entityInterface, 'description'>) => {
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
         // @ts-ignore
         props.position,
         props.path,
-        'more-object'
+        'more-entity'
     )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
-
 
     return (
         <Group
             id={props.id.toString()}
-            {...props.position}
+            visible={props.status != 'hidden'}
+            ref={rectRef}
+            {..._position}
             onMouseOver={mouseOverHandler}
-            onMouseOut={mouseOutHandler}
             onClick={clickHandler}
+            onMouseOut={mouseOutHandler}
         >
             <Circle
                 {...utils.restObject}
@@ -31,9 +32,7 @@ export const CharacterSubscriber: React.FC<characterInterface> = (props: charact
                 fillPatternY={image ? -image?.height / 2 : 0}
                 scale={{ y: scale, x: scale }}
             />
-            {(props.status == 'dead' || props.status == 'hidden') &&
-                <Gray image={image} size={props.size} />}
-            {props.status == 'hidden' && <Hidden size={props.size} />}
+            {props.status == 'dead' && <Gray image={image} size={props.size} />}
             {props.status == 'dead' && <Dead size={props.size} />}
         </Group>
     )

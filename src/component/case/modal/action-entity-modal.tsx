@@ -5,7 +5,7 @@ import { Ava, Button, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusType } from '@/model'
 import { changeEntity } from '@/store/session-store'
-import { eventMiddleware } from '@/lib/middleware'
+import { EventMiddleware } from '@/lib/middleware'
 
 interface Props {
     view: boolean | string
@@ -58,11 +58,11 @@ export const ActionEntity: React.FC<Props> = ({
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
-    const change = eventMiddleware()
+    const event = EventMiddleware()
     const changeHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
-        change(
-            { payload: { [key]: value }, type: 'change-entity' }, () => {
+        event(
+            { payload: { [key]: value, id: entity?.id }, type: 'change-entity' }, () => {
                 if (entity) {
                     dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
                 }

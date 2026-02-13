@@ -1,1 +1,1 @@
-export { eventMiddleware } from './event.middleware'
+export { EventMiddleware } from './event.middleware'

@@ -2,14 +2,14 @@ import { objectInterface } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
 import { utils } from './utils'
-import { useSubscriberEntity } from '@/lib/hook/area'
+import { useSubscriber } from '@/lib/hook/area'
 
 interface Props extends objectInterface {
 }
 
 
 export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriberEntity(
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
         // @ts-ignore
         props.position,
         props.path,
@@ -21,7 +21,8 @@ export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
         <>
             <Image
                 visible={props.status != 'hidden'}
-                {...props.position}
+                {..._position}
+                ref={rectRef}
                 id={props.id.toString()}
                 scale={{ y: scale, x: scale }}
                 image={image}

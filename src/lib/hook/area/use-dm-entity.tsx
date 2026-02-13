@@ -5,12 +5,12 @@ import { useAppDispatch } from "../redux";
 import { qpk } from "@/export";
 import { useQ } from "../use-q";
 import { coordinateType } from "@/model";
-import { eventMiddleware } from "@/lib/middleware";
+import { EventMiddleware } from "@/lib/middleware";
 
 export const useDMEntity = (position: coordinateType, path: string) => {
     const dispath = useAppDispatch()
     const _position = React.useMemo(() => position, [])
-    const dragEnd = eventMiddleware()
+    const event = EventMiddleware()
 
     const [image] = useImage(path);
     const { pushQ } = useQ(qpk.actionentity)
@@ -37,7 +37,7 @@ export const useDMEntity = (position: coordinateType, path: string) => {
                 x: e.target.attrs.x,
             },
         }
-        dragEnd({ payload, type: "change-entity" }, () => { dispath(changeEntity({ payload })) })
+        event({ payload, type: "change-entity" }, () => { dispath(changeEntity({ payload })) })
         e.target.getStage().container().style.cursor = 'pointer';
     };
 
@@ -45,7 +45,6 @@ export const useDMEntity = (position: coordinateType, path: string) => {
     };
 
     const clickHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
-        // dispath(swapTmpObject({ id: e.currentTarget.attrs.id }))
         pushQ(e.currentTarget.attrs.id)
     }
 

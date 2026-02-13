@@ -17,9 +17,9 @@ const toastSlice = createSlice({
         removeToast: (state: stateDto, { payload }: PayloadAction<idType>) => {
             state.toasts = [
                 // @ts-ignore
-                ...state.toasts.filter(item => item.id != payload.id),
-                // @ts-ignore
                 { ...state.toasts.find(item => item.id == payload.id), view: false },
+                // @ts-ignore
+                ...state.toasts.filter(item => item.id != payload.id),
             ]
         },
     },
