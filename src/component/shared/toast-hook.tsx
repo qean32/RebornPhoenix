@@ -1,5 +1,5 @@
 import { ToastPushEntity, ToastEventMessage, ToastMessage } from "@/component/case/toast"
-import { toastKeyDto, toastPayloadDto } from "@/model"
+import { toastKeyType, toastPayloadType } from "@/model"
 
 
 export const toastHook = (
@@ -9,10 +9,10 @@ export const toastHook = (
         id,
         view
     }: {
-        keyMessage: toastKeyDto,
+        keyMessage: toastKeyType,
         view: boolean,
         id: number,
-        payload: toastPayloadDto | any
+        payload: toastPayloadType | any
     },
     firstId: number
 ) => {

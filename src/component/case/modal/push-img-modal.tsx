@@ -1,12 +1,12 @@
 import React from 'react'
 import { conventToFormData, stopPropagation } from '@/lib/function'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/export'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { REJECT_SERVER } from '@/config'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { pushImg } from '@/store/session-store'
 
 interface Props {

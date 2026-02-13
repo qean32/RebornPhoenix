@@ -3,15 +3,16 @@ import { cn } from '@lib/function'
 
 interface Props {
     path: string
-    value: string
+    isActive: boolean
 }
 
 
-export const ViewImgCarouselItem: React.FC<Props> = ({ path, value }: Props) => {
+export const ViewImgCarouselItem: React.FC<Props> = ({ path, isActive }: Props) => {
     return (
         <img
-            value={`${process.env.SERVER_HOST_STORAGE}${path}`}
+            // ${process.env.SERVER_HOST_STORAGE}
+            value={`${path}`}
             src={`${process.env.SERVER_HOST_STORAGE}${path}`} alt=""
-            className={cn('cursor-pointer h-full rounded-sm', (process.env.SERVER_HOST_STORAGE + path == value && 'border-1'))} />
+            className={cn('cursor-pointer h-full rounded-sm', (isActive && 'border-1'))} />
     )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
-import { useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppSelector } from '@/lib/hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
 import { EditBestiaryForm } from '../form'
-import { useQ, useTmpObject } from '@/lib/castom-hook'
-import { qpk } from '@/export'
+import { useQ, useTmpObject } from '@/lib/hook'
+import { qpk } from '@/config'
 
 interface Props {
 }

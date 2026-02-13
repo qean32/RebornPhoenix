@@ -1,7 +1,7 @@
 import React from 'react'
-import { objectDto } from '@/model'
+import { objectInterface } from '@/model'
 
-export const InStoreObjectItem: React.FC<objectDto> = (item: objectDto) => {
+export const InStoreObjectItem: React.FC<objectInterface> = (item: objectInterface) => {
     return (
         <div
             className="flex gap-4 mount-opacity h-[10vh] m-1 p-2 cursor-pointer bg-color-dark-hover transition-300 rounded-sm hover-hide-img child-no-fill-event"

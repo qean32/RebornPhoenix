@@ -4,9 +4,9 @@ import { Button } from './button'
 import { Modal } from '../case/modal'
 import { AccessAction } from '../case/modal/access-action-modal'
 import { profileService } from '@/service'
-import { useToast } from '@/lib/castom-hook'
+import { useToast } from '@/lib/hook'
 import { useParams } from 'react-router-dom'
-import { modalAnimationEnum, REJECT_SERVER } from '@/export'
+import { modalAnimationEnum, REJECT_SERVER } from '@/config'
 
 interface Props {
     ban: boolean

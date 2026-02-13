@@ -3,11 +3,11 @@ import { Button, NoFindData, UnwrapFiles } from '@component/ui'
 import { ViewAdmin, ViewAuthor } from '@component/master/h-order-component'
 import { Modal } from '@component/case/modal'
 import { MainBlock, PostInfo, CountBlock } from '.'
-import { useRequest, useToast } from '@/lib/castom-hook'
-import { postDto } from '@/model/post.dto'
+import { useRequest, useToast } from '@/lib/hook'
+import { postType } from '@/model/post.type'
 import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum } from '@/config'
 import { PostContentSceleton } from '@/component/case/sceleton'
 
 interface Props {
@@ -21,7 +21,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [`my-like-${id}`])
-    const [post, loading] = useRequest<postDto>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
+    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
     const deletePost = () => {
         forumService.DELETE_POST(id ?? 0)

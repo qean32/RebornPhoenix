@@ -1,12 +1,12 @@
 import React from 'react'
 import { Ava, UnwrapFiles } from '..'
 import { Link } from 'react-router-dom'
-import { commentDto } from '@/model'
+import { commentType } from '@/model'
 import { CommentMenu } from '@/component/case/context-menu'
 import { ViewAuthor } from '@/component/master/h-order-component'
-import { separator } from '@/export'
+import { separator } from '@/config'
 
-interface Props extends commentDto {
+interface Props extends commentType {
 }
 
 

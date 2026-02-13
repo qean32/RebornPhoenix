@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn, stopPropagation } from '@/lib/function'
-import { useBoolean, useClickOutside } from '@/lib/castom-hook'
+import { useBoolean, useClickOutside } from '@/lib/hook'
 
 interface Props {
     className?: string

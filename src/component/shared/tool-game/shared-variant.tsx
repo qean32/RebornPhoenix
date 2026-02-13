@@ -3,17 +3,17 @@ import { cn } from '@lib/function'
 import { Button } from '@component/ui'
 import { SwithContentLiftSideGame } from './swith-content-tool-in-game'
 import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './utils'
-import { bestiaryItem, mapsDataDto, characterDto } from '@/model'
+import { bestiaryItemInterface, mapsDataInterface, characterInterface } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
-import { useQ } from '@/lib/castom-hook'
-import { qpk } from '@/export'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useQ } from '@/lib/hook'
+import { qpk } from '@/config'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { nextQueue, prevQueue } from '@/store/session-store'
 
 interface Props {
-    mapsData: mapsDataDto
-    characters: characterDto[]
-    bestiary: bestiaryItem[]
+    mapsData: mapsDataInterface
+    characters: characterInterface[]
+    bestiary: bestiaryItemInterface[]
     id: number | null
 }
 

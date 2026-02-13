@@ -1,8 +1,8 @@
 import React from 'react'
 import { CommentItem } from '@component/ui/item'
 import { CommentForm } from '@/component/case/form'
-import { commentDto } from '@/model'
-import { useRequest } from '@/lib/castom-hook'
+import { commentType } from '@/model'
+import { useRequest } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = ({ }: Props) => {
     const { id } = useParams()
-    const [comments, loading, push, _delete, update] = useRequest<commentDto[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
+    const [comments, loading, push, _delete, update] = useRequest<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
 
     return (
         <div className="bg-color-dark rounded-lg pb-2">

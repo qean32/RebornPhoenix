@@ -1,11 +1,11 @@
-import { xPositionHint, yPositionHint } from "@/model"
+import { xPositionHintType, yPositionHintType } from "@/model"
 import { HoverHint } from "."
 
 type Props = {
     children: React.ReactNode
     title: string
-    x?: xPositionHint
-    y?: yPositionHint
+    x?: xPositionHintType
+    y?: yPositionHintType
 }
 
 export const FillHoverHint: React.FC<Props> = ({

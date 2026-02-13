@@ -1,5 +1,5 @@
 import { setSession } from "@/store/session-store"
-import { useAppDispatch } from "../castom-hook/redux"
+import { useAppDispatch } from "../hook/redux"
 
 export const initSetSession = () => {
     const dispath = useAppDispatch()
@@ -10,14 +10,17 @@ export const initSetSession = () => {
 
         Promise.all([session, bestiary])
             .then(async ([session, bestiary]) => {
-                dispath(setSession({
-                    bestiary: await bestiary.json(),
-                    session: await session.json(),
-                    info: {
-                        bestiary: _session.bestiary,
-                        session: _session.data
-                    }
-                }))
+                dispath(
+                    setSession({
+                        bestiary: await bestiary.json(),
+                        session: await session.json(),
+                        info: {
+                            bestiary: _session.bestiary,
+                            session: _session.data
+                        },
+                        isDevMode: true,
+                        isSet: true
+                    }))
             })
     }
 

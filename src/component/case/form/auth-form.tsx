@@ -1,29 +1,29 @@
 import React from 'react'
 import { TextInput, Button, PasswordInput, Title, LinkPrime } from '@component/ui'
-import { authFormDto, authSchema } from '@/model/schema'
+import { authFormSchema, authSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
-import { authService } from '@/service'
-import { getFirstError, setToken } from '@/lib/function'
+import { authServiceItem } from '@/service'
+import { getFirstError, initSetUser, setToken } from '@/lib/function'
 
 interface Props {
 }
 
 export const AuthForm: React.FC<Props> = ({ }: Props) => {
-    const auth = new authService()
     const toast = useToast()
     const navigate = useNavigate()
 
     const { form, submitHandler } =
-        useMyForm<authFormDto>(
+        useMyForm<authFormSchema>(
             authSchema,
-            (data: authFormDto) => {
-                auth.AUTH(data)
+            (data: authFormSchema) => {
+                authServiceItem.AUTH(data)
                     .then(({ data, status }) => {
                         if (status == 200) {
                             // @ts-ignore
                             setToken(data?.token);
+                            initSetUser(true)
                             toast('message', { text: 'Успешная авторизация' })
                             setTimeout(() => {
                                 navigate('/')

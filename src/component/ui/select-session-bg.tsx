@@ -20,12 +20,12 @@ export const SelectSessionBG: React.FC<Props> = ({ }: Props) => {
         <>
             <Title className='pb-4'>Фон плитки</Title>
             <div className="flex flex-wrap gap-5 max-w-[660px] pointer-events-none child-fill-event" onClick={clickHandler}>
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-1.jpg' value={value} />
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-2.jpg' value={value} />
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-3.jpg' value={value} />
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-4.jpg' value={value} />
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-5.jpg' value={value} />
-                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-6.jpg' value={value} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-1.jpg' isActive={value == '/img/carousel-item-1.jpg'} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-2.jpg' isActive={value == '/img/carousel-item-2.jpg'} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-3.jpg' isActive={value == '/img/carousel-item-3.jpg'} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-4.jpg' isActive={value == '/img/carousel-item-4.jpg'} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-5.jpg' isActive={value == '/img/carousel-item-5.jpg'} />
+                <SelectImgItem className='w-1/8 min-w-[150px] h-[85px]' path='/img/carousel-item-6.jpg' isActive={value == '/img/carousel-item-6.jpg'} />
             </div>
         </>
     )

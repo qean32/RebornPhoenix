@@ -2,8 +2,8 @@ import React from 'react'
 import { cn } from '@lib/function'
 import { Ava, IsOnline, Logo } from '@component/ui'
 import { Link } from 'react-router-dom'
-import { slogan } from '@/export'
-import { useUser } from '@/lib/castom-hook'
+import { slogan } from '@/config'
+import { useUser } from '@/lib/hook'
 
 interface Props {
     className?: string
@@ -11,7 +11,7 @@ interface Props {
 
 
 export const Header: React.FC<Props> = ({ className }: Props) => {
-    const user = useUser()
+    const { user } = useUser()
 
     return (
         <header className={cn('bg-color-darkness z-50 flex justify-around py-2.5 items-center', className)}>

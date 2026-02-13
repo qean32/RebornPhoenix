@@ -1,9 +1,9 @@
 import { Page } from "@component/master/h-order-component"
-import { title } from "@/export"
+import { title } from "@/config"
 import { InfoContent } from "@/component/shared"
 import { InfoAnchor } from "@/component/ui"
-import { usePage } from "@/lib/castom-hook"
-import { infoBlockDto } from "@/model"
+import { usePage } from "@/lib/hook"
+import { infoBlockType } from "@/model"
 
 export const Faq = () => {
     const { } = usePage(title.faq)
@@ -26,9 +26,10 @@ const qa: string[] = [
     "Кастомные сценарии",
     "Форум",
     "Мне выдали блокировку",
+    'Как содать персонажа?'
 ]
 
-const q: infoBlockDto[] = [
+const q: infoBlockType[] = [
     {
         content: [
             {
@@ -155,5 +156,13 @@ const q: infoBlockDto[] = [
             },
         ],
         title: 'Мне выдали блокировку'
+    },
+    {
+        content: [
+            {
+                text: "Создать персонажа вы можете в своем профиле во вкладке 'Персонажи'!"
+            }
+        ],
+        title: 'Как содать персонажа?'
     }
 ]

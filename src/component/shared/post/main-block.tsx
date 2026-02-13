@@ -1,6 +1,6 @@
 import React from 'react'
 import { convertToHTML } from '@/lib/function'
-import { separatorLink } from '@/export'
+import { separatorLink } from '@/config'
 
 interface Props {
     content?: string

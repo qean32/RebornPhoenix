@@ -1,4 +1,4 @@
-import { contentLoaderProps } from "@/export";
+import { contentLoaderProps } from "@/config";
 import React from "react";
 import ContentLoader from "react-content-loader";
 

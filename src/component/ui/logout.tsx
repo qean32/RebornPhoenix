@@ -1,6 +1,6 @@
 import React from 'react'
-import { tokenStorageKey } from '@/export'
-import { useToast } from '@/lib/castom-hook'
+import { tokenStorageKey } from '@/config'
+import { useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/store'
 import { setUser } from '@/store/user-store'
 import { useNavigate } from 'react-router-dom'

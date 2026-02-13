@@ -1,15 +1,14 @@
 import React from 'react'
-import { ButtonInGroup } from '@component/ui'
-import { initFunctionRoll, toggleFullScreen } from '@/lib/function'
+import { ButtonInGroup, RollButton } from '@component/ui'
+import { toggleFullScreen } from '@/lib/function'
 import { FillHoverHint } from '@/component/master/h-order-component'
-import { useGrid } from '@/lib/castom-hook'
+import { useGrid } from '@/lib/hook'
 
 interface Props {
 }
 
 
 export const ToolGameSubscriber: React.FC<Props> = ({ }: Props) => {
-    const roll = initFunctionRoll()
     const { swap: swapGrid } = useGrid()
 
     return (
@@ -18,9 +17,7 @@ export const ToolGameSubscriber: React.FC<Props> = ({ }: Props) => {
                 <ButtonInGroup className='w-full' fn={toggleFullScreen} children={<img className='icon-sm' src='/icon/toggle-full-screen.svg' />} />
             </FillHoverHint>
             <FillHoverHint title='Испыть удачу' x='right' y='center-y'>
-                <ButtonInGroup className='px-3 w-full' fn={roll}>
-                    <img className='icon-sm pointer-events-none' src='/icon/dice.svg' />
-                </ButtonInGroup>
+                <RollButton force />
             </FillHoverHint>
             <FillHoverHint title='Сетка' x='right' y='center-y'>
                 <ButtonInGroup className='w-full' fn={swapGrid} children={<img className='icon-sm' src='/icon/grid.svg' />} />

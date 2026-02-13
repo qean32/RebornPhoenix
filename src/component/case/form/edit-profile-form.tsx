@@ -1,11 +1,11 @@
 import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
-import { editProfileFormDto, editProfileSchema } from '@/model/schema'
-import { useMyForm, useQ, useToast, useUser } from '@/lib/castom-hook'
+import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
+import { useMyForm, useQ, useToast, useUser } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qpk, REJECT_SERVER } from '@/export'
+import { qpk, REJECT_SERVER } from '@/config'
 import { conventToFormData } from '@/lib/function'
 
 interface Props {
@@ -18,9 +18,9 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const { pushQ } = useQ('forceupadeteuser')
 
     const { form, submitHandler } =
-        useMyForm<editProfileFormDto>(
+        useMyForm<editProfileFormSchema>(
             editProfileSchema,
-            (data: editProfileFormDto) => {
+            (data: editProfileFormSchema) => {
                 profileService.UPDATE_PROFILE(conventToFormData(data))
                     .then(({ status }) => {
                         if (status == 200 || status == 201) {
@@ -35,7 +35,7 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
             },
             () => { }
         )
-    const user = useUser()
+    const { user } = useUser()
 
     return (
         <FormProvider {...form}>

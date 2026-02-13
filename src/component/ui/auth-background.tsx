@@ -1,5 +1,5 @@
 import React from 'react'
-import { useBoolean } from '@lib/castom-hook'
+import { useBoolean } from '@lib/hook'
 import { cn } from '@lib/function'
 
 interface Props {

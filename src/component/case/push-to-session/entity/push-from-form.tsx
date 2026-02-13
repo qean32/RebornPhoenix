@@ -1,11 +1,11 @@
 import { Button, TextArea, TextInput, UploadImgArea } from '@/component/ui'
-import { dftSource, REJECT_SERVER } from '@/export'
-import { TypeUseBoolen, useMyForm, useToast } from '@/lib/castom-hook'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { dftSource, REJECT_SERVER } from '@/config'
+import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { conventToFormData, initPushDataToSession } from '@/lib/function'
-import { pushEntityToSessionFormDto, pushEntityToSessionSchema } from '@/model/schema'
+import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
-import { swapTmpObject } from '@/store/tmp-object'
+import { swapTmpObject } from '@/store/tmp-object-store'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 
@@ -27,9 +27,9 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     }
 
     const { form, submitHandler } =
-        useMyForm<pushEntityToSessionFormDto>(
+        useMyForm<pushEntityToSessionFormSchema>(
             pushEntityToSessionSchema,
-            (data: pushEntityToSessionFormDto) => {
+            (data: pushEntityToSessionFormSchema) => {
                 sessionService.CREATE_ENTITY(conventToFormData(data))
                     .then(({ data, status }) => {
                         if (status == 201) {

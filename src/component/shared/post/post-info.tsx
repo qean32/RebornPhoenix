@@ -1,10 +1,10 @@
 import React from 'react'
 import { Ava } from '@component/ui'
 import { Link } from 'react-router-dom'
-import { userDto } from '@/model'
+import { userInterface } from '@/model'
 
 interface Props {
-    user: Omit<userDto, 'email'>,
+    user: Omit<userInterface, 'email'>,
     id: number
     date: string
 }

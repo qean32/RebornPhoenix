@@ -1,12 +1,12 @@
 import React from 'react'
 import { InfoBlock } from '../ui'
-import { qpk } from '@/export'
-import { useQ } from '@/lib/castom-hook'
+import { qpk } from '@/config'
+import { useQ } from '@/lib/hook'
 import { ViewImg } from '../case/modal/img-view-modal'
-import { infoBlockDto } from '@/model'
+import { infoBlockType } from '@/model'
 
 interface Props {
-    q: infoBlockDto[]
+    q: infoBlockType[]
     title: string[]
 }
 

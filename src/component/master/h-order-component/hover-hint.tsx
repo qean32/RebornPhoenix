@@ -1,13 +1,13 @@
 import React from "react"
 import { cn } from "@lib/function"
-import { xPositionHint, yPositionHint } from "@/model"
+import { xPositionHintType, yPositionHintType } from "@/model"
 
 interface Props {
     className?: string
     children: React.ReactNode
     text: string
-    x: xPositionHint
-    y: yPositionHint
+    x: xPositionHintType
+    y: yPositionHintType
     fit?: boolean
     infinity?: boolean
 }

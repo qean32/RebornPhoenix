@@ -1,10 +1,10 @@
 import React from 'react'
 import { Title, TextInput, ImgInput } from '@component/ui'
-import { pushCharacterDto, pushCharacterSchema } from '@/model/schema'
+import { pushCharacterFormSchema, pushCharacterSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
+import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 import { conventToFormData } from '@/lib/function'
 
 interface Props {
@@ -18,9 +18,9 @@ export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => 
     const { setTmp } = useTmpObject()
 
     const { form, submitHandler } =
-        useMyForm<pushCharacterDto>(
+        useMyForm<pushCharacterFormSchema>(
             pushCharacterSchema,
-            (data: pushCharacterDto) => {
+            (data: pushCharacterFormSchema) => {
                 swap()
                 profileService.CREATE_CHARACTER(conventToFormData(data))
                     .then(({ status, data }) => {

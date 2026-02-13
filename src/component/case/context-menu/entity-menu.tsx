@@ -1,15 +1,15 @@
 import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { removeEntity } from '@/store/session-store'
-import { entityDto } from '@/model'
+import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-object'
-import { useQ } from '@/lib/castom-hook'
-import { qpk } from '@/export'
+import { swapTmpObject } from '@/store/tmp-object-store'
+import { useQ } from '@/lib/hook'
+import { qpk } from '@/config'
 
-interface Props extends entityDto {
+interface Props extends entityInterface {
 }
 
 

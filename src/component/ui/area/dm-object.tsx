@@ -1,11 +1,11 @@
-import { useDMObject } from '@/lib/castom-hook/area'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { objectDto } from '@/model'
+import { useDMObject } from '@/lib/hook/area'
+import { useAppDispatch } from '@/lib/hook/redux'
+import { objectInterface } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
 import { utils } from './utils'
 
-interface Props extends objectDto {
+interface Props extends objectInterface {
 }
 
 

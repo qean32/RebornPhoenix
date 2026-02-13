@@ -3,10 +3,10 @@ import { getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { Button, ModalCross, NoFindData } from '@component/ui'
 import { CharacterItemInPush } from '@component/ui/item'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { pushCharacter } from '@/store/session-store'
-import { useRequest } from '@/lib/castom-hook'
-import { characterDto } from '@/model'
+import { useRequest } from '@/lib/hook'
+import { characterInterface } from '@/model'
 import { profileService } from '@/service'
 
 interface Props {
@@ -24,7 +24,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             dispath(pushCharacter(data))
         }
     }
-    const [characters, loading] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(view ?? 0), [`profile-characters-${view}`])
+    const [characters, loading] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(view ?? 0), [`profile-characters-${view}`])
 
     return (
         <Modal

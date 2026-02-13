@@ -1,17 +1,23 @@
 import React from 'react'
 import { Stage, Layer } from "react-konva"
-import { CharacterDM, EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
-import { useAppSelector } from '@lib/castom-hook/redux';
-import { useStage, useWindowSize } from '@lib/castom-hook';
+import { EntityDM, GameBackground, ObjectDM } from '@component/ui/area';
+import { useAppSelector } from '@lib/hook/redux';
+import { useEventListenDM, useStage, useWindowSize } from '@lib/hook';
+import { MainLoader } from '../shared';
 
 interface Props {
 }
 
 
 export const GameArea: React.FC<Props> = ({ }: Props) => {
-    const { session: { currentMap, mapsData } } = useAppSelector(state => state.session)
+    const { session: { currentMap, mapsData }, isSet } = useAppSelector(state => state.session)
     const { handleWheel, stage } = useStage()
     const { innerHeight, innerWidth } = useWindowSize()
+    useEventListenDM()
+
+    if (!isSet) {
+        return <MainLoader infinity />
+    }
 
     return (
         <Stage
@@ -48,7 +54,7 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
                         />
                     })
                 }
-                {!!currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
+                {/* {!!currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.characters.map((item) => {
                         return <CharacterDM
                             action={mapsData[currentMap ? currentMap.id : 'null']?.queue[0].id == item.id}
@@ -56,7 +62,7 @@ export const GameArea: React.FC<Props> = ({ }: Props) => {
                             key={item.id}
                         />
                     })
-                }
+                } */}
             </Layer>
         </Stage>
     )

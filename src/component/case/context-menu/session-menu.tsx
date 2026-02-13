@@ -4,12 +4,12 @@ import React from 'react'
 import { Modal } from '../modal'
 import { AccessAction } from '../modal/access-action-modal'
 import { ContextMenuItem } from './context-menu-item'
-import { useTmpObject, useToast } from '@/lib/castom-hook'
-import { sessionDto } from '@/model'
-import { modalAnimationEnum, REJECT_SERVER } from '@/export'
+import { useTmpObject, useToast } from '@/lib/hook'
+import { sessionInterface } from '@/model'
+import { modalAnimationEnum, REJECT_SERVER } from '@/config'
 import { sessionService } from '@/service/session-service'
 
-interface Props extends sessionDto {
+interface Props extends sessionInterface {
 }
 
 const ACCEESS_ACTION = 'Сессия удалена'

@@ -2,16 +2,17 @@ import React from 'react'
 import { cn, getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
 import { Ava, Button, ModalCross, Title } from '@component/ui'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
-import { statusDto } from '@/model'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
+import { statusType } from '@/model'
 import { changeEntity } from '@/store/session-store'
+import { EventMiddleware } from '@/lib/middleware'
 
 interface Props {
     view: boolean | string
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
-const actionMap: { status: statusDto, icon: any }[] = [
+const actionMap: { status: statusType, icon: any }[] = [
     {
         icon: <img src={'/icon/dead.svg'} alt="" className='icon-lg' />,
         status: 'dead'
@@ -57,12 +58,15 @@ export const ActionEntity: React.FC<Props> = ({
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
-    const change = (e: React.MouseEvent<HTMLDivElement>) => {
+    const event = EventMiddleware()
+    const changeHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
-
-        if (entity) {
-            dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
-        }
+        event(
+            { payload: { [key]: value, id: entity?.id }, type: 'change-entity' }, () => {
+                if (entity) {
+                    dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
+                }
+            })
     }
 
 
@@ -80,7 +84,7 @@ export const ActionEntity: React.FC<Props> = ({
                 <Title className='p-2 pl-10 uppercase letter-spacing-2px'>Редактор токена</Title>
                 <div className="p-5 px-10 flex">
                     <div className="flex flex-col gap-5">
-                        <div className="flex gap-5" onClick={change}>
+                        <div className="flex gap-5" onClick={changeHandler}>
                             <p className='pb-4'>Статус</p>
                             {actionMap.map(item => {
                                 return <Square
@@ -92,7 +96,7 @@ export const ActionEntity: React.FC<Props> = ({
                                 </Square>
                             })}
                         </div>
-                        <div className="flex gap-5" onClick={change}>
+                        <div className="flex gap-5" onClick={changeHandler}>
                             <p className='pb-4'>Размер</p>
                             {sizeMap.map(item => {
                                 return <Square
@@ -108,7 +112,7 @@ export const ActionEntity: React.FC<Props> = ({
                         </div>
                     </div>
                     <div className="w-full flex justify-start items-center flex-col gap-5 pl-5">
-                        <Ava path={entity?.path ?? ''} size='ava-xl' className='-translate-y-0.5' />
+                        <Ava path={entity?.path ?? ''} size='ava-xl' className='-translate-y-0.5' blob />
                         <p>{entity?.name}</p>
                     </div>
                 </div>

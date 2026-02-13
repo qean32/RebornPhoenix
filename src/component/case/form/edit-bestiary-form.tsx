@@ -1,22 +1,22 @@
 import { TextInput, TextArea, Initiative, Button } from '@/component/ui'
-import { useMyForm } from '@/lib/castom-hook'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useMyForm } from '@/lib/hook'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { stopPropagation } from '@/lib/function'
-import { entityDto } from '@/model'
-import { pushEntityToSessionFormDto, pushEntityToSessionSchema } from '@/model/schema'
+import { entityInterface } from '@/model'
+import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
 import { editBestiary } from '@/store/session-store'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 
 interface Props {
-    entity: entityDto
+    entity: entityInterface
     swap: Function
 }
 
 
 export const EditBestiaryForm: React.FC<Props> = ({ entity, swap }: Props) => {
     const dispath = useAppDispatch()
-    const { form, submitHandler } = useMyForm<pushEntityToSessionFormDto>(pushEntityToSessionSchema,
+    const { form, submitHandler } = useMyForm<pushEntityToSessionFormSchema>(pushEntityToSessionSchema,
         (data: any) => {
             dispath(editBestiary({ ...entity, ...data, id: entity.idInBestiary }))
             swap()

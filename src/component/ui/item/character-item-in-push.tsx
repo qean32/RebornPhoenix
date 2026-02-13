@@ -1,7 +1,7 @@
-import { characterDto } from '@/model/entities.dto'
+import { characterInterface } from '@/model/entities.interfaces'
 import React from 'react'
 
-interface Props extends characterDto {
+interface Props extends characterInterface {
 }
 
 

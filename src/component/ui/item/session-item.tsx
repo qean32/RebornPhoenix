@@ -1,9 +1,9 @@
 import { SessionMenu } from '@/component/case/context-menu'
-import { sessionDto } from '@/model'
+import { sessionInterface } from '@/model'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface Props extends sessionDto {
+interface Props extends sessionInterface {
 }
 
 

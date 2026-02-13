@@ -7,14 +7,14 @@ import {
     MainBanner,
     Map
 } from "@/component/ui/main";
-import { qpk, title } from "@/export";
-import { initSetUser } from "@/lib/function";
-import { usePage, useQ } from "@lib/castom-hook";
+import { qpk, title } from "@/config";
+import { changeTitle, initSetUser } from "@/lib/function";
+import { useQ } from "@lib/hook";
 import React from "react";
 
 
 export const Main = () => {
-    const { } = usePage(title.main)
+    changeTitle(title.main)
     const { param, clearQ } = useQ(qpk.forceupadeteuser)
     initSetUser(!!param)
     React.useEffect(() => {

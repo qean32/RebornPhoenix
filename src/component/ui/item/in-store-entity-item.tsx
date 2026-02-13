@@ -1,7 +1,7 @@
 import React from 'react'
-import { entityDto } from '@/model'
+import { entityInterface } from '@/model'
 
-export const InStoreEntityItem: React.FC<entityDto> = (item: entityDto) => {
+export const InStoreEntityItem: React.FC<entityInterface> = (item: entityInterface) => {
     return (
         <div
             className="px-4 py-4 flex gap-5 bg-color bg-color-dark-hover transition-300 rounded-md cursor-pointer hover-hide-img child-no-fill-event"

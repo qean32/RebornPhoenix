@@ -1,14 +1,14 @@
 import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { commentDto } from '@/model'
-import { swapTmpObject } from '@/store/tmp-object'
+import { useAppDispatch } from '@/lib/hook/redux'
+import { commentType } from '@/model'
+import { swapTmpObject } from '@/store/tmp-object-store'
 import { forumService } from '@/service'
-import { useToast } from '@/lib/castom-hook'
-import { REJECT_SERVER } from '@/export'
+import { useToast } from '@/lib/hook'
+import { REJECT_SERVER } from '@/config'
 
-interface Props extends commentDto {
+interface Props extends commentType {
 }
 
 const ACCEESS_ACTION = 'Комментарий удален'

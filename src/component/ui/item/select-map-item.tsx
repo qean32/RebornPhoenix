@@ -1,12 +1,12 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { mapDto } from '@/model'
+import { mapInterface } from '@/model'
 import { MapMenu } from '@/component/case/context-menu'
 
 interface Props {
     path: string
     name: string
-    data: mapDto
+    data: mapInterface
     value: number | string
 }
 

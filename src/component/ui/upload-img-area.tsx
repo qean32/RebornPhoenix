@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn, generateId } from '@lib/function'
-import { useBoolean } from '@lib/castom-hook';
+import { useBoolean } from '@lib/hook';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Page } from '@component/master/h-order-component'
-import { useRequest } from '@/lib/castom-hook'
+import { useRequest } from '@/lib/hook'
 import { profileService } from '@/service'
-import { banReasonDto } from '@/model'
+import { banReasonInterface } from '@/model'
 
 interface Props {
     id: string | number
@@ -10,7 +10,7 @@ interface Props {
 
 
 export const BanReason: React.FC<Props> = ({ id }: Props) => {
-    const [reason] = useRequest<banReasonDto>(() => profileService.GET_BAN_REASON(id), [`ban-reason-${id}`])
+    const [reason] = useRequest<banReasonInterface>(() => profileService.GET_BAN_REASON(id), [`ban-reason-${id}`])
 
     //@ts-ignore
     if (reason && reason != "no") {

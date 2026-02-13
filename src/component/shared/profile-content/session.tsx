@@ -1,8 +1,8 @@
 import { SessionsSceleton } from "@/component/case/sceleton/sessions-sceleton"
 import { ViewAuthor } from "@/component/master/h-order-component"
-import { modalAnimationEnum } from "@/export"
-import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
-import { sessionDto } from "@/model"
+import { modalAnimationEnum } from "@/config"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
+import { sessionInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
 import { NoFindData, PlusButton } from "@component/ui"
@@ -15,7 +15,7 @@ interface Props {
 }
 export const Session: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [sessions, loading, push, _delete] = useRequest<sessionDto[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], { editable: true })
+    const [sessions, loading, push, _delete] = useRequest<sessionInterface[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

@@ -1,24 +1,28 @@
-import { objectDto } from '@/model'
+import { objectInterface } from '@/model'
 import React from 'react'
 import { Image } from 'react-konva'
 import { utils } from './utils'
-import { useSubscriber } from '@/lib/castom-hook/area'
-import { useAppDispatch } from '@/store'
+import { useSubscriber } from '@/lib/hook/area'
 
-interface Props extends objectDto {
+interface Props extends objectInterface {
 }
 
 
 export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
-    const dispath = useAppDispatch()
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-object')
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
+        // @ts-ignore
+        props.position,
+        props.path,
+        'more-object'
+    )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (
         <>
             <Image
                 visible={props.status != 'hidden'}
-                {...props.position}
+                {..._position}
+                ref={rectRef}
                 id={props.id.toString()}
                 scale={{ y: scale, x: scale }}
                 image={image}

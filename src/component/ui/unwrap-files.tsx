@@ -1,11 +1,11 @@
 import React from 'react'
 import { cn } from '../../lib/function'
-import { fileDto } from '@/model'
+import { fileType } from '@/model'
 import { File } from '@component/ui'
 
 interface Props {
     className?: string
-    files: fileDto[],
+    files: fileType[],
     imgView?: boolean
 }
 

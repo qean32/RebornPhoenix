@@ -8,15 +8,15 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { EntityMenu } from "@/component/case/context-menu";
 import { Ava } from "@/component/ui";
-import { entityDto } from "@/model";
+import { entityInterface } from "@/model";
 import { cn } from "@/lib/function";
 
 interface Props {
     id: UniqueIdentifier;
-    item: extandEntityDto
+    item: extandentityInterface
 }
 
-interface extandEntityDto extends entityDto {
+interface extandentityInterface extends entityInterface {
     selectId: number
 }
 

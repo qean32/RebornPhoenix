@@ -2,26 +2,17 @@ import ReactDOM from 'react-dom/client'
 import './style/core.scss'
 import './style/app.css'
 import { Router } from './router'
-import { Provider } from 'react-redux'
-import { store } from './store'
-import { QueryClientProvider, QueryClient } from 'react-query'
-import { MainLoader } from './component/master'
-import { ProtectedRouteTechWork } from './pages/protected-route'
+import { MainLoader } from './component/shared'
+import { Root } from './component/master/root'
+import { socketConfig } from './lib/socket-config'
+
+socketConfig()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  // <HookFormProvider>
-  <ProtectedRouteTechWork>
-
-    <QueryClientProvider client={new QueryClient({})}>
-      <Provider store={store} >
-        <MainLoader />
-        <Router />
-      </Provider>
-    </QueryClientProvider >
-  </ProtectedRouteTechWork>
-  // </HookFormProvider>
-  // </React.StrictMode>,
+  <Root>
+    <MainLoader />
+    <Router />
+  </Root>
 )
 
 
@@ -32,3 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  *   value?: string;
  * }
 */
+
+// need VITE_
+// import.meta.env.VITE_SERVER_HOST

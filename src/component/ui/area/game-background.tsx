@@ -1,8 +1,8 @@
 import React from 'react'
 import { Group, Image, Rect, Text } from 'react-konva'
 import useImage from 'use-image';
-import { useAppSelector } from '@lib/castom-hook/redux';
-import { useGrid } from '@/lib/castom-hook';
+import { useAppSelector } from '@lib/hook/redux';
+import { useGrid } from '@/lib/hook';
 
 interface Props {
 }

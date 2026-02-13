@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
-import { useBoolean, useRequest } from "@lib/castom-hook"
+import { useBoolean, useRequest } from "@lib/hook"
 import React from "react"
 import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { profileService } from "@/service"
-import { postDto } from "@/model/post.dto"
+import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/case/sceleton"
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 export const Post: React.FC<Props> = ({ view, id }: Props) => {
     const { on, off } = useBoolean(view)
-    const [posts, loading] = useRequest<postDto[]>(() => profileService.GET_POSTS(id ?? 0), [`profile-post-${id}`])
+    const [posts, loading] = useRequest<postType[]>(() => profileService.GET_POSTS(id ?? 0), [`profile-post-${id}`])
 
     React.useEffect(() => {
         if (view) {

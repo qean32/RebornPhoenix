@@ -1,11 +1,11 @@
 import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
+import { useAppDispatch } from '@/lib/hook/redux'
 import { removeMap } from '@/store/session-store'
-import { mapDto } from '@/model'
+import { mapInterface } from '@/model'
 
-interface Props extends mapDto {
+interface Props extends mapInterface {
 }
 
 

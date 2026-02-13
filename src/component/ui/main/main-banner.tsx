@@ -1,4 +1,4 @@
-import { nameProject, slogan } from '@/export'
+import { nameProject, slogan } from '@/config'
 import React from 'react'
 
 interface Props {

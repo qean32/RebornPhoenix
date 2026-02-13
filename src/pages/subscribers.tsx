@@ -1,9 +1,9 @@
 import { Page } from "@component/master/h-order-component"
 import { BackArrow, NoFindData, ScrollTop, TextInfo } from "@component/ui"
-import { title } from "@/export"
-import { usePage, useRequest } from "@lib/castom-hook"
+import { title } from "@/config"
+import { usePage, useRequest } from "@lib/hook"
 import { profileService } from "@/service"
-import { userDto } from "@/model"
+import { userInterface } from "@/model"
 import { UserItem } from "@/component/ui/item"
 import { CommunitySceleton } from "@/component/case/sceleton"
 import React from "react"
@@ -26,7 +26,7 @@ export const Subscribers = () => {
 }
 
 const Content: React.FC<{}> = ({ }: {}) => {
-    const [subscribers] = useRequest<userDto[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'], { suspense: true })
+    const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'], { suspense: true })
 
     return (
         <>

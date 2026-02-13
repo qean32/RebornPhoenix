@@ -4,9 +4,10 @@ import { ModalCross, PlusButton } from '@component/ui'
 import * as ModalGroup from './index-group'
 import { InStoreMapItem, SelectMapItem } from '@component/ui/item'
 import { PushMap } from '@/component/case/push-to-session'
-import { useAppDispatch, useAppSelector } from '@/lib/castom-hook/redux'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { swapCurrentMap } from '@/store/session-store'
-import { modalAnimationEnum } from '@/export'
+import { modalAnimationEnum } from '@/config'
+import { EventMiddleware } from '@/lib/middleware'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -16,8 +17,13 @@ interface Props {
 export const MapsGame: React.FC<Props> = ({ swap }: Props) => {
     const { session: { maps, currentMap } } = useAppSelector(state => state.session)
     const dispath = useAppDispatch()
+    const event = EventMiddleware()
     const swapHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        dispath(swapCurrentMap({ id: getHTMLData(e, true)?.id }))
+        const payload = { id: getHTMLData(e, true)?.id };
+
+        event({ payload, type: 'swap-map' }, () => {
+            dispath(swapCurrentMap(payload))
+        })
     }
 
     return (

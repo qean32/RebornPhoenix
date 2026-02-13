@@ -1,4 +1,4 @@
-import { REJECT_SERVER } from "@/export";
+import { REJECT_SERVER } from "@/config";
 import { AxiosError } from "axios";
 
 export const getFirstError = (response: AxiosError): string | unknown => {

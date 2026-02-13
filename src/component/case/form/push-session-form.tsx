@@ -1,10 +1,10 @@
 import React from 'react'
 import { Title, TextInput, SelectSessionBG } from '@component/ui'
-import { pushSessionFormDto, pushSessionSchema } from '@/model/schema'
+import { pushSessionFormSchema, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useTmpObject, useToast } from '@/lib/castom-hook'
+import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/export'
+import { REJECT_SERVER } from '@/config'
 
 interface Props {
     children: React.ReactNode
@@ -17,9 +17,9 @@ export const PushSessionForm: React.FC<Props> = ({ children, swap }: Props) => {
     const { setTmp } = useTmpObject()
 
     const { form, submitHandler } =
-        useMyForm<pushSessionFormDto>(
+        useMyForm<pushSessionFormSchema>(
             pushSessionSchema,
-            (data: pushSessionFormDto) => {
+            (data: pushSessionFormSchema) => {
                 sessionService.CREATE_SESSION(data)
                     .then(({ status, data }) => {
                         if (status == 201) {

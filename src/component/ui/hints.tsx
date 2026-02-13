@@ -1,4 +1,4 @@
-import { customMarkup } from '@/export'
+import { customMarkup } from '@/config'
 import React from 'react'
 
 interface Props {

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/export"
+import { axiosInstance } from "@/config"
 import { getAuthHeaders } from "../get-auth-headers"
 
 export const requestDelete = async <T>(path: string) => {

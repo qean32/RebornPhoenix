@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { useQ } from '@/lib/castom-hook'
-import { qpk } from '@/export'
+import { useQ } from '@/lib/hook'
+import { qpk } from '@/config'
 
 interface Props {
 }

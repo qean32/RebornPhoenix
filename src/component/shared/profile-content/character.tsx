@@ -1,7 +1,7 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
-import { modalAnimationEnum } from "@/export"
-import { useBoolean, useRequest, useTmpObject } from "@/lib/castom-hook"
-import { characterDto } from "@/model"
+import { modalAnimationEnum } from "@/config"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
+import { characterInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
 import { NoFindData, PlusButton } from "@component/ui"
@@ -16,7 +16,7 @@ interface Props {
 
 export const Character: React.FC<Props> = ({ id, view }: Props) => {
     const { on, off } = useBoolean(view)
-    const [characters, loading, push, _delete] = useRequest<characterDto[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
+    const [characters, loading, push, _delete] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {
@@ -44,8 +44,6 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
 
     return (
         <>
-            <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
-
             <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
@@ -64,6 +62,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                 </ViewAuthor>
 
             </div>
+            <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
         </>
     )
 }

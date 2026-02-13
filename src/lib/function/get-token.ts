@@ -1,4 +1,4 @@
-import { tokenStorageKey } from "@/export"
+import { tokenStorageKey } from "@/config"
 import Cookies from 'js-cookie'
 
 export const getToken = () => {

@@ -1,7 +1,7 @@
-import { nameProject } from '@/export'
+import { nameProject } from '@/config'
 import React from 'react'
 import { Logo } from '../logo'
-import { useHandlerScroll } from '@/lib/castom-hook'
+import { useHandlerScroll } from '@/lib/hook'
 import { cn } from '@/lib/function'
 
 interface Props {

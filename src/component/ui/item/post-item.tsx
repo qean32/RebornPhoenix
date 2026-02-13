@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { postDto } from '@/model/post.dto'
+import { postType } from '@/model/post.type'
 import { UnwrapTags } from '@component/ui/unwrap-tags'
 import { cn } from '@/lib/function'
 
-interface Props extends postDto {
+interface Props extends postType {
     className?: string
 }
 

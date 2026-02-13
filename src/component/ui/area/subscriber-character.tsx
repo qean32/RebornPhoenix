@@ -1,24 +1,29 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
-import { characterDto } from '@/model';
-import { Dead, Gray, Hidden, utils } from './utils';
-import { useSubscriber } from '@/lib/castom-hook/area';
-import { useAppDispatch } from '@/lib/castom-hook/redux';
+import { entityInterface } from '@/model';
+import { Dead, Gray, utils } from './utils';
+import { useSubscriber } from '@/lib/hook/area';
 
 
-export const CharacterSubscriber: React.FC<characterDto> = (props: characterDto) => {
-    const dispath = useAppDispatch()
-    const { image, mouseOutHandler, mouseOverHandler, clickHandler } = useSubscriber(dispath, props.path, 'more-character')
+export const CharacterSubscriber: React.FC<Omit<entityInterface, 'description'>> = (props: Omit<entityInterface, 'description'>) => {
+    const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
+        // @ts-ignore
+        props.position,
+        props.path,
+        'more-entity',
+        0
+    )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
-
 
     return (
         <Group
             id={props.id.toString()}
-            {...props.position}
+            visible={props.status != 'hidden'}
+            ref={rectRef}
+            {..._position}
             onMouseOver={mouseOverHandler}
-            onMouseOut={mouseOutHandler}
             onClick={clickHandler}
+            onMouseOut={mouseOutHandler}
         >
             <Circle
                 {...utils.restObject}
@@ -28,9 +33,7 @@ export const CharacterSubscriber: React.FC<characterDto> = (props: characterDto)
                 fillPatternY={image ? -image?.height / 2 : 0}
                 scale={{ y: scale, x: scale }}
             />
-            {(props.status == 'dead' || props.status == 'hidden') &&
-                <Gray image={image} size={props.size} />}
-            {props.status == 'hidden' && <Hidden size={props.size} />}
+            {props.status == 'dead' && <Gray image={image} size={props.size} />}
             {props.status == 'dead' && <Dead size={props.size} />}
         </Group>
     )

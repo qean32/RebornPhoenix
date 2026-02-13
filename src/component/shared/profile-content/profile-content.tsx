@@ -1,8 +1,8 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { Character, Post, Session } from '.'
-import { useQ } from '@/lib/castom-hook'
-import { qpk } from '@/export'
+import { useQ } from '@/lib/hook'
+import { qpk } from '@/config'
 import { useParams } from 'react-router-dom'
 
 interface Props {

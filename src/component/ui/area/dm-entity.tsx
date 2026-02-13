@@ -1,17 +1,15 @@
 import React from 'react'
 import { Circle, Group } from "react-konva"
-import { useDMEntity } from '@lib/castom-hook/area';
-import { entityDto } from '@/model';
-import { useAppDispatch } from '@lib/castom-hook/redux';
+import { useDMEntity } from '@lib/hook/area';
+import { entityInterface } from '@/model';
 import { Dead, Gray, Hidden, utils } from './utils';
 
 type Props = {
     action?: boolean
-} & Omit<entityDto, 'description'>
+} & Omit<entityInterface, 'description'>
 
 
 export const EntityDM: React.FC<Props> = (props: Props) => {
-    const dispath = useAppDispatch()
     const {
         clickHandler,
         dragEndHandler,
@@ -20,17 +18,21 @@ export const EntityDM: React.FC<Props> = (props: Props) => {
         mouseOverHandler,
         dragMoveHandler,
         image,
-        rectRef
-    } = useDMEntity(dispath, props.path)
+        rectRef,
+        _position
+    } = useDMEntity(
+        // @ts-ignore
+        props.position,
+        props.path
+    )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
-
 
     return (
         <Group
             id={props.id.toString()}
             ref={rectRef}
             draggable={true}
-            {...props.position}
+            {...(_position || props.position)}
             onClick={clickHandler}
             onDragEnd={dragEndHandler}
             onDragStart={dragStartHandler}

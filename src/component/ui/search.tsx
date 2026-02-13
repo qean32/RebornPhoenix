@@ -1,5 +1,5 @@
-import { qpk } from "@/export"
-import { useDebounce, useQ } from "@/lib/castom-hook"
+import { qpk } from "@/config"
+import { useDebounce, useQ } from "@/lib/hook"
 import { cn } from "@/lib/function"
 import React from 'react'
 

@@ -1,4 +1,4 @@
-import { separator, separatorLink } from "@/export";
+import { separator, separatorLink } from "@/config";
 
 export const previewPost = (ref: any) => {
     if (ref.current) {

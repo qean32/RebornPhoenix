@@ -1,11 +1,11 @@
 import React from 'react'
-import { PushTagInForm, FakeTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
+import { PushTagInForm, HiddenTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
 import { previewPost } from '@/lib/function'
 import { FormProvider } from 'react-hook-form'
-import { createPostFormDto, createPostSchema } from '@/model/schema'
-import { useMyForm, useToast } from '@/lib/castom-hook'
+import { createPostFormSchema, createPostSchema } from '@/model/schema'
+import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
-import { departmentOptions, REJECT_SERVER } from '@/export'
+import { departmentOptions, REJECT_SERVER } from '@/config'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -18,9 +18,9 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
 
     const { form, submitHandler } =
-        useMyForm<createPostFormDto>(
+        useMyForm<createPostFormSchema>(
             createPostSchema,
-            (data: createPostFormDto) => {
+            (data: createPostFormSchema) => {
                 forumService.CREATE_POST(data)
                     .then(({ status }) => {
                         if (status == 200) {
@@ -86,7 +86,7 @@ const Upper: React.FC<Props_> = ({ preview }: Props_) => {
 
     return (
         <div className="flex justify-between pb-4">
-            <FakeTextInput className="items-end flex pl-1" title="НАЗВАНИЕ ПОСТА" name='title' />
+            <HiddenTextInput className="items-end flex pl-1" title="НАЗВАНИЕ ПОСТА" name='title' />
             <div className="flex gap-3 items-end">
                 <UploadFilesInCreatePost name='files'>
                     <div className="flex h-full items-center cursor-pointer">
