@@ -18,7 +18,6 @@ export const initSetSession = () => {
                             bestiary: _session.bestiary,
                             session: _session.data
                         },
-                        isDevMode: true,
                         isSet: true
                     }))
             })

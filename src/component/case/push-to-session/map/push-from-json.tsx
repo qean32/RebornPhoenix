@@ -1,8 +1,9 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
-import { TypeUseBoolen } from '@/lib/hook'
+import { TypeUseBoolen, useQ } from '@/lib/hook'
 import { useAppSelector } from '@/lib/hook/redux'
 import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
+import { qpk } from '@/config'
 
 interface Props {
     switcher: TypeUseBoolen
@@ -13,6 +14,11 @@ interface Props {
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     const { object: data } = useAppSelector(state => state.pushedObject)
     const push = initPushDataToSession('map')
+    const { pushQ } = useQ(qpk.viewimg)
+
+    const clickImgHandler = () => {
+        pushQ(map.path)
+    }
 
     const pushHandler = () => {
         // @ts-ignore
@@ -34,7 +40,7 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                 {data?.isMap
                     &&
                     <>
-                        <div className="p-5 h-[220px] w-full mt-5">
+                        <div className="p-5 h-[220px] w-full mt-5" onClick={clickImgHandler}>
                             <div className="h-full rounded-lg cursor-pointer bg-img bg-color-dark"
                                 style={{ backgroundImage: `url(${map.path})` }}></div>
                         </div>

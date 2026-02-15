@@ -27,5 +27,5 @@ export const useQ = (key: keysQ = 'grid', defaultValue?: string) => {
         dispath(clearQuery())
     }
 
-    return { param: q[key] ?? '', pushQ, clearQ, allQ: q, clearQParam, pushQParam }
+    return { param: q[key], pushQ, clearQ, allQ: q, clearQParam, pushQParam }
 }
