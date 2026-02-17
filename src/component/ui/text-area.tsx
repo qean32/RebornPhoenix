@@ -30,6 +30,7 @@ export const TextArea: React.FC<Props> = ({
     const { register, formState: { errors }, setValue, watch } = useFormContext()
     const id = generateId().toString()
     const textError = errors[name]?.message as string;
+
     React.useEffect(() => {
         if (initValue) {
             setValue(name, children)
@@ -41,6 +42,7 @@ export const TextArea: React.FC<Props> = ({
             document.getElementById(id).innerHTML = '';
         }
     }, [watch(name)])
+
     return (
         <div className={cn("relative", parentDivclassName)}>
             {textError &&

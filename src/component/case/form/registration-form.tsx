@@ -65,7 +65,7 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
                             placeHolder="повторите пароль"
                             name='confirmPassword'
                         />
-                        <Checkbox fn={() => { }} title='мне больше 18 лет и я согласен с условиями конфиденциальности' value />
+                        <Checkbox title='Мне больше 18 лет и я согласен с условиями конфиденциальности' value />
                     </div>
                     <Button
                         variant='acceess'

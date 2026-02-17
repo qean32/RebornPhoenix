@@ -12,7 +12,7 @@ export const sessionService = {
     },
 
     DELETE_SESSION: (id: string | number) => {
-        return requestDelete(`${instance}/${id}/`)
+        return requestDelete(`${instance}/${id}`)
     },
 
     CREATE_ENTITY: (data: any) => {
@@ -44,6 +44,6 @@ export const sessionService = {
     },
 
     SAVE_JSON: (data: any, path: string) => {
-        return requestPost(`JSON/${path}/`, data)
+        return requestPost(`JSON/${path}`, data)
     }
 }

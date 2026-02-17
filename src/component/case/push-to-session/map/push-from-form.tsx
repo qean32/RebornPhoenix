@@ -2,7 +2,7 @@ import { UploadImgArea, Button, TextInput } from '@/component/ui'
 import { dftSource, REJECT_SERVER } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { conventToFormData, initPushDataToSession } from '@/lib/function'
+import { conventToFormData } from '@/lib/function'
 import { pushMapToSessionFormSchema, pushMapToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object-store'
@@ -18,13 +18,6 @@ interface Props {
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     const toast = useToast()
     const dispath = useAppDispatch()
-    const push = initPushDataToSession('map')
-
-    const pushHandler = (data: any) => {
-        push(data);
-        // @ts-ignore
-        swap();
-    }
 
     const { form, submitHandler } =
         useMyForm<pushMapToSessionFormSchema>(
@@ -39,7 +32,6 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                                     key: 'push-entity',
                                     payload: { ...data, source: dftSource }
                                 }))
-                            pushHandler(data);
                         }
                     })
                     .catch(() => toast('message', { text: REJECT_SERVER }))

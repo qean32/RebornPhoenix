@@ -7,7 +7,7 @@ export const forumService = {
     },
 
     GET_POST: (id: string | number) => {
-        return requestGet(`${instance}/${id}/post/`)
+        return requestGet(`${instance}/${id}/post`)
     },
 
     GET_DEPARTAMENT_POST: (skip: number, take: number, search: string, idDepartment: number | string, date: string = '', tags: string = '') => {

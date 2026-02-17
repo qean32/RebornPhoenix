@@ -157,7 +157,7 @@ export const ImgInput: React.FC<InputFileProps> = ({
 
 interface CheckboxProps {
     value: boolean
-    fn: Function
+    fn?: Function
     title: string
     className?: string
 }

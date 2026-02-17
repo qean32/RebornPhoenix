@@ -13,7 +13,8 @@ export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
         // @ts-ignore
         props.position,
         props.path,
-        'more-object'
+        'more-object',
+        0
     )
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 

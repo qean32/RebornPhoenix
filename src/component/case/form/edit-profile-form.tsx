@@ -15,7 +15,7 @@ const ACCEESS_ACTION = 'Профиль успешно обновлен!'
 export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
     const navigate = useNavigate()
     const toast = useToast()
-    const { pushQ } = useQ('forceupadeteuser')
+    const { pushQ } = useQ(qpk.forceupadeteuser)
 
     const { form, submitHandler } =
         useMyForm<editProfileFormSchema>(

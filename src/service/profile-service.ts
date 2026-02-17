@@ -4,27 +4,27 @@ const instance = 'profile'
 
 export const profileService = {
     GET_USER_INFO: (id: string | number) => {
-        return requestGet(`${instance}/${id}/info/`)
+        return requestGet(`${instance}/${id}/info`)
     },
 
     GET_CHARACTERS: (id: string | number) => {
-        return requestGet(`${instance}/${id}/characters/`)
+        return requestGet(`${instance}/${id}/characters`)
     },
 
     GET_POSTS: (id: string | number) => {
-        return requestGet(`${instance}/${id}/posts/`)
+        return requestGet(`${instance}/${id}/posts`)
     },
 
     GET_SESSIONS: (id: string | number) => {
-        return requestGet(`${instance}/${id}/sessions/`)
+        return requestGet(`${instance}/${id}/sessions`)
     },
 
     BAN_ACTION: (data: any, id: string | number) => {
-        return requestPost(`${instance}/${id}/ban-action/`, data)
+        return requestPost(`${instance}/${id}/ban-action`, data)
     },
 
     GET_BAN_REASON: (id: string | number) => {
-        return requestGet(`${instance}/${id}/ban-reason/`)
+        return requestGet(`${instance}/${id}/ban-reason`)
     },
 
     SUBSCRIBE_ACTION: (id: string | number) => {
@@ -32,7 +32,7 @@ export const profileService = {
     },
 
     GET_SUBSCRIBE: (id: string | number) => {
-        return requestGet(`${instance}/${id}/my-follow/`)
+        return requestGet(`${instance}/${id}/my-follow`)
     },
 
     CREATE_CHARACTER: (data: any) => {

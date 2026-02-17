@@ -21,7 +21,6 @@ export const Session = () => {
 const Modal: React.FC = () => {
     const { allQ, clearQParam } = useQ()
 
-
     return (
         <>
             <SessionLog />
