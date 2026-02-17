@@ -20,12 +20,6 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     const toast = useToast()
     const dispath = useAppDispatch()
 
-    const pushHandler = (data: any) => {
-        push(data);
-        // @ts-ignore
-        swap();
-    }
-
     const { form, submitHandler } =
         useMyForm<pushEntityToSessionFormSchema>(
             pushEntityToSessionSchema,
@@ -34,12 +28,13 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                     .then(({ data, status }) => {
                         if (status == 201) {
                             toast('push-entity', { name: data.name })
+                            switcher.on()
                             dispath(swapTmpObject(
                                 {
                                     key: 'push-entity',
                                     payload: { ...data, source: dftSource }
                                 }))
-                            pushHandler(data);
+                            push(data);
                         }
                     })
                     .catch(() => toast('message', { text: REJECT_SERVER }))

@@ -77,7 +77,7 @@ export const SharedVariant: React.FC<Props> = ({
         {(param == 'queue' || !param) &&
             <div className='flex justify-center px-4 bg-color-dark pt-5 gap-3'>
                 <Button fn={prev} className='w-full py-2.5'>Назад</Button>
-                <Button fn={next} className='w-full py-2.5'>Впенед</Button>
+                <Button fn={next} className='w-full py-2.5'>Вперед</Button>
             </div>}
     </>
     )

@@ -21,7 +21,7 @@ export const Community = () => {
                     <DynamicPagination
                         rq={{
                             fetch: communityService.GET_USERS,
-                            RQKey: ['community'],
+                            RQKey: ['community' + Math.random()],
                             staticParam: []
                         }}
                         className="pt-5"

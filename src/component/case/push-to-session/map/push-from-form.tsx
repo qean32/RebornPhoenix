@@ -27,6 +27,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                     .then(({ data, status }) => {
                         if (status == 201) {
                             toast('push-entity', { name: data.name })
+                            switcher.on()
                             dispath(swapTmpObject(
                                 {
                                     key: 'push-entity',
