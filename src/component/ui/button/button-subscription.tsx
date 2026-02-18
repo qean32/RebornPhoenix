@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '.'
+import { Button } from '..'
 import { useBoolean, useDebounceFunction, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useParams } from 'react-router-dom'

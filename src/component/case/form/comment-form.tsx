@@ -24,9 +24,8 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
         if (key == 'delete-comment') {
             _delete(tmpObject)
             clearTmp()
-            toast('message', { text: 'Коментарий удален' })
         }
-    }, [key, tmpObject])
+    }, [key])
     const toast = useToast()
 
     const { form, submitHandler, clear } =
@@ -62,21 +61,19 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
         <FormProvider {...form}>
             <form className="" onSubmit={submitHandler}>
                 <div className="p-5 py-4 pb-0">
-                    <div className='flex outline-bg-light outline-1 rounded-sm items-end py-2 pb-1'>
-                        <Button className='px-4' variant='ghost'><FileInput
+                    <div className='flex outline-bg-light outline-1 rounded-sm py-2 pb-1'>
+                        <Button className='px-4 flex' variant='ghost'><FileInput
                             name='files' /></Button>
                         <TextArea
-                            initValue={true}
                             name='payload_content'
-                            convertHTML={false}
                             title='Ваш коментарий'
-                            parentDivclassName='w-full max-h-[300px] overflow-scroll translate-y-1.5 text-xl'
-                            className='no-min-h'
+                            parentDivclassName='w-full max-h-[300px] text-xl flex-1 pt-0.5 overflow-scroll translate-y-0.5'
+                            className='no-min-h pt-0.5'
+                            // @ts-ignore
+                            initValue={tmpObject?.content}
                         >
-                            {/* @ts-ignore */}
-                            {(tmpObject && key == 'update-comment') ? tmpObject?.content : ''}
                         </TextArea>
-                        <Button className='px-5' variant='ghost' type='submit'>
+                        <Button className='px-4 flex items-start' variant='ghost' type='submit'>
                             <img src="/icon/send.svg" alt="" className="icon-md" /></Button>
                     </div>
                     <UnwrapRemoveFiles />

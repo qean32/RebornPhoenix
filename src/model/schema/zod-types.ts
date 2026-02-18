@@ -13,7 +13,7 @@ export const initiative = z
     .string()
     .regex(
         /^[0-9]+$/,
-        'Никнейм должен состоять из латиница и цифр'
+        'Используйте только числа'
     )
 
 export const name = z

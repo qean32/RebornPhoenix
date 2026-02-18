@@ -1,6 +1,6 @@
 import { getHTMLData } from "@/lib/function"
 import { useFormContext } from "react-hook-form"
-import { UnwrapFiles } from "./unwrap-files"
+import { UnwrapFiles } from "../unwrap-files"
 import React from "react"
 
 export const UnwrapRemoveFiles: React.FC<{}> = ({ }: {}) => {

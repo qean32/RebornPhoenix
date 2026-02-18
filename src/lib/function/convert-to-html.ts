@@ -31,7 +31,7 @@ export const convertToHTML = (text: string, link?: string) => {
         }
         if (arr[0].slice(0, 4) == 'img:' && link) {
 
-            return `<img class="rounded-sm" src="${generator.next().value.replaceAll(';', '/')}" />`
+            return `<img class="rounded-sm my-2" src="${generator.next().value.replaceAll(';', '/')}" width="400px" />`
         }
 
         return `<p class="text-xl">${item}<p>`
