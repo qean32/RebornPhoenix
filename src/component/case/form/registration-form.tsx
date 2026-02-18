@@ -19,7 +19,6 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
             registrationSchema,
             (data: registrationFormSchema) => {
                 authServiceItem.REGISTRATION(data)
-                    // @ts-ignore
                     .then(({ data, status }) => {
                         if (status == 200) {
                             // @ts-ignore

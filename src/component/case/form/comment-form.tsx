@@ -7,6 +7,7 @@ import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 import { REJECT_SERVER } from '@/config'
 import { useTmpObject } from '@/lib/hook'
+import { getFirstError } from '@/lib/function'
 
 interface Props {
     push: Function
@@ -51,7 +52,7 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
                                 push(data)
                             }
                         })
-                        .catch(() => toast('message', { text: REJECT_SERVER }))
+                        .catch(response => { toast('message', { text: getFirstError(response) }) })
                 }
             },
             () => { }

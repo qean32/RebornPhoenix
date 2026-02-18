@@ -17,11 +17,6 @@ export const ButtonSubscription: React.FC<Props> = ({
     const toast = useToast()
     const { id } = useParams()
     const clickHandler = () => {
-        if (!boolean) {
-            toast('message', { text: 'Вы подписались!' })
-        } else {
-            toast('message', { text: 'Вы отписались!' })
-        }
         swap()
         subscribe()
     }

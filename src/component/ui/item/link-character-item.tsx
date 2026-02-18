@@ -18,9 +18,8 @@ export const LinkCharacterItem: React.FC<Props> = ({
             style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${path})` }}
             className='bg-img prime-hover bg-color-dark relative rounded-md running-line-parent h-fit bg-color-hover transition-300 cursor-pointer'
         >
-            <div className='py-3 items-center flex flex-col gap-2 h-[110px]'>
-                <p className='text-5xl'>{id}</p>
-                <p className='text-sm w-full overflow-hidden text-center'>{name.split(' ')[0]}</p>
+            <div className='py-3 items-center justify-end flex flex-col gap-2 h-[110px]'>
+                <p className='text-sm w-full overflow-hidden mb-1 text-center'>{name.split(' ')[0]}</p>
             </div>
             <CharacterMenu id={id} />
         </div>
