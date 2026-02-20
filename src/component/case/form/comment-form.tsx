@@ -66,6 +66,7 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
                         <Button className='px-4 flex' variant='ghost'><FileInput
                             name='files' /></Button>
                         <TextArea
+                            offset={false}
                             name='payload_content'
                             title='Ваш коментарий'
                             parentDivclassName='w-full max-h-[300px] text-xl flex-1 pt-0.5 overflow-scroll translate-y-0.5'

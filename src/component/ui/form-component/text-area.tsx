@@ -13,6 +13,7 @@ interface Props {
     name: string
     convertHTML?: boolean
     initValue?: string
+    offset?: boolean
 }
 
 
@@ -22,7 +23,8 @@ export const TextArea: React.FC<Props> = ({
     name,
     convertHTML = false,
     parentDivclassName,
-    initValue = ""
+    initValue = "",
+    offset = true
 }: Props) => {
     const { formState: { errors }, setValue, watch } = useFormContext()
     const textError = errors[name]?.message as string;
@@ -57,7 +59,7 @@ export const TextArea: React.FC<Props> = ({
     return (
         <div className={cn("relative", parentDivclassName)}>
             {!code.length &&
-                <p className='absolute top-2 opacity-20 pointer-events-none text-sm-'>
+                <p className={cn('absolute top-1.5 opacity-20 pointer-events-none text-sm-', (offset && "px-2"))}>
                     {title}
                 </p>
             }

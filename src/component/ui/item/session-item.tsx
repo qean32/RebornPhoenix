@@ -1,4 +1,5 @@
 import { SessionMenu } from '@/component/case/context-menu'
+import { ViewAuthor } from '@/component/master/h-order-component'
 import { sessionInterface } from '@/model'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -15,7 +16,9 @@ export const SessionItem: React.FC<Props> = (item: Props) => {
             {/* @ts-ignore */}
             <div className="h-full w-[130px] bg-img bg-shadow rounded-sm" style={{ backgroundImage: `url(${`${item?.path}`})` }}></div>
             <p className='text-2xl'>{item.name}</p>
-            <SessionMenu {...item} />
+            <ViewAuthor payload_id={item.id}>
+                <SessionMenu {...item} />
+            </ViewAuthor>
         </div>
     )
 }

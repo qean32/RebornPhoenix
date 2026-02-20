@@ -20,7 +20,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
     const navigate = useNavigate()
 
-    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [`my-like-${id}`])
+    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``])
     const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
     const deletePost = () => {
@@ -59,7 +59,8 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
 
                 <PostInfo
                     id={post.id}
-                    date=''
+                    // @ts-ignore
+                    date={post.created_at ?? "20.06.2006"}
                     user={post.user}
                 />
                 <MainBlock content={post.content} description={post.description}>

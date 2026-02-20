@@ -45,7 +45,8 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
 
             <ViewAuthor payload_id={id ?? 0}>
                 <div className="mt-4">
-                    <Link to={'/create-post'}><PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
+                    <Link to={'/create-post'}>
+                        <PlusButton className='h-[100px] mt-1' iconSize='icon-md' /></Link>
                 </div>
             </ViewAuthor>
         </div>

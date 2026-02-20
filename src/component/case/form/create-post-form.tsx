@@ -1,11 +1,11 @@
 import React from 'react'
 import { PushTagInForm, HiddenTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
-import { previewPost } from '@/lib/function'
+import { getFirstError, previewPost } from '@/lib/function'
 import { FormProvider, useFormContext } from 'react-hook-form'
 import { createPostFormSchema, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
-import { departmentOptions, REJECT_SERVER } from '@/config'
+import { departmentOptions } from '@/config'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -29,9 +29,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                             }, 600)
                         }
                     })
-                    .catch(() => {
-                        toast('message', { text: REJECT_SERVER })
-                    })
+                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
             },
             () => { }
         )
