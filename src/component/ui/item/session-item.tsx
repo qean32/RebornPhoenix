@@ -16,7 +16,7 @@ export const SessionItem: React.FC<Props> = (item: Props) => {
             {/* @ts-ignore */}
             <div className="h-full w-[130px] bg-img bg-shadow rounded-sm" style={{ backgroundImage: `url(${`${item?.path}`})` }}></div>
             <p className='text-2xl'>{item.name}</p>
-            <ViewAuthor payload_id={item.id}>
+            <ViewAuthor payload_id={item.DM}>
                 <SessionMenu {...item} />
             </ViewAuthor>
         </div>

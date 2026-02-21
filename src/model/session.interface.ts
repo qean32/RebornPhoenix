@@ -6,6 +6,7 @@ export interface sessionInterface {
     name: string
     currentMap: mapInterface
     DungeonMaster: userInterface
+    DM: number
     maps: mapInterface[]
     characters: characterInterface[]
     mapsData: mapsDataInterface,
