@@ -1,7 +1,6 @@
 import { Button, DatePickerInForm, TextArea, TextInput } from '@/component/ui'
-import { REJECT_SERVER } from '@/config'
 import { useMyForm, useToast } from '@/lib/hook'
-import { stopPropagation } from '@/lib/function'
+import { handleFetchCatch, handleFetchThen, stopPropagation } from '@/lib/function'
 import { banFormSchema, banSchema } from '@/model/schema'
 import { profileService } from '@/service'
 import React from 'react'
@@ -21,8 +20,8 @@ export const BanForm: React.FC<Props> = ({ id, swap }: Props) => {
     const { form, submitHandler } = useMyForm<banFormSchema>(banSchema,
         (data: banFormSchema) => {
             profileService.BAN_ACTION(data, idUser ?? 0)
-                .then(() => toast('message', { text: ACCEESS_ACTION }))
-                .catch(() => toast('message', { text: REJECT_SERVER }))
+                .then(response => handleFetchThen(response, toast, ACCEESS_ACTION))
+                .catch(response => handleFetchCatch(response, toast))
                 .finally(() => {
                     setTimeout(() => {
                         window.location.reload()

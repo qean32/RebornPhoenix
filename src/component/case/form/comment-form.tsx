@@ -5,9 +5,8 @@ import { Button, FileInput, TextArea, UnwrapRemoveFiles } from '@/component/ui'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
-import { REJECT_SERVER } from '@/config'
 import { useTmpObject } from '@/lib/hook'
-import { getFirstError } from '@/lib/function'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
     push: Function
@@ -36,23 +35,17 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
                 clear()
                 if (key == 'update-comment') {
                     forumService.UPDATE_COMMENT(data, tmpObject?.id ?? 0)
-                        .then(({ status, data }) => {
-                            if (status == 200) {
-                                toast('message', { text: ACCEESS_ACTION_UPDATE })
-                                update(data)
-                                clearTmp()
-                            }
-                        })
-                        .catch(() => toast('message', { text: REJECT_SERVER }))
+                        .then(response => handleFetchThen(response, toast, ACCEESS_ACTION_UPDATE, (data) => {
+                            update(data)
+                            clearTmp()
+                        }))
+                        .catch(response => handleFetchCatch(response, toast))
                 } else {
                     forumService.CREATE_COMMENT(data, id ?? 0)
-                        .then(({ status, data }) => {
-                            if (status == 200) {
-                                toast('message', { text: ACCEESS_ACTION_CREATE })
-                                push(data)
-                            }
-                        })
-                        .catch(response => { toast('message', { text: getFirstError(response) }) })
+                        .then(response => handleFetchThen(response, toast, ACCEESS_ACTION_CREATE, (data) => {
+                            push(data)
+                        }))
+                        .catch(response => handleFetchCatch(response, toast))
                 }
             },
             () => { }

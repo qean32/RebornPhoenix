@@ -1,6 +1,6 @@
 import React from 'react'
 import { PushTagInForm, HiddenTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
-import { getFirstError, previewPost } from '@/lib/function'
+import { handleFetchCatch, handleFetchThen, previewPost } from '@/lib/function'
 import { FormProvider, useFormContext } from 'react-hook-form'
 import { createPostFormSchema, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/hook'
@@ -21,15 +21,12 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
             createPostSchema,
             (data: createPostFormSchema) => {
                 forumService.CREATE_POST(data)
-                    .then(({ status }) => {
-                        if (status == 200) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            setTimeout(() => {
-                                navigate('/')
-                            }, 600)
-                        }
-                    })
-                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 600)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

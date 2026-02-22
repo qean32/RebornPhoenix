@@ -1,6 +1,6 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/config"
-import { useBoolean, useRequest, useTmpObject, useUser } from "@/lib/hook"
+import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
 import { characterInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
@@ -38,8 +38,6 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
         }
     }, [view])
 
-    const { user } = useUser()
-
     if (!view) {
         return null
     }
@@ -49,6 +47,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
             <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
+                        // @ts-ignore
                         <LinkCharacterItem
                             {...item}
                             key={item.id}
@@ -64,10 +63,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                 </ViewAuthor>
 
             </div>
-            <ViewAuthor payload_id={user?.id ?? 0} reverse>
-
-                <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
-            </ViewAuthor>
+            <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
         </>
     )
 }

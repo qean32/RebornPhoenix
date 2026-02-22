@@ -4,7 +4,7 @@ import { resetPasswordFormSchema, resetPasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
-import { REJECT_SERVER } from '@/config'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
 }
@@ -19,12 +19,8 @@ export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
             resetPasswordSchema,
             (data: resetPasswordFormSchema) => {
                 authServiceItem.RESET_PASSWORD(data)
-                    .then(({ status }) => {
-                        if (status == 200) {
-                            toast('message', { text: ACCEESS_ACTION }, 10000)
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

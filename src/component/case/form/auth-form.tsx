@@ -5,11 +5,12 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
 import { authServiceItem } from '@/service'
-import { getFirstError, initSetUser, setToken } from '@/lib/function'
+import { handleFetchCatch, handleFetchThen, initSetUser, setToken } from '@/lib/function'
 
 interface Props {
 }
 
+const ACCEESS_ACTION = "Успешная авторизация"
 export const AuthForm: React.FC<Props> = ({ }: Props) => {
     const toast = useToast()
     const navigate = useNavigate()
@@ -19,18 +20,14 @@ export const AuthForm: React.FC<Props> = ({ }: Props) => {
             authSchema,
             (data: authFormSchema) => {
                 authServiceItem.AUTH(data)
-                    .then(({ data, status }) => {
-                        if (status == 200) {
-                            // @ts-ignore
-                            setToken(data?.token);
-                            initSetUser(true)
-                            toast('message', { text: 'Успешная авторизация' })
-                            setTimeout(() => {
-                                navigate('/')
-                            }, 500)
-                        }
-                    })
-                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
+                        setToken(data.token);
+                        initSetUser(true)
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 500)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

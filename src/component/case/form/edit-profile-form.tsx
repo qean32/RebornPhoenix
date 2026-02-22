@@ -5,8 +5,8 @@ import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
 import { useMyForm, useQ, useToast, useUser } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qpk, REJECT_SERVER } from '@/config'
-import { conventToFormData } from '@/lib/function'
+import { qpk } from '@/config'
+import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
 }
@@ -22,16 +22,13 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
             editProfileSchema,
             (data: editProfileFormSchema) => {
                 profileService.UPDATE_PROFILE(conventToFormData(data))
-                    .then(({ status }) => {
-                        if (status == 200 || status == 201) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            pushQ('true')
-                            setTimeout(() => {
-                                navigate(`/?${qpk.forceupadeteuser}=true`)
-                            }, 600)
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
+                        pushQ('true')
+                        setTimeout(() => {
+                            navigate(`/?${qpk.forceupadeteuser}=true`)
+                        }, 600)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

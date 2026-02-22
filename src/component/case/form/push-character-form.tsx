@@ -4,8 +4,7 @@ import { pushCharacterFormSchema, pushCharacterSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { profileService } from '@/service'
-import { REJECT_SERVER } from '@/config'
-import { conventToFormData } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
     children: React.ReactNode
@@ -23,13 +22,10 @@ export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => 
             (data: pushCharacterFormSchema) => {
                 swap()
                 profileService.CREATE_CHARACTER(conventToFormData(data))
-                    .then(({ status, data }) => {
-                        if (status == 201) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            setTmp({ payload: data, key: 'create-character' })
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
+                        setTmp({ payload: data, key: 'create-character' })
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

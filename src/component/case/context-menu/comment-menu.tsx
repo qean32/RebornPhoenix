@@ -6,7 +6,7 @@ import { commentType } from '@/model'
 import { swapTmpObject } from '@/store/tmp-object-store'
 import { forumService } from '@/service'
 import { useToast } from '@/lib/hook'
-import { REJECT_SERVER } from '@/config'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props extends commentType {
 }
@@ -18,12 +18,8 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
     const remove = () => {
         dispath(swapTmpObject({ key: 'delete-comment', payload: item }))
         forumService.DELETE_COMMENT(item.id)
-            .then(({ status }) => {
-                if (status == 200) {
-                    toast('message', { text: ACCEESS_ACTION })
-                }
-            })
-            .catch(() => toast('message', { text: REJECT_SERVER }))
+            .then(response => handleFetchThen(response, toast, ACCEESS_ACTION))
+            .catch(response => handleFetchCatch(response, toast))
     }
     const update = () => {
         dispath(swapTmpObject({ payload: item, key: 'update-comment' }))

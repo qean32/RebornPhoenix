@@ -1,11 +1,10 @@
 import React from 'react'
-import { conventToFormData, stopPropagation } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen, stopPropagation } from '@/lib/function'
 import { UploadImgArea, Button, ModalCross } from '@component/ui'
 import { useMyForm, useToast } from '@/lib/hook'
 import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/config'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { pushImg } from '@/store/session-store'
 
@@ -24,13 +23,10 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
         }),
         (data: { img: any }) => {
             sessionService.PUSH_IMG_TO_SESSION(conventToFormData(data))
-                .then(({ status, data }) => {
-                    if (status == 201) {
-                        toast('message', { text: ACCEESS_ACTION })
-                        dispath(pushImg({ img: data }))
-                    }
-                })
-                .catch(() => toast('message', { text: REJECT_SERVER }))
+                .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
+                    dispath(pushImg({ img: data }))
+                }))
+                .catch(response => handleFetchCatch(response, toast))
         },
         () => { }
     )

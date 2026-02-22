@@ -19,8 +19,12 @@ export const useDynamicPagination = <T,>(
     const { boolean: loading, off, on } = useBoolean(true)
     const RQData = useQuery(
         {
-            queryKey: [...RQkey, skip, search, date, tags],
-            queryFn: () => fetch_(skip, take, search, ...staticParam, date, tags)
+            queryKey: [
+                `${RQkey[0]}-${skip}`
+                , skip, search, date, tags
+            ],
+            queryFn: () => fetch_(skip, take, search, ...staticParam, date, tags),
+            refetchOnMount: true
         }
     )
 

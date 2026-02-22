@@ -6,7 +6,8 @@ import { AccessAction } from '../../case/modal/access-action-modal'
 import { profileService } from '@/service'
 import { useToast } from '@/lib/hook'
 import { useParams } from 'react-router-dom'
-import { modalAnimationEnum, REJECT_SERVER } from '@/config'
+import { modalAnimationEnum } from '@/config'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
     ban: boolean
@@ -18,8 +19,8 @@ export const BanAction: React.FC<Props> = ({ ban }: Props) => {
     const toast = useToast()
     const banAction = () => {
         profileService.BAN_ACTION({}, id ?? 0)
-            .then(() => toast('message', { text: ACCEESS_ACTION }))
-            .catch(() => toast('message', { text: REJECT_SERVER }))
+            .then(response => handleFetchThen(response, toast, ACCEESS_ACTION))
+            .catch(response => handleFetchCatch(response, toast))
             .finally(() => {
                 setTimeout(() => {
                     window.location.reload()

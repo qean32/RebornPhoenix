@@ -16,7 +16,7 @@ export const initFunctionRoll = (force?: boolean) => {
 
             setTimeout(() => {
                 event({ payload: { roll: text }, type: 'dice' },
-                    () => toast('message', { text }, 3000))
+                    () => toast('message', { text }, 2000))
             }, 600)
         }, 2000)
 

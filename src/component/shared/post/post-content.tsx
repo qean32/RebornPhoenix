@@ -9,6 +9,7 @@ import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { modalAnimationEnum } from '@/config'
 import { PostContentSceleton } from '@/component/case/sceleton'
+import { handleFetchThen } from '@/lib/function'
 
 interface Props {
     className?: string
@@ -25,10 +26,9 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
 
     const deletePost = () => {
         forumService.DELETE_POST(id ?? 0)
-            .then(() => {
-                toast('message', { text: ACCEESS_ACTION })
+            .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
                 navigate('/');
-            })
+            }))
     }
 
     if (!loading && !post?.id) {

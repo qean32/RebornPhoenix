@@ -4,7 +4,8 @@ import { changePasswordFormSchema, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useQ, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
-import { qpk, REJECT_SERVER } from '@/config'
+import { qpk } from '@/config'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
 }
@@ -19,15 +20,12 @@ export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
             changePasswordSchema,
             (data: changePasswordFormSchema) => {
                 authServiceItem.CHANGE_PASSWORD(data, token)
-                    .then(({ status }) => {
-                        if (status == 200) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            setTimeout(() => {
-                                toast('message', { text: 'Вы можете закрывать страницу!' })
-                            }, 10000)
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
+                        setTimeout(() => {
+                            toast('message', { text: 'Вы можете закрывать страницу!' })
+                        }, 10000)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )
