@@ -44,7 +44,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
                 <DynamicPagination
                     rq={{
                         fetch: forumService.GET_DEPARTAMENT_POST,
-                        RQKey: [`department-post-${name}`],
+                        RQKey: [],
                         staticParam: [departmentId]
                     }}
                     renderItem={(item) => <PostItem {...item} className="pl-2" />}

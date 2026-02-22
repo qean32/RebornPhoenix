@@ -1,7 +1,7 @@
 import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
-import { Button, ModalCross, NoFindData } from '@component/ui'
+import { ModalCross, NoFindData } from '@component/ui'
 import { CharacterItemInPush } from '@component/ui/item'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { pushCharacter } from '@/store/session-store'
@@ -51,10 +51,6 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
                             )}
                     </div>
                 }
-                <div className="flex justify-end gap-2">
-                    <><Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                        <Button variant='acceess' ><p>Добавить</p></Button></>
-                </div>
             </div>
         </Modal >
     )

@@ -4,7 +4,7 @@ import { pushSessionFormSchema, pushSessionSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useTmpObject, useToast } from '@/lib/hook'
 import { sessionService } from '@/service/session-service'
-import { REJECT_SERVER } from '@/config'
+import { handleFetchCatch, handleFetchThen } from '@/lib/function'
 
 interface Props {
     children: React.ReactNode
@@ -21,14 +21,11 @@ export const PushSessionForm: React.FC<Props> = ({ children, swap }: Props) => {
             pushSessionSchema,
             (data: pushSessionFormSchema) => {
                 sessionService.CREATE_SESSION(data)
-                    .then(({ status, data }) => {
-                        if (status == 201) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            setTmp({ payload: data, key: 'create-session' })
-                            swap()
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
+                        setTmp({ payload: data, key: 'create-session' })
+                        swap()
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

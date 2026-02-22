@@ -2,10 +2,11 @@ import { entityInterface, mapInterface, objectInterface, userInterface } from ".
 import { characterInterface } from "./entities.interfaces"
 
 export interface sessionInterface {
-    id: string | number
+    id: number
     name: string
     currentMap: mapInterface
     DungeonMaster: userInterface
+    DM: number
     maps: mapInterface[]
     characters: characterInterface[]
     mapsData: mapsDataInterface,

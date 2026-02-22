@@ -1,4 +1,6 @@
+import { tokenStorageKey } from "@/config"
 import { requestDelete, requestGet, requestPatch, requestPost } from "@lib/function/request"
+import Cookies from "js-cookie"
 const instance = 'forum'
 
 export const forumService = {
@@ -27,7 +29,8 @@ export const forumService = {
     },
 
     MY_LIKE: (id: string | number) => {
-        return requestGet(`${instance}/${id}/my-like`)
+        if (Cookies.get(tokenStorageKey))
+            return requestGet(`${instance}/${id}/my-like`)
     },
 
     DELETE_POST: (id: string | number) => {

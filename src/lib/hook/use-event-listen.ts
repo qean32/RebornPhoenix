@@ -36,8 +36,8 @@ export const useEventListen = () => {
             [
                 "dice",
                 (payload: any) => {
-                    toast("message", { text: `выпало ${payload.roll}!` })
-                    dispath(pushLog({ log: `выпало ${payload.roll}!` }))
+                    toast("message", { text: `${payload.roll}!` })
+                    dispath(pushLog({ log: `${payload.roll}!` }))
                 }
             ],
             [

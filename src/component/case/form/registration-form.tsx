@@ -4,7 +4,7 @@ import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook';
 import { authServiceItem } from '@/service';
-import { getFirstError, initSetUser, setToken } from '@/lib/function';
+import { handleFetchCatch, handleFetchThen, initSetUser, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -19,19 +19,14 @@ export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
             registrationSchema,
             (data: registrationFormSchema) => {
                 authServiceItem.REGISTRATION(data)
-                    // @ts-ignore
-                    .then(({ data, status }) => {
-                        if (status == 200) {
-                            // @ts-ignore
-                            setToken(data.token);
-                            initSetUser(true)
-                            toast('message', { text: 'Успешная авторизация' })
-                            setTimeout(() => {
-                                navigate('/')
-                            }, 500)
-                        }
-                    })
-                    .catch(response => { toast('message', { text: getFirstError(response) }, 5000) })
+                    .then(response => handleFetchThen(response, toast, "Успешная регистрация!", (data) => {
+                        setToken(data.token);
+                        initSetUser(true)
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 500)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

@@ -47,6 +47,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
             <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
+                        // @ts-ignore
                         <LinkCharacterItem
                             {...item}
                             key={item.id}

@@ -1,11 +1,11 @@
 import React from 'react'
 import { PushTagInForm, HiddenTextInput, Button, UploadFilesInCreatePost, Select, Hints, TextArea, UnwrapRemoveFiles } from '../../ui'
-import { previewPost } from '@/lib/function'
-import { FormProvider } from 'react-hook-form'
+import { handleFetchCatch, handleFetchThen, previewPost } from '@/lib/function'
+import { FormProvider, useFormContext } from 'react-hook-form'
 import { createPostFormSchema, createPostSchema } from '@/model/schema'
 import { useMyForm, useToast } from '@/lib/hook'
 import { forumService } from '@/service'
-import { departmentOptions, REJECT_SERVER } from '@/config'
+import { departmentOptions } from '@/config'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -13,7 +13,6 @@ interface Props {
 
 const ACCEESS_ACTION = 'Пост создан!'
 export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
-    const ref = React.useRef<HTMLDivElement | null>(null);
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -22,17 +21,12 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
             createPostSchema,
             (data: createPostFormSchema) => {
                 forumService.CREATE_POST(data)
-                    .then(({ status }) => {
-                        if (status == 200) {
-                            toast('message', { text: ACCEESS_ACTION })
-                            setTimeout(() => {
-                                navigate('/')
-                            }, 600)
-                        }
-                    })
-                    .catch(() => {
-                        toast('message', { text: REJECT_SERVER })
-                    })
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 600)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )
@@ -47,9 +41,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
                         options={departmentOptions} />
                 </div>
 
-                <Upper
-                    preview={() => previewPost(ref)}
-                />
+                <Upper />
 
                 <UnwrapRemoveFiles />
 
@@ -67,7 +59,6 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
 
                 <TextArea
                     convertHTML
-                    ref={ref}
                     title='Текст вашей статьи'
                     className='p-2 px-3 min-h-[600px]'
                     name='payload_content'
@@ -79,10 +70,10 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
 }
 
 type Props_ = {
-    preview: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
-const Upper: React.FC<Props_> = ({ preview }: Props_) => {
+const Upper: React.FC<Props_> = ({ }: Props_) => {
+    const { watch } = useFormContext()
 
     return (
         <div className="flex justify-between pb-4">
@@ -93,7 +84,7 @@ const Upper: React.FC<Props_> = ({ preview }: Props_) => {
                         <img src="/icon/upload.svg" className='icon-md' />
                     </div>
                 </UploadFilesInCreatePost>
-                <Button fn={preview} variant='default'><p>Предпросмотр</p></Button>
+                <Button fn={() => { previewPost(watch('payload_content')) }} variant='default'><p>Предпросмотр</p></Button>
                 <Button variant="acceess" type='submit'><p>Готово</p></Button>
             </div>
         </div>

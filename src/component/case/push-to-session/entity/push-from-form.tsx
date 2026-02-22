@@ -1,8 +1,8 @@
 import { Button, TextArea, TextInput, UploadImgArea } from '@/component/ui'
-import { dftSource, REJECT_SERVER } from '@/config'
+import { dftSource } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { conventToFormData, initPushDataToSession } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen, initPushDataToSession } from '@/lib/function'
 import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object-store'
@@ -20,29 +20,22 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
     const toast = useToast()
     const dispath = useAppDispatch()
 
-    const pushHandler = (data: any) => {
-        push(data);
-        // @ts-ignore
-        swap();
-    }
-
     const { form, submitHandler } =
         useMyForm<pushEntityToSessionFormSchema>(
             pushEntityToSessionSchema,
             (data: pushEntityToSessionFormSchema) => {
                 sessionService.CREATE_ENTITY(conventToFormData(data))
-                    .then(({ data, status }) => {
-                        if (status == 201) {
-                            toast('push-entity', { name: data.name })
-                            dispath(swapTmpObject(
-                                {
-                                    key: 'push-entity',
-                                    payload: { ...data, source: dftSource }
-                                }))
-                            pushHandler(data);
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, "Успех", (data) => {
+                        toast('push-entity', { name: data.name })
+                        switcher.on()
+                        dispath(swapTmpObject(
+                            {
+                                key: 'push-entity',
+                                payload: { ...data, source: dftSource }
+                            }))
+                        push(data);
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

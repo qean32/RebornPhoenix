@@ -1,5 +1,5 @@
 import React from 'react'
-import { tokenStorageKey } from '@/config'
+import { tokenStorageKey, userStorageKey } from '@/config'
 import { useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/store'
 import { setUser } from '@/store/user-store'
@@ -17,6 +17,7 @@ export const Logout: React.FC<Props> = ({ }: Props) => {
 
     const logout = () => {
         Cookies.remove(tokenStorageKey)
+        Cookies.remove(userStorageKey)
         dispath(setUser(null))
         toast('message', { text: 'Выход..' })
         setTimeout(() => {

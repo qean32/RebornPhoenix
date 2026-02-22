@@ -5,8 +5,6 @@ import { UserItem } from "@component/ui/item"
 import { title } from "@/config"
 import { usePage } from "@lib/hook"
 import { communityService } from "@/service"
-import { CommunitySceleton } from "@/component/case/sceleton"
-import React from "react"
 
 export const Community = () => {
     const { } = usePage(title.communty)
@@ -17,17 +15,15 @@ export const Community = () => {
             <div className="relative">
                 <TextInfo title="Сообщество" />
                 <Search />
-                <React.Suspense fallback={<CommunitySceleton />}>
-                    <DynamicPagination
-                        rq={{
-                            fetch: communityService.GET_USERS,
-                            RQKey: ['community'],
-                            staticParam: []
-                        }}
-                        className="pt-5"
-                        renderItem={(item) => <UserItem {...item} />}
-                    />
-                </React.Suspense>
+                <DynamicPagination
+                    rq={{
+                        fetch: communityService.GET_USERS,
+                        RQKey: ['community'],
+                        staticParam: []
+                    }}
+                    className="pt-5"
+                    renderItem={(item) => <UserItem {...item} />}
+                />
             </div>
         </Page>
     )

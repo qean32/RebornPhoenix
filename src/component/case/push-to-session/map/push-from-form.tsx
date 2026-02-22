@@ -1,8 +1,8 @@
 import { UploadImgArea, Button, TextInput } from '@/component/ui'
-import { dftSource, REJECT_SERVER } from '@/config'
+import { dftSource } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { conventToFormData } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
 import { pushMapToSessionFormSchema, pushMapToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object-store'
@@ -24,17 +24,16 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
             pushMapToSessionSchema,
             (data: pushMapToSessionFormSchema) => {
                 sessionService.CREATE_MAP(conventToFormData(data))
-                    .then(({ data, status }) => {
-                        if (status == 201) {
-                            toast('push-entity', { name: data.name })
-                            dispath(swapTmpObject(
-                                {
-                                    key: 'push-entity',
-                                    payload: { ...data, source: dftSource }
-                                }))
-                        }
-                    })
-                    .catch(() => toast('message', { text: REJECT_SERVER }))
+                    .then(response => handleFetchThen(response, toast, "Успех", (data) => {
+                        toast('push-entity', { name: data.name })
+                        switcher.on()
+                        dispath(swapTmpObject(
+                            {
+                                key: 'push-entity',
+                                payload: { ...data, source: dftSource }
+                            }))
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

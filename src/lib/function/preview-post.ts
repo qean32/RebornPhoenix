@@ -1,11 +1,6 @@
-import { separator, separatorLink } from "@/config";
-
-export const previewPost = (ref: any) => {
-    if (ref.current) {
-        const links = ref.current.innerHTML.match(/\{(.*?)\}/g)
-        const text = ref.current.innerHTML.replaceAll('/', '').replaceAll('&nbsp;', '').split('<div>')
-
+export const previewPost = (text: string) => {
+    if (text) {
         // @ts-ignore
-        window.open(`preview/${text.join(separator)}${separatorLink}${links?.join(separator).replaceAll('/', ';')}`, '_blank').focus();
+        window.open(`preview/${text}`, '_blank').focus();
     }
 }

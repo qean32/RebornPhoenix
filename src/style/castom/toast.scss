@@ -2,11 +2,14 @@
     animation: toast-open-anim .8s;
     transform: translate(0, 0);
     opacity: 1;
+    z-index: 1;
 }
 
 .toast-close {
+    // animation: toast-close-anim .8s;
     transform: translate(0, 50%);
     opacity: 0;
+    z-index: 0;
 }
 
 @keyframes toast-open-anim {
@@ -35,5 +38,5 @@
 
 .backToast {
     margin-top: 22px;
-    scale: .8;
+    scale: .9;
 }

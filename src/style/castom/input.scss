@@ -194,3 +194,7 @@ label {
         background: $border-color;
     }
 }
+
+*::placeholder {
+    opacity: .25;
+}
