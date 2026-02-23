@@ -8,15 +8,13 @@ import {
     Map
 } from "@/component/ui/main";
 import { qpk, title } from "@/config";
-import { changeTitle, initSetUser } from "@/lib/function";
-import { useQ } from "@lib/hook";
+import { usePage, useQ } from "@lib/hook";
 import React from "react";
 
 
 export const Main = () => {
-    changeTitle(title.main)
     const { param, clearQ } = useQ(qpk.forceupadeteuser)
-    initSetUser(!!param)
+    usePage(title.main, !!param)
     React.useEffect(() => {
         clearQ()
     }, [])

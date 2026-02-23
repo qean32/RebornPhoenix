@@ -5,8 +5,16 @@ import { Router } from './router'
 import { MainLoader } from './component/shared'
 import { Root } from './component/master/root'
 import { socketConfig } from './lib/socket-config'
+import { themeStorageKey } from './config'
+import { setTheme } from './lib/function'
+import Cookies from "js-cookie"
 
 socketConfig()
+
+const str = (Cookies.get(themeStorageKey) as string)
+if (str != "undefined") {
+  setTheme(JSON.parse(str))
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Root>

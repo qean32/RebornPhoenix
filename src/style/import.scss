@@ -1,17 +1,29 @@
-$bg-color: #0e0e0e;
-$bg-color-darkness: #090909;
-$bg-color-dark: #0c0c0c;
-$bg-color-light: #1f1f1f;
+:root {
+    --bg-color-darkLight: #0e0e0e;
+    --bg-color-darkness-darkLight: #090909;
+    --bg-color-dark-darkLight: #0c0c0c;
+    --bg-color-light-darkLight: #1f1f1f;
 
-// $bg-color: #070707;
-// $bg-color-darkness: #020202;
-// $bg-color-dark: #050505;
-// $bg-color-light: #1f1f1f;
+    --bg-color-dark: #070707;
+    --bg-color-darkness-dark: #020202;
+    --bg-color-dark-dark: #050505;
+    --bg-color-light-dark: #1f1f1f;
 
-// $bg-color: #221c14;
-// $bg-color-dark: #1d1811;
-// $bg-color-darkness: #18140d;
-// $bg-color-light: #352c20;
+    --bg-color-wood: #221c14;
+    --bg-color-darkness-wood: #1d1811;
+    --bg-color-dark-wood: #18140d;
+    --bg-color-light-wood: #352c20;
+
+    --bg-color: var(--bg-color-darkLight);
+    --bg-color-darkness: var(--bg-color-darkness-darkLight);
+    --bg-color-dark: var(--bg-color-dark-darkLight);
+    --bg-color-light: var(--bg-color-light-darkLight);
+}
+
+$bg-color: var(--bg-color);
+$bg-color-darkness: var(--bg-color-darkness);
+$bg-color-dark: var(--bg-color-dark);
+$bg-color-light: var(--bg-color-light);
 
 $red-color: oklch(44.4% 0.177 26.899);
 

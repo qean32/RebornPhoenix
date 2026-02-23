@@ -109,3 +109,26 @@ export const departmentOptions = [
     { title: "WEB", value: "WEB", id: 2 },
     { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
 ]
+
+export const themes = {
+    wood: [
+        "var(--bg-color-wood)",
+        "var(--bg-color-darkness-wood)",
+        "var(--bg-color-dark-wood)",
+        "var(--bg-color-light-wood)",
+    ],
+    darkLight: [
+        "var(--bg-color-darkLight)",
+        "var(--bg-color-darkness-darkLight)",
+        "var(--bg-color-dark-darkLight)",
+        "var(--bg-color-light-darkLight)",
+    ],
+    dark: [
+        "var(--bg-color-dark)",
+        "var(--bg-color-darkness-dark)",
+        "var(--bg-color-dark-dark)",
+        "var(--bg-color-light-dark)",
+    ],
+}
+
+export const expires = (1 * 365 * 24 * 60 * 60)
