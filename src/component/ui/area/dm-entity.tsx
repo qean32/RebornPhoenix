@@ -41,7 +41,13 @@ export const EntityDM: React.FC<Props> = (props: Props) => {
             onDragMove={dragMoveHandler}
         >
             <Circle
+                fill={'#f1e9d2'}
+                radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
+                scale={{ y: scale, x: scale }}
+            />
+            <Circle
                 {...utils.restObject}
+                strokeWidth={(image?.width ?? 0) * .05}
                 {...props.action && utils.restQueue}
                 radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
                 fillPatternImage={image}

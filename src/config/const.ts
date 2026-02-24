@@ -112,22 +112,22 @@ export const departmentOptions = [
 
 export const themes = {
     wood: [
-        "var(--bg-color-wood)",
-        "var(--bg-color-darkness-wood)",
-        "var(--bg-color-dark-wood)",
-        "var(--bg-color-light-wood)",
+        "var(--theme-3)",
+        "var(--theme-3-dark)",
+        "var(--theme-3-darkness)",
+        "var(--theme-3-light)",
     ],
-    darkLight: [
-        "var(--bg-color-darkLight)",
-        "var(--bg-color-darkness-darkLight)",
-        "var(--bg-color-dark-darkLight)",
-        "var(--bg-color-light-darkLight)",
+    _: [
+        "var(--theme-1)",
+        "var(--theme-1-dark)",
+        "var(--theme-1-darkness)",
+        "var(--theme-1-light)",
     ],
-    dark: [
-        "var(--bg-color-dark)",
-        "var(--bg-color-darkness-dark)",
-        "var(--bg-color-dark-dark)",
-        "var(--bg-color-light-dark)",
+    __: [
+        "var(--theme-2)",
+        "var(--theme-2-dark)",
+        "var(--theme-2-darkness)",
+        "var(--theme-2-light)",
     ],
 }
 

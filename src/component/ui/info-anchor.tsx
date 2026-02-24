@@ -15,7 +15,7 @@ export const InfoAnchor: React.FC<Props> = ({ qa }: Props) => {
 
 
     return (
-        <div className="relative px-6 pt-4 pb-5 w-fit">
+        <div className="relative px-6 pt-4 pb-5 w-[270px]">
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
                     return (

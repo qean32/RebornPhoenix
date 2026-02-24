@@ -36,7 +36,7 @@ export const SessionLog: React.FC<Props> = ({ }: Props) => {
         <Portal>
 
             <div
-                className='absolute top-5 left-5 z-50 px-5 bg-color rounded-sm cursor-move pt-3 outline-bg-light w-[400px] min-h-[100px] max-h-[110px] overflow-scroll'
+                className='absolute top-5 left-5 z-50 px-5 bg-color rounded-sm cursor-move pt-3 outline-bg-light w-[300px] min-h-[100px] max-h-[110px] overflow-scroll'
                 draggable
                 onDragEnd={dragEnd} ref={ref}
             >

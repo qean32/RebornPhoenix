@@ -1,6 +1,7 @@
 import React from 'react'
-import { getHTMLData, setTheme } from '../../lib/function'
+import { cn, getHTMLData, setTheme } from '../../lib/function'
 import { themes } from '@/config'
+import { useBoolean } from '@/lib/hook'
 
 interface Props {
 }
@@ -10,14 +11,24 @@ export const ThemeControl: React.FC<Props> = React.memo(({ }: Props) => {
     const clickHandler = React.useCallback(
         (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             setTheme(getHTMLData(e, true))
+            swap()
         }, [])
+    const { boolean, swap } = useBoolean()
 
     return (
-        <div className="absolute left-5">
-            <span className='theme-control cursor-pointer'><img src="/icon/theme.svg" className='icon-md' alt="" /></span>
-            <div className='flex flex-col cursor-pointer bg-color opacity-0 pointer-events-none py-2 rounded-sm transition-300 outline-bg-light' onClick={clickHandler}>
-                <div className='transition-300 px-3 p-1 bg-color-dark-hover' data={JSON.stringify(themes.darkLight)}>По умолчанию</div>
-                <div className='transition-300 px-3 p-1 bg-color-dark-hover' data={JSON.stringify(themes.dark)}>Темная</div>
+        <div className="absolute left-5 pointer-events-none">
+            <span
+                className='opacity-20 hover:opacity-100 transition-300 w-fit cursor-pointer pointer-events-auto'
+                onClick={swap}
+            >
+                <img src="/icon/theme.svg" className='icon-md' alt="" />
+            </span>
+            <div
+                className={cn('flex flex-col cursor-pointer bg-color py-2 rounded-sm transition-300 outline-bg-light', (!boolean ? "opacity-0 pointer-events-none" : "pointer-events-auto"))}
+                onClick={clickHandler}
+            >
+                <div className='transition-300 px-3 p-1 bg-color-dark-hover' data={JSON.stringify(themes._)}>По умолчанию</div>
+                <div className='transition-300 px-3 p-1 bg-color-dark-hover' data={JSON.stringify(themes.__)}>Темная</div>
                 <div className='transition-300 px-3 p-1 bg-color-dark-hover' data={JSON.stringify(themes.wood)}>Дерево</div>
             </div>
         </div>
