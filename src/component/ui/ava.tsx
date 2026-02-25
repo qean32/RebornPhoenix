@@ -4,7 +4,7 @@ import { cn } from '@lib/function'
 interface Props {
     className?: string
     path: string
-    size?: 'ava-sm' | 'ava-md' | 'ava-lg' | 'ava-xl'
+    size?: 'ava-sm' | 'ava-md' | 'ava-lg' | 'ava-xl' | 'ava-2xl'
     blob?: boolean
 }
 

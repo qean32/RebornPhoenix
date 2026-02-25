@@ -16,9 +16,9 @@ export const ThemeControl: React.FC<Props> = React.memo(({ }: Props) => {
     const { boolean, swap } = useBoolean()
 
     return (
-        <div className="absolute left-5 pointer-events-none">
+        <div className="absolute left-4 pointer-events-none">
             <span
-                className='opacity-20 hover:opacity-100 transition-300 w-fit cursor-pointer pointer-events-auto'
+                className='opacity-80 hover:opacity-100 transition-300 w-fit cursor-pointer pointer-events-auto'
                 onClick={swap}
             >
                 <img src="/icon/theme.svg" className='icon-md' alt="" />

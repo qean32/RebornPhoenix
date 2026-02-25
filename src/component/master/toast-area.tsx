@@ -18,7 +18,7 @@ export const ToastArea: React.FC<Props> = ({ }: Props) => {
                             keyMessage: item.key,
                             ...item
                         },
-                        toasts[toasts.length - 1].id)
+                        toasts[toasts.length - 1].id != item.id)
                 })}
         </div>
     )

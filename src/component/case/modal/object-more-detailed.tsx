@@ -49,7 +49,7 @@ export const ObjectMoreDetailed: React.FC<Props> = ({ }: Props) => {
                                     :
                                     <div onClick={stopPropagation} className='bg-color h-full w-[340px] cursor-pointer flex items-center justify-start pt-3 flex-col'>
                                         <div className="w-11/12 bg-color-dark aspect-square rounded-sm bg-img"
-                                            style={{ backgroundImage: `url(${object?.path ?? ''})` }}
+                                            style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${object?.path ?? ''})` }}
                                             onClick={() => viewImg(object?.path ?? '')}
                                         >
                                         </div>

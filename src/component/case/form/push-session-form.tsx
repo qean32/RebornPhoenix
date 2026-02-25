@@ -34,7 +34,7 @@ export const PushSessionForm: React.FC<Props> = ({ children, swap }: Props) => {
         <FormProvider {...form}>
 
             <form action="" onSubmit={submitHandler}>
-                <Title className='mb-5'>ДОБАВЛЕНИЕ СЕССИИ</Title>
+                <Title className='mb-5'>СОЗДАНИЕ СЕССИИ</Title>
                 <TextInput placeHolder='Название сессии' className='w-[360px] mb-5' name='name' />
                 <SelectSessionBG />
                 <div className="pt-8 flex gap-4 justify-end">
