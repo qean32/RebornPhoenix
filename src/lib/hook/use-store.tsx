@@ -21,7 +21,7 @@ export const useStore = (type: string) => {
                             item[0],
                             // @ts-ignore
                             item[1].filter(item =>
-                                item.name.includes(allQ[qpk.search]))]
+                                item.name.toLowerCase().includes(allQ[qpk.search].toLowerCase()))]
                     })
                 )
             })

@@ -130,6 +130,7 @@ const sessionSlice = createSlice({
 
         pushObject: (state: stateDto, { payload }: PayloadAction<objectInterface>) => {
             if (state?.session?.mapsData[state?.session?.currentMap?.id].objects?.length < 10) {
+                console.log(payload)
 
                 state.session.mapsData[state.session.currentMap.id].objects = [
                     ...state.session.mapsData[state.session.currentMap.id].objects,

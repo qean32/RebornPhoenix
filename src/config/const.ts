@@ -54,17 +54,106 @@ export const dftSource = { id: 1, name: 'Кастомный' }
 export const sourses = {
     map: [
         { value: '0', title: 'Все' },
-        { value: '2', title: 'Карты' },
+        {
+            title: 'Кастомный',
+            value: 1,
+        },
+        {
+            title: 'Мосты',
+            value: 14
+        },
+        {
+            title: 'Фермы',
+            value: 15
+        },
+        {
+            title: 'Лес',
+            value: 16
+        },
+        {
+            title: 'Внутренности',
+            value: 17
+        },
+        {
+            title: 'Пещеры',
+            value: 18
+        },
+        {
+            title: 'Горы',
+            value: 19
+        },
+        {
+            title: 'Дорога',
+            value: 20
+        },
+        {
+            title: 'Крепости',
+            value: 21
+        },
+        {
+            title: 'Города',
+            value: 22
+        },
     ],
     entity: [
         { value: '0', title: 'Все' },
-        { value: '3', title: 'Люди' },
-        { value: '4', title: 'Звери' },
-        { value: '5', title: 'Фентези сущеста' }
+        {
+            value: 1,
+            title: 'Кастомный',
+        },
+        {
+            value: 2,
+            title: 'Звери'
+        },
+        {
+            value: 3,
+            title: 'Люди'
+        },
+        {
+            value: 4,
+            title: 'Исчадия'
+        },
+        {
+            value: 5,
+            title: 'Драконы'
+        },
+        {
+            value: 6,
+            title: 'Растения'
+        },
+        {
+            value: 7,
+            title: 'Нежить'
+        },
+        {
+            value: 8,
+            title: 'Прочее'
+        },
+        {
+            value: 9,
+            title: 'Монстры'
+        },
+        {
+            value: 10,
+            title: 'Гумоноиды'
+        },
+        {
+            value: 11,
+            title: 'Дроу'
+        },
+        {
+            value: 12,
+            title: 'Гоблин'
+        },
+        {
+            value: 13,
+            title: 'Именные'
+        }
     ],
     object: [
         { value: '0', title: 'Все' },
-        { value: '6', title: 'Сооружения' },
+        { value: 1, title: 'Кастомный' },
+        { value: 23, title: 'Сооружения' },
     ]
 }
 

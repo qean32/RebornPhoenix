@@ -12,6 +12,6 @@ const map = new Map<number, number>([
     [9, 180],
 ])
 
-export const getSizeInPixel = (size: sizeType) => {
-    return map.get(size)
+export const getSizeInPixel = (size: sizeType): number => {
+    return map.get(size) ?? 100
 }
