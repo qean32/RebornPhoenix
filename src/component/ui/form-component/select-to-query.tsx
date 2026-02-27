@@ -4,7 +4,7 @@ import { cn } from "@/lib/function"
 
 interface SelectProps {
     className?: string
-    options: { value: string, title: string }[]
+    options: { value: string | number, title: string }[]
 }
 
 

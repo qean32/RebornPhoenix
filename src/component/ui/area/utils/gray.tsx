@@ -2,10 +2,11 @@ import React from 'react'
 import { getSizeInPixel } from '@/lib/function'
 import { Circle } from 'react-konva'
 import useImage from 'use-image'
+import { sizeType } from '@/model'
 
 interface Props {
     image: ReturnType<typeof useImage> | any
-    size: 1 | 2 | 3 | 4
+    size: sizeType
 }
 
 
