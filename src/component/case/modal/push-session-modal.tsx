@@ -14,7 +14,7 @@ export const PushSession: React.FC<Props> = ({ swap }: Props) => {
             <ModalCross fn={swap} />
             <PushSessionForm swap={swap}>
                 <>
-                    <Button variant='ghost' fn={swap}><p>Отмена</p></Button>
+                    <Button variant='ghost' onClick={swap}><p>Отмена</p></Button>
                     <Button variant='acceess' type='submit' ><p>Добавить</p></Button></>
             </PushSessionForm>
         </div>

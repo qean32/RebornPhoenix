@@ -54,11 +54,11 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                 <div className="flex gap-2" data={JSON.stringify(data)}>
-                    <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                    <Button fn={switcher.off} variant='ghost'>
+                    <Button onClick={swap} variant='ghost'><p>Отмена</p></Button>
+                    <Button onClick={switcher.off} variant='ghost'>
                         <p className='pointer-events-none'>Кастомная карта</p></Button>
                 </div>
-                <Button type='submit' variant='acceess' fn={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
+                <Button type='submit' variant='acceess' onClick={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
             </div>
         </div>
     )

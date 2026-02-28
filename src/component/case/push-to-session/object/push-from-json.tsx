@@ -45,11 +45,11 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                 <div className="flex gap-2 pb-1">
-                    <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                    <Button variant='ghost' fn={switcher.off}>
+                    <Button onClick={swap} variant='ghost'><p>Отмена</p></Button>
+                    <Button variant='ghost' onClick={switcher.off}>
                         <p className='pointer-events-none'>Кастомный объект</p></Button>
                 </div>
-                <Button variant='acceess' type='submit' fn={pushHandler} className='mt-2 w-11/12'><p>Добавить</p></Button>
+                <Button variant='acceess' type='submit' onClick={pushHandler} className='mt-2 w-11/12'><p>Добавить</p></Button>
             </div>
         </div>
     )

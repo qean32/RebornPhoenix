@@ -50,7 +50,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
                 <div className="flex gap-5 justify-end p-5 flex-1 items-end">
                     <Button
                         variant='ghost'
-                        fn={swap}
+                        onClick={swap}
                     ><p>Отмена</p></Button>
                     <Button
                         variant='acceess'

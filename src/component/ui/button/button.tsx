@@ -1,12 +1,10 @@
 import React from 'react'
 import { cn } from '@lib/function'
 
-interface Props {
+interface Props extends React.ComponentProps<"button"> {
     className?: string
     children: React.ReactNode
     variant?: 'default' | 'acceess' | 'reject' | 'ghost' | 'plus' | 'default-no-hover'
-    fn?: React.MouseEventHandler<HTMLButtonElement>
-    type?: 'button' | 'submit' | 'reset'
 }
 
 const map = new Map([
@@ -22,12 +20,10 @@ export const Button: React.FC<Props> = ({
     className = 'w-fit',
     children,
     variant = 'default',
-    fn = () => { },
     type = 'button'
 }: Props) => {
     return (
         <button
-            onClick={fn}
             value={'button'}
             type={type}
             className={cn(

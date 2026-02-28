@@ -20,8 +20,8 @@ export const LargeLogo: React.FC<Props> = ({ }: Props) => {
                 <Logo size="icon-3xl" />
                 <p className='text-3xl'>{nameProject}</p>
             </div>
-            <a href={process.env.DISCORD} target='_blank' className='hover:-translate-y-1 transition-300 cursor-pointer'>
-                <img src="/icon/discord.svg" alt="" width={100} />
+            <a href={process.env.TEAMSPEAK} target='_blank' className='hover:-translate-y-1 transition-300 cursor-pointer'>
+                <img src="/icon/teamspeak.png" alt="" className='icon-2xl mt-4' width={100} />
             </a>
         </div>
     )

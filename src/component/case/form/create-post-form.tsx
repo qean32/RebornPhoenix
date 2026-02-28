@@ -84,7 +84,7 @@ const Upper: React.FC<Props_> = ({ }: Props_) => {
                         <img src="/icon/upload.svg" className='icon-md' />
                     </div>
                 </UploadFilesInCreatePost>
-                <Button fn={() => { previewPost(watch('payload_content')) }} variant='default'><p>Предпросмотр</p></Button>
+                <Button onClick={() => { previewPost(watch('payload_content')) }} variant='default'><p>Предпросмотр</p></Button>
                 <Button variant="acceess" type='submit'><p>Готово</p></Button>
             </div>
         </div>

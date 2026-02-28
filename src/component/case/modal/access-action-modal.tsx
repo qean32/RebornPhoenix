@@ -26,8 +26,8 @@ export const AccessAction: React.FC<Props> = ({
                 <p className='text-2xl pt-4'>{warning}</p>
             </div>
             <div className="flex gap-5 justify-end p-5 items-end h-fit">
-                <Button variant='ghost' fn={(e) => { fn(e); swap(e); }}><p value='modal'>{warningButtonText}</p></Button>
-                <Button variant='acceess' fn={swap}><p value='modal'>Отмена</p></Button>
+                <Button variant='ghost' onClick={(e) => { fn(e); swap(e); }}><p value='modal'>{warningButtonText}</p></Button>
+                <Button variant='acceess' onClick={swap}><p value='modal'>Отмена</p></Button>
             </div>
         </div>
     )
