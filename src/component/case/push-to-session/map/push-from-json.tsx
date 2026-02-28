@@ -21,10 +21,9 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     }
 
     const pushHandler = () => {
+        console.log('zxc')
         // @ts-ignore
-        swap()
-        // @ts-ignore
-        push(data)
+        swap(); push(data)
     }
 
     React.useEffect(() => {
@@ -58,7 +57,7 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                     <Button onClick={switcher.off} variant='ghost'>
                         <p className='pointer-events-none'>Кастомная карта</p></Button>
                 </div>
-                <Button type='submit' variant='acceess' onClick={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
+                <Button variant='acceess' onClick={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
             </div>
         </div>
     )

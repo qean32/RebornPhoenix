@@ -20,12 +20,14 @@ export const Button: React.FC<Props> = ({
     className = 'w-fit',
     children,
     variant = 'default',
-    type = 'button'
+    onClick,
+    type = 'button',
 }: Props) => {
     return (
         <button
             value={'button'}
             type={type}
+            onClick={onClick}
             className={cn(
                 'transition-300 rounded-md cursor-pointer px-2 py-2',
                 className,

@@ -19,11 +19,14 @@ export const useStage = () => {
 
         const newScale = e.evt.deltaY < 0 ? oldScale * 1.1 : oldScale / 1.1;
 
-        setStage({
-            scale: newScale,
-            x: (stage.getPointerPosition().x / newScale - mousePointTo.x) * newScale,
-            y: (stage.getPointerPosition().y / newScale - mousePointTo.y) * newScale
-        });
+        if (newScale > 0.25 && newScale < 10) {
+
+            setStage({
+                scale: newScale,
+                x: (stage.getPointerPosition().x / newScale - mousePointTo.x) * newScale,
+                y: (stage.getPointerPosition().y / newScale - mousePointTo.y) * newScale
+            });
+        }
     };
 
     return { stage, handleWheel }
