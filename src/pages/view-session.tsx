@@ -2,8 +2,9 @@ import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
 import { SessionLog, ToolGameSubscriber } from "@component/shared"
 import { useQ } from "@lib/hook"
 import React from "react"
-import { GameAreaSubscriber } from "@/component/master"
 import { qpk } from "@/config"
+
+const GameAreaSubscriber = React.lazy(() => import("@component/master/game-area-subscriber"))
 
 export const ViewSession = () => {
     return (

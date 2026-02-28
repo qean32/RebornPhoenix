@@ -1,15 +1,19 @@
 import React from 'react'
 import { Stage, Layer } from "react-konva"
-import { EntitySubscriber, GameBackground, ObjectSubscriber } from '@component/ui/area';
+import { EntitySubscriber } from '@component/ui/area/subscriber-entity';
+import { ObjectSubscriber } from '@component/ui/area/subscriber-object';
+import { GameBackground } from '@component/ui/area/game-background';
 import { useAppSelector } from '@lib/hook/redux';
-import { useEventListen, useStage, useWindowSize } from '@lib/hook';
-import { MainLoader } from '../shared';
+import { useStage } from '@lib/hook/use-stage';
+import { useEventListen } from '@lib/hook/use-event-listen';
+import { useWindowSize } from '@lib/hook/use-window-size';
+import { MainLoader } from '@component/shared/main-loader';
 
 interface Props {
 }
 
 
-export const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
+const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
     const { session: { currentMap, mapsData }, isSet } = useAppSelector(state => state.session)
     const { handleWheel, stage } = useStage()
     const { innerHeight, innerWidth } = useWindowSize()
@@ -41,11 +45,6 @@ export const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
                         return <EntitySubscriber {...item} key={item.id} />
                     })
                 }
-                {/* {!!mapsData[currentMap ? currentMap.id : 'null']?.characters?.length &&
-                    mapsData[currentMap ? currentMap.id : 'null']?.characters.map((item) => {
-                        return <CharacterSubscriber {...item} key={item.id} />
-                    })
-                } */}
                 {!!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
                         return <ObjectSubscriber {...item} key={item.id} />
@@ -55,3 +54,5 @@ export const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
         </Stage>
     )
 }
+
+export default GameAreaSubscriber

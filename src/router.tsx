@@ -4,7 +4,10 @@ import { MainLoader } from "./component/shared"
 import { RefreshToken, ToastArea } from "@component/master"
 import { Header, Navigate } from "./component/shared"
 import { ProtectedRouteAuth, ProtectedRouteSession } from "./pages/protected-route"
+import React from "react"
 
+const Faq = React.lazy(() => import("@/pages/faq"))
+const CommunityRules = React.lazy(() => import("@/pages/community-rules"))
 
 export const Router = () => {
     return (
@@ -36,8 +39,8 @@ export const Router = () => {
                 <Route element={<pages.ChangePassword />} path="/change-password" />
                 <Route element={<pages.Main />} path="/" />
                 <Route element={<pages.Community />} path="/community" />
-                <Route element={<pages.Faq />} path="/faq" />
-                <Route element={<pages.CommunityRules />} path="/community-rules" />
+                <Route element={<Faq />} path="/faq" />
+                <Route element={<CommunityRules />} path="/community-rules" />
 
                 <Route element={<pages.Forum />} path="/forum" />
                 <Route element={<pages.Department />} path="/department/:name" />

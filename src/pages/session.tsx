@@ -2,8 +2,9 @@ import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } fro
 import { ToolGameButton, ToolGame, SessionLog } from "@component/shared"
 import { useQ } from "@lib/hook"
 import React from "react"
-import { GameArea } from "@/component/master"
 import { qpk } from "@/config"
+
+const GameArea = React.lazy(() => import("@component/master/game-area"))
 
 export const Session = () => {
     return (

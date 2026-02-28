@@ -1,6 +1,4 @@
 export { RefreshToken } from './refresh-token'
 export { ToastArea } from './toast-area'
 export { DynamicPagination } from './dynamic-pagination'
-export { GameArea } from './game-area'
-export { GameAreaSubscriber } from './game-area-subscriber'
 export { PhoneWarning } from './phone-warning'

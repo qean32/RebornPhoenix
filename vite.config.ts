@@ -18,6 +18,9 @@ export default defineConfig(({ mode }) => {
       'process.env.TEAMSPEAK': JSON.stringify(env.TEAMSPEAK),
       'process.env.SERVER_HOST_STORAGE': JSON.stringify(env.SERVER_HOST_STORAGE),
     },
+    build: {
+      chunkSizeWarningLimit: 1100
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src/'),

@@ -5,7 +5,7 @@ import { useAppDispatch } from "../redux";
 import { qpk } from "@/config";
 import { useQ } from "../use-q";
 import { coordinateType } from "@/model";
-import { EventMiddleware } from "@/lib/middleware";
+import { EventMiddleware } from "@/lib/middleware/event.middleware";
 
 export const useDMEntity = (position: coordinateType, path: string) => {
     const dispath = useAppDispatch()
