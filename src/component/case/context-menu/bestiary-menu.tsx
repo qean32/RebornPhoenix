@@ -18,8 +18,8 @@ export const BestiaryMenu: React.FC<Props> = (item: Props) => {
     return (
         <ContextMenu className='z-20'>
             <Initiative title={item.initiative} className='mx-3 mb-3' />
-            <ContextMenuItem fn={pushHandler}>Клонировать</ContextMenuItem>
-            <ContextMenuItem fn={moreHandler}>Подробнее</ContextMenuItem>
+            <ContextMenuItem onClick={pushHandler}>Клонировать</ContextMenuItem>
+            <ContextMenuItem onClick={moreHandler}>Подробнее</ContextMenuItem>
         </ContextMenu>
     )
 }

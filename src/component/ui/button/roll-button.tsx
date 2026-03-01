@@ -11,7 +11,7 @@ export const RollButton: React.FC<Props> = ({ force = false }: Props) => {
     const roll = initFunctionRoll(force)
 
     return (
-        <ButtonInGroup className='w-full py-4 rounded-sm' fn={roll}>
+        <ButtonInGroup className='w-full py-4 rounded-sm' onClick={roll}>
             <img className='icon-sm pointer-events-none' src='/icon/dice.svg' /></ButtonInGroup>
     )
 }

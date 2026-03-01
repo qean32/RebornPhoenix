@@ -4,7 +4,7 @@ interface Props {
 }
 
 
-export const Map: React.FC<Props> = ({ }: Props) => {
+export const Map: React.FC<Props> = () => {
     return (
         <div className="flex justify-center items-center pb-10 flex-col">
             <div className="w-[1340px] h-[750px] bg-top bg-cover bg-shadow relative rounded-sm" style={{ backgroundImage: `url(/img/map2.jpg)` }}></div>

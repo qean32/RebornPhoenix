@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const PhoneWarning: React.FC<Props> = ({ }: Props) => {
+export const PhoneWarning: React.FC<Props> = () => {
     return (
         <div className="flex gap-5 justify-center items-center flex-col py-10">
             <Logo size='icon-3xl' />

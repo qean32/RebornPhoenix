@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = 'Пост удален!'
-export const PostContent: React.FC<Props> = ({ }: Props) => {
+export const PostContent: React.FC<Props> = () => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
@@ -60,7 +60,7 @@ export const PostContent: React.FC<Props> = ({ }: Props) => {
                 <PostInfo
                     id={post.id}
                     // @ts-ignore
-                    date={post.created_at ?? "20.06.2006"}
+                    date={post.created_at ?? "Sun Mar 06 2021"}
                     user={post.user}
                 />
                 <MainBlock content={post.content} description={post.description}>

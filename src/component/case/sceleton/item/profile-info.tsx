@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const ProfileInfoSceleton: React.FC<Props> = ({ }: Props) => {
+export const ProfileInfoSceleton: React.FC<Props> = () => {
     return (
         <ContentLoader
             width='100%'

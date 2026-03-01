@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = 'Вы сменили пароль!'
-export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
+export const ChangePasswordForm: React.FC<Props> = () => {
     const toast = useToast()
     const { param: token } = useQ(qpk.token)
 

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const classParent = "w-1/3 min-h-full flex flex-col gap-2 rounded-md"
-export const ProfileContent: React.FC<Props> = ({ }: Props) => {
+export const ProfileContent: React.FC<Props> = () => {
     const { param } = useQ(qpk.contentprofile, 'post')
     const { id } = useParams()
 

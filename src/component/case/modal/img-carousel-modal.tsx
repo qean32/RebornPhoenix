@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-export const ImgCarousel: React.FC<Props> = ({ }: Props) => {
+export const ImgCarousel: React.FC<Props> = () => {
     const [value, setValue] = React.useState('')
     const { session } = useAppSelector(state => state.session)
     const ref = React.useRef<null | HTMLDivElement>(null)

@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const ThemeControl: React.FC<Props> = React.memo(({ }: Props) => {
+export const ThemeControl: React.FC<Props> = React.memo(() => {
     const clickHandler = React.useCallback(
         (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             setTheme(getHTMLData(e, true))

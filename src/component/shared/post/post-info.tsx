@@ -2,6 +2,7 @@ import React from 'react'
 import { Ava } from '@component/ui'
 import { Link } from 'react-router-dom'
 import { userInterface } from '@/model'
+import { formatDate } from '@/lib/function'
 
 interface Props {
     user: Omit<userInterface, 'email'>,
@@ -20,7 +21,7 @@ export const PostInfo: React.FC<Props> = ({ date, id, user }: Props) => {
                 <Link to={`/profile/${user.id}/${user.name}`}>
                     <p className='ml-2'>{user.name}</p>
                 </Link>
-                <p>{date}</p>
+                <p>{formatDate(date)}</p>
                 <p># {id}</p>
             </div>
         )

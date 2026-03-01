@@ -11,7 +11,7 @@ interface Props {
 
 
 const ACCEESS_ACTION = 'На вашу почту отпраленно сообщение!'
-export const ResetPasswordForm: React.FC<Props> = ({ }: Props) => {
+export const ResetPasswordForm: React.FC<Props> = () => {
     const toast = useToast()
 
     const { form, submitHandler } =

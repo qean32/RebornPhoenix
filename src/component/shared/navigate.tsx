@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const Navigate: React.FC<Props> = ({ }: Props) => {
+export const Navigate: React.FC<Props> = () => {
     const { user } = useUser()
 
     return (

@@ -21,7 +21,6 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
     }
 
     const pushHandler = () => {
-        console.log('zxc')
         // @ts-ignore
         swap(); push(data)
     }

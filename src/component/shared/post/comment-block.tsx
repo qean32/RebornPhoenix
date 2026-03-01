@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const CommentBlock: React.FC<Props> = ({ }: Props) => {
+export const CommentBlock: React.FC<Props> = () => {
     const { id } = useParams()
     const [comments, loading, push, _delete, update] = useRequest<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
 
@@ -28,17 +28,20 @@ export const CommentBlock: React.FC<Props> = ({ }: Props) => {
                     <p className='pl-6 pb-2 text-xl'>У поста пока нет коментариев!</p>
             }
 
-            {/* {!!loading && <CommentsSceleton />} */}
-
-            {!!comments?.length &&
-                comments?.map(item => {
-                    return <CommentItem
-                        {...item}
-                        key={item.id}
-                    />
-                })
-            }
-
+            <Content comments={comments} />
         </div>
     )
+}
+
+
+const Content: React.FC<{ comments: commentType[] }> = ({ comments }: { comments: commentType[] }) => {
+    return <>
+        {!!comments?.length &&
+            comments?.map(item => {
+                return <CommentItem
+                    {...item}
+                    key={item.id}
+                />
+            })}
+    </>
 }

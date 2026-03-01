@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-export const GameBackground: React.FC<Props> = ({ }: Props) => {
+export const GameBackground: React.FC<Props> = () => {
     const { session: { currentMap } } = useAppSelector(state => state.session)
 
     const [bgGameArea] = useImage(

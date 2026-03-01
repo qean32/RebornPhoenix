@@ -13,7 +13,7 @@ const map = new Map([
 ])
 
 
-export const ProfileContentSwith: React.FC<Props> = ({ }: Props) => {
+export const ProfileContentSwith: React.FC<Props> = () => {
     const { pushQ, param } = useQ(qpk.contentprofile)
 
     const swap = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const GameMode: React.FC<Props> = ({ }: Props) => {
+export const GameMode: React.FC<Props> = () => {
     const { isDevMode } = useAppSelector(state => state.log)
     const dispath = useAppDispatch()
     const toast = useToast()
@@ -21,7 +21,7 @@ export const GameMode: React.FC<Props> = ({ }: Props) => {
 
     return (
         <FillHoverHint title={`Режим ${isDevMode ? "Разработки" : "Игровой"}`}>
-            <ButtonInGroup fn={swap} children={<img className='icon-sm' src={isDevMode ? '/icon/tool.svg' : '/icon/game.svg'} />} />
+            <ButtonInGroup onClick={swap} children={<img className='icon-sm' src={isDevMode ? '/icon/tool.svg' : '/icon/game.svg'} />} />
         </FillHoverHint>
     )
 }

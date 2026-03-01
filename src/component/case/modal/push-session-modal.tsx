@@ -11,7 +11,7 @@ interface Props {
 export const PushSession: React.FC<Props> = ({ swap }: Props) => {
     return (
         <div className="relative bg-color p-5 px-7 rounded-md overflow-scroll flex flex-col -translate-y-1/7" onClick={stopPropagation}>
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <PushSessionForm swap={swap}>
                 <>
                     <Button variant='ghost' onClick={swap}><p>Отмена</p></Button>

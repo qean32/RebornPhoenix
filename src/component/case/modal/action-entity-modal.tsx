@@ -96,7 +96,7 @@ export const ActionEntity: React.FC<Props> = ({
             }}
         >
             <div className="bg-color w-4/12 h-5/12 pt-5 -translate-y-1/7 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
-                <ModalCross fn={swap} />
+                <ModalCross onClick={swap} />
                 <Title className='p-2 pl-10 uppercase letter-spacing-2px'>Редактор токена</Title>
                 <div className="p-5 px-10 flex">
                     <div className="flex flex-col gap-5">

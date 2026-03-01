@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = 'Профиль успешно обновлен!'
-export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
+export const EditProfileForm: React.FC<Props> = () => {
     const navigate = useNavigate()
     const toast = useToast()
     const { pushQ } = useQ(qpk.forceupadeteuser)

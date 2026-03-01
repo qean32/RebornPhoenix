@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const SessionLog: React.FC<Props> = ({ }: Props) => {
+export const SessionLog: React.FC<Props> = () => {
     const ref = React.useRef<HTMLDivElement>(null);
     const [offset, setOffset] = React.useState<positionType>({ left: 0, top: 0 })
     const { logs } = useAppSelector(state => state.log)

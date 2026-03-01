@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-export const SelectSessionBG: React.FC<Props> = ({ }: Props) => {
+export const SelectSessionBG: React.FC<Props> = () => {
     const [value, setValue] = React.useState('/img/carousel-item-1.jpg')
     const { setValue: setValueForm } = useFormContext()
 

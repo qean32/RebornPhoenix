@@ -1,8 +1,8 @@
 import React from 'react'
-import { InfoBlock } from '../ui'
+import { InfoBlock } from '@component/ui'
 import { qpk } from '@/config'
 import { useQ } from '@/lib/hook'
-import { ViewImg } from '../case/modal/img-view-modal'
+import { ViewImg } from '@component/case/modal/img-view-modal'
 import { infoBlockType } from '@/model'
 
 interface Props {

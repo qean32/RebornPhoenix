@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonInGroup, GameMode, GroupButton } from '@component/ui'
+import { ButtonInGroup, GameMode, GroupButton, SaveSession } from '@component/ui'
 import { Modal } from '@component/case/modal'
 import { modalAnimationEnum, slogan } from '@/config'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
@@ -7,15 +7,14 @@ import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityInterface, objectInterface } from '@/model'
 import { useGrid, useToast } from '@/lib/hook'
 import { FillHoverHint } from '../master/h-order-component'
-import { saveJson, toggleFullScreen } from '@/lib/function'
+import { toggleFullScreen } from '@/lib/function'
 
 interface Props {
 }
 
 
-export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
+export const ToolGameButton: React.FC<Props> = () => {
     const toast = useToast()
-    const save = saveJson(toast)
 
     const forwardClick = React.useCallback(() => {
         navigator.clipboard.writeText(`${slogan} \n${process.env.CLIENT_HOST}${window.location.pathname.slice(1)}`);
@@ -45,14 +44,12 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/user.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Сетка'>
-                    <ButtonInGroup fn={swapGrid} children={<img className='icon-sm' src='/icon/grid.svg' />} />
+                    <ButtonInGroup onClick={swapGrid} children={<img className='icon-sm' src='/icon/grid.svg' />} />
                 </FillHoverHint>
                 <FillHoverHint title='Поделиться'>
-                    <ButtonInGroup fn={forwardClick} children={<img className='icon-sm' src='/icon/forward.svg' />} />
+                    <ButtonInGroup onClick={forwardClick} children={<img className='icon-sm' src='/icon/forward.svg' />} />
                 </FillHoverHint>
-                <FillHoverHint title='Сохранить'>
-                    <ButtonInGroup fn={save} children={<img className='icon-sm' src='/icon/save.svg' />} />
-                </FillHoverHint>
+                <SaveSession />
                 <FillHoverHint title='Сущности'>
                     <Modal.Root
                         modal={Modal.PushToSession}
@@ -84,7 +81,7 @@ export const ToolGameButton: React.FC<Props> = ({ }: Props) => {
                         <ButtonInGroup children={<img className='icon-sm' src='/icon/edit.svg' />} /></Modal.Root>
                 </FillHoverHint>
                 <FillHoverHint title='Экран'>
-                    <ButtonInGroup fn={toggleFullScreen} children={<img className='icon-sm' src='/icon/toggle-full-screen.svg' />} />
+                    <ButtonInGroup onClick={toggleFullScreen} children={<img className='icon-sm' src='/icon/toggle-full-screen.svg' />} />
                 </FillHoverHint>
             </GroupButton>
         </div >

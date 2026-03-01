@@ -35,7 +35,7 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <div className="pt-10" onClick={pushUserHandler}>
                 <p className='pl-5 pb-5'>Добавить игрока</p>
                 <Search className='mx-2 mb-4' />

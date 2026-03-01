@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const DepartmentSceleton: React.FC<Props> = ({ }: Props) => {
+export const DepartmentSceleton: React.FC<Props> = () => {
     return (
         <ContentLoader
             width='100%'

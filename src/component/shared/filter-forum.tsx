@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const FilterForum: React.FC<Props> = ({ }: Props) => {
+export const FilterForum: React.FC<Props> = () => {
     const navigate = useNavigate()
 
     return (

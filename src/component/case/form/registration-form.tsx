@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 interface Props {
 }
 
-export const RegistrationForm: React.FC<Props> = ({ }: Props) => {
+export const RegistrationForm: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
 

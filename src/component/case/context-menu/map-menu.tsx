@@ -16,7 +16,7 @@ export const MapMenu: React.FC<Props> = (item: Props) => {
     }
     return (
         <ContextMenu className='z-20'>
-            <ContextMenuItem fn={remove}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={remove}>Удалить</ContextMenuItem>
         </ContextMenu>
     )
 }

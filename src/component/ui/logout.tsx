@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export const Logout: React.FC<Props> = ({ }: Props) => {
+export const Logout: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
     const dispath = useAppDispatch()

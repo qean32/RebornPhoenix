@@ -196,8 +196,14 @@ export const customMarkup = {
 export const departmentOptions = [
     { title: "D&D", value: "D&D", id: 1 },
     { title: "WEB", value: "WEB", id: 2 },
-    { title: "ПРОЧЕЕ", value: "OTHER", id: 3 },
+    { title: "ПРОЧЕЕ", value: "ПРОЧЕЕ", id: 3 },
 ]
+
+export const departmentMap = new Map([
+    [1, "D&D"],
+    [2, "WEB"],
+    [3, "ПРОЧЕЕ"]
+])
 
 export const themes = {
     wood: [
@@ -221,3 +227,10 @@ export const themes = {
 }
 
 export const expires = (1 * 365 * 24 * 60 * 60)
+
+export const dataTimeOption = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    timezone: "UTC",
+}

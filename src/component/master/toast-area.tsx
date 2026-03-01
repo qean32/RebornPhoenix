@@ -6,7 +6,7 @@ interface Props {
     className?: string
 }
 
-export const ToastArea: React.FC<Props> = ({ }: Props) => {
+export const ToastArea: React.FC<Props> = () => {
     const { toasts } = useAppSelector(state => state.toast)
 
     return (

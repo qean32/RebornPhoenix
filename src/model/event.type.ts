@@ -8,4 +8,5 @@ export type keysEvent =
     'change-object' |
     'change-entity' |
     'dice' |
-    'view-img'
+    'view-img' |
+    'sync'

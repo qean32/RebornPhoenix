@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = 'Пост создан!'
-export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
+export const CreatePostForm: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -72,7 +72,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
 type Props_ = {
 }
 
-const Upper: React.FC<Props_> = ({ }: Props_) => {
+const Upper: React.FC<Props_> = () => {
     const { watch } = useFormContext()
 
     return (

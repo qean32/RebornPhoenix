@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const ForumSceleton: React.FC<Props> = ({ }: Props) => {
+export const ForumSceleton: React.FC<Props> = () => {
     return (
         <div className="h-100vh">
             <ContentLoader

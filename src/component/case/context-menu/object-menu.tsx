@@ -29,10 +29,10 @@ export const ObjectMenu: React.FC<Props> = (item: Props) => {
 
     return (
         <ContextMenu>
-            <ContextMenuItem fn={() => scaleHandler(1)}>Изм. размер</ContextMenuItem>
-            <ContextMenuItem fn={swapHidden}>Изм. видимость</ContextMenuItem>
-            <ContextMenuItem fn={removeHandler}>Удалить</ContextMenuItem>
-            <ContextMenuItem fn={push}>Дублировать</ContextMenuItem>
+            <ContextMenuItem onClick={() => scaleHandler(1)}>Изм. размер</ContextMenuItem>
+            <ContextMenuItem onClick={swapHidden}>Изм. видимость</ContextMenuItem>
+            <ContextMenuItem onClick={removeHandler}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={push}>Дублировать</ContextMenuItem>
         </ContextMenu>
     )
 }

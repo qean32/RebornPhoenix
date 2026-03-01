@@ -23,9 +23,9 @@ export const EntityMenu: React.FC<Props> = (item: Props) => {
     return (
         <ContextMenu className='z-20'>
             <Initiative title={30} className='mx-3 mb-3' />
-            <ContextMenuItem fn={actionHandler}>Действия</ContextMenuItem>
-            <ContextMenuItem fn={removeHandler}>Удалить</ContextMenuItem>
-            <ContextMenuItem fn={moreHandler}>Подробнее</ContextMenuItem>
+            <ContextMenuItem onClick={actionHandler}>Действия</ContextMenuItem>
+            <ContextMenuItem onClick={removeHandler}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={moreHandler}>Подробнее</ContextMenuItem>
         </ContextMenu>
     )
 }

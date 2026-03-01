@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "./redux";
 import { eventType, keysEvent } from "@/model";
-import { changeEntity, changeObject, scaleObject, swapCurrentMap } from "@/store/session-store";
+import { changeEntity, changeObject, scaleObject, setSession, swapCurrentMap } from "@/store/session-store";
 import { useToast } from "./use-toast";
 import { pushLog } from "@/store/log-store";
 import { useQ } from "./use-q";
@@ -50,6 +50,10 @@ export const useEventListen = () => {
                 "view-img",
                 (payload: any) => { pushQ(payload.img) }
             ],
+            [
+                'sync',
+                (payload: any) => { dispath(setSession(payload)) }
+            ]
         ])
     }, [])
 

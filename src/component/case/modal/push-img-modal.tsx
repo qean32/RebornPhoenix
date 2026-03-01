@@ -40,7 +40,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
                 onClick={stopPropagation}
                 onSubmit={submitHandler}
             >
-                <ModalCross fn={swap} />
+                <ModalCross onClick={swap} />
                 <div className="m-7 h-10/12">
                     <UploadImgArea
                         className='h-full w-full'

@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const MapItem: React.FC<Props> = ({ }: Props) => {
+export const MapItem: React.FC<Props> = () => {
     const { pushQ } = useQ(qpk.viewimg)
 
     const clickHAndler = () => {

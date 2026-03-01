@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = "Успешная авторизация"
-export const AuthForm: React.FC<Props> = ({ }: Props) => {
+export const AuthForm: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
 

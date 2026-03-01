@@ -28,18 +28,18 @@ export function useRequest<T,>(
     }, [RQData.data])
 
     if (config.editable) {
-        const push = (data: T) => {
+        const push = React.useCallback((data: T) => {
             // @ts-ignore
             setData(prev => [data, ...prev])
-        }
-        const update = (data: T) => {
+        }, [])
+        const update = React.useCallback((data: T) => {
             // @ts-ignore
             setData(prev => [data, ...prev.filter(item => item.id != data.id)])
-        }
-        const _delete = (data: T) => {
+        }, [])
+        const _delete = React.useCallback((data: T) => {
             // @ts-ignore
             setData(prev => prev.filter(item => item.id != data.id))
-        }
+        }, [])
 
         //@ts-ignore
         return [response, RQData.isLoading, push, _delete, update]

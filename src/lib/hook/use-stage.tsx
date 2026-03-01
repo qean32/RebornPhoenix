@@ -19,7 +19,7 @@ export const useStage = () => {
 
         const newScale = e.evt.deltaY < 0 ? oldScale * 1.1 : oldScale / 1.1;
 
-        if (newScale > 0.25 && newScale < 10) {
+        if (newScale > 0.25 && newScale < 4) {
 
             setStage({
                 scale: newScale,

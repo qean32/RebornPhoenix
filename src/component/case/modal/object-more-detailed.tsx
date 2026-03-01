@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-export const ObjectMoreDetailed: React.FC<Props> = ({ }: Props) => {
+export const ObjectMoreDetailed: React.FC<Props> = () => {
     const { bestiary, session } = useAppSelector(state => state.session)
     const { pushQ } = useQ(qpk.viewimg)
     const { key, clearTmp, tmpObject } = useTmpObject()

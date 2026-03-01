@@ -4,7 +4,7 @@ interface Props {
 }
 
 
-export const Carousel: React.FC<Props> = ({ }: Props) => {
+export const Carousel: React.FC<Props> = () => {
     return (
         <div className="overflow-hidden mount-opacity">
             <div className="w-[200%] carousel py-4 bg-color-darkness h-[140px]">

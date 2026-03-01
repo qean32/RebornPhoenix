@@ -33,7 +33,7 @@ export const SessionMenu: React.FC<Props> = ({ id }: Props) => {
                     props={{ fn: remove, warning: "Вы собираетесь удалить сессию?", warningButtonText: 'Удалить сессию' }}
                     animation={modalAnimationEnum['modal-dft']}
                 >
-                    <ContextMenuItem fn={() => { }}>Удалить</ContextMenuItem>
+                    <ContextMenuItem>Удалить</ContextMenuItem>
                 </Modal.Root>
             </ContextMenu>
         </div>

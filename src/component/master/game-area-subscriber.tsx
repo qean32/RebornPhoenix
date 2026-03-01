@@ -13,7 +13,7 @@ interface Props {
 }
 
 
-const GameAreaSubscriber: React.FC<Props> = ({ }: Props) => {
+const GameAreaSubscriber: React.FC<Props> = () => {
     const { session: { currentMap, mapsData }, isSet } = useAppSelector(state => state.session)
     const { handleWheel, stage } = useStage()
     const { innerHeight, innerWidth } = useWindowSize()

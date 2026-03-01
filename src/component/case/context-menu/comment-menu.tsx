@@ -27,8 +27,8 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
 
     return (
         <ContextMenu className='z-20'>
-            <ContextMenuItem fn={remove}>Удалить</ContextMenuItem>
-            <ContextMenuItem fn={update}>Изменить</ContextMenuItem>
+            <ContextMenuItem onClick={remove}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={update}>Изменить</ContextMenuItem>
         </ContextMenu>
     )
 }

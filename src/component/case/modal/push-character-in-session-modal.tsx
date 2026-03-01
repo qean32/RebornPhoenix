@@ -36,7 +36,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             }}
         >
             <div className="relative bg-color p-5 w-3/7 px-7 rounded-md overflow-scroll flex flex-col -translate-y-1/12" onClick={stopPropagation}>
-                <ModalCross fn={swap} />
+                <ModalCross onClick={swap} />
                 <p className='pb-4 text-2xl'>Персонажи игрока</p>
                 <NoFindData title='У игрока нет персонажей!' view={!characters?.length && !loading} className='py-5' />
                 {
