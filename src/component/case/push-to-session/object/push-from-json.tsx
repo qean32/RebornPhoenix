@@ -1,6 +1,5 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
-import { TypeUseBoolen } from '@/lib/hook'
-import { useAppSelector } from '@/lib/hook/redux'
+import { TypeUseBoolen, useTmpObject } from '@/lib/hook'
 import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
 
@@ -11,37 +10,36 @@ interface Props {
 
 
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
-    const { object: data } = useAppSelector(state => state.pushedObject)
+    const { tmpObject, key } = useTmpObject()
     const push = initPushDataToSession('object')
 
     const pushHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         // @ts-ignore
-        push(data);
-        swap(e);
+        push(tmpObject); swap(e);
     }
 
     React.useEffect(() => {
-        if (data) {
+        if (tmpObject) {
             switcher.on()
         }
-    }, [data])
-    const object = data?.isObject ? data : { path: '', name: '', id: 0, size: { x: 0, y: 0 } }
+    }, [tmpObject])
 
     return (
         <div className="w-1/2 flex-1 flex flex-col">
             <div className="flex-1 px-6">
-                {data?.isObject
+                {tmpObject?.isObject && key == 'push-object-to-session'
                     &&
                     <>
                         <div className="h-[300px] flex justify-center items-center pt-20">
-                            <div className="w-[99%] aspect-square bg-img rounded-sm" style={{ backgroundImage: `url(${object.path})` }}></div>
+                            <div className="w-[99%] aspect-square bg-img rounded-sm" style={{ backgroundImage: `url(${tmpObject.path})` }}></div>
                         </div>
                         <div className='pt-15'>
-                            <DisabledInput value={object.name} />
+                            {/* @ts-ignore */}
+                            <DisabledInput value={tmpObject.name} />
                         </div>
                     </>
                 }
-                <NoFindData title='токен не выбран' className='h-full' view={!data?.isObject} />
+                <NoFindData title='токен не выбран' className='h-full' view={!tmpObject?.isObject} />
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                 <div className="flex gap-2 pb-1">

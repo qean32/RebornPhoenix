@@ -8,7 +8,7 @@ const initialState: stateDto = {
 }
 
 const userSlice = createSlice({
-    name: 'user-store',
+    name: 'user',
     initialState,
     reducers: {
         setUser(state: stateDto, { payload }: PayloadAction<userInterface | null>) {

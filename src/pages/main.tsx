@@ -7,17 +7,14 @@ import {
     MainBanner,
     Map
 } from "@/component/ui/main";
-import { qpk, title } from "@/config";
-import { usePage, useQ } from "@lib/hook";
-import React from "react";
+import { title, urlTitle } from "@/config";
+import { usePage } from "@lib/hook";
+import { useSearchParams } from "react-router-dom";
 
 
 export const Main = () => {
-    const { param, clearQ } = useQ(qpk.forceupadeteuser)
-    usePage(title.main, !!param)
-    React.useEffect(() => {
-        clearQ()
-    }, [])
+    const [url] = useSearchParams()
+    usePage(title.main, !!url.get(urlTitle.forceupdate))
 
     return (
         <main>

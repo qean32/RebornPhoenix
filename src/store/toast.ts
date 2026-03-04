@@ -8,7 +8,7 @@ const initialState: stateDto = {
 }
 
 const toastSlice = createSlice({
-    name: 'toast-store',
+    name: 'toast',
     initialState,
     reducers: {
         pushToast: (state: stateDto, { payload }: PayloadAction<Omit<toastType, 'view'>>) => {

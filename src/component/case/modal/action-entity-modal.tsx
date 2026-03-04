@@ -4,12 +4,11 @@ import { Modal } from '@component/master/h-order-component'
 import { Ava, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusType } from '@/model'
-import { changeEntity } from '@/store/session-store'
+import { changeEntity } from '@/store/session'
 import { EventMiddleware } from '@/lib/middleware'
+import { useEntityActionThrow } from '@/lib/hook/throw'
 
 interface Props {
-    view: boolean | string
-    swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
 const actionMap: { status: statusType, icon: any }[] = [
@@ -67,11 +66,9 @@ const sizeMap: { id: number, text: string }[] = [
 ]
 
 
-export const ActionEntity: React.FC<Props> = ({
-    view,
-    swap,
-}: Props) => {
+export const ActionEntity: React.FC<Props> = ({ }: Props) => {
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
+    const [view, swap] = useEntityActionThrow()
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
     const event = EventMiddleware()
@@ -88,7 +85,7 @@ export const ActionEntity: React.FC<Props> = ({
 
     return (
         <Modal
-            swap={swap}
+            swap={() => swap(0)}
             view={!!view}
             animation={{
                 open: 'modal-open',
@@ -96,7 +93,7 @@ export const ActionEntity: React.FC<Props> = ({
             }}
         >
             <div className="bg-color w-4/12 h-5/12 pt-5 -translate-y-1/7 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
-                <ModalCross onClick={swap} />
+                <ModalCross onClick={() => swap(0)} />
                 <Title className='p-2 pl-10 uppercase letter-spacing-2px'>Редактор токена</Title>
                 <div className="p-5 px-10 flex">
                     <div className="flex flex-col gap-5">

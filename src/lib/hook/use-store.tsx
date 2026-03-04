@@ -1,19 +1,19 @@
-import { qpk } from "@/config"
 import { entityInterface, mapInterface, objectInterface } from "@/model"
 import { sessionService } from "@/service/session-service"
 import React from "react"
-import { useQ } from "./use-q"
 import { useRequest } from "./use-request"
 import { useTmpObject } from "./use-tmp-object"
+import { useSearchThrow, useSelectFilterThrow } from "./throw"
 
 export const useStore = (type: string) => {
     const [primeList, setPrimeList] = React.useState({})
     const [memoryList, setMemoryList] = React.useState({})
     const { tmpObject, key } = useTmpObject()
-    const { allQ } = useQ(qpk.search)
+    const [search] = useSearchThrow()
+    const [select] = useSelectFilterThrow()
 
     React.useEffect(() => {
-        if (allQ[qpk.search]) {
+        if (search) {
             setPrimeList(prev => {
                 return Object.fromEntries(
                     Object.entries(prev).map(item => {
@@ -21,28 +21,28 @@ export const useStore = (type: string) => {
                             item[0],
                             // @ts-ignore
                             item[1].filter(item =>
-                                item.name.toLowerCase().includes(allQ[qpk.search].toLowerCase()))]
+                                item.name.toLowerCase().includes(search.toLowerCase()))]
                     })
                 )
             })
         } else {
             setPrimeList(memoryList)
         }
-    }, [allQ[qpk.search]])
+    }, [search])
 
     React.useEffect(() => {
         setPrimeList(memoryList)
-        if (allQ['select'] && allQ['select'] != '0') {
+        if (select) {
             setPrimeList(prev => {
                 return Object.fromEntries(
                     // @ts-ignore
-                    Object.entries(prev).filter(item => item[1][0].source.id == allQ['select'])
+                    Object.entries(prev).filter(item => item[1][0].source.id == select)
                 )
             })
-        } else if (allQ['select'] == '0') {
+        } else if (select == 0) {
             setPrimeList(memoryList)
         }
-    }, [allQ['select']])
+    }, [select])
 
     React.useEffect(() => {
         if (key == 'push-entity') {

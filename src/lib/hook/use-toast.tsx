@@ -1,6 +1,6 @@
 import { toastKeyType, toastPayloadType } from "@/model"
 import { useAppDispatch } from "./redux"
-import { pushToast, removeToast } from "@/store/toast-store"
+import { pushToast, removeToast } from "@/store/toast"
 import { generateId } from "../function"
 
 export const useToast = () => {

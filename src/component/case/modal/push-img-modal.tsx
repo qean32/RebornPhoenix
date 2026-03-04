@@ -6,7 +6,7 @@ import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { pushImg } from '@/store/session-store'
+import { pushImg } from '@/store/session'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>

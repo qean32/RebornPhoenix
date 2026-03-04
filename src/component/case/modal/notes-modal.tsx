@@ -4,7 +4,7 @@ import { ModalCross } from '@component/ui'
 import { useAppSelector } from '@/lib/hook/redux'
 import { useDebounce } from '@/lib/hook'
 import { useAppDispatch } from '@/store'
-import { pushNote } from '@/store/session-store'
+import { pushNote } from '@/store/session'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>

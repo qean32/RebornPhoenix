@@ -43,7 +43,7 @@ const initialState: stateDto = {
 }
 
 const sessionSlice = createSlice({
-    name: 'session-store',
+    name: 'session',
     initialState,
     reducers: {
 

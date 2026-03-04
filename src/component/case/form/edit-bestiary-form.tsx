@@ -4,7 +4,7 @@ import { useAppDispatch } from '@/lib/hook/redux'
 import { stopPropagation } from '@/lib/function'
 import { entityInterface } from '@/model'
 import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
-import { editBestiary } from '@/store/session-store'
+import { editBestiary } from '@/store/session'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 

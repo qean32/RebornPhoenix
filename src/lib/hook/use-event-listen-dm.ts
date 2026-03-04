@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { eventType } from "@/model";
 import { useToast } from "./use-toast";
 import { useAppDispatch } from "./redux";
-import { pushLog } from "@/store/log-store";
+import { pushLog } from "@/store/log";
 
 
 export const useEventListenDM = () => {

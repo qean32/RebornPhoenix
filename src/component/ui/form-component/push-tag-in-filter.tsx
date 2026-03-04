@@ -1,8 +1,9 @@
 import React from 'react'
-import { useBoolean, useQ } from '@/lib/hook'
+import { useBoolean } from '@/lib/hook'
 import { cn } from '@/lib/function'
 import { UnwrapTags } from '@component/ui'
-import { qpk, tagsArray } from '@/config'
+import { tagsArray } from '@/config'
+import { useFilterThrow } from '@/lib/hook/throw'
 
 interface Props {
     className?: string
@@ -12,21 +13,21 @@ interface Props {
 export const PushTagInFilter: React.FC<Props> = ({
     className,
 }: Props) => {
-    const { param: tags, pushQ } = useQ(qpk.tags)
+    const [{ tags }, push] = useFilterThrow()
     const { boolean: view, swap } = useBoolean()
 
     const clickHandlerPush = (e: React.MouseEvent<HTMLDivElement>) => {
         // @ts-ignore
         const tag = e.target.innerHTML
         if (!tags.includes(tag))
-            pushQ(tags + tag + ',')
+            push({ tags: tags + tag + ',' })
         swap()
     }
 
     const clickHandlerRemove = (e: React.MouseEvent<HTMLDivElement>) => {
         // @ts-ignore
         const newTags = tags.split(',').slice(0, -1).filter(item => item != e.target.innerHTML).join(',')
-        pushQ(`${newTags}${!!newTags.length ? ',' : ''}`);
+        push({ tags: `${newTags}${!!newTags.length ? ',' : ''}` });
     }
 
     return (

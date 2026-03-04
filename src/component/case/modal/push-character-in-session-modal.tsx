@@ -4,18 +4,18 @@ import { Modal } from '@component/master/h-order-component'
 import { ModalCross, NoFindData } from '@component/ui'
 import { CharacterItemInPush } from '@component/ui/item'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { pushCharacter } from '@/store/session-store'
+import { pushCharacter } from '@/store/session'
 import { useRequest } from '@/lib/hook'
 import { characterInterface } from '@/model'
 import { profileService } from '@/service'
+import { usePushCharacterThrow } from '@/lib/hook/throw/use-push-character-throw'
 
 interface Props {
-    view: number
-    swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
 }
 
 
-export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) => {
+export const PushCharacterInSession: React.FC<Props> = ({ }: Props) => {
+    const [view, _, clear] = usePushCharacterThrow()
     const dispath = useAppDispatch()
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const data = getHTMLData(e, true)
@@ -28,7 +28,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
 
     return (
         <Modal
-            swap={swap}
+            swap={clear}
             view={!!view}
             animation={{
                 open: 'modal-open',
@@ -36,7 +36,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ view, swap }: Props) =
             }}
         >
             <div className="relative bg-color p-5 w-3/7 px-7 rounded-md overflow-scroll flex flex-col -translate-y-1/12" onClick={stopPropagation}>
-                <ModalCross onClick={swap} />
+                <ModalCross onClick={clear} />
                 <p className='pb-4 text-2xl'>Персонажи игрока</p>
                 <NoFindData title='У игрока нет персонажей!' view={!characters?.length && !loading} className='py-5' />
                 {

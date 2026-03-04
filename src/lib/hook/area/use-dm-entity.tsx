@@ -1,11 +1,10 @@
 import React from "react";
+import { changeEntity } from "@/store/session";
 import useImage from "use-image";
-import { changeEntity } from "@/store/session-store";
 import { useAppDispatch } from "../redux";
-import { qpk } from "@/config";
-import { useQ } from "../use-q";
 import { coordinateType } from "@/model";
 import { EventMiddleware } from "@/lib/middleware/event.middleware";
+import { useEntityActionThrow } from "../throw";
 
 export const useDMEntity = (position: coordinateType, path: string) => {
     const dispath = useAppDispatch()
@@ -13,7 +12,7 @@ export const useDMEntity = (position: coordinateType, path: string) => {
     const event = EventMiddleware()
 
     const [image] = useImage(path);
-    const { pushQ } = useQ(qpk.actionentity)
+    const [_, swapEntityAction] = useEntityActionThrow()
 
     const rectRef = React.useRef<null | HTMLCanvasElement | any>();
 
@@ -45,7 +44,7 @@ export const useDMEntity = (position: coordinateType, path: string) => {
     };
 
     const clickHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
-        pushQ(e.currentTarget.attrs.id)
+        swapEntityAction(e.currentTarget.attrs.id)
     }
 
     return { mouseOutHandler, mouseOverHandler, dragMoveHandler, clickHandler, dragEndHandler, dragStartHandler, image, rectRef, _position }

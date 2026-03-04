@@ -1,8 +1,7 @@
 import React from 'react'
 import { ButtonInGroup, RollButton } from '@component/ui'
-import { useQ } from '@/lib/hook'
-import { qpk } from '@/config'
 import { getHTMLData } from '@/lib/function'
+import { useContentThrow } from '@/lib/hook/throw'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLButtonElement>
@@ -10,10 +9,10 @@ interface Props {
 
 
 export const ShortVariant: React.FC<Props> = ({ swap }: Props) => {
-    const { pushQ } = useQ(qpk.contentsession)
+    const [_, swapContent] = useContentThrow()
 
     const swapGameView = (e: React.MouseEvent<HTMLButtonElement>) => {
-        pushQ(getHTMLData(e, false, 'value'))
+        swapContent(getHTMLData(e, false, 'value'))
         swap(e)
     }
 

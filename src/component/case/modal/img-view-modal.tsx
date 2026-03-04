@@ -1,33 +1,30 @@
 import React from 'react'
 import { stopPropagation } from '@/lib/function'
 import { Modal } from '@component/master/h-order-component'
-import { useQ } from '@/lib/hook'
-import { qpk } from '@/config'
+import { useViewImgThrow } from '@/lib/hook/throw'
 
 interface Props {
-    view: boolean | string
-    swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement> | any
 }
 
 
-export const ViewImg: React.FC<Props> = ({ view, swap }: Props) => {
-    const { param } = useQ(qpk.viewimg)
-    const [statePath, setStatePath] = React.useState(param)
+export const ViewImg: React.FC<Props> = ({ }: Props) => {
+    const [view, _, clear] = useViewImgThrow()
+    const [statePath, setStatePath] = React.useState<string>(view)
 
     React.useEffect(() => {
-        if (!param) {
-            const t = setTimeout(() => { setStatePath('') }, 200)
+        if (!view) {
+            const timeout = setTimeout(() => { setStatePath('') }, 200)
 
             return () => {
-                clearTimeout(t)
+                clearTimeout(timeout)
             }
         }
-        setStatePath(param)
-    }, [param])
+        setStatePath(view)
+    }, [view])
 
     return (
         <Modal
-            swap={swap}
+            swap={clear}
             view={Boolean(view)}
             animation={{
                 open: 'modal-open',

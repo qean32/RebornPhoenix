@@ -4,8 +4,8 @@ import { Modal } from '@component/master/h-order-component'
 import { useAppSelector } from '@/lib/hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
 import { EditBestiaryForm } from '../form'
-import { useQ, useTmpObject } from '@/lib/hook'
-import { qpk } from '@/config'
+import { useTmpObject } from '@/lib/hook'
+import { useViewImgThrow } from '@/lib/hook/throw'
 
 interface Props {
 }
@@ -13,11 +13,11 @@ interface Props {
 
 export const ObjectMoreDetailed: React.FC<Props> = () => {
     const { bestiary, session } = useAppSelector(state => state.session)
-    const { pushQ } = useQ(qpk.viewimg)
+    const [_, swap] = useViewImgThrow()
     const { key, clearTmp, tmpObject } = useTmpObject()
     if (session?.currentMap && key == 'more-entity') {
         const viewImg = (path: string) => {
-            pushQ(path)
+            swap(path)
         }
 
         const object =

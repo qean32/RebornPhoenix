@@ -3,7 +3,7 @@ import { FillHoverHint } from '../../master/h-order-component'
 import { ButtonInGroup } from './button-in-group'
 import { useAppSelector } from '@/lib/hook/redux'
 import { useAppDispatch } from '@/store'
-import { swapMode } from '@/store/log-store'
+import { swapMode } from '@/store/log'
 import { useToast } from '@/lib/hook'
 
 interface Props {

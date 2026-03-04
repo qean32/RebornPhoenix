@@ -5,7 +5,7 @@ import * as ModalGroup from './index-group'
 import { InStoreMapItem, SelectMapItem } from '@component/ui/item'
 import { PushMap } from '@/component/case/push-to-session'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
-import { swapCurrentMap } from '@/store/session-store'
+import { swapCurrentMap } from '@/store/session'
 import { modalAnimationEnum } from '@/config'
 import { EventMiddleware } from '@/lib/middleware'
 

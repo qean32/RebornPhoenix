@@ -3,7 +3,7 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { objectInterface } from '@/model'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { scaleObject, removeObject, changeObject, pushObject } from '@/store/session-store'
+import { scaleObject, removeObject, changeObject, pushObject } from '@/store/session'
 import { EventMiddleware } from '@/lib/middleware'
 
 interface Props extends objectInterface {

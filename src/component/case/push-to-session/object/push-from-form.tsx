@@ -5,7 +5,7 @@ import { conventToFormData, handleFetchCatch, handleFetchThen, initPushDataToSes
 import { pushObjectToSessionFormSchema, pushObjectToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/store'
-import { swapTmpObject } from '@/store/tmp-object-store'
+import { swapTmpObject } from '@/store/tmp-object'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 

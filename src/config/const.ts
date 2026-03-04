@@ -1,30 +1,18 @@
 import { modalAnimationType } from '@/model'
 import { slogan } from './project'
-import { keysQ } from '@/store/q-store'
 
 export { axiosInstance } from '@/service/instance'
-
-export const qpk: { [key in keysQ]: keysQ } = {
-    contentprofile: 'contentprofile',
-    viewimg: 'viewimg',
-    contentsession: 'contentsession',
-    pushcharacter: 'pushcharacter',
-    actionentity: 'actionentity',
-    anchorlink: "anchorlink",
-    search: 'search',
-    forceupadeteuser: 'forceupadeteuser',
-    date: 'date',
-    grid: 'grid',
-    tags: 'tags',
-    select: 'select',
-    token: 'token',
-}
 
 export const tagsArray = [
     'dnd',
     'wtfit',
     'web'
 ]
+
+export enum urlTitle {
+    forceupdate = "forceupdate",
+    token = "token"
+}
 
 export const contentLoaderProps = {
     backgroundColor: "#0c0c0c",

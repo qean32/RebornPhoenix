@@ -5,9 +5,10 @@ import { modalAnimationEnum, slogan } from '@/config'
 import { PushObject, PushEntity } from '@/component/case/push-to-session'
 import { InStoreEntityItem, InStoreObjectItem } from '@component/ui/item/'
 import { entityInterface, objectInterface } from '@/model'
-import { useGrid, useToast } from '@/lib/hook'
+import { useToast } from '@/lib/hook'
 import { FillHoverHint } from '../master/h-order-component'
 import { toggleFullScreen } from '@/lib/function'
+import { useGridThrow } from '@/lib/hook/throw'
 
 interface Props {
 }
@@ -20,7 +21,7 @@ export const ToolGameButton: React.FC<Props> = () => {
         navigator.clipboard.writeText(`${slogan} \n${process.env.CLIENT_HOST}${window.location.pathname.slice(1)}`);
         toast("message", { text: 'Ссылка скопирована' })
     }, [])
-    const { swap: swapGrid } = useGrid()
+    const [_, swapGrid] = useGridThrow()
 
     return (
         <div className='absolute flex z-10 right-35 gap-4'>

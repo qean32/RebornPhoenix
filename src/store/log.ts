@@ -11,7 +11,7 @@ const initialState: stateDto = {
 }
 
 const logSlice = createSlice({
-    name: 'user-store',
+    name: 'log',
     initialState,
     reducers: {
         pushLog(state: stateDto, { payload }: PayloadAction<{ log: string }>) {

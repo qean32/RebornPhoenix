@@ -1,18 +1,17 @@
 import React from 'react'
 import { ButtonInGroup, RollButton } from '@component/ui'
-import { useQ } from '@/lib/hook'
-import { qpk } from '@/config'
 import { getHTMLData } from '@/lib/function'
+import { useContentThrow } from '@/lib/hook/throw'
 
 interface Props {
 }
 
 
 export const SwithContentLiftSideGame: React.FC<Props> = () => {
-    const { pushQ } = useQ(qpk.contentsession)
+    const [_, swap] = useContentThrow()
 
     const swapGameView = (e: React.MouseEvent<HTMLButtonElement>) => {
-        pushQ(getHTMLData(e, false, 'value'))
+        swap(getHTMLData(e, false, 'value'))
     }
 
     return (

@@ -1,6 +1,5 @@
-import { qpk } from "@/config"
-import { useQ } from "@/lib/hook"
 import { cn } from "@/lib/function"
+import { useSelectFilterThrow } from "@/lib/hook/throw"
 
 interface SelectProps {
     className?: string
@@ -9,12 +8,12 @@ interface SelectProps {
 
 
 export const SelectToQuery: React.FC<SelectProps> = ({ className = 'w-fit', options }: SelectProps) => {
-    const { pushQ } = useQ(qpk.select)
+    const [_, swap] = useSelectFilterThrow()
 
     return (
         <select
             className={cn('flex-1', className)}
-            onChange={e => pushQ(e.target.value)}
+            onChange={e => swap(Number(e.target.value))}
         >
             {options.map(({ title, value }) => {
                 return <option key={value} value={value}>{title}</option>

@@ -1,6 +1,6 @@
 import React from "react";
 import useImage from "use-image";
-import { changeObject } from "@/store/session-store";
+import { changeObject } from "@/store/session";
 import { useAppDispatch } from "../redux";
 
 export const useDMCharacter = (dispath: ReturnType<typeof useAppDispatch>, path: string) => {
