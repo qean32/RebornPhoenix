@@ -24,7 +24,7 @@ export const PushToSession: React.FC<Props> = ({
 
     return (
         <div className="relative bg-color w-9/12 h-10/12 rounded-md flex overflow-hidden" onClick={stopPropagation}>
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <div className="w-9/12 h-full overflow-scroll relative">
                 <FilterPushToSession type={type} />
                 {!!loading && <ShopSceleton />}

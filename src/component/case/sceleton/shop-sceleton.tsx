@@ -5,7 +5,7 @@ interface Props {
 }
 
 
-export const ShopSceleton: React.FC<Props> = ({ }: Props) => {
+export const ShopSceleton: React.FC<Props> = () => {
     return (
         <>
             {

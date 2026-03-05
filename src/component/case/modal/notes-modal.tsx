@@ -4,7 +4,7 @@ import { ModalCross } from '@component/ui'
 import { useAppSelector } from '@/lib/hook/redux'
 import { useDebounce } from '@/lib/hook'
 import { useAppDispatch } from '@/store'
-import { pushNote } from '@/store/session-store'
+import { pushNote } from '@/store/session'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -31,7 +31,7 @@ export const Notes: React.FC<Props> = ({ swap }: Props) => {
 
     return (
         <div className="relative bg-color w-8/12 h-9/12 px-4 pt-4 rounded-md overflow-scroll flex flex-col" onClick={stopPropagation}>
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <p className='text-xl pb-4 pl-0.5'>Заметки</p>
             <textarea
                 onChange={e => setNote(e.target.value)}

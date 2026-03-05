@@ -1,6 +1,6 @@
 import { entityInterface, mapInterface, objectInterface } from "@/model"
 import { useAppDispatch } from "../hook/redux"
-import { pushEntity, pushMap, pushObject } from "@/store/session-store"
+import { pushEntity, pushMap, pushObject } from "@/store/session"
 
 export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     const dispath = useAppDispatch()

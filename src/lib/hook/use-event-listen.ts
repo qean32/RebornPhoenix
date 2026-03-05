@@ -1,20 +1,20 @@
-import { eventKey, qpk } from "@/config";
+import { eventKey } from "@/config";
 import { useEchoPublic } from "@laravel/echo-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "./redux";
 import { eventType, keysEvent } from "@/model";
-import { changeEntity, changeObject, scaleObject, swapCurrentMap } from "@/store/session-store";
+import { changeEntity, changeObject, scaleObject, setSession, swapCurrentMap } from "@/store/session";
 import { useToast } from "./use-toast";
-import { pushLog } from "@/store/log-store";
-import { useQ } from "./use-q";
+import { pushLog } from "@/store/log";
+import { useViewImgThrow } from "./throw";
 
 
 export const useEventListen = () => {
     const { id } = useParams();
     const dispath = useAppDispatch();
     const toast = useToast()
-    const { pushQ } = useQ(qpk.viewimg)
+    const [_, swapImgView] = useViewImgThrow()
     const actions = React.useMemo(() => {
         return new Map<keysEvent, (payload: any) => void>([
             [
@@ -48,8 +48,12 @@ export const useEventListen = () => {
             ],
             [
                 "view-img",
-                (payload: any) => { pushQ(payload.img) }
+                (payload: any) => { swapImgView(payload.img) }
             ],
+            [
+                'sync',
+                (payload: any) => { dispath(setSession(payload)) }
+            ]
         ])
     }, [])
 

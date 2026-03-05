@@ -101,6 +101,10 @@ body {
     transition: .3s;
 }
 
+.transition-100 {
+    transition: .3s;
+}
+
 .transition-2000 {
     transition: 2s;
 }
@@ -136,6 +140,11 @@ body {
 
 .ava-xl {
     width: 85px;
+    aspect-ratio: 1/1;
+}
+
+.ava-2xl {
+    width: 125px;
     aspect-ratio: 1/1;
 }
 

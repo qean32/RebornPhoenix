@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const CommentsSceleton: React.FC<Props> = ({ }: Props) => {
+export const CommentsSceleton: React.FC<Props> = () => {
     return (
         <div className="px-5">
             <ContentLoader

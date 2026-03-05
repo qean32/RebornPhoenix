@@ -7,6 +7,7 @@ import { ViewAuthor } from "@/component/master/h-order-component"
 import { profileService } from "@/service"
 import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/case/sceleton"
+import { departmentMap } from "@/config"
 
 interface Props {
     view: boolean
@@ -37,6 +38,8 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
                 posts?.map(item => {
                     return <PostItem
                         {...item}
+                        // @ts-ignore
+                        department={departmentMap.get(item.department)}
                         className="pl-2 -translate-x-1"
                         key={item.id}
                     />

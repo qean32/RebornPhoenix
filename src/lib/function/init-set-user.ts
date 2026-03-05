@@ -1,4 +1,4 @@
-import { setUser, swapTry } from "@/store/user-store"
+import { setUser, swapTry } from "@/store/user"
 import { useAppDispatch } from "../hook/redux"
 import { userInterface } from "@/model"
 import { useUser } from "../hook"

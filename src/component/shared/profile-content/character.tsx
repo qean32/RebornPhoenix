@@ -63,7 +63,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                 </ViewAuthor>
 
             </div>
-            <NoFindData title="У пользователя нет персонажей!" className="min-h-[360px] w-full" view={!characters?.length && !loading} />
+            <NoFindData title="У пользователя нет персонажей!" className="min-h-[260px] w-full" view={!characters?.length && !loading} />
         </>
     )
 }

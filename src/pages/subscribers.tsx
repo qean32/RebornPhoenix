@@ -25,7 +25,7 @@ export const Subscribers = () => {
     )
 }
 
-const Content: React.FC<{}> = ({ }: {}) => {
+const Content: React.FC<{}> = () => {
     const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'], { suspense: true })
 
     return (

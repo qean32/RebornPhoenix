@@ -15,8 +15,11 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.SERVER_HOST': JSON.stringify(env.SERVER_HOST),
       'process.env.CLIENT_HOST': JSON.stringify(env.CLIENT_HOST),
-      'process.env.DISCORD': JSON.stringify(env.DISCORD),
+      'process.env.TEAMSPEAK': JSON.stringify(env.TEAMSPEAK),
       'process.env.SERVER_HOST_STORAGE': JSON.stringify(env.SERVER_HOST_STORAGE),
+    },
+    build: {
+      chunkSizeWarningLimit: 1100
     },
     resolve: {
       alias: {
@@ -30,7 +33,7 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern-compiler' // or "modern"
+          // api: 'modern-compiler' // or "modern"
         }
       }
     }

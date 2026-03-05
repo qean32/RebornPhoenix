@@ -2,6 +2,8 @@ export { axiosInstance } from '@/service/instance'
 
 export const tokenStorageKey = 'token-storage'
 export const userStorageKey = 'user-storage'
+export const themeStorageKey = 'theme-storage'
+
 export const invalidTokenMessage = 'invalid token!'
 
 export const developers = 'wtfit & Snake Eyes Teams'
@@ -32,3 +34,5 @@ export const separatorLink = ':separator-link:'
 export const serverWork = 'ok'
 
 export const eventKey = ".throwEvent";
+
+export const expansionPhone = 748

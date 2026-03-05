@@ -9,7 +9,7 @@ const clickHandler = () => {
     window.scrollTo(0, 0)
 }
 
-export const ScrollTop: React.FC<Props> = ({ }: Props) => {
+export const ScrollTop: React.FC<Props> = () => {
     const { boolean, on, off } = useBoolean()
     const throttledFn = useThrottleFunction(() => {
         if (window.scrollY > 1200) {

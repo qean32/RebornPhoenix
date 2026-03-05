@@ -6,7 +6,7 @@ interface Props {
     className?: string
     children: React.ReactNode
     view: boolean
-    backToast: boolean
+    isBackToast: boolean
 }
 
 
@@ -14,7 +14,7 @@ export const Toast: React.FC<Props> = ({
     className,
     children,
     view,
-    backToast
+    isBackToast
 }: Props) => {
     const display = useMount(view, 1000)
 
@@ -26,7 +26,7 @@ export const Toast: React.FC<Props> = ({
             'outline-bg-light w-fit absolute transition-700 rounded-md overflow-hidden bg-color-dark mt-2 left-1/2 -translate-x-1/2 z-20',
             className,
             (view ? 'toast-open' : 'toast-close'),
-            (backToast && 'backToast')
+            (isBackToast && 'backToast')
         )}
         >
             {children}

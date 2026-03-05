@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const IsOnline: React.FC<Props> = ({ }: Props) => {
+export const IsOnline: React.FC<Props> = () => {
     const online = useOnline()
 
     return (

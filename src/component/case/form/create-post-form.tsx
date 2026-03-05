@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ACCEESS_ACTION = 'Пост создан!'
-export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
+export const CreatePostForm: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -72,7 +72,7 @@ export const CreatePostForm: React.FC<Props> = ({ }: Props) => {
 type Props_ = {
 }
 
-const Upper: React.FC<Props_> = ({ }: Props_) => {
+const Upper: React.FC<Props_> = () => {
     const { watch } = useFormContext()
 
     return (
@@ -84,7 +84,7 @@ const Upper: React.FC<Props_> = ({ }: Props_) => {
                         <img src="/icon/upload.svg" className='icon-md' />
                     </div>
                 </UploadFilesInCreatePost>
-                <Button fn={() => { previewPost(watch('payload_content')) }} variant='default'><p>Предпросмотр</p></Button>
+                <Button onClick={() => { previewPost(watch('payload_content')) }} variant='default'><p>Предпросмотр</p></Button>
                 <Button variant="acceess" type='submit'><p>Готово</p></Button>
             </div>
         </div>

@@ -1,13 +1,12 @@
-import { Page } from "@component/master/h-order-component"
-import { title } from "@/config"
-import { InfoContent } from "@/component/shared"
-import { InfoAnchor } from "@/component/ui"
-import { usePage } from "@/lib/hook"
-import { infoBlockType } from "@/model"
+import { Page } from "@component/master/h-order-component/page"
+import { title } from "@/config/project"
+import { InfoContent } from "@/component/shared/info-content"
+import { InfoAnchor } from "@/component/ui/info-anchor"
+import { usePage } from "@/lib/hook/use-page"
+import { infoBlockType } from "@/model/info-block.type"
 
-export const Faq = () => {
+const Faq = () => {
     const { } = usePage(title.faq)
-
 
     return (
         <Page size="w-[85%]" className="pb-20 bg-color-dark">
@@ -18,6 +17,8 @@ export const Faq = () => {
         </Page>
     )
 }
+
+export default Faq
 
 const qa: string[] = [
     "Что такое d&d",

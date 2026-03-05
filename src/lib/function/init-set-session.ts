@@ -1,4 +1,4 @@
-import { setSession } from "@/store/session-store"
+import { setSession } from "@/store/session"
 import { useAppDispatch } from "../hook/redux"
 
 export const initSetSession = () => {

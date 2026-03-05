@@ -1,7 +1,7 @@
 import { toastType } from "@/model"
 import { generateId } from "./generate-id"
 
-export const generateAddToastPayload = (name: string): { payload: toastType, type: 'toast-store/pushToast' } => {
+export const generateAddToastPayload = (name: string): { payload: toastType, type: 'toast/pushToast' } => {
     return {
         payload: {
             id: generateId(),
@@ -9,6 +9,6 @@ export const generateAddToastPayload = (name: string): { payload: toastType, typ
             payload: { name },
             view: true
         },
-        type: 'toast-store/pushToast'
+        type: 'toast/pushToast'
     }
 }

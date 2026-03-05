@@ -1,8 +1,6 @@
 import React from 'react'
-import { InfoBlock } from '../ui'
-import { qpk } from '@/config'
-import { useQ } from '@/lib/hook'
-import { ViewImg } from '../case/modal/img-view-modal'
+import { InfoBlock } from '@component/ui'
+import { ViewImg } from '@component/case/modal/img-view-modal'
 import { infoBlockType } from '@/model'
 
 interface Props {
@@ -12,7 +10,7 @@ interface Props {
 
 
 export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
-    const { pushQ, pushQParam } = useQ(qpk.viewimg)
+
 
     return (
         <>
@@ -23,9 +21,7 @@ export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
                         <InfoBlock
                             key={title}
                             id={index}
-                            pushQParam={pushQParam}
                             content={content}
-                            pushQ={pushQ}
                             title={title}
                         />
                     )
@@ -38,9 +34,9 @@ export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
 }
 
 const Modal = () => {
-    const { param, clearQParam } = useQ(qpk.viewimg)
+
     return (
-        <ViewImg swap={() => clearQParam(qpk.viewimg)} view={param} />
+        <ViewImg />
     )
 }
 

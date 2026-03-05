@@ -1,13 +1,11 @@
 import React from 'react'
 import { InfoImage } from './info-image'
 import { useHandlerScrollBetween } from '@/lib/hook'
-import { qpk } from '@/config'
 import { infoBlockContentType } from '@/model'
+import { useAnchorThrow } from '@/lib/hook/throw'
 
 interface Props {
     title: string
-    pushQ: any
-    pushQParam: any
     content: infoBlockContentType,
     id: number
 }
@@ -16,14 +14,13 @@ interface Props {
 export const InfoBlock: React.FC<Props> = React.memo(({
     content,
     title,
-    pushQ,
-    pushQParam,
     id
 }: Props) => {
     const { boolean, refHandler } = useHandlerScrollBetween()
+    const [_, swap] = useAnchorThrow()
     React.useEffect(() => {
         if (boolean) {
-            pushQParam(qpk.anchorlink, title)
+            swap(title)
         }
     }, [boolean])
 
@@ -38,10 +35,7 @@ export const InfoBlock: React.FC<Props> = React.memo(({
                             {item.text}
                         </p>
                         {item.image &&
-                            <InfoImage
-                                path={item.image}
-                                pushQ={pushQ}
-                            />
+                            <InfoImage path={item.image} />
                         }
                     </React.Fragment>
                 )

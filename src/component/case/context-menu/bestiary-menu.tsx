@@ -2,10 +2,10 @@ import React from 'react'
 import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { pushEntity } from '@/store/session-store'
+import { pushEntity } from '@/store/session'
 import { entityInterface } from '@/model'
 import { Initiative } from '@/component/ui'
-import { swapTmpObject } from '@/store/tmp-object-store'
+import { swapTmpObject } from '@/store/tmp-object'
 interface Props extends entityInterface {
 }
 
@@ -18,8 +18,8 @@ export const BestiaryMenu: React.FC<Props> = (item: Props) => {
     return (
         <ContextMenu className='z-20'>
             <Initiative title={item.initiative} className='mx-3 mb-3' />
-            <ContextMenuItem fn={pushHandler}>Клонировать</ContextMenuItem>
-            <ContextMenuItem fn={moreHandler}>Подробнее</ContextMenuItem>
+            <ContextMenuItem onClick={pushHandler}>Клонировать</ContextMenuItem>
+            <ContextMenuItem onClick={moreHandler}>Подробнее</ContextMenuItem>
         </ContextMenu>
     )
 }

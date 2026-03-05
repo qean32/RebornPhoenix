@@ -14,10 +14,10 @@ export const toastHook = (
         id: number,
         payload: toastPayloadType | any
     },
-    firstId: number
+    isBackToast: boolean
 ) => {
-    if (keyMessage == "push-entity") return <ToastPushEntity view={view} key={id} {...payload} backToast={firstId != id} />
-    if (keyMessage == "event-message") return <ToastEventMessage view={view} key={id} {...payload} backToast={firstId != id} />
-    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...{ text: '' }} {...payload} backToast={firstId != id} />
+    if (keyMessage == "push-entity") return <ToastPushEntity view={view} key={id} {...payload} isBackToast={isBackToast} />
+    if (keyMessage == "event-message") return <ToastEventMessage view={view} key={id} {...payload} isBackToast={isBackToast} />
+    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...{ text: '' }} {...payload} isBackToast={isBackToast} />
     return <>WTFIT!</>
 }

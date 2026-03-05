@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const ShopItemSceleton: React.FC<Props> = ({ }: Props) => {
+export const ShopItemSceleton: React.FC<Props> = () => {
     return (
         <ContentLoader
             width='100%'

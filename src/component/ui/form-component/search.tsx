@@ -1,6 +1,6 @@
-import { qpk } from "@/config"
-import { useDebounce, useQ } from "@/lib/hook"
 import { cn } from "@/lib/function"
+import { useDebounce } from "@/lib/hook"
+import { useSearchThrow } from "@/lib/hook/throw"
 import React from 'react'
 
 interface SearchProps {
@@ -9,14 +9,14 @@ interface SearchProps {
 
 export const Search: React.FC<SearchProps> = ({ className = 'w-full' }: SearchProps) => {
     const [value, setValue] = React.useState('')
-    const { param: search, pushQ } = useQ(qpk.search)
+    const [search, changeSearch] = useSearchThrow()
 
-    const debounceValue = useDebounce(value)
+    const debounceValue = useDebounce(search)
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
     React.useEffect(() => {
-        pushQ(debounceValue)
+        changeSearch(debounceValue)
     }, [debounceValue])
     React.useEffect(() => {
         setValue(search ?? '')

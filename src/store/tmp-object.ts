@@ -1,13 +1,16 @@
 import { commentType, entityInterface, idType, mapInterface, objectInterface } from "@/model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type state_ = entityInterface | objectInterface | mapInterface
-type stateT = state_ & {
+type state_ = entityInterface | objectInterface | null | idType | commentType | mapInterface
+export type stateT = state_ & {
     isEntity?: boolean
     isObject?: boolean
     isMap?: boolean
-}
-export type state = entityInterface | objectInterface | null | idType | commentType | stateT
+    path?: string
+    name?: string
+    description?: string
+    initiative?: string
+} | null
 export type keysTmp =
     'push-entity' |
     'push-object' |
@@ -22,16 +25,17 @@ export type keysTmp =
     'delete-session' |
     'create-session' |
     'push-object' |
+    'push-object-to-session' |
     null
-type stateDto = { tmpObject: state, key: keysTmp }
+type stateDto = { tmpObject: stateT, key: keysTmp }
 
 const initialState: stateDto = { tmpObject: null, key: null }
 
 const tmpObjectSlice = createSlice({
-    name: 'temp-object-store',
+    name: 'tmp-object',
     initialState,
     reducers: {
-        swapTmpObject(state: stateDto, { payload: { key, payload } }: PayloadAction<{ payload: state, key: keysTmp }>) {
+        swapTmpObject(state: stateDto, { payload: { key, payload } }: PayloadAction<{ payload: stateT, key: keysTmp }>) {
             if (payload && state.tmpObject?.id == payload.id) {
                 state.tmpObject = null
                 state.key = null

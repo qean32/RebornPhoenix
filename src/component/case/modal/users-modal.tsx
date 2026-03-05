@@ -2,12 +2,13 @@ import React from 'react'
 import { getHTMLData, stopPropagation } from '@/lib/function'
 import { ModalCross, NoFindData, Search } from '@component/ui'
 import { UserInModal } from '@/component/ui/item'
-import { useQ, useRequest, useToast } from '@/lib/hook'
-import { qpk } from '@/config'
+import { useRequest, useToast } from '@/lib/hook'
 import { communityService } from '@/service'
 import { userInterface } from '@/model'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
-import { pushUser } from '@/store/session-store'
+import { pushUser } from '@/store/session'
+import { usePushCharacterThrow } from '@/lib/hook/throw/use-push-character-throw'
+import { useSearchThrow } from '@/lib/hook/throw'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -15,13 +16,13 @@ interface Props {
 
 
 export const Users: React.FC<Props> = ({ swap }: Props) => {
-    const { pushQ } = useQ(qpk.pushcharacter)
+    const [_, swapPushCharacter] = usePushCharacterThrow()
     const dispath = useAppDispatch()
     const { session } = useAppSelector(state => state.session)
     const toast = useToast()
 
     const pushCharacterHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        pushQ(getHTMLData(e, true).id)
+        swapPushCharacter(getHTMLData(e, true).id)
     }, [])
 
     const pushUserHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,13 +30,13 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
         toast('message', { text: 'Обработка..' })
     }, [])
 
-    const { param } = useQ(qpk.search)
-    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(param), ['search-users', param])
+    const [search] = useSearchThrow()
+    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(search), ['search-users', search])
     const [myusers] = useRequest<userInterface[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <div className="pt-10" onClick={pushUserHandler}>
                 <p className='pl-5 pb-5'>Добавить игрока</p>
                 <Search className='mx-2 mb-4' />

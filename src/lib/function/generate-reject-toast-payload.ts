@@ -1,7 +1,7 @@
 import { toastType } from "@/model"
 import { generateId } from "./generate-id"
 
-export const generateRejectToastPayload = (): { payload: toastType, type: 'toast-store/pushToast' } => {
+export const generateRejectToastPayload = (): { payload: toastType, type: 'toast/pushToast' } => {
     return {
         payload: {
             id: generateId(),
@@ -9,6 +9,6 @@ export const generateRejectToastPayload = (): { payload: toastType, type: 'toast
             payload: { text: "В игровом режиме действие запрещено!" },
             view: true
         },
-        type: 'toast-store/pushToast'
+        type: 'toast/pushToast'
     }
 }

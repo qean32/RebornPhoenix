@@ -2,24 +2,25 @@ import React from 'react'
 import { Title, PasswordInput, Button } from '@component/ui'
 import { changePasswordFormSchema, changePasswordSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
-import { useMyForm, useQ, useToast } from '@/lib/hook'
+import { useMyForm, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
-import { qpk } from '@/config'
 import { handleFetchCatch, handleFetchThen } from '@/lib/function'
+import { useSearchParams } from 'react-router-dom'
+import { urlTitle } from '@/config'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Вы сменили пароль!'
-export const ChangePasswordForm: React.FC<Props> = ({ }: Props) => {
+export const ChangePasswordForm: React.FC<Props> = () => {
     const toast = useToast()
-    const { param: token } = useQ(qpk.token)
+    const [url] = useSearchParams()
 
     const { form, submitHandler } =
         useMyForm<changePasswordFormSchema>(
             changePasswordSchema,
             (data: changePasswordFormSchema) => {
-                authServiceItem.CHANGE_PASSWORD(data, token)
+                authServiceItem.CHANGE_PASSWORD(data, url.get(urlTitle.token) ?? "")
                     .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
                         setTimeout(() => {
                             toast('message', { text: 'Вы можете закрывать страницу!' })

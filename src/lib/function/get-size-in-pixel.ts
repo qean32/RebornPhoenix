@@ -1,12 +1,17 @@
-export const getSizeInPixel = (code: 1 | 2 | 3 | 4) => {
-    if (code == 1) {
-        return 80
-    }
-    if (code == 2) {
-        return 100
-    }
-    if (code == 3) {
-        return 120
-    }
-    return 160
+import { sizeType } from "@/model"
+
+const map = new Map<number, number>([
+    [1, 20],
+    [2, 40],
+    [3, 60],
+    [4, 80],
+    [5, 100],
+    [6, 120],
+    [7, 140],
+    [8, 160],
+    [9, 180],
+])
+
+export const getSizeInPixel = (size: sizeType): number => {
+    return map.get(size) ?? 100
 }

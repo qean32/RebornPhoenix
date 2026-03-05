@@ -5,6 +5,7 @@ import { commentType } from '@/model'
 import { CommentMenu } from '@/component/case/context-menu'
 import { ViewAuthor } from '@/component/master/h-order-component'
 import { separator } from '@/config'
+import { formatDate } from '@/lib/function'
 
 interface Props extends commentType {
 }
@@ -14,7 +15,7 @@ export const CommentItem: React.FC<Props> = (item: Props) => {
     return (
         <div className="flex gap-2 justify-between pt-2 pb-3 px-5">
             <div className="flex gap-2">
-                <Link to={`/profile/${item.user.id}/${item.user.name}`} className="flex gap-2 flex-col">
+                <Link to={`/profile/${item.user.id}/${item.user.name}`} className="flex gap-2 pt-1 flex-col">
                     <Ava size="ava-sm" path={item.user.ava ?? ''} />
                 </Link >
                 <div className='flex flex-col gap-2 pl-2 pb-2 items-start'>
@@ -30,9 +31,10 @@ export const CommentItem: React.FC<Props> = (item: Props) => {
                     }
                 </div>
             </div>
-            <div className="flex items-end flex-col relative">
+            <div className="flex items-end flex-col relative pt-2">
                 <p className='text-sm w-[150px] text-right pl-5 pb-2'>
-                    {item.created_at?.slice(0, 16)}
+                    {/* @ts-ignore */}
+                    {formatDate(item.created_at)}
                 </p>
                 <ViewAuthor payload_id={item.user.id}>
                     <CommentMenu {...item} />

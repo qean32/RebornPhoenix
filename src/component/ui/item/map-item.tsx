@@ -1,16 +1,15 @@
+import { useViewImgThrow } from '@/lib/hook/throw'
 import React from 'react'
-import { useQ } from '@/lib/hook'
-import { qpk } from '@/config'
 
 interface Props {
 }
 
-
-export const MapItem: React.FC<Props> = ({ }: Props) => {
-    const { pushQ } = useQ(qpk.viewimg)
+// depreceted
+export const MapItem: React.FC<Props> = () => {
+    const [_, swap] = useViewImgThrow()
 
     const clickHAndler = () => {
-        pushQ('/img/carousel-item-1.jpg')
+        swap('/img/carousel-item-1.jpg')
     }
     return (
         <div className="mount-opacity relative h-[9vh] cursor-pointer" onClick={clickHAndler}>

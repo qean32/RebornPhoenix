@@ -1,6 +1,5 @@
-import { qpk } from '@/config';
-import { useQ } from '@/lib/hook';
 import { cn } from '@/lib/function';
+import { useAnchorThrow } from '@/lib/hook/throw';
 import React from 'react'
 // @ts-ignore
 import { HashLink as Link } from 'react-router-hash-link';
@@ -11,16 +10,16 @@ interface Props {
 
 
 export const InfoAnchor: React.FC<Props> = ({ qa }: Props) => {
-    const { param } = useQ(qpk.anchorlink)
+    const [anchor] = useAnchorThrow()
 
 
     return (
-        <div className="relative px-6 pt-4 pb-5 w-fit">
+        <div className="relative px-6 pt-4 pb-5 w-[270px]">
             <div className="flex flex-col sticky top-5">
                 {qa.map((item, index) => {
                     return (
                         <Link key={item} to={`#${index}`}>
-                            <p className={cn('transition-300 text-lg hover:text-red-800', (param == item && "text-red-800"))}>{item}</p></Link>
+                            <p className={cn('transition-300 text-lg hover:text-red-800', (anchor == item && "text-red-800"))}>{item}</p></Link>
                     )
                 })}
             </div>

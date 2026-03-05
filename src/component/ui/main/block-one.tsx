@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const BlockOne: React.FC<Props> = ({ }: Props) => {
+export const BlockOne: React.FC<Props> = () => {
     const { refHandler, boolean } = useHandlerScroll(-100)
 
     return (

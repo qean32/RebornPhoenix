@@ -4,20 +4,20 @@ import { Modal } from '@component/master/h-order-component'
 import { useAppSelector } from '@/lib/hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
 import { EditBestiaryForm } from '../form'
-import { useQ, useTmpObject } from '@/lib/hook'
-import { qpk } from '@/config'
+import { useTmpObject } from '@/lib/hook'
+import { useViewImgThrow } from '@/lib/hook/throw'
 
 interface Props {
 }
 
 
-export const ObjectMoreDetailed: React.FC<Props> = ({ }: Props) => {
+export const ObjectMoreDetailed: React.FC<Props> = () => {
     const { bestiary, session } = useAppSelector(state => state.session)
-    const { pushQ } = useQ(qpk.viewimg)
+    const [_, swap] = useViewImgThrow()
     const { key, clearTmp, tmpObject } = useTmpObject()
     if (session?.currentMap && key == 'more-entity') {
         const viewImg = (path: string) => {
-            pushQ(path)
+            swap(path)
         }
 
         const object =
@@ -49,7 +49,7 @@ export const ObjectMoreDetailed: React.FC<Props> = ({ }: Props) => {
                                     :
                                     <div onClick={stopPropagation} className='bg-color h-full w-[340px] cursor-pointer flex items-center justify-start pt-3 flex-col'>
                                         <div className="w-11/12 bg-color-dark aspect-square rounded-sm bg-img"
-                                            style={{ backgroundImage: `url(${object?.path ?? ''})` }}
+                                            style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${object?.path ?? ''})` }}
                                             onClick={() => viewImg(object?.path ?? '')}
                                         >
                                         </div>

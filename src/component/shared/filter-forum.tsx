@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const FilterForum: React.FC<Props> = ({ }: Props) => {
+export const FilterForum: React.FC<Props> = () => {
     const navigate = useNavigate()
 
     return (
@@ -19,7 +19,7 @@ export const FilterForum: React.FC<Props> = ({ }: Props) => {
             />
             <div className='flex justify-between pt-20'>
                 <Button
-                    fn={() => { navigate(location.pathname) }}
+                    onClick={() => { navigate(location.pathname) }}
                     type='reset'
                     variant='default'
                 >

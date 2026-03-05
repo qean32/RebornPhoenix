@@ -14,7 +14,7 @@ import {
 } from "@dnd-kit/sortable";
 import { SortableOverlay } from '.';
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux';
-import { changeQueue } from '@/store/session-store';
+import { changeQueue } from '@/store/session';
 
 interface Props {
     items: any[]

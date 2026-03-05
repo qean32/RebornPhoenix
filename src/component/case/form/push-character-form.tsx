@@ -34,7 +34,7 @@ export const PushCharaterForm: React.FC<Props> = ({ children, swap }: Props) => 
         <FormProvider {...form}>
 
             <form action="" onSubmit={submitHandler} className='flex flex-col h-full gap-4'>
-                <Title className='mb-1'>ДОБАВЛЕНИЕ ИГРЫ</Title>
+                <Title className='mb-1'>СОЗДАНИЕ ИГРЫ</Title>
                 <TextInput placeHolder='Имя' name='name' />
                 <TextInput placeHolder='Инициатива' name='initiative' />
                 <ImgInput name='img' title='Изображение' />

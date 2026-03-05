@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const SessionsSceleton: React.FC<Props> = ({ }: Props) => {
+export const SessionsSceleton: React.FC<Props> = () => {
     return (
         <ContentLoader
             width='100%'

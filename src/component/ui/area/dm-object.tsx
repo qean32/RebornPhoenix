@@ -20,6 +20,7 @@ export const ObjectDM: React.FC<Props> = (props: Props) => {
         mouseOutHandler,
         mouseOverHandler,
     } = useDMObject(dispath, props.path)
+    // @ts-ignore
     const scale = React.useMemo(() => image ? utils.getScale(image.height, image.width, props.size) : 0, [props, image])
 
     return (

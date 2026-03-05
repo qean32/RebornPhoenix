@@ -25,7 +25,7 @@ export const CharacterMenu: React.FC<Props> = ({ id }: Props) => {
     return (
         <div className="absolute right-0.5 z-50 top-1" onClick={stopPropagation}>
             <ContextMenu>
-                <ContextMenuItem fn={remove}>Удалить</ContextMenuItem>
+                <ContextMenuItem onClick={remove}>Удалить</ContextMenuItem>
             </ContextMenu>
         </div>
     )

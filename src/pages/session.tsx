@@ -1,9 +1,8 @@
 import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/case/modal/index-group"
 import { ToolGameButton, ToolGame, SessionLog } from "@component/shared"
-import { useQ } from "@lib/hook"
 import React from "react"
-import { GameArea } from "@/component/master"
-import { qpk } from "@/config"
+
+const GameArea = React.lazy(() => import("@component/master/game-area"))
 
 export const Session = () => {
     return (
@@ -19,15 +18,14 @@ export const Session = () => {
 }
 
 const Modal: React.FC = () => {
-    const { allQ, clearQParam } = useQ()
 
     return (
         <>
             <SessionLog />
-            <PushCharacterInSession swap={() => clearQParam(qpk.pushcharacter)} view={Number(allQ[qpk.pushcharacter])} />
-            <ViewImg swap={() => clearQParam(qpk.viewimg)} view={!!allQ[qpk.viewimg]} />
+            <PushCharacterInSession />
+            <ViewImg />
             <ObjectMoreDetailed />
-            <ActionEntity swap={() => clearQParam(qpk.actionentity)} view={allQ[qpk.actionentity] ?? ''} />
+            <ActionEntity />
         </>
     )
 }

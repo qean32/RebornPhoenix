@@ -1,9 +1,8 @@
 import { Button, DisabledInput, NoFindData } from '@/component/ui'
-import { TypeUseBoolen, useQ } from '@/lib/hook'
-import { useAppSelector } from '@/lib/hook/redux'
+import { TypeUseBoolen, useTmpObject } from '@/lib/hook'
 import { initPushDataToSession } from '@/lib/function'
 import React from 'react'
-import { qpk } from '@/config'
+import { useViewImgThrow } from '@/lib/hook/throw'
 
 interface Props {
     switcher: TypeUseBoolen
@@ -12,53 +11,53 @@ interface Props {
 
 
 export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
-    const { object: data } = useAppSelector(state => state.pushedObject)
+    const { tmpObject, key } = useTmpObject()
     const push = initPushDataToSession('map')
-    const { pushQ } = useQ(qpk.viewimg)
+    const [_, swapViewImg] = useViewImgThrow()
 
     const clickImgHandler = () => {
-        pushQ(map.path)
+        if (tmpObject) {
+            // @ts-ignore
+            swapViewImg(tmpObject.path)
+        }
     }
 
     const pushHandler = () => {
         // @ts-ignore
-        swap()
-        // @ts-ignore
-        push(data)
+        swap(); push(tmpObject)
     }
 
     React.useEffect(() => {
-        if (data) {
+        if (tmpObject) {
             switcher.on()
         }
-    }, [data])
-    const map = data?.isMap ? data : { path: '', name: '', id: 0, size: { x: 0, y: 0 } }
+    }, [tmpObject])
 
     return (
         <div className="w-1/2 flex-1 flex flex-col">
             <div className="flex-1">
-                {data?.isMap
-                    &&
+                {key == 'push-object-to-session' && tmpObject?.isMap &&
                     <>
                         <div className="p-5 h-[220px] w-full mt-5" onClick={clickImgHandler}>
                             <div className="h-full rounded-lg cursor-pointer bg-img bg-color-dark"
-                                style={{ backgroundImage: `url(${map.path})` }}></div>
+                                style={{ backgroundImage: `url(${tmpObject.path})` }}></div>
                         </div>
 
                         <div className="px-5">
-                            <DisabledInput value={map.name} />
+                            {/* @ts-ignore */}
+                            <DisabledInput value={tmpObject.name} />
                         </div>
                     </>
                 }
-                <NoFindData title='карта не выбрана' className='h-full' view={!data?.isMap} />
+                <NoFindData title='карта не выбрана' className='h-full' view={!tmpObject?.isMap} />
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
-                <div className="flex gap-2" data={JSON.stringify(data)}>
-                    <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                    <Button fn={switcher.off} variant='ghost'>
+                <div className="flex gap-2" data={JSON.stringify(tmpObject)}>
+                    <Button onClick={swap} variant='ghost'><p>Отмена</p></Button>
+                    <Button onClick={switcher.off} variant='ghost'>
                         <p className='pointer-events-none'>Кастомная карта</p></Button>
                 </div>
-                <Button type='submit' variant='acceess' fn={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
+                <Button variant='acceess' onClick={pushHandler} className='mt-3 w-11/12'><p>Добавить</p></Button>
             </div>
         </div>
     )

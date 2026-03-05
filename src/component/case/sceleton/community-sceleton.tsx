@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const CommunitySceleton: React.FC<Props> = ({ }: Props) => {
+export const CommunitySceleton: React.FC<Props> = () => {
     return (
         <ContentLoader
             width='100%'

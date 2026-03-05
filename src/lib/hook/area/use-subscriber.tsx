@@ -1,5 +1,5 @@
 import useImage from "use-image";
-import { swapTmpObject, type keysTmp } from '@/store/tmp-object-store'
+import { swapTmpObject, type keysTmp } from '@/store/tmp-object'
 import { useAppDispatch } from "../redux";
 import React from "react";
 import { coordinateType } from "@/model";

@@ -2,7 +2,7 @@ import React from 'react'
 import { Title } from '@component/ui'
 import { cn, getHTMLData } from '@/lib/function'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { swapObjectBeingPushedToSession } from '@/store/object-being-pushed-to-session-store'
+import { swapTmpObject } from '@/store/tmp-object'
 
 interface Props {
     renderItem(item: any): React.ReactNode
@@ -15,7 +15,7 @@ export const GroupTokenInModal: React.FC<Props> = React.memo(({ renderItem, item
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const object = getHTMLData(e, true)
         if (object) {
-            dispath(swapObjectBeingPushedToSession({ object }))
+            dispath(swapTmpObject({ payload: object, key: 'push-object-to-session' }))
         }
     }
 

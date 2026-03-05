@@ -3,7 +3,7 @@ import { ContextMenu } from '@component/master/h-order-component'
 import { ContextMenuItem } from './context-menu-item'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { commentType } from '@/model'
-import { swapTmpObject } from '@/store/tmp-object-store'
+import { swapTmpObject } from '@/store/tmp-object'
 import { forumService } from '@/service'
 import { useToast } from '@/lib/hook'
 import { handleFetchCatch, handleFetchThen } from '@/lib/function'
@@ -27,8 +27,8 @@ export const CommentMenu: React.FC<Props> = (item: Props) => {
 
     return (
         <ContextMenu className='z-20'>
-            <ContextMenuItem fn={remove}>Удалить</ContextMenuItem>
-            <ContextMenuItem fn={update}>Изменить</ContextMenuItem>
+            <ContextMenuItem onClick={remove}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={update}>Изменить</ContextMenuItem>
         </ContextMenu>
     )
 }

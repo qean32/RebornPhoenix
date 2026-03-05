@@ -2,20 +2,20 @@ import React from 'react'
 import { Group, Image, Rect, Text } from 'react-konva'
 import useImage from 'use-image';
 import { useAppSelector } from '@lib/hook/redux';
-import { useGrid } from '@/lib/hook';
+import { useGridThrow } from '@/lib/hook/throw';
 
 interface Props {
 }
 
 
-export const GameBackground: React.FC<Props> = ({ }: Props) => {
+export const GameBackground: React.FC<Props> = () => {
     const { session: { currentMap } } = useAppSelector(state => state.session)
 
     const [bgGameArea] = useImage(
         // @ts-ignore
         `${process.env.SERVER_HOST}api/static/${currentMap?.path.split('/').at(-1)}/`, 'anonymous');
 
-    const { param: grid } = useGrid()
+    const [grid] = useGridThrow()
     const [chart] = useImage('/icon/grid.png')
 
     if (!currentMap?.path) {

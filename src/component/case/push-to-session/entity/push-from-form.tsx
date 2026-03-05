@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/lib/hook/redux'
 import { conventToFormData, handleFetchCatch, handleFetchThen, initPushDataToSession } from '@/lib/function'
 import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
-import { swapTmpObject } from '@/store/tmp-object-store'
+import { swapTmpObject } from '@/store/tmp-object'
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
 
@@ -75,8 +75,8 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                 </div>
                 <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                     <div className="flex gap-2 pb-1">
-                        <Button fn={swap} variant='ghost'><p>Отмена</p></Button>
-                        <Button fn={switcher.on} variant='ghost'>
+                        <Button onClick={swap} variant='ghost'><p>Отмена</p></Button>
+                        <Button onClick={switcher.on} variant='ghost'>
                             <p className='pointer-events-none'>Назад</p></Button>
                     </div>
                     <Button

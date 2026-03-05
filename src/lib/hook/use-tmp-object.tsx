@@ -1,11 +1,11 @@
 import { useAppDispatch } from "@/store"
 import { useAppSelector } from "./redux"
-import { clearTmpObject, keysTmp, state, swapTmpObject } from "@/store/tmp-object-store"
+import { clearTmpObject, keysTmp, stateT, swapTmpObject } from "@/store/tmp-object"
 
 export const useTmpObject = (): {
-    tmpObject: state
+    tmpObject: stateT
     key: keysTmp
-    setTmp: (data: { key: keysTmp, payload: state }) => void,
+    setTmp: (data: { key: keysTmp, payload: stateT }) => void,
     clearTmp: () => void
 } => {
     const dispath = useAppDispatch()
@@ -15,7 +15,7 @@ export const useTmpObject = (): {
         dispath(clearTmpObject())
     }
 
-    const setTmp = (data: { key: keysTmp, payload: state }) => {
+    const setTmp = (data: { key: keysTmp, payload: stateT }) => {
         dispath(swapTmpObject(data))
     }
 

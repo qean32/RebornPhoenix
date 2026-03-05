@@ -2,20 +2,19 @@ import React from 'react'
 import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
-import { useMyForm, useQ, useToast, useUser } from '@/lib/hook'
+import { useMyForm, useToast, useUser } from '@/lib/hook'
 import { profileService } from '@/service'
 import { useNavigate } from 'react-router-dom'
-import { qpk } from '@/config'
 import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
+import { urlTitle } from '@/config'
 
 interface Props {
 }
 
 const ACCEESS_ACTION = 'Профиль успешно обновлен!'
-export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
+export const EditProfileForm: React.FC<Props> = () => {
     const navigate = useNavigate()
     const toast = useToast()
-    const { pushQ } = useQ(qpk.forceupadeteuser)
 
     const { form, submitHandler } =
         useMyForm<editProfileFormSchema>(
@@ -23,9 +22,8 @@ export const EditProfileForm: React.FC<Props> = ({ }: Props) => {
             (data: editProfileFormSchema) => {
                 profileService.UPDATE_PROFILE(conventToFormData(data))
                     .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
-                        pushQ('true')
                         setTimeout(() => {
-                            navigate(`/?${qpk.forceupadeteuser}=true`)
+                            navigate(`/?${urlTitle.forceupdate}=true`)
                         }, 600)
                     }))
                     .catch(response => handleFetchCatch(response, toast))

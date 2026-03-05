@@ -5,7 +5,7 @@ import * as ModalGroup from './index-group'
 import { InStoreMapItem, SelectMapItem } from '@component/ui/item'
 import { PushMap } from '@/component/case/push-to-session'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
-import { swapCurrentMap } from '@/store/session-store'
+import { swapCurrentMap } from '@/store/session'
 import { modalAnimationEnum } from '@/config'
 import { EventMiddleware } from '@/lib/middleware'
 
@@ -28,7 +28,7 @@ export const MapsGame: React.FC<Props> = ({ swap }: Props) => {
 
     return (
         <div className="relative bg-color w-6/12 h-6/12 p-5 rounded-md overflow-scroll flex flex-col" onClick={stopPropagation}>
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <p className='pl-5 pt-2 text-2xl'>Карты</p>
             <div className='grid gap-5 p-5 grid-cols-6 adaptive2k-grid-column-7' onClick={swapHandler}>
 

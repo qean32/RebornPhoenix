@@ -3,8 +3,7 @@ import DatePicker from "react-datepicker";
 import { ru } from 'date-fns/locale/ru';
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useQ } from "@/lib/hook";
-import { qpk } from "@/config";
+import { useFilterThrow } from "@/lib/hook/throw";
 
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -12,11 +11,11 @@ import { qpk } from "@/config";
 export const DatePickerInFilter = () => {
     const ref = useRef(new Date())
     const [startDate, setStartDate] = useState(ref.current);
-    const { pushQ } = useQ(qpk.date)
+    const [_, push] = useFilterThrow()
 
     useEffect(() => {
         if (startDate != ref.current)
-            pushQ(startDate.toString())
+            push({ date: startDate.toString() })
     }, [startDate])
 
     return <>

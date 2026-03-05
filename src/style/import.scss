@@ -1,17 +1,29 @@
-$bg-color: #0e0e0e;
-$bg-color-darkness: #090909;
-$bg-color-dark: #0c0c0c;
-$bg-color-light: #1f1f1f;
+:root {
+    --theme-1: #0f0f0f;
+    --theme-1-dark: #090909;
+    --theme-1-darkness: #0c0c0c;
+    --theme-1-light: #1f1f1f;
 
-// $bg-color: #070707;
-// $bg-color-darkness: #020202;
-// $bg-color-dark: #050505;
-// $bg-color-light: #1f1f1f;
+    --theme-2: #0e0e0e;
+    --theme-2-dark: #020202;
+    --theme-2-darkness: #070707;
+    --theme-2-light: #1f1f1f;
 
-// $bg-color: #221c14;
-// $bg-color-dark: #1d1811;
-// $bg-color-darkness: #18140d;
-// $bg-color-light: #352c20;
+    --theme-3: #221c14;
+    --theme-3-dark: #18140d;
+    --theme-3-darkness: #1d1811;
+    --theme-3-light: #352c20;
+
+    --bg-color: var(--theme-1);
+    --bg-color-dark: var(--theme-1-dark);
+    --bg-color-darkness: var(--theme-1-darkness);
+    --bg-color-light: var(--theme-1-light);
+}
+
+$bg-color: var(--bg-color);
+$bg-color-darkness: var(--bg-color-darkness);
+$bg-color-dark: var(--bg-color-dark);
+$bg-color-light: var(--bg-color-light);
 
 $red-color: oklch(44.4% 0.177 26.899);
 

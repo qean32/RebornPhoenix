@@ -5,7 +5,7 @@ interface Props {
 }
 
 
-export const Hints: React.FC<Props> = React.memo(({ }: Props) => {
+export const Hints: React.FC<Props> = React.memo(() => {
     return (
         <>
             <p className='text-4xl mt-5'>ПОДСКАЗКА</p>

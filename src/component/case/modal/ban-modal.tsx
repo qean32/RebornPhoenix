@@ -16,7 +16,7 @@ export const Ban: React.FC<Props> = ({
 
     return (
         <div className="bg-color w-4/12 h-7/12 pt-5 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
-            <ModalCross fn={swap} />
+            <ModalCross onClick={swap} />
             <Title className='p-2 pl-5 text-center uppercase letter-spacing-2px'>Выдача блокировки</Title>
             <BanForm id={id} swap={swap} />
         </div>

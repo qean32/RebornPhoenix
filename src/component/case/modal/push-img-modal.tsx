@@ -6,7 +6,7 @@ import z from 'zod'
 import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { pushImg } from '@/store/session-store'
+import { pushImg } from '@/store/session'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
@@ -40,7 +40,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
                 onClick={stopPropagation}
                 onSubmit={submitHandler}
             >
-                <ModalCross fn={swap} />
+                <ModalCross onClick={swap} />
                 <div className="m-7 h-10/12">
                     <UploadImgArea
                         className='h-full w-full'
@@ -50,7 +50,7 @@ export const PushImg: React.FC<Props> = ({ swap }: Props) => {
                 <div className="flex gap-5 justify-end p-5 flex-1 items-end">
                     <Button
                         variant='ghost'
-                        fn={swap}
+                        onClick={swap}
                     ><p>Отмена</p></Button>
                     <Button
                         variant='acceess'

@@ -5,10 +5,9 @@ import { SwithContentLiftSideGame } from './swith-content-tool-in-game'
 import { SortableItem, DragHandle, UnwrapArray, UnwrapSortableArray } from './utils'
 import { bestiaryItemInterface, mapsDataInterface, characterInterface } from '@/model'
 import { InToolEntityItem, InToolObjectItem, InToolCharacterItem } from '@component/ui/item'
-import { useQ } from '@/lib/hook'
-import { qpk } from '@/config'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { nextQueue, prevQueue } from '@/store/session-store'
+import { nextQueue, prevQueue } from '@/store/session'
+import { useContentThrow } from '@/lib/hook/throw'
 
 interface Props {
     mapsData: mapsDataInterface
@@ -24,7 +23,8 @@ export const SharedVariant: React.FC<Props> = ({
     bestiary,
     id
 }: Props) => {
-    const { param } = useQ(qpk.contentsession)
+    const [content] = useContentThrow()
+
     if (id == null) {
         return <></>
     }
@@ -42,10 +42,10 @@ export const SharedVariant: React.FC<Props> = ({
             <div
                 className={
                     cn("flex h-full w-[400%] transition-700",
-                        (param == 'queue' && ''),
-                        (param == 'bestiary' && '-translate-x-1/4'),
-                        (param == 'objects' && '-translate-x-2/4'),
-                        (param == 'characters' && '-translate-x-3/4'),
+                        (content == 'queue' && ''),
+                        (content == 'bestiary' && '-translate-x-1/4'),
+                        (content == 'objects' && '-translate-x-2/4'),
+                        (content == 'characters' && '-translate-x-3/4'),
                     )
                 }>
                 <UnwrapSortableArray
@@ -74,10 +74,10 @@ export const SharedVariant: React.FC<Props> = ({
                 />
             </div >
         </div>
-        {(param == 'queue' || !param) &&
-            <div className='flex justify-center px-4 bg-color-dark pt-5 gap-3'>
-                <Button fn={prev} className='w-full py-2.5'>Назад</Button>
-                <Button fn={next} className='w-full py-2.5'>Вперед</Button>
+        {(content == 'queue' || !content) &&
+            <div className='flex justify-center px-4 bg-color-dark pt-5 gap-3 mb-3'>
+                <Button onClick={prev} className='w-full py-2.5'>Назад</Button>
+                <Button onClick={next} className='w-full py-2.5'>Вперед</Button>
             </div>}
     </>
     )

@@ -26,7 +26,13 @@ export const EntitySubscriber: React.FC<Omit<entityInterface, 'description'>> = 
             onMouseOut={mouseOutHandler}
         >
             <Circle
+                fill={'#f1e9d2'}
+                radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
+                scale={{ y: scale, x: scale }}
+            />
+            <Circle
                 {...utils.restObject}
+                strokeWidth={(image?.width ?? 0) * .05}
                 radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
                 fillPatternImage={image}
                 fillPatternX={image ? -image?.width / 2 : 0}
