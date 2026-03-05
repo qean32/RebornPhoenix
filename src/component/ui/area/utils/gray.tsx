@@ -15,10 +15,9 @@ export const Gray: React.FC<Props> = ({ image, size }: Props) => {
     return (
         <Circle
             fillPatternRepeat='no-repeat'
-            strokeWidth={35}
+            strokeWidth={0}
             stroke="#1f1f1f"
-            radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0
-            }
+            radius={image ? (image?.height > image.width ? image.width : image.height) / 2 : 0}
             opacity={.7}
             fill={'#1f1f1f'}
             scale={{
