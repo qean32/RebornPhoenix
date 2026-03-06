@@ -109,7 +109,7 @@ const sessionSlice = createSlice({
 
                 state.session.mapsData[state.session.currentMap.id].queue = [
                     ...state.session.mapsData[state.session.currentMap.id].queue,
-                    { id, idInBestiary, initiative, status, source, size, path, name }
+                    { id, idInBestiary, initiative, status, source, path, name, size: 3 }
                 ]
 
                 if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
@@ -130,7 +130,6 @@ const sessionSlice = createSlice({
 
         pushObject: (state: stateDto, { payload }: PayloadAction<objectInterface>) => {
             if (state?.session?.mapsData[state?.session?.currentMap?.id].objects?.length < 10) {
-                console.log(payload)
 
                 state.session.mapsData[state.session.currentMap.id].objects = [
                     ...state.session.mapsData[state.session.currentMap.id].objects,

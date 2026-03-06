@@ -22,6 +22,7 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     const toast = useToast()
 
     const pushCharacterHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        console.log('zxc')
         swapPushCharacter(getHTMLData(e, true).id)
     }, [])
 
