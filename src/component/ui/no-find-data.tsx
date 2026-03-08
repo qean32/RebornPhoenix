@@ -5,17 +5,12 @@ import { noFindDataIcon } from '@/config'
 interface Props {
     className?: string
     title: string
-    view: boolean
 }
 
 export const NoFindData: React.FC<Props> = ({
     className,
-    title,
-    view
+    title
 }: Props) => {
-    if (!view) {
-        return null
-    }
     const ref = React.useRef(noFindDataIcon[getBetweenNumber(0, noFindDataIcon.length - 1)])
 
     return (

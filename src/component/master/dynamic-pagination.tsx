@@ -41,7 +41,7 @@ export const DynamicPagination: React.FC<Props> = ({
                         {renderItem(item)}</React.Fragment>
                 )
             })}
-            <NoFindData title={noFindDataText} view={!response.length && !loading} />
+            {!response.length && !loading && <NoFindData title={noFindDataText} />}
             {!isEnd && <p className='pt-3 px-7'>Загрузка</p>}
             <div className='w-100 min-h-[50px]' ref={refHandler}></div>
         </div>

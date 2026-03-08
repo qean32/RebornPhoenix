@@ -22,7 +22,6 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     const toast = useToast()
 
     const pushCharacterHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        console.log('zxc')
         swapPushCharacter(getHTMLData(e, true).id)
     }, [])
 
@@ -42,7 +41,7 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
                 <p className='pl-5 pb-5'>Добавить игрока</p>
                 <Search className='mx-2 mb-4' />
                 <div className="h-[300px] overflow-scroll pointer-events-none">
-                    <NoFindData title='По вашему запросу не найдены пользователи!' view={!loading && !users?.length} className='pt-5' />
+                    {!loading && !users?.length && <NoFindData title='По вашему запросу не найдены пользователи!' className='pt-5' />}
                     {!!users?.length &&
                         users.map(item => {
                             return (

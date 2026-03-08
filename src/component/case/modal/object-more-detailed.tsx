@@ -68,7 +68,7 @@ export const ObjectMoreDetailed: React.FC<Props> = () => {
                         }
                     </>
                     :
-                    <div onClick={stopPropagation} className='bg-color h-full w-[340px] flex'><NoFindData title='Сущность не найдена' view /></div>
+                    <div onClick={stopPropagation} className='bg-color h-full w-[340px] flex'><NoFindData title='Сущность не найдена' /></div>
                 }
             </Modal >
         )

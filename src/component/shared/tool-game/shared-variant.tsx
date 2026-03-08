@@ -39,15 +39,14 @@ export const SharedVariant: React.FC<Props> = ({
     return (<>
         <SwithContentLiftSideGame />
         <div className="h-full w-full overflow-hidden">
-            <div
-                className={
-                    cn("flex h-full w-[400%] transition-700",
-                        (content == 'queue' && ''),
-                        (content == 'bestiary' && '-translate-x-1/4'),
-                        (content == 'objects' && '-translate-x-2/4'),
-                        (content == 'characters' && '-translate-x-3/4'),
-                    )
-                }>
+            <div className={
+                cn("flex h-full w-[400%] transition-700",
+                    (content == 'queue' && ''),
+                    (content == 'bestiary' && '-translate-x-1/4'),
+                    (content == 'objects' && '-translate-x-2/4'),
+                    (content == 'characters' && '-translate-x-3/4'),
+                )
+            }>
                 <UnwrapSortableArray
                     renderItem={(item) => (
                         <SortableItem item={item} id={item.id}>

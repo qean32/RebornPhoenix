@@ -15,6 +15,7 @@ export const initSetSession = () => {
                         bestiary: await bestiary.json(),
                         session: await session.json(),
                         info: {
+                            DM: _session.DM,
                             bestiary: _session.bestiary,
                             session: _session.data
                         },

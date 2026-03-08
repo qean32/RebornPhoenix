@@ -18,7 +18,7 @@ export const ThemeControl: React.FC<Props> = React.memo(() => {
     return (
         <div className="absolute left-4 pointer-events-none">
             <span
-                className='opacity-80 hover:opacity-100 transition-100 w-fit cursor-pointer pointer-events-auto'
+                className='w-fit cursor-pointer pointer-events-auto'
                 onClick={swap}
             >
                 <img src="/icon/theme.svg" className='icon-md' alt="" />

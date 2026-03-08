@@ -25,7 +25,7 @@ export const UnwrapArray: React.FC<Props> = ({
                     !items.length
                     &&
                     <div className="flex justify-center pt-10">
-                        <NoFindData title='ТУТ ПОКА ПУСТО' view={!items.length} />
+                        {!items.length && <NoFindData title='ТУТ ПОКА ПУСТО' />}
                     </div>
                 }
             </div>

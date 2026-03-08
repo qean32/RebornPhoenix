@@ -38,7 +38,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ }: Props) => {
             <div className="relative bg-color p-5 w-3/7 px-7 rounded-md overflow-scroll flex flex-col -translate-y-1/12" onClick={stopPropagation}>
                 <ModalCross onClick={clear} />
                 <p className='pb-4 text-2xl'>Персонажи игрока</p>
-                <NoFindData title='У игрока нет персонажей!' view={!characters?.length && !loading} className='py-5' />
+                {!characters?.length && !loading && <NoFindData title='У игрока нет персонажей!' className='py-5' />}
                 {
                     !!characters?.length &&
                     <div className='grid gap-5 py-5 grid-cols-8 min-h-[33vh] max-h-[33vh] overflow-scroll' onClick={clickHandler}>

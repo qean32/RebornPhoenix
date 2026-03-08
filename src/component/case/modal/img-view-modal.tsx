@@ -8,24 +8,24 @@ interface Props {
 
 
 export const ViewImg: React.FC<Props> = ({ }: Props) => {
-    const [view, _, clear] = useViewImgThrow()
-    const [statePath, setStatePath] = React.useState<string>(view)
+    const [img, _, clear] = useViewImgThrow()
+    const [statePath, setStatePath] = React.useState<string>(img)
 
     React.useEffect(() => {
-        if (!view) {
+        if (!img) {
             const timeout = setTimeout(() => { setStatePath('') }, 200)
 
             return () => {
                 clearTimeout(timeout)
             }
         }
-        setStatePath(view)
-    }, [view])
+        setStatePath(img)
+    }, [img])
 
     return (
         <Modal
             swap={clear}
-            view={Boolean(view)}
+            view={Boolean(img)}
             animation={{
                 open: 'modal-open',
                 close: 'modal-close'

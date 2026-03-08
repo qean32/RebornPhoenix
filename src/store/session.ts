@@ -1,17 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { sessionInterface, mapInterface, idType, bestiaryItemInterface } from "@/model";
+import { sessionInterface, mapInterface, idType, bestiaryItemInterface, sessionInfoDto } from "@/model";
 import { characterInterface, entityInterface, objectInterface } from "@/model/entities.interfaces";
 import { generateId } from "@/lib/function";
 
 type stateDto = {
     session: sessionInterface, bestiary: bestiaryItemInterface[],
-    info: infoDto
+    info: sessionInfoDto
     isSet: boolean
-}
-
-type infoDto = {
-    session: string,
-    bestiary: string
 }
 
 const initialState: stateDto = {
@@ -37,6 +32,7 @@ const initialState: stateDto = {
     },
     bestiary: [],
     info: {
+        DM: 0,
         session: '',
         bestiary: ''
     }

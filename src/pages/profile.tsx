@@ -14,7 +14,7 @@ export const Profile = () => {
     const [sub] = useRequest(() => profileService.GET_SUBSCRIBE(Number(id)), [`get-subscribe-${id}`])
 
     if (!user?.id && !loading) {
-        return <NoFindData title="Пользователь не найден!" view className="py-5" />
+        return <NoFindData title="Пользователь не найден!" className="py-5" />
     }
 
     return (

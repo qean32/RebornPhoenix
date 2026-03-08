@@ -18,6 +18,12 @@ export interface sessionInterface {
 export interface bestiaryItemInterface extends entityInterface {
 }
 
+export type sessionInfoDto = {
+    session: string,
+    bestiary: string
+    DM: number
+}
+
 export interface mapsDataInterface {
     [key: string]: {
         objects: objectInterface[]
