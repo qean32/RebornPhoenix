@@ -27,7 +27,7 @@ export const useMyForm = <T extends FieldValues,>(
 
             submitErrorCallBack(data)
         }
-        // console.log('АП:', data);
+        console.log('АП:', data);
         toast('message', { text: 'Поля заполнены некорректно' }, 2000)
     }, [])
     const submitHandler = form.handleSubmit(onSubmit, onError)

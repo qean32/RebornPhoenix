@@ -12,22 +12,15 @@ interface Props {
 
 
 export const Notes: React.FC<Props> = ({ swap }: Props) => {
-    const [note, setNote] = React.useState('')
-    const debounceNote = useDebounce(note, 2000)
     const { session } = useAppSelector(state => state.session)
+    const [note, setNote] = React.useState(session.note)
+    const debounceNote = useDebounce(note, 2000)
     const dispath = useAppDispatch()
 
     React.useEffect(() => {
         if (debounceNote)
             dispath(pushNote({ note: debounceNote }))
     }, [debounceNote])
-
-    React.useEffect(() => {
-        if (session) {
-            setNote(session.note)
-        }
-    }, [])
-
 
     return (
         <div className="relative bg-color w-8/12 h-9/12 px-4 pt-4 rounded-md overflow-scroll flex flex-col" onClick={stopPropagation}>

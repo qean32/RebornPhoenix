@@ -21,7 +21,7 @@ export const AccessAction: React.FC<Props> = ({
             <ModalCross onClick={swap} />
             <Title className='p-2 pl-5 text-center uppercase letter-spacing-2px'>Подтвердите действие</Title>
             <div className="flex justify-center items-center flex-col flex-1 gap-2">
-                <NoFindData title='' view />
+                <NoFindData title='' />
                 <p className='text-2xl pt-4'>{warning}</p>
             </div>
             <div className="flex gap-5 justify-end p-5 items-end h-fit">

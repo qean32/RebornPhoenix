@@ -32,7 +32,7 @@ export const PostContent: React.FC<Props> = () => {
     }
 
     if (!loading && !post?.id) {
-        return <NoFindData title='Пост не найден!' view className='py-5' />
+        return <NoFindData title='Пост не найден!' className='py-5' />
     }
 
     if (post?.title) {

@@ -30,7 +30,7 @@ const Content: React.FC<{}> = () => {
 
     return (
         <>
-            <NoFindData title="У вас нет подписок!" view={!subscribers?.length} className="h-[50vh]" />
+            {!subscribers?.length && <NoFindData title="У вас нет подписок!" className="h-[50vh]" />}
             {
                 !!subscribers?.length &&
                 subscribers.map(item => {

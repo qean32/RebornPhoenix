@@ -12,11 +12,10 @@ export const useSubscriber = (position: coordinateType, path: string, key: keysT
 
     React.useEffect(() => {
         if (position) {
-
             rectRef.current.to({
                 y: position.y,
                 x: position.x,
-                duration: .1,
+                duration: .2,
             })
         }
     }, [position])

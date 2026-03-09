@@ -11,7 +11,7 @@ export const Search: React.FC<SearchProps> = ({ className = 'w-full' }: SearchPr
     const [value, setValue] = React.useState('')
     const [search, changeSearch] = useSearchThrow()
 
-    const debounceValue = useDebounce(search)
+    const debounceValue = useDebounce(value)
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }

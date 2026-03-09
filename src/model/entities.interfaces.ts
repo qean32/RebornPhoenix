@@ -35,3 +35,5 @@ export interface mapInterface extends Omit<abstractEntityInterface, "position" |
 export interface objectInterface extends abstractEntityInterface {
     status: '' | 'hidden'
 }
+
+export type gameEntities = "entity" | "map" | "object"

@@ -46,7 +46,7 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                         </div>
                     </>
                 }
-                <NoFindData title='токен не выбран' className='h-full' view={!tmpObject?.isEntity} />
+                {!tmpObject?.isEntity && <NoFindData title='Токен не выбран' className='h-full' />}
             </div>
             <div className="flex justify-end flex-col pb-6 pr-4 items-end">
                 <div className="flex gap-2 pb-1" data={JSON.stringify({ ...tmpObject })}>

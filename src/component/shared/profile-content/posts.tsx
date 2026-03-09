@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { PostColumn, PlusButton, NoFindData } from "@component/ui"
-import { useBoolean, useRequest } from "@lib/hook"
+import { useRequest } from "@lib/hook"
 import React from "react"
 import { PostItem } from "@component/ui/item"
 import { ViewAuthor } from "@/component/master/h-order-component"
@@ -10,30 +10,17 @@ import { DepartmentSceleton } from "@/component/case/sceleton"
 import { departmentMap } from "@/config"
 
 interface Props {
-    view: boolean
     id: number | string
 }
 
-export const Post: React.FC<Props> = ({ view, id }: Props) => {
-    const { on, off } = useBoolean(view)
+export const Posts: React.FC<Props> = ({ id }: Props) => {
     const [posts, loading] = useRequest<postType[]>(() => profileService.GET_POSTS(id ?? 0), [`profile-post-${id}`])
-
-    React.useEffect(() => {
-        if (view) {
-            on()
-        } else {
-            off()
-        }
-    }, [view])
-
-    if (!view) {
-        return null
-    }
 
     return (
         <div className='pt-2 pb-4'>
             <PostColumn />
-            {!!loading && <DepartmentSceleton />}
+            {loading && <DepartmentSceleton />}
+
             {!!posts?.length &&
                 posts?.map(item => {
                     return <PostItem
@@ -44,7 +31,8 @@ export const Post: React.FC<Props> = ({ view, id }: Props) => {
                         key={item.id}
                     />
                 })}
-            <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" view={!posts?.length && !loading} />
+
+            {!posts?.length && !loading && <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" />}
 
             <ViewAuthor payload_id={id ?? 0}>
                 <div className="mt-4">

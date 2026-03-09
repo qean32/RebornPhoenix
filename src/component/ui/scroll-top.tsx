@@ -21,6 +21,7 @@ export const ScrollTop: React.FC<Props> = () => {
 
     React.useEffect(() => {
         window.addEventListener('scroll', throttledFn)
+
         return () => {
             window.removeEventListener('scroll', throttledFn)
         }

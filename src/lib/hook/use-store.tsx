@@ -1,11 +1,17 @@
-import { entityInterface, mapInterface, objectInterface } from "@/model"
+import { entityInterface, gameEntities, mapInterface, objectInterface } from "@/model"
 import { sessionService } from "@/service/session-service"
 import React from "react"
 import { useRequest } from "./use-request"
 import { useTmpObject } from "./use-tmp-object"
 import { useSearchThrow, useSelectFilterThrow } from "./throw"
 
-export const useStore = (type: string) => {
+const map = new Map<gameEntities, [() => any, gameEntities]>([
+    ["entity", [() => sessionService.GET_ENTITIES(), "entity"]],
+    ["map", [() => sessionService.GET_MAPS(), "map"]],
+    ["object", [() => sessionService.GET_OBJECTS(), "object"]],
+])
+
+export const useStore = (type: gameEntities) => {
     const [primeList, setPrimeList] = React.useState({})
     const [memoryList, setMemoryList] = React.useState({})
     const { tmpObject, key } = useTmpObject()
@@ -60,10 +66,8 @@ export const useStore = (type: string) => {
         }
     }, [key, tmpObject])
 
-    const [data, loading] = type == 'entity' ? useRequest<entityInterface[]>(() => sessionService.GET_ENTITIES(), [`entities`])
-        : type == 'map' ? useRequest<mapInterface[]>(() => sessionService.GET_MAPS(), [`maps`])
-            :
-            useRequest<objectInterface[]>(() => sessionService.GET_OBJECTS(), [`objects`])
+    // @ts-ignore
+    const [data, loading] = useRequest<entityInterface[] | mapInterface[] | objectInterface[]>(map.get(type)[0], [map.get(type)[1]])
 
     const init = React.useCallback(() => {
         const tmp = {}

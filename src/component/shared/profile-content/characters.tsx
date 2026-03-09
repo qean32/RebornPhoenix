@@ -1,6 +1,6 @@
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/config"
-import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
+import { useRequest, useTmpObject } from "@/lib/hook"
 import { characterInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
@@ -10,12 +10,10 @@ import React from "react"
 
 
 interface Props {
-    view: boolean
     id: number | string
 }
 
-export const Character: React.FC<Props> = ({ id, view }: Props) => {
-    const { on, off } = useBoolean(view)
+export const Characters: React.FC<Props> = ({ id }: Props) => {
     const [characters, loading, push, _delete] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
@@ -29,18 +27,6 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
             clearTmp()
         }
     }, [tmpObject])
-
-    React.useEffect(() => {
-        if (view) {
-            on()
-        } else {
-            off()
-        }
-    }, [view])
-
-    if (!view) {
-        return null
-    }
 
     return (
         <>
@@ -63,7 +49,7 @@ export const Character: React.FC<Props> = ({ id, view }: Props) => {
                 </ViewAuthor>
 
             </div>
-            <NoFindData title="У пользователя нет персонажей!" className="min-h-[260px] w-full" view={!characters?.length && !loading} />
+            {!characters?.length && !loading && <NoFindData title="У пользователя нет персонажей!" className="min-h-[260px] w-full" />}
         </>
     )
 }

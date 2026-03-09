@@ -12,7 +12,7 @@ import Cookies from "js-cookie"
 socketConfig()
 
 const str = (Cookies.get(themeStorageKey) as string)
-if (str != "undefined") {
+if (str != "undefined" && str) {
   setTheme(JSON.parse(str))
 }
 

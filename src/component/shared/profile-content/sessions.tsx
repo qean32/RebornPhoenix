@@ -1,7 +1,7 @@
 import { SessionsSceleton } from "@/component/case/sceleton/sessions-sceleton"
 import { ViewAuthor } from "@/component/master/h-order-component"
 import { modalAnimationEnum } from "@/config"
-import { useBoolean, useRequest, useTmpObject } from "@/lib/hook"
+import { useRequest, useTmpObject } from "@/lib/hook"
 import { sessionInterface } from "@/model"
 import { profileService } from "@/service"
 import { Modal } from "@component/case/modal"
@@ -10,11 +10,9 @@ import { SessionItem } from "@component/ui/item"
 import React from "react"
 
 interface Props {
-    view: boolean
     id: number | string
 }
-export const Session: React.FC<Props> = ({ id, view }: Props) => {
-    const { on, off } = useBoolean(view)
+export const Sessions: React.FC<Props> = ({ id }: Props) => {
     const [sessions, loading, push, _delete] = useRequest<sessionInterface[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`], { editable: true })
     const { clearTmp, key, tmpObject } = useTmpObject()
 
@@ -29,21 +27,9 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
         }
     }, [tmpObject])
 
-    React.useEffect(() => {
-        if (view) {
-            on()
-        } else {
-            off()
-        }
-    }, [view])
-
-    if (!view) {
-        return null
-    }
-
     return (
         <div className='flex flex-col py-3'>
-            {!!loading && <SessionsSceleton />}
+            {loading && <SessionsSceleton />}
             {!!sessions?.length &&
                 sessions?.map(item =>
                     <SessionItem
@@ -51,7 +37,7 @@ export const Session: React.FC<Props> = ({ id, view }: Props) => {
                         {...item}
                     />
                 )}
-            <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" view={!sessions?.length && !loading} />
+            {!sessions?.length && !loading && <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" />}
 
             <ViewAuthor payload_id={id}>
                 <Modal.Root

@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { Character, Post, Session } from '.'
+import { Characters, Posts, Sessions } from '.'
 import { useParams } from 'react-router-dom'
 import { useContentThrow } from '@/lib/hook/throw'
 
@@ -15,13 +15,13 @@ export const ProfileContent: React.FC<Props> = () => {
     return (
         <div className={cn("flex w-[300%] pl-1 gap-1 transition-700 min-h-[520px] h-fit", (content == 'character' && '-translate-x-1/3'), content == 'session' && '-translate-x-2/3')}>
             <div className={classParent}>
-                <Post id={id ?? 0} view={content == 'post' || !content} />
+                {(content == 'post' || !content) && <Posts id={id ?? 0} />}
             </div>
             <div className={classParent}>
-                <Character view={content == 'character'} id={id ?? 0} />
+                {content == 'character' && <Characters id={id ?? 0} />}
             </div>
             <div className={classParent}>
-                <Session id={id ?? 0} view={content == 'session'} />
+                {content == 'session' && <Sessions id={id ?? 0} />}
             </div>
         </div >
     )
