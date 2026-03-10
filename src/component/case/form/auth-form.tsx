@@ -39,24 +39,28 @@ export const AuthForm: React.FC<Props> = () => {
                 <div className="w-fit flex flex-col gap-3">
                     <Title>ВХОД</Title>
                     <div className="flex-1 w-[35vh] pt-2 flex flex-col gap-5">
+
                         <TextInput
                             className='outline-bg-light'
                             placeHolder="никнейм или почта"
                             name='nameOrEmail'
                         />
+
                         <PasswordInput
                             placeHolder="пароль"
                             name='password'
                             xHint='right'
                             className='outline-bg-light'
                         />
+
                         <LinkPrime
                             path='/reset-password'
                         >Востановить пароль</LinkPrime>
+
                     </div>
                     <Button
-                        className="px-5 py-3"
                         variant='acceess'
+                        className="px-5 py-3"
                         type='submit'
                     >
                         <p>Вход</p>

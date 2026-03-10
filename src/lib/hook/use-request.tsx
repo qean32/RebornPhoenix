@@ -1,6 +1,7 @@
 import React from "react"
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 
+// soo no cool
 export function useRequest<T,>(
     fetch_: any,
     RQkey: string[],
@@ -12,11 +13,11 @@ export function useRequest<T,>(
             suspense: false
         }
 ): [T, boolean, Function, Function, Function] {
-    const [response, setData] = React.useState<T>()
+    const [response, setData] = React.useState<T | null>(null)
     const RQData = config.suspense ? useSuspenseQuery({
         queryKey: RQkey,
         queryFn: fetch_,
-    }) : useQuery({
+    }) : useQuery<T>({
         queryKey: RQkey,
         queryFn: fetch_,
     })
@@ -34,7 +35,14 @@ export function useRequest<T,>(
         }, [])
         const update = React.useCallback((data: T) => {
             // @ts-ignore
-            setData(prev => [data, ...prev.filter(item => item.id != data.id)])
+            setData(prev => {
+                if (prev) {
+                    // @ts-ignore
+                    const index = prev.findIndex(item => item.id == data.id)
+                    // @ts-ignore
+                    return [...prev.slice(index + 1, prev.length).reverse(), data, ...prev.slice(0, index)].reverse()
+                }
+            })
         }, [])
         const _delete = React.useCallback((data: T) => {
             // @ts-ignore

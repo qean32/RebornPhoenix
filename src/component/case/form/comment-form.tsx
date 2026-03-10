@@ -40,13 +40,14 @@ export const CommentForm: React.FC<Props> = ({ push, update, _delete }: Props) =
                             clearTmp()
                         }))
                         .catch(response => handleFetchCatch(response, toast))
-                } else {
-                    forumService.CREATE_COMMENT(data, id ?? 0)
-                        .then(response => handleFetchThen(response, toast, ACCEESS_ACTION_CREATE, (data) => {
-                            push(data)
-                        }))
-                        .catch(response => handleFetchCatch(response, toast))
+                    return
                 }
+
+                forumService.CREATE_COMMENT(data, id ?? 0)
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION_CREATE, (data) => {
+                        push(data)
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
             },
             () => { }
         )

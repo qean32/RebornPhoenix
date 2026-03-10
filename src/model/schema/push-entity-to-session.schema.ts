@@ -14,9 +14,4 @@ export const pushEntityToSessionSchema = z.object({
     initiative: initiative
 });
 
-export type pushEntityToSessionFormSchema = {
-    name: string
-    img: any
-    description: string
-    initiative: string
-}
+export type pushEntityToSessionFormSchema = z.infer<typeof pushEntityToSessionSchema>

@@ -15,6 +15,7 @@ export const Subscribers = () => {
         <Page size="w-[70%]">
             <ScrollTop />
             <BackArrow />
+
             <div className="relative">
                 <TextInfo title="Ваши подписки" />
                 <React.Suspense fallback={<CommunitySceleton />}>

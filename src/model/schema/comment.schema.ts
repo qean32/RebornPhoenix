@@ -8,7 +8,4 @@ export const commentSchema = z.object({
         .any()
 });
 
-export type commentFormSchema = {
-    payload_content: string
-    files: any
-}
+export type commentFormSchema = z.infer<typeof commentSchema>

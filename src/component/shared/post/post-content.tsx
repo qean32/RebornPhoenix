@@ -20,8 +20,6 @@ export const PostContent: React.FC<Props> = () => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
-
-    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``])
     const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
     const deletePost = () => {
@@ -48,6 +46,7 @@ export const PostContent: React.FC<Props> = () => {
                     >
                         <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
                 </ViewAuthor>
+
                 <ViewAdmin>
                     <Modal.Root
                         modal={Modal.AccessAction}
@@ -63,12 +62,14 @@ export const PostContent: React.FC<Props> = () => {
                     date={post.created_at ?? "Sun Mar 06 2021"}
                     user={post.user}
                 />
+
                 <MainBlock content={post.content} description={post.description}>
+
                     <CountBlock
                         likeCount={post.likes}
-                        userLike={myLike ?? false}
                     />
                 </MainBlock>
+
                 <UnwrapFiles
                     className='my-5'
                     imgView

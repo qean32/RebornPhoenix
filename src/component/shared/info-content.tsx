@@ -10,8 +10,6 @@ interface Props {
 
 
 export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
-
-
     return (
         <>
             <div className="w-10/12 pb-5">

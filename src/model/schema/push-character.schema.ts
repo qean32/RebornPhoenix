@@ -12,8 +12,4 @@ export const pushCharacterSchema = z.object({
     initiative: initiative
 });
 
-export type pushCharacterFormSchema = {
-    name: string
-    initiative: number
-    img: any
-}
+export type pushCharacterFormSchema = z.infer<typeof pushCharacterSchema>

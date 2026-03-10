@@ -61,6 +61,7 @@ export const RegistrationForm: React.FC<Props> = () => {
                             name='confirmPassword'
                         />
                         <Checkbox title='Мне больше 18 лет и я согласен с условиями конфиденциальности' value />
+
                     </div>
                     <Button
                         variant='acceess'

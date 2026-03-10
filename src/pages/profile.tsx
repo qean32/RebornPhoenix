@@ -22,20 +22,25 @@ export const Profile = () => {
             <Page size="w-[65%]" className="overflow-hidden" >
                 <div className="flex-col flex h-full pb-3">
                     <UserInfo user={user} />
+
                     <div className="flex gap-5 mt-1">
+
                         <ViewAuthor payload_id={user?.id}>
                             <LinkPrime
                                 className="mt-3 pl-2"
                                 path='/subscribers'
                             >Мои подписки</LinkPrime>
                         </ViewAuthor>
+
                         <ViewAuthor payload_id={user?.id} reverse>
                             <ButtonSubscription init={!!sub} />
                         </ViewAuthor>
+
                     </div>
                     <ProfileContentSwith />
                     <ProfileContent />
                 </div>
+
                 <ViewAuthor payload_id={user?.id}>
                     <LinkPrime
                         className="mt-3 pl-2"
@@ -43,6 +48,7 @@ export const Profile = () => {
                     >Изменить профиль</LinkPrime>
                     <Logout />
                 </ViewAuthor>
+
                 <BanAction ban={user?.ban ?? false} />
             </Page >
             {!!user?.ban &&

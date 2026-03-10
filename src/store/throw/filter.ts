@@ -1,12 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type stateFilter = {
-    tags: string
-    date: string
+    state: {
+        tags: string
+        date: string
+    }
 }
 const initialState: stateFilter = {
-    date: "",
-    tags: "",
+    state: {
+        date: "",
+        tags: "",
+    }
 }
 
 const filterSlice = createSlice({
@@ -14,7 +18,7 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         changeFilterPost(state: stateFilter, { payload }: PayloadAction<stateFilter>) {
-            state = { ...state, ...payload }
+            state.state = { ...state.state, ...payload }
         },
     },
 })

@@ -6,7 +6,4 @@ export const editProfileSchema = z.object({
     ava: z.any().nullable()
 });
 
-export type editProfileFormSchema = {
-    name: string
-    ava?: any
-}
+export type editProfileFormSchema = z.infer<typeof editProfileSchema>

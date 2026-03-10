@@ -37,9 +37,11 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
             <TextInfo title={name ? name.toUpperCase() : ''} />
             <Search />
             <PostColumn />
+
             <div className="pb-4">
                 <PostItem {...post} fixed={true} className="pl-2" />
             </div>
+
             <React.Suspense fallback={<DepartmentSceleton />}>
                 <DynamicPagination
                     rq={{

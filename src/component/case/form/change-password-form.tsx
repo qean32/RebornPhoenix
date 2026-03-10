@@ -38,21 +38,25 @@ export const ChangePasswordForm: React.FC<Props> = () => {
                 <div className="w-fit flex flex-col gap-3">
                     <Title className="pb-4">Изменение пароля</Title>
                     <div className="w-[40vh] flex flex-col gap-5">
+
                         <PasswordInput
                             placeHolder="пароль"
                             name='password'
                             xHint='right'
                         />
+
                         <PasswordInput
                             placeHolder="повторите пароль"
                             name='confirmPassword'
                             xHint='right'
                         />
+
                         <Button
                             variant="acceess"
                             type='submit'
                             className="w-full py-3"
                         >Сохранить</Button>
+
                     </div>
                 </div>
             </form>
