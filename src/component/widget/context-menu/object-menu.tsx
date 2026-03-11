@@ -1,0 +1,39 @@
+import React from 'react'
+import { ContextMenu } from '@component/master/hoc'
+import { ContextMenuItem } from './context-menu-item'
+import { objectInterface } from '@/model'
+import { useAppDispatch } from '@/lib/hook/redux'
+import { scaleObject, removeObject, changeObject, pushObject } from '@/store/session'
+import { EventMiddleware } from '@/lib/middleware'
+
+interface Props extends objectInterface {
+}
+
+
+export const ObjectMenu: React.FC<Props> = (item: Props) => {
+    const dispath = useAppDispatch()
+    const event = EventMiddleware()
+
+    const removeHandler = () => dispath(removeObject({ id: item.id }))
+    const scaleHandler = (operation: -1 | 1) => {
+        const payload = { object: item, operation }
+        event({ payload, type: 'change-object' }, () => { dispath(scaleObject({ ...payload })) })
+    }
+    const swapHidden = () => {
+        const payload = { id: item.id, status: (item.status == '' ? 'hidden' : '') }
+        // @ts-ignore
+        event({ payload, type: 'change-object' }, () => { dispath(changeObject({ payload })) })
+    }
+    const push = () => {
+        dispath(pushObject({ ...item }))
+    }
+
+    return (
+        <ContextMenu>
+            <ContextMenuItem onClick={() => scaleHandler(1)}>Изм. размер</ContextMenuItem>
+            <ContextMenuItem onClick={swapHidden}>Изм. видимость</ContextMenuItem>
+            <ContextMenuItem onClick={removeHandler}>Удалить</ContextMenuItem>
+            <ContextMenuItem onClick={push}>Дублировать</ContextMenuItem>
+        </ContextMenu>
+    )
+}

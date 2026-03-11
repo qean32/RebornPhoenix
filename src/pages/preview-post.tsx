@@ -1,5 +1,5 @@
 import { PostInfo, MainBlock, CountBlock } from "@/component/shared/post"
-import { Page } from "@component/master/h-order-component"
+import { Page } from "@/component/master/hoc"
 import { Crumb } from "@component/ui"
 import { usePage } from "@lib/hook"
 import { getParamName } from "@lib/function"

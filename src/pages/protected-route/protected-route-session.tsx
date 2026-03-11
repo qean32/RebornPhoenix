@@ -13,6 +13,7 @@ interface Props {
 
 export const ProtectedRouteSession: React.FC<Props> = ({ children }: Props) => {
     const { id } = useParams()
+    const setSession = initSetSession()
     const [session] = useRequest<sessionInfoDto>(
         () => sessionService.GET_SESSION(Number(id))
             .then(response => {
@@ -24,7 +25,6 @@ export const ProtectedRouteSession: React.FC<Props> = ({ children }: Props) => {
             }),
         [`session-${id}`]
     )
-    const setSession = initSetSession()
     const { user } = useUser()
     const { } = usePage(getParamName())
 

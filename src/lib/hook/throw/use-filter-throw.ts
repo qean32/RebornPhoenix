@@ -12,7 +12,7 @@ export const useFilterThrow = (): [{
         tags?: string
         date?: string
         // @ts-ignore
-    }) => { console.log(payload); dispatch(changeFilterPost(payload)) }
+    }) => dispatch(changeFilterPost(payload))
 
     return [state, change]
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { DynamicPagination } from "@component/master"
 import { PostColumn, ScrollTop, Search, TextInfo } from "@component/ui"
-import { Page } from "@component/master/h-order-component"
+import { Page } from "@/component/master/hoc"
 import { useParams } from "react-router-dom"
 import { PostItem } from "@component/ui/item"
 import { FilterForum } from "@component/shared"
@@ -10,7 +10,7 @@ import { getParamName } from "@lib/function"
 import { forumService } from "@/service"
 import { departmentOptions } from "@/config"
 import { postType } from "@/model/post.type"
-import { DepartmentSceleton } from "@/component/case/sceleton"
+import { DepartmentSceleton } from "@/component/widget/sceleton"
 
 
 export const Department = () => {

@@ -10,8 +10,8 @@ interface Props {
 }
 
 export const CountBlock: React.FC<Props> = ({ likeCount, viewCount = 0 }: Props) => {
-    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``])
     const { id } = useParams()
+    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``])
     const { boolean: action, swap } = useBoolean(myLike)
 
     const request = useDebounceFunction(() => {

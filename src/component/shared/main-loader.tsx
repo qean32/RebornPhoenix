@@ -3,7 +3,7 @@ import { Logo } from '@component/ui'
 import { useBoolean } from '@/lib/hook'
 import { cn, getBetweenNumber } from '@/lib/function'
 import { tip } from '@/config'
-import { Portal } from '../master/h-order-component'
+import { Portal } from '../master/hoc'
 
 interface Props {
     infinity?: boolean

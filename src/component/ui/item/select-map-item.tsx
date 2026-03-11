@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@lib/function'
 import { mapInterface } from '@/model'
-import { MapMenu } from '@/component/case/context-menu'
+import { MapMenu } from '@component/widget/context-menu'
 
 interface Props {
     path: string

@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import { Portal } from '../master/h-order-component'
+import React from 'react'
+import { Portal } from '../master/hoc'
 import { positionType } from '@/model'
 import { useAppSelector } from '@/lib/hook/redux';
 
@@ -12,7 +12,7 @@ export const SessionLog: React.FC<Props> = () => {
     const [offset, setOffset] = React.useState<positionType>({ left: 0, top: 0 })
     const { logs } = useAppSelector(state => state.log)
 
-    const dragEnd = useCallback((e: any) => {
+    const dragEnd = React.useCallback((e: any) => {
         if (ref.current) {
             const top = e.pageY - e.target.parentElement.parentElement.offsetTop - offset.top
             const left = e.pageX - e.target.parentElement.parentElement.offsetLeft - offset.left

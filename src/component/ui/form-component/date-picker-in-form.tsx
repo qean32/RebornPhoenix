@@ -15,6 +15,7 @@ export const DatePickerInForm = ({ title }: {
     dt.setTime(dt.getTime() + (24 * 60 * 60 * 1000));
     const ref = useRef(dt)
     const [startDate, setStartDate] = useState(ref.current);
+
     useEffect(() => {
         setValue('date', startDate.toString())
     }, [setStartDate])
@@ -49,8 +50,7 @@ export const DatePickerInForm = ({ title }: {
                     ></path>
                 </svg>
             }
-            // @ts-ignore
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => date && setStartDate(date)}
             dateFormat="dd MMMM yyyy"
             locale={ru}
         />

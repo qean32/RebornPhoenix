@@ -1,5 +1,5 @@
-import { CharacterMenu } from '@/component/case/context-menu'
-import { ViewAuthor } from '@/component/master/h-order-component'
+import { CharacterMenu } from '@component/widget/context-menu'
+import { ViewAuthor } from '@/component/master/hoc'
 import React from 'react'
 
 interface Props {

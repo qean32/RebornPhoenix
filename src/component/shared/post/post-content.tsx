@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button, NoFindData, UnwrapFiles } from '@component/ui'
-import { ViewAdmin, ViewAuthor } from '@component/master/h-order-component'
-import { Modal } from '@component/case/modal'
+import { ViewAdmin, ViewAuthor } from '@/component/master/hoc'
+import { Modal } from '@component/widget/modal'
 import { MainBlock, PostInfo, CountBlock } from '.'
 import { useRequest, useToast } from '@/lib/hook'
 import { postType } from '@/model/post.type'
 import { forumService } from '@/service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { modalAnimationEnum } from '@/config'
-import { PostContentSceleton } from '@/component/case/sceleton'
+import { PostContentSceleton } from '@component/widget/sceleton'
 import { handleFetchThen } from '@/lib/function'
 
 interface Props {
@@ -58,7 +58,6 @@ export const PostContent: React.FC<Props> = () => {
 
                 <PostInfo
                     id={post.id}
-                    // @ts-ignore
                     date={post.created_at ?? "Sun Mar 06 2021"}
                     user={post.user}
                 />

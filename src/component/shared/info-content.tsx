@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoBlock } from '@component/ui'
-import { ViewImg } from '@component/case/modal/img-view-modal'
+import { ViewImg } from '@component/widget/modal/img-view-modal'
 import { infoBlockType } from '@/model'
 
 interface Props {

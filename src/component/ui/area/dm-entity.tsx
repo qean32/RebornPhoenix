@@ -21,7 +21,6 @@ export const EntityDM: React.FC<Props> = (props: Props) => {
         rectRef,
         _position
     } = useDMEntity(
-        // @ts-ignore
         props.position,
         props.path
     )

@@ -1,4 +1,4 @@
-import { Page } from "@component/master/h-order-component/page"
+import { Page } from "@/component/master/hoc/page"
 import { title } from "@/config/project"
 import { InfoContent } from "@/component/shared/info-content"
 import { InfoAnchor } from "@/component/ui/info-anchor"
