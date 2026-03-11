@@ -1,11 +1,11 @@
-import { Page } from "@component/master/h-order-component"
+import { Page } from "@/component/master/hoc"
 import { BackArrow, NoFindData, ScrollTop, TextInfo } from "@component/ui"
 import { title } from "@/config"
 import { usePage, useRequest } from "@lib/hook"
 import { profileService } from "@/service"
 import { userInterface } from "@/model"
 import { UserItem } from "@/component/ui/item"
-import { CommunitySceleton } from "@/component/case/sceleton"
+import { CommunitySceleton } from "@/component/widget/sceleton"
 import React from "react"
 
 export const Subscribers = () => {
@@ -15,6 +15,7 @@ export const Subscribers = () => {
         <Page size="w-[70%]">
             <ScrollTop />
             <BackArrow />
+
             <div className="relative">
                 <TextInfo title="Ваши подписки" />
                 <React.Suspense fallback={<CommunitySceleton />}>
@@ -26,7 +27,7 @@ export const Subscribers = () => {
 }
 
 const Content: React.FC<{}> = () => {
-    const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'], { suspense: true })
+    const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'])
 
     return (
         <>

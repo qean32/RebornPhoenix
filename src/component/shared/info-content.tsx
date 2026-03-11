@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoBlock } from '@component/ui'
-import { ViewImg } from '@component/case/modal/img-view-modal'
+import { ViewImg } from '@component/widget/modal/img-view-modal'
 import { infoBlockType } from '@/model'
 
 interface Props {
@@ -10,8 +10,6 @@ interface Props {
 
 
 export const InfoContent: React.FC<Props> = ({ q, title }: Props) => {
-
-
     return (
         <>
             <div className="w-10/12 pb-5">

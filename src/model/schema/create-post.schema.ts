@@ -18,11 +18,4 @@ export const createPostSchema = z.object({
         .any()
 });
 
-export type createPostFormSchema = {
-    department: string
-    description: string
-    payload_content: string
-    tags: string
-    files: any
-    title: string
-}
+export type createPostFormSchema = z.infer<typeof createPostSchema>

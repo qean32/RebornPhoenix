@@ -1,6 +1,7 @@
 import React from "react";
 import { useBoolean, useThrottleFunction } from ".";
 
+// deprecated
 export const useHandlerScroll = (daley: number = 100, direction: 'top' | 'bottom' = 'top') => {
     const { on, off, boolean } = useBoolean(false);
     const refHandler = React.useRef<HTMLDivElement | null>(null)

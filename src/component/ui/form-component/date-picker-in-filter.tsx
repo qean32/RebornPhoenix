@@ -47,8 +47,7 @@ export const DatePickerInFilter = () => {
                     ></path>
                 </svg>
             }
-            // @ts-ignore
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => date && setStartDate(date)}
             dateFormat="dd MMMM yyyy"
             locale={ru} />
     </>

@@ -1,50 +1,21 @@
 import React from "react"
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 
-export function useRequest<T,>(
+export function useRequest<T>(
     fetch_: any,
-    RQkey: string[],
-    config: {
-        editable?: boolean,
-        suspense?: boolean
-    } = {
-            editable: false,
-            suspense: false
-        }
-): [T, boolean, Function, Function, Function] {
-    const [response, setData] = React.useState<T>()
-    const RQData = config.suspense ? useSuspenseQuery({
-        queryKey: RQkey,
-        queryFn: fetch_,
-    }) : useQuery({
+    RQkey: string[])
+    : [T, boolean] {
+    // @ts-ignore
+    const [response, setData] = React.useState<T>(null)
+    const RQData = useSuspenseQuery<T>({
         queryKey: RQkey,
         queryFn: fetch_,
     })
 
     React.useEffect(() => {
         RQData.data &&
-            // @ts-ignore
             setData(RQData.data)
     }, [RQData.data])
 
-    if (config.editable) {
-        const push = React.useCallback((data: T) => {
-            // @ts-ignore
-            setData(prev => [data, ...prev])
-        }, [])
-        const update = React.useCallback((data: T) => {
-            // @ts-ignore
-            setData(prev => [data, ...prev.filter(item => item.id != data.id)])
-        }, [])
-        const _delete = React.useCallback((data: T) => {
-            // @ts-ignore
-            setData(prev => prev.filter(item => item.id != data.id))
-        }, [])
-
-        //@ts-ignore
-        return [response, RQData.isLoading, push, _delete, update]
-    }
-
-    //@ts-ignore
     return [response, RQData.isLoading]
 }

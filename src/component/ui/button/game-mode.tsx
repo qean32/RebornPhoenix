@@ -1,5 +1,5 @@
 import React from 'react'
-import { FillHoverHint } from '../../master/h-order-component'
+import { FillHoverHint } from '../../master/hoc'
 import { ButtonInGroup } from './button-in-group'
 import { useAppSelector } from '@/lib/hook/redux'
 import { useAppDispatch } from '@/store'

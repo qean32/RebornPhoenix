@@ -1,5 +1,5 @@
-import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
-import { SessionLog, ToolGameSubscriber } from "@component/shared"
+import { ObjectMoreDetailed, ViewImg } from "@component/widget/modal/index-group"
+import { SessionLog, ToolSessionSubscriber } from "@component/shared"
 import React from "react"
 
 const GameAreaSubscriber = React.lazy(() => import("@component/master/game-area-subscriber"))
@@ -7,7 +7,7 @@ const GameAreaSubscriber = React.lazy(() => import("@component/master/game-area-
 export const ViewSession = () => {
     return (
         <>
-            <ToolGameSubscriber />
+            <ToolSessionSubscriber />
             <main className="h-full max-h-[100vh] z-0 relative">
                 <GameAreaSubscriber />
             </main >

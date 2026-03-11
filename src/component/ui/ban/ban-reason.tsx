@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page } from '@component/master/h-order-component'
+import { Page } from '@/component/master/hoc'
 import { useRequest } from '@/lib/hook'
 import { profileService } from '@/service'
 import { banReasonInterface } from '@/model'

@@ -4,11 +4,11 @@ const instance = ''
 
 export class authService {
     async REGISTRATION(data: registrationFormSchema) {
-        return requestPost(`${instance}/registration`, data)
+        return requestPost<{ token: string }>(`${instance}/registration`, data)
     }
 
     async AUTH(data: authFormSchema) {
-        return requestPost(`${instance}/auth`, data)
+        return requestPost<{ token: string }>(`${instance}/auth`, data)
     }
 
     async CHANGE_PASSWORD(data: changePasswordFormSchema, token: string) {

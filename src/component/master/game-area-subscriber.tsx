@@ -40,12 +40,12 @@ const GameAreaSubscriber: React.FC<Props> = () => {
         >
             <Layer>
                 <GameBackground />
-                {!!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
+                {currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.queue?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.queue.map((item) => {
                         return <EntitySubscriber {...item} key={item.id} />
                     })
                 }
-                {!!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
+                {currentMap && !!mapsData[currentMap ? currentMap.id : 'null']?.objects?.length &&
                     mapsData[currentMap ? currentMap.id : 'null']?.objects.map((item) => {
                         return <ObjectSubscriber {...item} key={item.id} />
                     })

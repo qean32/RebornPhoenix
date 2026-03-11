@@ -1,11 +1,11 @@
-import { Page } from "@component/master/h-order-component"
+import { Page } from "@/component/master/hoc"
 import { TextInfo } from "@component/ui"
 import { DepartmentItem } from "@component/ui/item"
 import { title } from "@/config"
 import { usePage, useRequest } from "@lib/hook"
 import { forumService } from "@/service"
 import { departmentType } from "@/model"
-import { ForumSceleton } from "@/component/case/sceleton"
+import { ForumSceleton } from "@/component/widget/sceleton"
 import React from "react"
 
 
@@ -27,7 +27,7 @@ export const Forum = () => {
 }
 
 const Content: React.FC<{}> = ({ }: {}) => {
-    const [departments] = useRequest<departmentType[]>(forumService.GET_DEPARTAMENTS, ['departments'], { suspense: true })
+    const [departments] = useRequest<departmentType[]>(forumService.GET_DEPARTAMENTS, ['departments'])
 
     return (
         <div className="flex flex-col gap-7">

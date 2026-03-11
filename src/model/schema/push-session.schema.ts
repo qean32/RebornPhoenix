@@ -9,7 +9,4 @@ export const pushSessionSchema = z.object({
     path: z.string()
 });
 
-export type pushSessionFormSchema = {
-    name: string
-    path: string
-}
+export type pushSessionFormSchema =  z.infer<typeof pushSessionSchema>

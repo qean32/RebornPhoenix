@@ -1,6 +1,7 @@
 import React from "react"
 
-export const useBoolean = (initialValue: boolean = false) => {
+type voidFn = () => void
+export const useBoolean = (initialValue: boolean = false): { boolean: boolean, swap: voidFn, on: voidFn, off: voidFn } => {
     const [boolean, setBoolean] = React.useState<boolean>(initialValue)
 
     const swap = React.useCallback(() => {

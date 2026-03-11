@@ -5,6 +5,4 @@ export const resetPasswordSchema = z.object({
     email: email
 });
 
-export type resetPasswordFormSchema = {
-    email: string
-}
+export type resetPasswordFormSchema =  z.infer<typeof resetPasswordSchema>

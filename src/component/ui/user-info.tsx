@@ -1,7 +1,7 @@
 import React from 'react'
 import { Ava, BanPlate } from '.'
 import { userInterface } from '@/model'
-import { ProfileInfoSceleton } from '../case/sceleton'
+import { ProfileInfoSceleton } from '@component/widget/sceleton'
 
 interface Props {
     className?: string

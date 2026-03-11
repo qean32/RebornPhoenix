@@ -95,9 +95,9 @@ const sessionSlice = createSlice({
             initiative,
             name,
             path,
-            size,
             source,
-            status
+            status,
+            position
         } }: PayloadAction<entityInterface>) => {
             if (state.session.mapsData[state.session.currentMap.id].queue.length < 16) {
 
@@ -105,13 +105,13 @@ const sessionSlice = createSlice({
 
                 state.session.mapsData[state.session.currentMap.id].queue = [
                     ...state.session.mapsData[state.session.currentMap.id].queue,
-                    { id, idInBestiary, initiative, status, source, path, name, size: 3 }
+                    { id, idInBestiary, initiative, status, source, path, name, size: 3, position }
                 ]
 
                 if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
                     state.bestiary = [
                         ...state.bestiary,
-                        { id, idInBestiary, initiative, source, path, name, description, size, status }
+                        { id, idInBestiary, initiative, source, path, name, description, size: 3, status, position }
                     ]
                 }
             }

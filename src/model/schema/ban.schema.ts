@@ -9,8 +9,4 @@ export const banSchema = z.object({
         .string()
 });
 
-export type banFormSchema = {
-    id: string
-    reason: string
-    date: string
-}
+export type banFormSchema = z.infer<typeof banSchema>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '../../../lib/function'
 import { useFormContext } from 'react-hook-form'
-import { HoverHint } from '../../master/h-order-component'
+import { HoverHint } from '../../master/hoc'
 import { DangerIcon } from '..'
 import { useEditable } from "use-editable";
 import { separator, separatorLink } from '@/config'

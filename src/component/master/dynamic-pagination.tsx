@@ -3,7 +3,6 @@ import { cn } from '@/lib/function'
 import { NoFindData } from '../ui'
 import { useDynamicPagination } from '@/lib/hook';
 import { userInterface } from '@/model';
-import { useFilterThrow, useSearchThrow } from '@/lib/hook/throw';
 
 interface Props {
     className?: string
@@ -16,7 +15,6 @@ interface Props {
     }
 }
 
-
 export const DynamicPagination: React.FC<Props> = ({
     className,
     renderItem,
@@ -27,11 +25,8 @@ export const DynamicPagination: React.FC<Props> = ({
         staticParam
     },
 }: Props) => {
-    const [search] = useSearchThrow()
-    const [{ date, tags }] = useFilterThrow()
-
     const { response, loading, refHandler, isEnd } =
-        useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, search, [staticParam], date, tags)
+        useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, staticParam)
 
     return (
         <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>

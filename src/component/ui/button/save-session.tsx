@@ -1,4 +1,4 @@
-import { FillHoverHint } from '@/component/master/h-order-component'
+import { FillHoverHint } from '@/component/master/hoc'
 import React from 'react'
 import { ButtonInGroup } from './button-in-group'
 import { saveJson } from '@/lib/function'

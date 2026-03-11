@@ -10,7 +10,4 @@ export const pushObjectToSessionSchema = z.object({
     // description: z.string().max(255, { message: 'Мексимальная длина 255 символа' }),
 });
 
-export type pushObjectToSessionFormSchema = {
-    name: string
-    img: any
-}
+export type pushObjectToSessionFormSchema =  z.infer<typeof pushObjectToSessionSchema>

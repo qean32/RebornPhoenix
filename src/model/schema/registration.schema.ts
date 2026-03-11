@@ -12,9 +12,4 @@ export const registrationSchema = z.object({
 })
     .superRefine(confirmPassword);
 
-export type registrationFormSchema = {
-    password: string
-    confirmPassword: string
-    name: string
-    email: string
-}
+export type registrationFormSchema =  z.infer<typeof registrationSchema>

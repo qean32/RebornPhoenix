@@ -1,6 +1,6 @@
 import React from 'react'
 import { objectInterface } from '@/model'
-import { ObjectMenu } from '@component/case/context-menu'
+import { ObjectMenu } from '@component/widget/context-menu'
 
 
 export const InToolObjectItem: React.FC<objectInterface> = (item: objectInterface) => {

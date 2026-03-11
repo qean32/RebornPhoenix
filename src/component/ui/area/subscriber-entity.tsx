@@ -7,7 +7,6 @@ import { useSubscriber } from '@/lib/hook/area';
 
 export const EntitySubscriber: React.FC<Omit<entityInterface, 'description'>> = (props: Omit<entityInterface, 'description'>) => {
     const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
-        // @ts-ignore
         props.position,
         props.path,
         'more-entity',

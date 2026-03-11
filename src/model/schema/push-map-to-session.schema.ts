@@ -9,7 +9,4 @@ export const pushMapToSessionSchema = z.object({
     img: z.file(),
 });
 
-export type pushMapToSessionFormSchema = {
-    name: string
-    img: any
-}
+export type pushMapToSessionFormSchema = z.infer<typeof pushMapToSessionSchema>

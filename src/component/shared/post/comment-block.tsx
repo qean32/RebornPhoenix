@@ -1,8 +1,8 @@
 import React from 'react'
 import { CommentItem } from '@component/ui/item'
-import { CommentForm } from '@/component/case/form'
+import { CommentForm } from '@component/widget/form'
 import { commentType } from '@/model'
-import { useRequest } from '@/lib/hook'
+import { useRequestEditable } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 
@@ -12,12 +12,11 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = () => {
     const { id } = useParams()
-    const [comments, loading, push, _delete, update] = useRequest<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`], { editable: true })
+    const [comments, loading, actions] = useRequestEditable<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`])
 
     return (
         <div className="bg-color-dark rounded-lg pb-2">
-            <CommentForm update={update}
-                push={push} _delete={_delete} />
+            <CommentForm {...actions} />
 
             {
                 !loading &&

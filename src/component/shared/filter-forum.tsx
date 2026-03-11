@@ -17,6 +17,7 @@ export const FilterForum: React.FC<Props> = () => {
             <PushTagInFilter
                 className="pt-5"
             />
+
             <div className='flex justify-between pt-20'>
                 <Button
                     onClick={() => { navigate(location.pathname) }}

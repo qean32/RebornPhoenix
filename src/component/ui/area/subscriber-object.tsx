@@ -10,7 +10,6 @@ interface Props extends objectInterface {
 
 export const ObjectSubscriber: React.FC<Props> = (props: Props) => {
     const { image, mouseOutHandler, mouseOverHandler, clickHandler, _position, rectRef } = useSubscriber(
-        // @ts-ignore
         props.position,
         props.path,
         'more-object',

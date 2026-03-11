@@ -52,7 +52,6 @@ export const useStore = (type: gameEntities) => {
 
     React.useEffect(() => {
         if (key == 'push-entity') {
-
             setPrimeList(prev => {
                 return {
                     // @ts-ignore

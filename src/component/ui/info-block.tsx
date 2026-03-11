@@ -1,8 +1,8 @@
 import React from 'react'
 import { InfoImage } from './info-image'
-import { useHandlerScrollBetween } from '@/lib/hook'
 import { infoBlockContentType } from '@/model'
 import { useAnchorThrow } from '@/lib/hook/throw'
+import { useOnInView } from "react-intersection-observer";
 
 interface Props {
     title: string
@@ -16,16 +16,15 @@ export const InfoBlock: React.FC<Props> = React.memo(({
     title,
     id
 }: Props) => {
-    const { boolean, refHandler } = useHandlerScrollBetween()
-    const [_, swap] = useAnchorThrow()
-    React.useEffect(() => {
-        if (boolean) {
+    const ref = useOnInView((inView) => {
+        if (inView) {
             swap(title)
         }
-    }, [boolean])
+    })
+    const [_, swap] = useAnchorThrow()
 
     return (
-        <div className='pt-20' ref={refHandler} id={id.toString()}>
+        <div className='pt-20' ref={ref} id={id.toString()}>
             <p className="text-3xl uppercase">{title}</p>
             {content.map(item => {
                 return (

@@ -11,9 +11,9 @@ import Cookies from "js-cookie"
 
 socketConfig()
 
-const str = (Cookies.get(themeStorageKey) as string)
-if (str != "undefined" && str) {
-  setTheme(JSON.parse(str))
+const theme = (Cookies.get(themeStorageKey) as string)
+if (theme != "undefined" && theme) {
+  setTheme(JSON.parse(theme))
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

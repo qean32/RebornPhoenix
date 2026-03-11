@@ -7,7 +7,4 @@ export const changePasswordSchema = z.object({
 })
     .superRefine(confirmPassword);
 
-export type changePasswordFormSchema = {
-    password: string
-    confirmPassword: string
-}
+export type changePasswordFormSchema = z.infer<typeof changePasswordSchema>

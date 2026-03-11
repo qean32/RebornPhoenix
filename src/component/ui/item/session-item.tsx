@@ -1,5 +1,5 @@
-import { SessionMenu } from '@/component/case/context-menu'
-import { ViewAuthor } from '@/component/master/h-order-component'
+import { SessionMenu } from '@component/widget/context-menu'
+import { ViewAuthor } from '@/component/master/hoc'
 import { sessionInterface } from '@/model'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'

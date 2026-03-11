@@ -4,9 +4,9 @@ import { userInterface } from "./user.interface"
 
 interface abstractEntityInterface extends idType {
     source: sourceInterface
-    position?: coordinateType
     name: string
     path: string
+    position: coordinateType
     size: sizeType
 }
 
@@ -29,7 +29,7 @@ export interface characterInterface extends Omit<abstractEntityInterface, "sourc
     user: userInterface
 }
 
-export interface mapInterface extends Omit<abstractEntityInterface, "position" | "size"> {
+export interface mapInterface extends Omit<abstractEntityInterface, "size"> {
 }
 
 export interface objectInterface extends abstractEntityInterface {

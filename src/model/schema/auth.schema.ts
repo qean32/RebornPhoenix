@@ -7,7 +7,4 @@ export const authSchema = z.object({
     password: password
 });
 
-export type authFormSchema = {
-    nameOrEmail: string
-    password: string
-}
+export type authFormSchema = z.infer<typeof authSchema>

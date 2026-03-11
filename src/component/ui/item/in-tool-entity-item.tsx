@@ -1,7 +1,7 @@
 import React from 'react'
 import { Ava } from '@component/ui'
 import { entityInterface } from '@/model'
-import { BestiaryMenu } from '@component/case/context-menu'
+import { BestiaryMenu } from '@component/widget/context-menu'
 
 
 export const InToolEntityItem: React.FC<entityInterface> = (item: entityInterface) => {

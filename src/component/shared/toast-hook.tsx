@@ -1,4 +1,4 @@
-import { ToastPushEntity, ToastEventMessage, ToastMessage } from "@/component/case/toast"
+import { ToastPushEntity, ToastEventMessage, ToastMessage } from "@/component/widget/toast"
 import { toastKeyType, toastPayloadType } from "@/model"
 
 

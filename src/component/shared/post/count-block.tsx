@@ -1,18 +1,18 @@
 import React from 'react'
 import { IconAndCount, IconAndNumber } from '@/component/ui'
-import { useBoolean, useDebounceFunction } from '@/lib/hook'
+import { useBoolean, useDebounceFunction, useRequest } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
 
 interface Props {
     likeCount: number
-    userLike: boolean
     viewCount?: number
 }
 
-export const CountBlock: React.FC<Props> = ({ likeCount, userLike, viewCount = 0 }: Props) => {
-    const { boolean: action, swap } = useBoolean(userLike)
+export const CountBlock: React.FC<Props> = ({ likeCount, viewCount = 0 }: Props) => {
     const { id } = useParams()
+    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``])
+    const { boolean: action, swap } = useBoolean(myLike)
 
     const request = useDebounceFunction(() => {
         forumService.LIKE_ACTION(id ?? 0)

@@ -1,5 +1,5 @@
-import { EditProfileForm } from "@component/case/form"
-import { Page } from "@component/master/h-order-component"
+import { EditProfileForm } from "@component/widget/form"
+import { Page } from "@/component/master/hoc"
 import { AuthBackground } from "@component/ui"
 import { title } from "@/config"
 import { usePage } from "@lib/hook"

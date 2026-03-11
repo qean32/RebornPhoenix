@@ -10,5 +10,6 @@ export type postType = idType & {
     files: string
     department: string
     likes: number
+    created_at: string
     fixed?: boolean
 }
