@@ -1,4 +1,4 @@
-import { customMarkup, separator } from "@/export"
+import { customMarkup, separator } from "@/config"
 
 export const convertToHTML = (text: string, link?: string) => {
     function* generatorFn() {
@@ -6,8 +6,6 @@ export const convertToHTML = (text: string, link?: string) => {
         for (const item of link?.replaceAll('{', '').replaceAll('}', '').split(',')) yield item;
     }
     const generator = generatorFn()
-    console.log(link);
-
 
 
     return text.split(separator).map(item => {
@@ -17,23 +15,23 @@ export const convertToHTML = (text: string, link?: string) => {
             return "ERROR"
         }
         if (arr[0] == customMarkup.h1) {
-            return `<p class="text-4xl">${arr.slice(1)}</p>`
+            return `<p class="text-4xl">${arr.slice(1).join(' ')}</p>`
         }
         if (arr[0] == customMarkup.small) {
-            return `<p class="text-sm">${arr.slice(1)}<p>`
+            return `<p class="text-sm">${arr.slice(1).join(' ')}<p>`
         }
         if (arr[0] == customMarkup.h2) {
-            return `<p class="text-3xl">${arr.slice(1)}<p>`
+            return `<p class="text-3xl">${arr.slice(1).join(' ')}<p>`
         }
         if (arr[0] == customMarkup.h3) {
-            return `<p class="text-2xl">${arr.slice(1)}<p>`
+            return `<p class="text-2xl">${arr.slice(1).join(' ')}<p>`
         }
         if (arr[0] == customMarkup.small) {
-            return `<p class="text-sm">${arr.slice(1)}<p>`
+            return `<p class="text-sm">${arr.slice(1).join(' ')}<p>`
         }
         if (arr[0].slice(0, 4) == 'img:' && link) {
 
-            return `<img class="rounded-sm" src="${generator.next().value.replaceAll(';', '/')}" />`
+            return `<img class="rounded-sm my-2" src="${generator.next().value.replaceAll(';', '/')}" width="400px" />`
         }
 
         return `<p class="text-xl">${item}<p>`

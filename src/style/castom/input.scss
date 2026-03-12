@@ -42,7 +42,6 @@ input[type="search"] {
 
 select {
     appearance: none;
-    // outline: 1px solid $bg-color-light;
 
     @supports (appearance: base-select) {
 
@@ -79,11 +78,6 @@ select {
             rotate: 90deg;
         }
 
-        // &:open::picker-icon {
-        // rotate: 90deg;
-        // }
-
-
         &::picker(select) {
             background: transparent;
             border: none;
@@ -94,7 +88,7 @@ select {
             opacity: 0;
             height: 0;
 
-            transition: height 0.5s ease-out, opacity 0.5s ease-out, overlay 0.5s,
+            transition: height 0.4s ease-out, opacity 0.3s ease-out, overlay 0.5s,
                 display 0.5s;
 
             transition-behavior: allow-discrete;
@@ -193,4 +187,8 @@ label {
         z-index: 10;
         background: $border-color;
     }
+}
+
+*::placeholder {
+    opacity: .25;
 }

@@ -1,0 +1,70 @@
+import React from 'react'
+import { getHTMLData, stopPropagation } from '@/lib/function'
+import { ModalCross, NoFindData, Search } from '@component/ui'
+import { UserInModal } from '@/component/ui/item'
+import { useRequest, useToast } from '@/lib/hook'
+import { communityService } from '@/service'
+import { userInterface } from '@/model'
+import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
+import { pushUser } from '@/store/session'
+import { usePushCharacterThrow } from '@/lib/hook/throw/use-push-character-throw'
+import { useSearchThrow } from '@/lib/hook/throw'
+
+interface Props {
+    swap: React.MouseEventHandler<HTMLDivElement>
+}
+
+
+export const Users: React.FC<Props> = ({ swap }: Props) => {
+    const [_, swapPushCharacter] = usePushCharacterThrow()
+    const dispath = useAppDispatch()
+    const { session } = useAppSelector(state => state.session)
+    const toast = useToast()
+
+    const pushCharacterHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        swapPushCharacter(getHTMLData(e, true).id)
+    }, [])
+
+    const pushUserHandler = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        dispath(pushUser({ id: getHTMLData(e, true).id }))
+        toast('message', { text: 'Обработка..' })
+    }, [])
+
+    const [search] = useSearchThrow()
+    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(search), ['search-users', search])
+    const [myusers] = useRequest<userInterface[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
+
+    return (
+        <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >
+            <ModalCross onClick={swap} />
+            <div className="pt-10" onClick={pushUserHandler}>
+                <p className='pl-5 pb-5'>Добавить игрока</p>
+                <Search className='mx-2 mb-4' />
+                <div className="h-[300px] overflow-scroll pointer-events-none">
+                    {!loading && !users?.length && <NoFindData title='По вашему запросу не найдены пользователи!' className='pt-5' />}
+                    {!!users?.length &&
+                        users.map(item => {
+                            return (
+                                <UserInModal
+                                    key={item.id}
+                                    {...item}
+                                />
+                            )
+                        })}
+                </div>
+            </div>
+            <div className="" onClick={pushCharacterHandler}>
+                <p className='pl-5 pb-5'>Ваши игроки</p>
+                {!!myusers?.length &&
+                    myusers.map(item => {
+                        return (
+                            <UserInModal
+                                key={item.id}
+                                {...item}
+                            />
+                        )
+                    })}
+            </div>
+        </div>
+    )
+}

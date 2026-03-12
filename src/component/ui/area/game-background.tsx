@@ -1,23 +1,26 @@
 import React from 'react'
 import { Group, Image, Rect, Text } from 'react-konva'
 import useImage from 'use-image';
-import { useAppSelector } from '@lib/castom-hook/redux';
-import { useGrid } from '@/lib/castom-hook';
+import { useAppSelector } from '@lib/hook/redux';
+import { useGridThrow } from '@/lib/hook/throw';
 
 interface Props {
 }
 
 
-export const GameBackground: React.FC<Props> = ({ }: Props) => {
+export const GameBackground: React.FC<Props> = () => {
     const { session: { currentMap } } = useAppSelector(state => state.session)
-    const [bgGameArea] = useImage(currentMap?.path ?? '', 'anonymous');
 
-    if (!currentMap) {
-        return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />
-    }
-    const { param: grid } = useGrid()
+    const [bgGameArea] = useImage(
+        // @ts-ignore
+        `${process.env.SERVER_HOST}api/static/${currentMap?.path.split('/').at(-1)}/`, 'anonymous');
+
+    const [grid] = useGridThrow()
     const [chart] = useImage('/icon/grid.png')
 
+    if (!currentMap?.path) {
+        return <Text fontSize={160} fill={'white'} text="У ВАС НЕТ ИГРОВЫХ ПОЛЕЙ!" />
+    }
 
     return (
         <Group>

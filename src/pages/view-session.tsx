@@ -1,19 +1,14 @@
-import { ObjectMoreDetailed, ViewImg } from "@component/case/modal/index-group"
-import { ToolGameSubscriber } from "@component/shared"
-import { usePage, useQueryParam } from "@lib/castom-hook"
-import { getParamName } from "@lib/function"
+import { ObjectMoreDetailed, ViewImg } from "@component/widget/modal/index-group"
+import { SessionLog, ToolSessionSubscriber } from "@component/shared"
 import React from "react"
-import { GameAreaSubscriber } from "@/component/master"
-import { qParamName } from "@/export"
+
+const GameAreaSubscriber = React.lazy(() => import("@component/master/game-area-subscriber"))
 
 export const ViewSession = () => {
-    const { } = usePage(getParamName())
-
-
     return (
         <>
-            <ToolGameSubscriber />
-            <main className="h-full z-0 relative">
+            <ToolSessionSubscriber />
+            <main className="h-full max-h-[100vh] z-0 relative">
                 <GameAreaSubscriber />
             </main >
             <Modal />
@@ -22,13 +17,12 @@ export const ViewSession = () => {
 }
 
 const Modal: React.FC = () => {
-    const { param, clearQParam } = useQueryParam(qParamName.vImg)
-
 
     return (
         <>
+            <SessionLog />
             <ObjectMoreDetailed />
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!param} />
+            <ViewImg />
         </>
     )
 }

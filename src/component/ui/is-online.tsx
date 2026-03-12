@@ -1,12 +1,12 @@
 import React from 'react'
-import { useOnline } from '@/lib/castom-hook'
+import { useOnline } from '@/lib/hook'
 import { cn } from '@/lib/function'
 
 interface Props {
 }
 
 
-export const IsOnline: React.FC<Props> = ({ }: Props) => {
+export const IsOnline: React.FC<Props> = () => {
     const online = useOnline()
 
     return (

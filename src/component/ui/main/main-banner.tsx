@@ -1,11 +1,11 @@
-import { nameProject, slogan } from '@/export'
+import { nameProject, slogan } from '@/config'
 import React from 'react'
 
 interface Props {
 }
 
 
-export const MainBanner: React.FC<Props> = ({ }: Props) => {
+export const MainBanner: React.FC<Props> = () => {
     return (
         <div className="relative">
             {/* <img src="/img/carousel-item-3.jpg" className="w-full bg-shadow" alt="" /> */}

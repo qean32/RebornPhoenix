@@ -1,14 +1,14 @@
-import { nameProject } from '@/export'
+import { nameProject } from '@/config'
 import React from 'react'
 import { Logo } from '../logo'
-import { useHandlerScroll } from '@/lib/castom-hook'
+import { useHandlerScroll } from '@/lib/hook'
 import { cn } from '@/lib/function'
 
 interface Props {
 }
 
 
-export const LargeLogo: React.FC<Props> = ({ }: Props) => {
+export const LargeLogo: React.FC<Props> = () => {
     const { refHandler, boolean } = useHandlerScroll(-200)
 
     return (
@@ -20,8 +20,8 @@ export const LargeLogo: React.FC<Props> = ({ }: Props) => {
                 <Logo size="icon-3xl" />
                 <p className='text-3xl'>{nameProject}</p>
             </div>
-            <a href={process.env.DISCORD} target='_blank' className='hover:-translate-y-1 transition-300 cursor-pointer'>
-                <img src="/icon/discord.svg" alt="" width={100} />
+            <a href={process.env.TEAMSPEAK} target='_blank' className='hover:-translate-y-1 pt-2 transition-300 cursor-pointer'>
+                <img src="/icon/teamspeak.png" alt="" className='icon-2xl mt-4' width={100} />
             </a>
         </div>
     )

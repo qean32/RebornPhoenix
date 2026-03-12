@@ -1,12 +1,12 @@
 import React from 'react'
 import { cn } from '@lib/function'
-import { useHandlerScroll } from '@/lib/castom-hook'
+import { useHandlerScroll } from '@/lib/hook'
 
 interface Props {
 }
 
 
-export const BlockThree: React.FC<Props> = ({ }: Props) => {
+export const BlockThree: React.FC<Props> = () => {
     const { refHandler, boolean } = useHandlerScroll(-100)
 
     return (

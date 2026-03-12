@@ -15,7 +15,7 @@ export const TagGroup: React.FC<Props> = ({
     return (
         <div className={cn('', className)}>
             {tags.split(',').map(item => {
-                return <Tag title={item} />
+                return <Tag title={item} key={item} />
             })}
         </div>
     )

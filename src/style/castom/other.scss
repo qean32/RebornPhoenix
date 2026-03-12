@@ -218,3 +218,18 @@
 .bg-transparent {
     background-color: transparent !important;
 }
+
+.theme-control {
+
+    &:hover~div {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &~div {
+        &:hover {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}

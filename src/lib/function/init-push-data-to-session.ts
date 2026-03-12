@@ -1,38 +1,29 @@
-import { entityDto, mapDto, objectDto } from "@/model"
-import { useAppDispatch } from "../castom-hook/redux"
-import { pushEntity, pushMap, pushObject } from "@/store/session-store"
-import { useToast } from "../castom-hook"
+import { entityInterface, mapInterface, objectInterface } from "@/model"
+import { useAppDispatch } from "../hook/redux"
+import { pushEntity, pushMap, pushObject } from "@/store/session"
 
 export const initPushDataToSession = (type: 'object' | 'entity' | 'map') => {
     const dispath = useAppDispatch()
 
     if (type == 'entity') {
-        const toast = useToast()
-        const push = (data: entityDto) => {
+        const push = (data: entityInterface) => {
             dispath(pushEntity(data))
-            toast('push-entity', { name: data.name })
         }
 
         return push
     }
 
     if (type == 'object') {
-        const toast = useToast()
-
-        const push = (data: objectDto) => {
+        const push = (data: objectInterface) => {
             dispath(pushObject(data))
-            toast('push-entity', { name: data.name })
         }
 
         return push
     }
 
     if (type == 'map') {
-        const toast = useToast()
-
-        const push = (data: mapDto) => {
+        const push = (data: mapInterface) => {
             dispath(pushMap(data))
-            toast('push-entity', { name: data.name })
         }
 
         return push

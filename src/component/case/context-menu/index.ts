@@ -1,6 +1,0 @@
-export { EntityMenu } from './entity-menu'
-export { MapMenu } from './map-menu'
-export { ObjectMenu } from './object-menu'
-export { SessionMenu } from './session-menu'
-export { BestiaryMenu } from './bestiary-menu'
-export { CommentMenu } from './comment-menu'

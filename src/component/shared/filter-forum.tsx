@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export const FilterForum: React.FC<Props> = ({ }: Props) => {
+export const FilterForum: React.FC<Props> = () => {
     const navigate = useNavigate()
 
     return (
@@ -17,13 +17,15 @@ export const FilterForum: React.FC<Props> = ({ }: Props) => {
             <PushTagInFilter
                 className="pt-5"
             />
-            <div className='flex justify-between pt-15'>
+
+            <div className='flex justify-between pt-20'>
                 <Button
-                    fn={() => { navigate(location.pathname) }}
-                    variant='default-no-hover'
+                    onClick={() => { navigate(location.pathname) }}
                     type='reset'
+                    variant='default'
                 >
                     <p>Сбросить</p></Button>
+
                 <div className='w-fit'><Link to={'/create-post'}>
                     <Button className='px-2'><img src='/icon/edit.svg' /></Button></Link></div>
             </div>

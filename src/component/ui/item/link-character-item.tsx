@@ -1,23 +1,27 @@
+import { CharacterMenu } from '@component/widget/context-menu'
+import { ViewAuthor } from '@/component/master/hoc'
 import React from 'react'
 
 interface Props {
     path: string
     name: string
-    number: number
+    id: number
+    user_id: number
 }
 
 
-export const LinkCharacterItem: React.FC<Props> = ({
-    path,
-    number,
-    name
-}: Props) => {
+export const LinkCharacterItem: React.FC<Props> = (item: Props) => {
     return (
-        <a href={path} target='_blank' className='prime-hover bg-color-dark overflow-hidden rounded-sm running-line-parent h-fit'>
-            <div className='py-3 items-center flex flex-col gap-2 h-[100px]'>
-                <p className='text-5xl'>{number}</p>
-                <p className='text-sm'>{name.split(' ')[0]}</p>
+        <div
+            style={{ backgroundImage: `url(${process.env.SERVER_HOST_STORAGE}${item.path})` }}
+            className='bg-img prime-hover bg-color-dark relative rounded-md running-line-parent h-fit bg-color-hover transition-300 cursor-pointer'
+        >
+            <div className='py-3 items-center justify-end flex flex-col gap-2 h-[110px]'>
+                <p className='text-sm w-full overflow-hidden mb-1 text-center'>{item.name.split(' ')[0]}</p>
             </div>
-        </a>
+            <ViewAuthor payload_id={item.user_id}>
+                <CharacterMenu id={item.id} />
+            </ViewAuthor>
+        </div>
     )
 }

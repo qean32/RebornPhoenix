@@ -1,29 +1,81 @@
 import React from 'react'
-import { Button, UnwrapFiles } from '@component/ui'
-import { ViewAuthor } from '@component/master/h-order-component'
-import { Modal } from '@component/case/modal'
-import { MainBlock, CommentBlock, PostInfo } from '.'
-import { f_user } from '@/f'
+import { Button, NoFindData, UnwrapFiles } from '@component/ui'
+import { ViewAdmin, ViewAuthor } from '@/component/master/hoc'
+import { Modal } from '@component/widget/modal'
+import { MainBlock, PostInfo, CountBlock } from '.'
+import { useRequest, useToast } from '@/lib/hook'
+import { postType } from '@/model/post.type'
+import { forumService } from '@/service'
+import { useNavigate, useParams } from 'react-router-dom'
+import { modalAnimationEnum } from '@/config'
+import { PostContentSceleton } from '@component/widget/sceleton'
+import { handleFetchThen } from '@/lib/function'
 
 interface Props {
     className?: string
 }
 
+const ACCEESS_ACTION = 'Пост удален!'
+export const PostContent: React.FC<Props> = () => {
+    const { id } = useParams()
+    const toast = useToast()
+    const navigate = useNavigate()
+    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
 
-export const PostContent: React.FC<Props> = ({ }: Props) => {
-    return (
-        <>
-            <p className="text-4xl mb-1.5">НАЗВАНИЕ</p>
-            <ViewAuthor>
-                <Modal.Root modal={Modal.AccessAction} props={{ fn: () => console.log('zxc'), warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}>
-                    <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root></ViewAuthor>
-            <PostInfo {...f_user[0]} email='' />
-            <MainBlock />
-            <UnwrapFiles
-                className='my-5'
-                imgView
-                files={[{ path: '/img/auth.jpg' }]} />
-            <CommentBlock />
-        </>
-    )
+    const deletePost = () => {
+        forumService.DELETE_POST(id ?? 0)
+            .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
+                navigate('/');
+            }))
+    }
+
+    if (!loading && !post?.id) {
+        return <NoFindData title='Пост не найден!' className='py-5' />
+    }
+
+    if (post?.title) {
+        return (
+            <>
+                <p className="text-4xl mb-1.5">{post.title}</p>
+
+                <ViewAuthor payload_id={post.user.id ?? 0}>
+                    <Modal.Root
+                        modal={Modal.AccessAction}
+                        props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
+                        <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
+                </ViewAuthor>
+
+                <ViewAdmin>
+                    <Modal.Root
+                        modal={Modal.AccessAction}
+                        props={{ fn: deletePost, warning: "Вы собираетесь удалить пост?", warningButtonText: 'Удалить пост' }}
+                        animation={modalAnimationEnum['modal-dft']}
+                    >
+                        <Button variant="reject" className="my-2">Удалить пост</Button></Modal.Root>
+                </ViewAdmin>
+
+                <PostInfo
+                    id={post.id}
+                    date={post.created_at ?? "Sun Mar 06 2021"}
+                    user={post.user}
+                />
+
+                <MainBlock content={post.content} description={post.description}>
+
+                    <CountBlock
+                        likeCount={post.likes}
+                    />
+                </MainBlock>
+
+                <UnwrapFiles
+                    className='my-5'
+                    imgView
+                    files={!!post?.files?.length ? post?.files?.split(',').map(item => { return { path: item } }) : []} />
+            </>
+        )
+    }
+
+    return <PostContentSceleton />
 }

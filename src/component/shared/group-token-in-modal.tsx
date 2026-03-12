@@ -1,8 +1,8 @@
 import React from 'react'
 import { Title } from '@component/ui'
 import { cn, getHTMLData } from '@/lib/function'
-import { useAppDispatch } from '@/lib/castom-hook/redux'
-import { swapObjectBeingPushedToSession } from '@/store/object-being-pushed-to-session-store'
+import { useAppDispatch } from '@/lib/hook/redux'
+import { swapTmpObject } from '@/store/tmp-object'
 
 interface Props {
     renderItem(item: any): React.ReactNode
@@ -10,26 +10,26 @@ interface Props {
 }
 
 
-export const GroupTokenInModal: React.FC<Props> = ({ renderItem, items }: Props) => {
+export const GroupTokenInModal: React.FC<Props> = React.memo(({ renderItem, items }: Props) => {
     const dispath = useAppDispatch()
     const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const object = getHTMLData(e, true)
         if (object) {
-            dispath(swapObjectBeingPushedToSession({ object }))
+            dispath(swapTmpObject({ payload: object, key: 'push-object-to-session' }))
         }
     }
 
     return (
         <div className="ml-5 rounded-sm pb-2 pt-2">
-            <Title className='pb-2 pl-3'>{items[0].source.name}</Title>
+            <Title className='pb-2 pl-3'>{items[0]?.source?.name}</Title>
             <div className={cn('grid gap-y-2 grid-cols-5 adaptive2k-grid-column-6')} onClick={clickHandler}>
                 {
                     !!items.length &&
                     items.map(item => {
-                        return renderItem(item)
+                        return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
                     })
                 }
             </div>
         </div>
     )
-}
+})

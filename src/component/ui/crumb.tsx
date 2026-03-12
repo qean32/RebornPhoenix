@@ -5,7 +5,7 @@ interface Props {
 }
 
 
-export const Crumb: React.FC<Props> = ({ }: Props) => {
+export const Crumb: React.FC<Props> = () => {
     const { name, department } = useParams()
 
     return (

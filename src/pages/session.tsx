@@ -1,21 +1,15 @@
-import { PushCharacterInSession, ViewImg, ActionEntity } from "@component/case/modal/index-group"
-import { ToolGameButton, ToolGame } from "@component/shared"
-import { usePage, useQueryParam } from "@lib/castom-hook"
-import { getParamName } from "@lib/function"
+import { PushCharacterInSession, ViewImg, ActionEntity, ObjectMoreDetailed } from "@component/widget/modal/index-group"
+import { ToolSessionButton, ToolSession, SessionLog } from "@component/shared"
 import React from "react"
-import { GameArea } from "@/component/master"
-import { qParamName } from "@/export"
-import { ObjectMoreDetailed } from "@/component/case/modal/object-more-detailed"
+
+const GameArea = React.lazy(() => import("@component/master/game-area"))
 
 export const Session = () => {
-    const { } = usePage(getParamName())
-
-
     return (
         <>
-            <ToolGame />
-            <main className="h-full z-0 relative">
-                <ToolGameButton />
+            <ToolSession />
+            <main className="h-full max-h-[100vh] z-0 relative">
+                <ToolSessionButton />
                 <GameArea />
             </main >
             <Modal />
@@ -24,15 +18,14 @@ export const Session = () => {
 }
 
 const Modal: React.FC = () => {
-    const { allQ, clearQParam } = useQueryParam('')
-
 
     return (
         <>
-            <PushCharacterInSession swap={() => clearQParam(qParamName.pCharacter)} view={!!allQ[qParamName.pCharacter]} />
-            <ViewImg swap={() => clearQParam(qParamName.vImg)} view={!!allQ[qParamName.vImg]} />
+            <SessionLog />
+            <PushCharacterInSession />
+            <ViewImg />
             <ObjectMoreDetailed />
-            <ActionEntity swap={() => clearQParam(qParamName.actionEntity)} view={allQ[qParamName.actionEntity]} />
+            <ActionEntity />
         </>
     )
 }

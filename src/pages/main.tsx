@@ -7,11 +7,14 @@ import {
     MainBanner,
     Map
 } from "@/component/ui/main";
-import { title } from "@/export";
-import { usePage } from "@lib/castom-hook";
+import { title, urlTitle } from "@/config";
+import { usePage } from "@lib/hook";
+import { useSearchParams } from "react-router-dom";
+
 
 export const Main = () => {
-    const { } = usePage(title.main)
+    const [url] = useSearchParams()
+    usePage(title.main, !!url.get(urlTitle.forceupdate))
 
     return (
         <main>

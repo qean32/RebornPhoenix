@@ -1,8 +1,7 @@
-import { PostInfo, MainBlock, CommentBlock } from "@/component/shared/post"
-import { f_user } from "@/f"
-import { Page } from "@component/master/h-order-component"
+import { PostInfo, MainBlock, CountBlock } from "@/component/shared/post"
+import { Page } from "@/component/master/hoc"
 import { Crumb } from "@component/ui"
-import { usePage } from "@lib/castom-hook"
+import { usePage } from "@lib/hook"
 import { getParamName } from "@lib/function"
 import { useParams } from "react-router-dom"
 
@@ -13,9 +12,10 @@ export const PreviewPost = () => {
     return (
         <Page size="w-[65%]">
             <Crumb />
-            <PostInfo {...f_user[0]} email="" />
-            <MainBlock content={content} />
-            <CommentBlock />
+            <PostInfo date="20.12.2026" user={{ ava: '', id: 0, name: 'Author', role: 1, ban: false }} id={762} />
+            <MainBlock content={content} description="Описание вашей статьи.." >
+                <CountBlock likeCount={0} />
+            </MainBlock>
         </Page>
     )
 }

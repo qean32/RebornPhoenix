@@ -1,5 +1,5 @@
-import { ToastPushEntity, ToastEventMessage, ToastMessage } from "@/component/case/toast"
-import { toastKeyDto, toastPayloadDto } from "@/model"
+import { ToastPushEntity, ToastEventMessage, ToastMessage } from "@/component/widget/toast"
+import { toastKeyType, toastPayloadType } from "@/model"
 
 
 export const toastHook = (
@@ -9,15 +9,15 @@ export const toastHook = (
         id,
         view
     }: {
-        keyMessage: toastKeyDto,
+        keyMessage: toastKeyType,
         view: boolean,
         id: number,
-        payload: toastPayloadDto | any
+        payload: toastPayloadType | any
     },
-    firstId: number
+    isBackToast: boolean
 ) => {
-    if (keyMessage == "push-entity") return <ToastPushEntity view={view} key={id} {...payload} backToast={firstId != id} />
-    if (keyMessage == "event-message") return <ToastEventMessage view={view} key={id} {...payload} backToast={firstId != id} />
-    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...payload} backToast={firstId != id} />
+    if (keyMessage == "push-entity") return <ToastPushEntity view={view} key={id} {...payload} isBackToast={isBackToast} />
+    if (keyMessage == "event-message") return <ToastEventMessage view={view} key={id} {...payload} isBackToast={isBackToast} />
+    if (keyMessage == "message") return <ToastMessage view={view} key={id} {...{ text: '' }} {...payload} isBackToast={isBackToast} />
     return <>WTFIT!</>
 }

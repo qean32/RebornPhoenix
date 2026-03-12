@@ -1,21 +1,23 @@
 import { requestPost } from "@lib/function/request"
-import { authFormDto, changePasswordFormDto, registrationFormDto, resetPasswordFormDto } from "@/model/schema"
-const instance = 'auth'
+import { authFormSchema, changePasswordFormSchema, registrationFormSchema, resetPasswordFormSchema } from "@/model/schema"
+const instance = ''
 
 export class authService {
-    async registration(data: registrationFormDto) {
-        return requestPost(`${instance}/registration`, data)
+    async REGISTRATION(data: registrationFormSchema) {
+        return requestPost<{ token: string }>(`${instance}/registration`, data)
     }
 
-    async auth(data: authFormDto) {
-        return requestPost(`${instance}`, data)
+    async AUTH(data: authFormSchema) {
+        return requestPost<{ token: string }>(`${instance}/auth`, data)
     }
 
-    async changePassword(data: changePasswordFormDto) {
-        return requestPost(`${instance}/change-password`, data)
+    async CHANGE_PASSWORD(data: changePasswordFormSchema, token: string) {
+        return requestPost(`profile/change-password`, { ...data, token })
     }
 
-    async resetPassword(data: resetPasswordFormDto) {
-        return requestPost(`${instance}/reset-password`, data)
+    async RESET_PASSWORD(data: resetPasswordFormSchema) {
+        return requestPost(`profile/reset-password`, data)
     }
 }
+
+export const authServiceItem = new authService()

@@ -1,8 +1,17 @@
-import { requestGet } from "@lib/function/request"
+import { eventType } from "@/model";
+import { requestGet, requestPost } from "@lib/function/request"
 const instance = 'server';
 
 export const serverService = {
-    server: () => {
+    SERVER: () => {
         return requestGet(`${instance}`)
     },
+
+    STATIC: (path: string) => {
+        return requestGet(`${path}`)
+    },
+
+    event: (id: number | string, data: eventType) => {
+        return requestPost('event', { event: { ...data, id: id } })
+    }
 }

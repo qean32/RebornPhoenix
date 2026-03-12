@@ -1,0 +1,13 @@
+import z from "zod";
+
+export const pushObjectToSessionSchema = z.object({
+    name: z
+        .string()
+        .max(20, { message: 'Максимальная длина - 20' })
+        .min(4, { message: 'Минимальная длина - 8' })
+    ,
+    img: z.file(),
+    // description: z.string().max(255, { message: 'Мексимальная длина 255 символа' }),
+});
+
+export type pushObjectToSessionFormSchema =  z.infer<typeof pushObjectToSessionSchema>

@@ -1,4 +1,4 @@
-export { authService } from './auth-service'
+export { authServiceItem } from './auth-service'
 export { serverService } from './server-service'
 export { communityService } from './community-service'
 export { forumService } from './forum-service'
