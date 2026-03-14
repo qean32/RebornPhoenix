@@ -37,16 +37,13 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
             <TextInfo title={name ? name.toUpperCase() : ''} />
             <Search />
             <PostColumn />
-
-            <div className="pb-4">
-                <PostItem {...post} fixed={true} className="pl-2" />
-            </div>
+            <PostItem {...post} fixed={true} className="pl-2 pb-4" />
 
             <React.Suspense fallback={<DepartmentSceleton />}>
                 <DynamicPagination
                     rq={{
                         fetch: forumService.GET_DEPARTAMENT_POST,
-                        RQKey: [],
+                        RQKey: ["department", Math.random().toString()],
                         staticParam: [departmentId]
                     }}
                     renderItem={(item) => <PostItem {...item} className="pl-2" />}

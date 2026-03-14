@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, NoFindData, UnwrapFiles } from '@component/ui'
 import { ViewAdmin, ViewAuthor } from '@/component/master/hoc'
 import { Modal } from '@component/widget/modal'
-import { MainBlock, PostInfo, CountBlock } from '.'
+import { MainBlock, PostInfo, CountHoc } from '.'
 import { useRequest, useToast } from '@/lib/hook'
 import { postType } from '@/model/post.type'
 import { forumService } from '@/service'
@@ -64,9 +64,7 @@ export const PostContent: React.FC<Props> = () => {
 
                 <MainBlock content={post.content} description={post.description}>
 
-                    <CountBlock
-                        likeCount={post.likes}
-                    />
+                    <CountHoc likeCount={post.likes} />
                 </MainBlock>
 
                 <UnwrapFiles

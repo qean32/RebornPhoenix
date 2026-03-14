@@ -14,7 +14,7 @@ export const PreviewPost = () => {
             <Crumb />
             <PostInfo date="20.12.2026" user={{ ava: '', id: 0, name: 'Author', role: 1, ban: false }} id={762} />
             <MainBlock content={content} description="Описание вашей статьи.." >
-                <CountBlock likeCount={0} />
+                <CountBlock likeCount={0} like={false} />
             </MainBlock>
         </Page>
     )

@@ -29,7 +29,7 @@ export const DynamicPagination: React.FC<Props> = ({
         useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, staticParam)
 
     return (
-        <div className={cn('pb-5 min-h-[400px] flex flex-col', className)}>
+        <div className={cn('pb-5 min-h-[100vh] flex flex-col', className)}>
             {response.map(item => {
                 return (
                     <React.Fragment key={item.id}>

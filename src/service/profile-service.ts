@@ -36,6 +36,7 @@ export const profileService = {
     GET_SUBSCRIBE: (id: string | number) => {
         if (Cookies.get(tokenStorageKey))
             return requestGet(`${instance}/${id}/my-follow`)
+        return () => { }
     },
 
     CREATE_CHARACTER: (data: any) => {
@@ -57,5 +58,6 @@ export const profileService = {
     me: () => {
         if (Cookies.get(tokenStorageKey))
             return requestGet(`${instance}/me`)
+        return () => { }
     }
 }
