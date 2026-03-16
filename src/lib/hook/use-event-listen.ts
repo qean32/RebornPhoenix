@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "./redux";
 import { eventType, keysEvent } from "@/model";
-import { changeEntity, changeObject, scaleObject, setSession, swapCurrentMap } from "@/store/session";
+import { changeEntity, changeObject, pushCharacter, pushEntity, pushMap, pushObject, scaleObject, setSession, swapCurrentMap } from "@/store/session";
 import { useToast } from "./use-toast";
 import { pushLog } from "@/store/log";
 import { useViewImgThrow } from "./throw";
@@ -19,19 +19,19 @@ export const useEventListen = () => {
     const actions = React.useMemo(() => {
         return new Map<keysEvent, (payload: any) => void>([
             [
-                "change-entity",
+                "changeEntity",
                 (payload: any) => {
                     dispath(changeEntity({ payload }))
                 }
             ],
             [
-                "change-object",
+                "changeObject",
                 (payload: any) => {
                     if (payload.operation) {
                         dispath(scaleObject({ ...payload }))
                         return
                     }
-                    dispath(changeObject({ payload }))
+                    dispath(changeObject({ payload: payload.payload }))
                 }
             ],
             [
@@ -42,7 +42,7 @@ export const useEventListen = () => {
                 }
             ],
             [
-                "swap-map",
+                "swapMap",
                 (payload: any) => {
                     dispath(swapCurrentMap(payload))
                 }
@@ -54,12 +54,29 @@ export const useEventListen = () => {
             [
                 'sync',
                 (payload: any) => { dispath(setSession(payload)) }
+            ],
+            [
+                'pushEntity',
+                (payload: any) => { dispath(pushEntity(payload)) }
+            ],
+            [
+                'pushObject',
+                (payload: any) => { dispath(pushObject(payload)) }
+            ],
+            [
+                'pushCharacter',
+                (payload: any) => { dispath(pushCharacter(payload)) }
+            ],
+            [
+                'pushMap',
+                (payload: any) => { dispath(pushMap(payload)) }
             ]
         ])
     }, [])
 
     const handler = ({ event: { payload, type } }: { event: eventType }) => {
         const fn = actions.get(type)
+        console.log({ payload, type })
         if (fn) fn(payload)
 
         return

@@ -11,8 +11,9 @@ interface Props {
 
 
 export const GameMode: React.FC<Props> = () => {
-    const { isDevMode } = useAppSelector(state => state.log)
+    const { mode } = useAppSelector(state => state.log)
     const dispath = useAppDispatch()
+    const isDev = mode == 'dev'
     const toast = useToast()
     const swap = () => {
         dispath(swapMode())
@@ -20,8 +21,8 @@ export const GameMode: React.FC<Props> = () => {
     }
 
     return (
-        <FillHoverHint title={`Режим ${isDevMode ? "Разработки" : "Игровой"}`}>
-            <ButtonInGroup onClick={swap} children={<img className='icon-sm' src={isDevMode ? '/icon/tool.svg' : '/icon/game.svg'} />} />
+        <FillHoverHint title={`Режим ${isDev ? "Разработки" : "Игровой"}`}>
+            <ButtonInGroup onClick={swap} children={<img className='icon-sm' src={isDev ? '/icon/tool.svg' : '/icon/game.svg'} />} />
         </FillHoverHint>
     )
 }

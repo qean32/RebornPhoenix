@@ -13,20 +13,20 @@ interface Props {
 export const SaveSession: React.FC<Props> = React.memo(() => {
     const toast = useToast()
     const save = saveJson(toast)
-    const { isDevMode } = useAppSelector(state => state.log)
+    const { mode } = useAppSelector(state => state.log)
     const session = useAppSelector(state => state.session)
     const eventSave = EventMiddleware()
 
     React.useEffect(() => {
         const interval = setInterval(() => {
-            if (!isDevMode) {
+            if (mode == 'play') {
                 eventSave({ payload: session, type: 'sync' }, () => { })
                 save()
             }
         }, 300000)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [mode])
 
     return (
         <FillHoverHint title='Сохранить'>

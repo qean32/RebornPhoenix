@@ -5,7 +5,7 @@ import { generateId } from "../function"
 
 export const useToast = () => {
     const dispath = useAppDispatch()
-    const toast = (key: toastKeyType, payload?: toastPayloadType, timeout: number = 1000) => {
+    const toast = (key: toastKeyType, payload?: toastPayloadType, timeout: number = 2000) => {
         const id = generateId()
         dispath(pushToast({ key, payload: payload ?? {}, id }))
 

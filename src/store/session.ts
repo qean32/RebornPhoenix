@@ -9,6 +9,8 @@ type stateDto = {
     isSet: boolean
 }
 
+type isFromConnect<T,> = T & { isFromConnect: boolean }
+
 const initialState: stateDto = {
     isSet: false,
     session: {
@@ -97,21 +99,39 @@ const sessionSlice = createSlice({
             path,
             source,
             status,
-            position
-        } }: PayloadAction<entityInterface>) => {
+            position,
+            isFromConnect,
+            id
+        } }: PayloadAction<isFromConnect<entityInterface>>) => {
             if (state.session.mapsData[state.session.currentMap.id].queue.length < 16) {
 
-                const id = generateId()
+                if (isFromConnect) {
+                    state.session.mapsData[state.session.currentMap.id].queue = [
+                        ...state.session.mapsData[state.session.currentMap.id].queue,
+                        { idInBestiary, initiative, status, source, path, name, size: 3, position, id }
+                    ]
+
+                    if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
+                        state.bestiary = [
+                            ...state.bestiary,
+                            { idInBestiary, initiative, source, path, name, description, size: 3, status, position, id }
+                        ]
+                    }
+
+                    return
+                }
+
+                const _id = generateId()
 
                 state.session.mapsData[state.session.currentMap.id].queue = [
                     ...state.session.mapsData[state.session.currentMap.id].queue,
-                    { id, idInBestiary, initiative, status, source, path, name, size: 3, position }
+                    { id: _id, idInBestiary, initiative, status, source, path, name, size: 3, position }
                 ]
 
                 if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
                     state.bestiary = [
                         ...state.bestiary,
-                        { id, idInBestiary, initiative, source, path, name, description, size: 3, status, position }
+                        { id: _id, idInBestiary, initiative, source, path, name, description, size: 3, status, position }
                     ]
                 }
             }

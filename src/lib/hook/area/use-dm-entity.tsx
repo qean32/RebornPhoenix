@@ -3,13 +3,11 @@ import { changeEntity } from "@/store/session";
 import useImage from "use-image";
 import { useAppDispatch } from "../redux";
 import { coordinateType } from "@/model";
-import { EventMiddleware } from "@/lib/middleware/event.middleware";
 import { useEntityActionThrow } from "../throw";
 
 export const useDMEntity = (position: coordinateType, path: string) => {
     const dispath = useAppDispatch()
     const _position = React.useMemo(() => position, [])
-    const event = EventMiddleware()
 
     const [image] = useImage(path);
     const [_, swapEntityAction] = useEntityActionThrow()
@@ -36,7 +34,7 @@ export const useDMEntity = (position: coordinateType, path: string) => {
                 x: e.target.attrs.x,
             },
         }
-        event({ payload, type: "change-entity" }, () => { dispath(changeEntity({ payload })) })
+        dispath(changeEntity({ payload }))
         e.target.getStage().container().style.cursor = 'pointer';
     };
 

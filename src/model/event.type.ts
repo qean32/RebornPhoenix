@@ -4,9 +4,17 @@ export type eventType = {
 }
 
 export type keysEvent =
-    'swap-map' |
-    'change-object' |
-    'change-entity' |
+    'swaMmap' |
+    'changeObject' |
+    'changeEntity' |
     'dice' |
     'view-img' |
-    'sync'
+    'sync' |
+    'pushEntity' |
+    'pushObject' |
+    'pushCharacter' |
+    'push-to-bestiary' |
+    'pushMap'
+
+['pushImg', 'pushUser', 'removeEntity', 'removeObject',
+    'removeMap', 'removeCharacter', 'editBestiary']

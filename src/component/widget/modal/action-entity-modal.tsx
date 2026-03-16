@@ -5,7 +5,6 @@ import { Ava, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusType } from '@/model'
 import { changeEntity } from '@/store/session'
-import { EventMiddleware } from '@/lib/middleware'
 import { useEntityActionThrow } from '@/lib/hook/throw'
 
 interface Props {
@@ -71,16 +70,12 @@ export const ActionEntity: React.FC<Props> = ({ }: Props) => {
     const [view, swap] = useEntityActionThrow()
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
     const dispath = useAppDispatch()
-    const event = EventMiddleware()
     const changeHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
-        event(
-            { payload: { [key]: value, id: entity?.id }, type: 'change-entity' }, () => {
-                if (entity) {
-                    // @ts-ignore
-                    dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
-                }
-            })
+        if (entity) {
+            // @ts-ignore
+            dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
+        }
     }
 
 
