@@ -1,5 +1,5 @@
 import z from "zod";
-import { confirmPassword, password } from "./zod-types";
+import { confirmPassword, password } from "./core";
 
 export const changePasswordSchema = z.object({
     password: password,

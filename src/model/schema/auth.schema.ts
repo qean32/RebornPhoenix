@@ -1,5 +1,5 @@
 import z from "zod";
-import { password } from "./zod-types";
+import { password } from "./core";
 
 export const authSchema = z.object({
     nameOrEmail: z

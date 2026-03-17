@@ -5,6 +5,7 @@ import { saveJson } from '@/lib/function'
 import { useToast } from '@/lib/hook'
 import { useAppSelector } from '@/lib/hook/redux'
 import { EventMiddleware } from '@/lib/middleware'
+import { KE } from '@/model'
 
 interface Props {
 }
@@ -20,7 +21,7 @@ export const SaveSession: React.FC<Props> = React.memo(() => {
     React.useEffect(() => {
         const interval = setInterval(() => {
             if (mode == 'play') {
-                eventSave({ payload: session, type: 'sync' }, () => { })
+                eventSave({ payload: session, type: KE.sync }, () => { })
                 save()
             }
         }, 300000)

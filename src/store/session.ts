@@ -77,12 +77,11 @@ const sessionSlice = createSlice({
 
         // """"""""""""""""""""""""""""""""""""""""""" { entity action } """"""""""""""""""""""""""""""""""""""""""" //
 
-        changeEntity: (state: stateDto, { payload: { payload } }: PayloadAction<{
-            payload:
+        changeEntity: (state: stateDto, { payload }: PayloadAction<
             Pick<entityInterface, 'id' | 'status'> |
             Pick<entityInterface, 'id' | 'size'> |
-            Pick<entityInterface, 'position' | 'id'>
-        }>) => {
+            Pick<entityInterface, 'id' | 'position'>
+        >) => {
             state.session.mapsData[state.session.currentMap.id].queue = [
                 // @ts-ignore
                 ...state.session.mapsData[state.session.currentMap.id].queue.filter(item => item.id != payload.id),
@@ -104,24 +103,7 @@ const sessionSlice = createSlice({
             id
         } }: PayloadAction<isFromConnect<entityInterface>>) => {
             if (state.session.mapsData[state.session.currentMap.id].queue.length < 16) {
-
-                if (isFromConnect) {
-                    state.session.mapsData[state.session.currentMap.id].queue = [
-                        ...state.session.mapsData[state.session.currentMap.id].queue,
-                        { idInBestiary, initiative, status, source, path, name, size: 3, position, id }
-                    ]
-
-                    if (!state.bestiary.find(item => item.idInBestiary == idInBestiary)) {
-                        state.bestiary = [
-                            ...state.bestiary,
-                            { idInBestiary, initiative, source, path, name, description, size: 3, status, position, id }
-                        ]
-                    }
-
-                    return
-                }
-
-                const _id = generateId()
+                const _id = isFromConnect ? id : generateId()
 
                 state.session.mapsData[state.session.currentMap.id].queue = [
                     ...state.session.mapsData[state.session.currentMap.id].queue,
@@ -144,22 +126,23 @@ const sessionSlice = createSlice({
 
         // """"""""""""""""""""""""""""""""""""""""""" { object action } """"""""""""""""""""""""""""""""""""""""""" //
 
-        pushObject: (state: stateDto, { payload }: PayloadAction<objectInterface>) => {
+        pushObject: (state: stateDto, { payload }: PayloadAction<isFromConnect<objectInterface>>) => {
+            const id = payload.isFromConnect ? payload.id : generateId()
+
             if (state?.session?.mapsData[state?.session?.currentMap?.id].objects?.length < 10) {
 
                 state.session.mapsData[state.session.currentMap.id].objects = [
                     ...state.session.mapsData[state.session.currentMap.id].objects,
-                    { ...payload, id: generateId() }
+                    { ...payload, id }
                 ]
             }
         },
 
-        changeObject: (state: stateDto, { payload: { payload } }: PayloadAction<{
-            payload:
+        changeObject: (state: stateDto, { payload }: PayloadAction<
             Pick<objectInterface, 'id' | 'status'> |
             Pick<objectInterface, 'id' | 'size'> |
             Pick<objectInterface, 'position' | 'id'>
-        }>) => {
+        >) => {
             state.session.mapsData[state.session.currentMap.id].objects = [
                 // @ts-ignore
                 ...state.session.mapsData[state.session.currentMap.id].objects.filter(item => item.id != payload.id),
@@ -201,10 +184,10 @@ const sessionSlice = createSlice({
             }
         },
 
-        pushMap: (state: stateDto, { payload }: PayloadAction<mapInterface>) => {
-            if (state?.session?.maps?.length < 30) {
+        pushMap: (state: stateDto, { payload }: PayloadAction<isFromConnect<mapInterface>>) => {
+            const id = payload.isFromConnect ? payload.id : generateId()
 
-                const id = generateId()
+            if (state?.session?.maps?.length < 30) {
                 if (!state.session.maps) {
                     state.session.maps = [
                         { ...payload, id }

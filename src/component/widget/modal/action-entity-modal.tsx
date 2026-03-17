@@ -74,7 +74,7 @@ export const ActionEntity: React.FC<Props> = ({ }: Props) => {
         const { key, value } = getHTMLData(e, true)
         if (entity) {
             // @ts-ignore
-            dispath(changeEntity({ payload: { id: entity?.id, [key]: value } }))
+            dispath(changeEntity({ id: entity?.id, [key]: value }))
         }
     }
 

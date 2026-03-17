@@ -34,7 +34,7 @@ export const useDMEntity = (position: coordinateType, path: string) => {
                 x: e.target.attrs.x,
             },
         }
-        dispath(changeEntity({ payload }))
+        dispath(changeEntity(payload))
         e.target.getStage().container().style.cursor = 'pointer';
     };
 

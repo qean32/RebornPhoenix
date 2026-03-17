@@ -6,6 +6,7 @@ import * as ModalGroup from './index-group'
 import { modalAnimationEnum } from '@/config'
 import { useAppSelector } from '@/lib/hook/redux'
 import { EventMiddleware } from '@/lib/middleware'
+import { KE } from '@/model'
 
 interface Props {
 }
@@ -20,7 +21,7 @@ export const ImgCarousel: React.FC<Props> = () => {
 
     const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const img = getHTMLData(e, false, 'value')
-        event({ type: 'view-img', payload: { img: process.env.SERVER_HOST_STORAGE + img } }, () => {
+        event({ type: KE.viewImg, payload: { img: process.env.SERVER_HOST_STORAGE + img } }, () => {
             setValue(img)
         })
     }
