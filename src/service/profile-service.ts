@@ -1,5 +1,6 @@
 import { tokenStorageKey } from "@/config"
 import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
+import { userInterface } from "@/model"
 import Cookies from "js-cookie"
 
 const instance = 'profile'
@@ -56,8 +57,6 @@ export const profileService = {
     },
 
     me: () => {
-        if (Cookies.get(tokenStorageKey))
-            return requestGet(`${instance}/me`)
-        return () => { }
+        return requestGet<userInterface>(`${instance}/me`)
     }
 }
