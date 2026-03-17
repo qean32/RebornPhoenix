@@ -23,12 +23,10 @@ export const useDMCharacter = (dispath: ReturnType<typeof useAppDispatch>, path:
     const dragEndHandler = (e: any | React.MouseEvent<HTMLCanvasElement>) => {
         e.target.getStage().container().style.cursor = 'pointer';
         dispath(changeObject({
-            payload: {
-                id: e.currentTarget.attrs.id,
-                position: {
-                    y: e.target.attrs.y,
-                    x: e.target.attrs.x,
-                }
+            id: e.currentTarget.attrs.id,
+            position: {
+                y: e.target.attrs.y,
+                x: e.target.attrs.x,
             }
         }))
         // rectRef.current.to({

@@ -9,7 +9,7 @@ type stateDto = {
     isSet: boolean
 }
 
-type isFromConnect<T,> = T & { isFromConnect: boolean }
+type isFromConnect<T,> = T & { isFromConnect?: boolean }
 
 const initialState: stateDto = {
     isSet: false,

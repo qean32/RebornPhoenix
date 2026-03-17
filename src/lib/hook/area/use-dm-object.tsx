@@ -29,7 +29,7 @@ export const useDMObject = (dispath: ReturnType<typeof useAppDispatch>, path: st
             }
         }
         e.target.getStage().container().style.cursor = 'pointer';
-        dispath(changeObject({ payload }))
+        dispath(changeObject(payload))
     }
 
 
