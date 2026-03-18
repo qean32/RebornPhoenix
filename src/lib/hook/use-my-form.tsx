@@ -7,7 +7,7 @@ import React from "react";
 export const useMyForm = <T extends FieldValues,>(
     schema: z.ZodObject<T> | any,
     submitCallBack: Function,
-    submitErrorCallBack: Function,
+    submitErrorCallBack?: Function,
 ) => {
     const toast = useToast()
     const form = useForm<T>({
@@ -25,7 +25,7 @@ export const useMyForm = <T extends FieldValues,>(
     const onError: SubmitErrorHandler<T> = React.useCallback((data) => {
         if (data) {
 
-            submitErrorCallBack(data)
+            submitErrorCallBack && submitErrorCallBack(data)
         }
         // console.log('АП:', data);
         toast('message', { text: 'Поля заполнены некорректно' }, 2000)

@@ -1,7 +1,8 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
-import { useBoolean, useHandlerScroll } from "."
+import { useBoolean } from "."
 import { useSearchThrow, useFilterThrow } from "./throw"
+import { useOnInView } from "react-intersection-observer"
 
 export const useDynamicPagination = <T,>(
     fetch_: Function,
@@ -13,8 +14,12 @@ export const useDynamicPagination = <T,>(
     const [search] = useSearchThrow()
     const [{ date, tags }] = useFilterThrow()
     const filters = [date, tags]
-
-    const { refHandler, boolean } = useHandlerScroll()
+    const { boolean: view, swap: swapView } = useBoolean()
+    const ref = useOnInView((inView) => {
+        if (inView && !isEnd) {
+            swapView()
+        }
+    })
     const [skip, setSkip] = React.useState<number>(0)
     const [response, setResponse] = React.useState<T[]>([])
 
@@ -45,10 +50,10 @@ export const useDynamicPagination = <T,>(
     }, [RQData.data])
 
     React.useEffect(() => {
-        if (boolean && !isEnd) {
+        if (view && !isEnd) {
             setTimeout(() => setSkip((prev) => prev + _take), 600)
         }
-    }, [boolean])
+    }, [view])
 
-    return { response, refHandler, loading, isEnd }
+    return { response, ref, loading, isEnd }
 }

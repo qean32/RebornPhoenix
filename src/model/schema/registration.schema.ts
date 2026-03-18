@@ -2,7 +2,7 @@ import z from "zod";
 import {
     confirmPassword,
     email, name, password
-} from "./zod-types";
+} from "./core";
 
 export const registrationSchema = z.object({
     password: password,

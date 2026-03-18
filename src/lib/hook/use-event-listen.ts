@@ -3,8 +3,8 @@ import { useEchoPublic } from "@laravel/echo-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "./redux";
-import { eventType, keysEvent } from "@/model";
-import { changeEntity, changeObject, scaleObject, setSession, swapCurrentMap } from "@/store/session";
+import { eventType, KE } from "@/model";
+import { changeEntity, changeObject, pushCharacter, pushEntity, pushMap, pushObject, scaleObject, setSession, swapCurrentMap } from "@/store/session";
 import { useToast } from "./use-toast";
 import { pushLog } from "@/store/log";
 import { useViewImgThrow } from "./throw";
@@ -17,44 +17,26 @@ export const useEventListen = () => {
     const [_, swapImgView] = useViewImgThrow()
 
     const actions = React.useMemo(() => {
-        return new Map<keysEvent, (payload: any) => void>([
-            [
-                "change-entity",
-                (payload: any) => {
-                    dispath(changeEntity({ payload }))
+        return new Map<KE, (payload: any) => void>([
+            [KE.changeEntity, payload => dispath(changeEntity(payload))],
+            [KE.changeObject, payload => {
+                if (payload.payload.operation) {
+                    dispath(scaleObject(payload))
+                    return
                 }
-            ],
-            [
-                "change-object",
-                (payload: any) => {
-                    if (payload.operation) {
-                        dispath(scaleObject({ ...payload }))
-                        return
-                    }
-                    dispath(changeObject({ payload }))
-                }
-            ],
-            [
-                "dice",
-                (payload: any) => {
-                    toast("message", { text: `${payload.roll}!` })
-                    dispath(pushLog({ log: `${payload.roll}!` }))
-                }
-            ],
-            [
-                "swap-map",
-                (payload: any) => {
-                    dispath(swapCurrentMap(payload))
-                }
-            ],
-            [
-                "view-img",
-                (payload: any) => { swapImgView(payload.img) }
-            ],
-            [
-                'sync',
-                (payload: any) => { dispath(setSession(payload)) }
-            ]
+                dispath(changeObject(payload))
+            }],
+            [KE.dice, payload => {
+                toast("message", { text: `${payload.roll}!` })
+                dispath(pushLog({ log: `${payload.roll}!` }))
+            }],
+            [KE.swapCurrentMap, payload => dispath(swapCurrentMap(payload))],
+            [KE.viewImg, payload => swapImgView(payload.img)],
+            [KE.sync, payload => dispath(setSession(payload))],
+            [KE.pushEntity, payload => dispath(pushEntity({ ...payload, isFromConnect: true }))],
+            [KE.pushObject, payload => dispath(pushObject({ ...payload, isFromConnect: true }))],
+            [KE.pushCharacter, payload => dispath(pushCharacter({ ...payload, isFromConnect: true }))],
+            [KE.pushMap, payload => dispath(pushMap({ ...payload, isFromConnect: true }))],
         ])
     }, [])
 

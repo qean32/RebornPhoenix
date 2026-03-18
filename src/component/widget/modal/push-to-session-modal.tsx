@@ -31,7 +31,7 @@ export const PushToSession: React.FC<Props> = ({
                 {
                     Object.values(primeList).map((item: any) => {
                         return <GroupTokenInModal
-                            key={item.id}
+                            key={item[0].id}
                             items={item}
                             renderItem={renderItem}
                         />

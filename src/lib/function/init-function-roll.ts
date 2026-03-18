@@ -2,6 +2,7 @@ import { rollText } from "@/config"
 import { useThrottleFunction, useToast, useUser } from "../hook"
 import { EventMiddleware } from "../middleware"
 import { getBetweenNumber } from "./get-between-number"
+import { KE } from "@/model"
 
 
 export const initFunctionRoll = (force?: boolean) => {
@@ -15,7 +16,7 @@ export const initFunctionRoll = (force?: boolean) => {
             const text = `${rollText[getBetweenNumber(0, rollText.length - 1)]} ${getBetweenNumber(1, 20)}! ${user?.name}`
 
             setTimeout(() => {
-                event({ payload: { roll: text }, type: 'dice' },
+                event({ payload: { roll: text }, type: KE.dice },
                     () => toast('message', { text }, 2000))
             }, 600)
         }, 2000)

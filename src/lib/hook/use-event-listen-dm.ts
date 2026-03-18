@@ -2,7 +2,7 @@ import { eventKey } from "@/config";
 import { useEchoPublic } from "@laravel/echo-react";
 import React from "react";
 import { useParams } from 'react-router-dom';
-import { eventType } from "@/model";
+import { eventType, KE } from "@/model";
 import { useToast } from "./use-toast";
 import { useAppDispatch } from "./redux";
 import { pushLog } from "@/store/log";
@@ -14,7 +14,7 @@ export const useEventListenDM = () => {
     const dispath = useAppDispatch()
 
     const handler = ({ event: { payload, type } }: { event: eventType }) => {
-        if (type == 'dice') {
+        if (type == KE.dice) {
             toast('message', { text: `выпало ${payload.roll}!` })
             dispath(pushLog({ log: `выпало ${payload.roll}!` }))
         }

@@ -1,5 +1,5 @@
 import z from "zod";
-import { initiative } from "./zod-types";
+import { initiative } from "./core";
 
 export const pushCharacterSchema = z.object({
     name: z
@@ -7,8 +7,7 @@ export const pushCharacterSchema = z.object({
         .max(20, { message: 'Максимальная длина - 20' })
         .min(4, { message: 'Минимальная длина - 4' }),
     img: z
-        .file()
-    ,
+        .file(),
     initiative: initiative
 });
 

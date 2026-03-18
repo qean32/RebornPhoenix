@@ -9,12 +9,16 @@ import {
 } from "@/component/ui/main";
 import { title, urlTitle } from "@/config";
 import { usePage } from "@lib/hook";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 
 export const Main = () => {
     const [url] = useSearchParams()
     usePage(title.main, !!url.get(urlTitle.forceupdate))
+    React.useEffect(() => {
+        url.delete(urlTitle.forceupdate)
+    }, [])
 
     return (
         <main>

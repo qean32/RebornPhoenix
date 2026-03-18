@@ -5,6 +5,7 @@ import { saveJson } from '@/lib/function'
 import { useToast } from '@/lib/hook'
 import { useAppSelector } from '@/lib/hook/redux'
 import { EventMiddleware } from '@/lib/middleware'
+import { KE } from '@/model'
 
 interface Props {
 }
@@ -13,20 +14,20 @@ interface Props {
 export const SaveSession: React.FC<Props> = React.memo(() => {
     const toast = useToast()
     const save = saveJson(toast)
-    const { isDevMode } = useAppSelector(state => state.log)
+    const { mode } = useAppSelector(state => state.log)
     const session = useAppSelector(state => state.session)
     const eventSave = EventMiddleware()
 
     React.useEffect(() => {
         const interval = setInterval(() => {
-            if (!isDevMode) {
-                eventSave({ payload: session, type: 'sync' }, () => { })
+            if (mode == 'play') {
+                eventSave({ payload: session, type: KE.sync }, () => { })
                 save()
             }
         }, 300000)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [mode])
 
     return (
         <FillHoverHint title='Сохранить'>

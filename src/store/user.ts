@@ -14,11 +14,11 @@ const userSlice = createSlice({
         setUser(state: stateDto, { payload }: PayloadAction<userInterface | null>) {
             state.user = payload
         },
-        swapTry(state: stateDto) {
-            state._try = !state._try
+        onTry(state: stateDto) {
+            state._try = true
         }
     },
 })
 
 export const userReducer = userSlice.reducer
-export const { setUser, swapTry } = userSlice.actions
+export const { setUser, onTry } = userSlice.actions

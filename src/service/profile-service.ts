@@ -1,5 +1,6 @@
 import { tokenStorageKey } from "@/config"
 import { requestDelete, requestGet, requestPost } from "@/lib/function/request"
+import { userInterface } from "@/model"
 import Cookies from "js-cookie"
 
 const instance = 'profile'
@@ -36,6 +37,7 @@ export const profileService = {
     GET_SUBSCRIBE: (id: string | number) => {
         if (Cookies.get(tokenStorageKey))
             return requestGet(`${instance}/${id}/my-follow`)
+        return () => { }
     },
 
     CREATE_CHARACTER: (data: any) => {
@@ -55,7 +57,6 @@ export const profileService = {
     },
 
     me: () => {
-        if (Cookies.get(tokenStorageKey))
-            return requestGet(`${instance}/me`)
+        return requestGet<userInterface>(`${instance}/me`)
     }
 }

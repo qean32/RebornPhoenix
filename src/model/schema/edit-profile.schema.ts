@@ -1,9 +1,9 @@
 import z from "zod";
-import { name } from "./zod-types";
+import { name } from "./core";
 
 export const editProfileSchema = z.object({
     name: name,
-    ava: z.any().nullable()
+    ava: z.any().optional()
 });
 
 export type editProfileFormSchema = z.infer<typeof editProfileSchema>

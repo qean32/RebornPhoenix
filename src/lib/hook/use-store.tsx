@@ -66,7 +66,7 @@ export const useStore = (type: gameEntities) => {
     }, [key, tmpObject])
 
     // @ts-ignore
-    const [data, loading] = useRequest<entityInterface[] | mapInterface[] | objectInterface[]>(map.get(type)[0], [map.get(type)[1]])
+    const [data, loading] = useRequest<entityInterface[] | mapInterface[] | objectInterface[]>(map.get(type)[0], [map.get(type)[1]], { suspense: false })
 
     const init = React.useCallback(() => {
         const tmp = {}

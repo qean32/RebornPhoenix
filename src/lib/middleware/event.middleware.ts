@@ -6,16 +6,16 @@ import { eventType } from "@/model"
 
 export const EventMiddleware = (force?: boolean) => {
     const throwEvent = initThrowEvent()
-    const { isDevMode } = useAppSelector(state => state.log)
+    const { mode } = useAppSelector(state => state.log)
 
     const returnedFunction = React.useCallback(
         (payload: eventType, action: () => void) => {
-            if (!isDevMode || force) {
+            if (mode == 'play' || force) {
                 throwEvent(payload)
             }
 
             action()
-        }, [isDevMode])
+        }, [mode])
 
     return returnedFunction
 }

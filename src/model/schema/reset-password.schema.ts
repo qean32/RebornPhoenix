@@ -1,5 +1,5 @@
 import z from "zod";
-import { email } from "./zod-types";
+import { email } from "./core";
 
 export const resetPasswordSchema = z.object({
     email: email

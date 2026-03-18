@@ -65,8 +65,7 @@ export const CommentForm: React.FC<Props> = ({ deleteItem, pushItem, updateItem 
                             className='no-min-h pt-0.5'
                             // @ts-ignore
                             initValue={tmpObject?.content}
-                        >
-                        </TextArea>
+                        />
                         <Button className='px-4 flex items-start' variant='ghost' type='submit'>
                             <img src="/icon/send.svg" alt="" className="icon-md" /></Button>
                     </div>

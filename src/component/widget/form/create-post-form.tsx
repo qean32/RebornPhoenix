@@ -28,7 +28,6 @@ export const CreatePostForm: React.FC<Props> = () => {
                     }))
                     .catch(response => handleFetchCatch(response, toast))
             },
-            () => { }
         )
 
     return (
@@ -45,11 +44,10 @@ export const CreatePostForm: React.FC<Props> = () => {
 
                 <UnwrapRemoveFiles />
 
-                <div className="py-5">
-                    <PushTagInForm
-                        name='tags'
-                    />
-                </div>
+                <PushTagInForm
+                    className='py-5'
+                    name='tags'
+                />
 
                 <TextArea
                     title="Описание вашей статьи"

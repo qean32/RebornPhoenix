@@ -24,9 +24,9 @@ export const TextArea: React.FC<Props> = ({
     convertHTML = false,
     parentDivclassName,
     initValue = "",
-    offset = true
+    offset = true,
 }: Props) => {
-    const { formState: { errors }, setValue, watch } = useFormContext()
+    const { formState: { errors }, watch, setValue } = useFormContext()
     const textError = errors[name]?.message as string;
 
     React.useEffect(() => {
@@ -35,12 +35,12 @@ export const TextArea: React.FC<Props> = ({
             setCode(initValue ?? watch(name))
         }
     }, [initValue])
+    const clearWatch = !!watch(name)
 
     React.useEffect(() => {
-        if (!watch(name)) {
+        if (!watch(name))
             setCode("")
-        }
-    }, [watch(name)])
+    }, [clearWatch])
 
     const editorRef = React.useRef(null);
     const [code, setCode] = React.useState<string>('');

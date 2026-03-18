@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, NoFindData, UnwrapFiles } from '@component/ui'
 import { ViewAdmin, ViewAuthor } from '@/component/master/hoc'
 import { Modal } from '@component/widget/modal'
-import { MainBlock, PostInfo, CountBlock } from '.'
+import { MainBlock, PostInfo, CountHoc } from '.'
 import { useRequest, useToast } from '@/lib/hook'
 import { postType } from '@/model/post.type'
 import { forumService } from '@/service'
@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { modalAnimationEnum } from '@/config'
 import { PostContentSceleton } from '@component/widget/sceleton'
 import { handleFetchThen } from '@/lib/function'
+import { RQKQYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
     className?: string
@@ -20,7 +21,7 @@ export const PostContent: React.FC<Props> = () => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
-    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), [`post-${id}`])
+    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), RQKQYFACTORY.post(id ?? 0))
 
     const deletePost = () => {
         forumService.DELETE_POST(id ?? 0)
@@ -64,9 +65,7 @@ export const PostContent: React.FC<Props> = () => {
 
                 <MainBlock content={post.content} description={post.description}>
 
-                    <CountBlock
-                        likeCount={post.likes}
-                    />
+                    <CountHoc likeCount={post.likes} />
                 </MainBlock>
 
                 <UnwrapFiles

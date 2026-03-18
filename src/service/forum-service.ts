@@ -31,6 +31,7 @@ export const forumService = {
     MY_LIKE: (id: string | number) => {
         if (Cookies.get(tokenStorageKey))
             return requestGet(`${instance}/${id}/my-like`)
+        return () => { }
     },
 
     DELETE_POST: (id: string | number) => {

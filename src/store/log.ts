@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type stateDto = {
     logs: string[],
-    isDevMode: boolean
+    mode: "dev" | "play"
 }
 
 const initialState: stateDto = {
     logs: [],
-    isDevMode: true,
+    mode: "dev",
 }
 
 const logSlice = createSlice({
@@ -21,7 +21,7 @@ const logSlice = createSlice({
             ]
         },
         swapMode: (state: stateDto) => {
-            state.isDevMode = !state.isDevMode
+            state.mode = state.mode == "dev" ? "play" : "dev"
         },
     },
 })
