@@ -8,12 +8,13 @@ import { Modal } from "@component/widget/modal"
 import { NoFindData, PlusButton } from "@component/ui"
 import { SessionItem } from "@component/ui/item"
 import React from "react"
+import { RQKQYFACTORY } from "@/config/rq-key-factory"
 
 interface Props {
     id: number | string
 }
 export const Sessions: React.FC<Props> = ({ id }: Props) => {
-    const [sessions, loading, { pushItem, deleteItem }] = useRequestEditable<sessionInterface[]>(() => profileService.GET_SESSIONS(id ?? 0), [`profile-session-${id}`])
+    const [sessions, loading, { pushItem, deleteItem }] = useRequestEditable<sessionInterface[]>(() => profileService.GET_SESSIONS(id ?? 0), RQKQYFACTORY.profileSessions(id ?? 0))
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

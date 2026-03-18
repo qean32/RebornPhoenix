@@ -25,7 +25,7 @@ export const DynamicPagination: React.FC<Props> = ({
         staticParam
     },
 }: Props) => {
-    const { response, loading, refHandler, isEnd } =
+    const { response, loading, ref, isEnd } =
         useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, staticParam)
 
     return (
@@ -38,7 +38,7 @@ export const DynamicPagination: React.FC<Props> = ({
             })}
             {!response.length && !loading && <NoFindData title={noFindDataText} />}
             {!isEnd && <p className='pt-3 px-7'>Загрузка</p>}
-            <div className='w-100 min-h-[50px]' ref={refHandler}></div>
+            <div className='w-100 min-h-[50px]' ref={ref}></div>
         </div>
     )
 }

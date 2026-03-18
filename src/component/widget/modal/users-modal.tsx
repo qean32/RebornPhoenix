@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { pushUser } from '@/store/session'
 import { usePushCharacterThrow } from '@/lib/hook/throw/use-push-character-throw'
 import { useSearchThrow } from '@/lib/hook/throw'
+import { RQKQYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement>
@@ -31,8 +32,8 @@ export const Users: React.FC<Props> = ({ swap }: Props) => {
     }, [])
 
     const [search] = useSearchThrow()
-    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(search), ['search-users', search])
-    const [myusers] = useRequest<userInterface[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), ['search-users', session.users])
+    const [users, loading] = useRequest<userInterface[]>(() => communityService.SEARCH_USERS(search), [...RQKQYFACTORY.searchUser(), search])
+    const [myusers] = useRequest<userInterface[]>(() => communityService.GET_USERS_BY_ARRAY(session?.users ?? ''), [...RQKQYFACTORY.findByArrayUser(), session.users])
 
     return (
         <div className='relative bg-color h-full w-[320px] overflow-scroll' onClick={stopPropagation} >

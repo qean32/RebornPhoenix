@@ -11,6 +11,7 @@ import { forumService } from "@/service"
 import { departmentOptions } from "@/config"
 import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/widget/sceleton"
+import { RQKQYFACTORY } from "@/config/rq-key-factory"
 
 
 export const Department = () => {
@@ -29,7 +30,7 @@ export const Department = () => {
 const MainSideForum: React.FC<{}> = ({ }: {}) => {
     const { name } = useParams()
     const departmentId = departmentOptions.find(item => item.value.toLocaleLowerCase() == (name ?? '').toLocaleLowerCase())?.id
-    const [post] = useRequest<postType>(() => forumService.GET_FIXED_POST(departmentId ?? 0), [`get-fixed-${departmentId}`])
+    const [post] = useRequest<postType>(() => forumService.GET_FIXED_POST(departmentId ?? 0), RQKQYFACTORY.fixed(departmentId ?? 0))
 
     return (
         <div className="relative w-full">
@@ -43,7 +44,7 @@ const MainSideForum: React.FC<{}> = ({ }: {}) => {
                 <DynamicPagination
                     rq={{
                         fetch: forumService.GET_DEPARTAMENT_POST,
-                        RQKey: ["department", Math.random().toString()],
+                        RQKey: [...RQKQYFACTORY.posts(departmentId ?? 0), Math.random().toString()],
                         staticParam: [departmentId]
                     }}
                     renderItem={(item) => <PostItem {...item} className="pl-2" />}

@@ -10,7 +10,7 @@ interface Props {
 
 export const CountHoc: React.FC<Props> = ({ likeCount }: Props) => {
     const { id } = useParams()
-    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [``], { suspense: false })
+    const [myLike] = useRequest<boolean>(() => forumService.MY_LIKE(id ?? 0), [], { suspense: false })
 
     return (
         <>

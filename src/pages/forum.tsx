@@ -7,6 +7,7 @@ import { forumService } from "@/service"
 import { departmentType } from "@/model"
 import { ForumSceleton } from "@/component/widget/sceleton"
 import React from "react"
+import { RQKQYFACTORY } from "@/config/rq-key-factory"
 
 
 export const Forum = () => {
@@ -27,7 +28,7 @@ export const Forum = () => {
 }
 
 const Content: React.FC<{}> = ({ }: {}) => {
-    const [departments] = useRequest<departmentType[]>(forumService.GET_DEPARTAMENTS, ['departments'])
+    const [departments] = useRequest<departmentType[]>(forumService.GET_DEPARTAMENTS, RQKQYFACTORY.departments())
 
     return (
         <div className="flex flex-col gap-7">

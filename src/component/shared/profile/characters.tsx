@@ -7,6 +7,7 @@ import { Modal } from "@component/widget/modal"
 import { NoFindData, PlusButton } from "@component/ui"
 import { LinkCharacterItem } from "@component/ui/item"
 import React from "react"
+import { RQKQYFACTORY } from "@/config/rq-key-factory"
 
 
 interface Props {
@@ -14,7 +15,8 @@ interface Props {
 }
 
 export const Characters: React.FC<Props> = ({ id }: Props) => {
-    const [characters, loading, { pushItem, deleteItem }] = useRequestEditable<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), [`profile-characters-${id}`])
+    const [characters, loading, { pushItem, deleteItem }] =
+        useRequestEditable<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), RQKQYFACTORY.profileCharacters(id ?? 0))
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {

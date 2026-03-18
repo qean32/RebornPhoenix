@@ -4,8 +4,9 @@ import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook';
 import { authServiceItem } from '@/service';
-import { handleFetchCatch, handleFetchThen, initSetUser, setToken } from '@/lib/function';
+import { handleFetchCatch, handleFetchThen, setToken } from '@/lib/function';
 import { useNavigate } from 'react-router-dom';
+import { urlTitle } from '@/config';
 
 interface Props {
 }
@@ -21,9 +22,8 @@ export const RegistrationForm: React.FC<Props> = () => {
                 authServiceItem.REGISTRATION(data)
                     .then(response => handleFetchThen(response, toast, "Успешная регистрация!", (data) => {
                         setToken(data.token);
-                        initSetUser(true)
                         setTimeout(() => {
-                            navigate('/')
+                            navigate(`/?${urlTitle.forceupdate}=true`)
                         }, 500)
                     }))
                     .catch(response => handleFetchCatch(response, toast))

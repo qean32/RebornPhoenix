@@ -7,6 +7,7 @@ import { userInterface } from "@/model"
 import { UserItem } from "@/component/ui/item"
 import { CommunitySceleton } from "@/component/widget/sceleton"
 import React from "react"
+import { RQKQYFACTORY } from "@/config/rq-key-factory"
 
 export const Subscribers = () => {
     const { } = usePage(title.subscribers)
@@ -27,7 +28,7 @@ export const Subscribers = () => {
 }
 
 const Content: React.FC<{}> = () => {
-    const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, ['my-subscribers'])
+    const [subscribers] = useRequest<userInterface[]>(profileService.GET_SUBSCRIBERS, RQKQYFACTORY.mySubscribers())
 
     return (
         <>

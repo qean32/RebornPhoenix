@@ -5,6 +5,7 @@ import { commentType } from '@/model'
 import { useRequestEditable } from '@/lib/hook'
 import { forumService } from '@/service'
 import { useParams } from 'react-router-dom'
+import { RQKQYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
 }
@@ -12,7 +13,7 @@ interface Props {
 
 export const CommentBlock: React.FC<Props> = () => {
     const { id } = useParams()
-    const [comments, loading, actions] = useRequestEditable<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), [`post-comment-${id}`])
+    const [comments, loading, actions] = useRequestEditable<commentType[]>(() => forumService.GET_COMMENTS(id ?? 0), RQKQYFACTORY.comments(id ?? 0))
 
     return (
         <div className="bg-color-dark rounded-lg pb-2">
