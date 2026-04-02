@@ -26,7 +26,7 @@ export const DynamicPagination: React.FC<Props> = ({
     },
 }: Props) => {
     const { response, loading, ref, isEnd } =
-        useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 10, staticParam)
+        useDynamicPagination<userInterface>(fetch, [...RQKey], 0, 15, staticParam)
 
     return (
         <div className={cn('pb-5 min-h-[100vh] flex flex-col', className)}>

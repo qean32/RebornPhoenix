@@ -200,13 +200,13 @@ export const themes = {
         "var(--theme-3-darkness)",
         "var(--theme-3-light)",
     ],
-    _: [
+    _default: [
         "var(--theme-1)",
         "var(--theme-1-dark)",
         "var(--theme-1-darkness)",
         "var(--theme-1-light)",
     ],
-    __: [
+    darkness: [
         "var(--theme-2)",
         "var(--theme-2-dark)",
         "var(--theme-2-darkness)",

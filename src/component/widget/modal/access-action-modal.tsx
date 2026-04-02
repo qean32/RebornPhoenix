@@ -6,12 +6,13 @@ interface Props extends React.ComponentProps<"button"> {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
     warning: string
     warningButtonText: string
+    fn: () => void
 }
 
 
 export const AccessAction: React.FC<Props> = ({
     swap,
-    onClick,
+    fn,
     warning,
     warningButtonText
 }: Props) => {
@@ -26,7 +27,7 @@ export const AccessAction: React.FC<Props> = ({
             </div>
             <div className="flex gap-5 justify-end p-5 items-end h-fit">
                 {/* @ts-ignore */}
-                <Button variant='ghost' onClick={(e) => { onClick(e); swap(e); }}><p value='modal'>{warningButtonText}</p></Button>
+                <Button variant='ghost' onClick={(e) => { fn(e); swap(e); }}><p value='modal'>{warningButtonText}</p></Button>
                 <Button variant='acceess' onClick={swap}><p value='modal'>Отмена</p></Button>
             </div>
         </div>

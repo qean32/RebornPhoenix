@@ -1,4 +1,4 @@
-export const RQKQYFACTORY = {
+export const RQKEYFACTORY = {
     comments: (id: number | string) => ["comments", `commnets-${id}`],
     post: (id: number | string) => ["post", `post-${id}`],
     profileCharacters:

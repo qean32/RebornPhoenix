@@ -1,13 +1,14 @@
 import React from 'react'
 import { Button, DatePickerInFilter, PushTagInFilter } from '@component/ui'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useFilterThrow } from '@/lib/hook/throw'
 
 interface Props {
 }
 
 
 export const FilterForum: React.FC<Props> = () => {
-    const navigate = useNavigate()
+    const [_, clear] = useFilterThrow()
 
     return (
         <form className="w-2/6 min-w-[310px] max-w-2/6 h-fit flex-1 mt-6 rounded-md bg-color-dark p-5">
@@ -20,7 +21,7 @@ export const FilterForum: React.FC<Props> = () => {
 
             <div className='flex justify-between pt-20'>
                 <Button
-                    onClick={() => { navigate(location.pathname) }}
+                    onClick={() => clear({ date: "", tags: "" })}
                     type='reset'
                     variant='default'
                 >
