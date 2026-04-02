@@ -5,7 +5,7 @@ import { UserItem } from "@component/ui/item"
 import { title } from "@/config"
 import { usePage } from "@lib/hook"
 import { communityService } from "@/service"
-import { RQKQYFACTORY } from "@/config/rq-key-factory"
+import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 export const Community = () => {
     const { } = usePage(title.communty)
@@ -19,7 +19,7 @@ export const Community = () => {
                 <DynamicPagination
                     rq={{
                         fetch: communityService.GET_USERS,
-                        RQKey: [...RQKQYFACTORY.community(), Math.random().toString()],
+                        RQKey: [...RQKEYFACTORY.community(), Math.random().toString()],
                         staticParam: []
                     }}
                     className="pt-5"

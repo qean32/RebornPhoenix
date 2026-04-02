@@ -5,7 +5,7 @@ import { usePage, useRequest, useUser } from '@/lib/hook'
 import { sessionService } from '@/service/session-service'
 import { useParams } from 'react-router-dom'
 import { sessionInfoDto } from '@/model'
-import { RQKQYFACTORY } from '@/config/rq-key-factory'
+import { RQKEYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
     children: React.ReactNode
@@ -24,7 +24,7 @@ export const ProtectedRouteSession: React.FC<Props> = ({ children }: Props) => {
 
                 return response
             }),
-        RQKQYFACTORY.session(id ?? 0)
+        RQKEYFACTORY.session(id ?? 0)
     )
     const { user } = useUser()
     const { } = usePage(getParamName())

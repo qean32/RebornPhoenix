@@ -18,22 +18,21 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "baseUrl": "./",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "@component/*": [
-        "src/component/*"
+        "./src/component/*"
       ],
       "@lib/*": [
-        "src/lib/*"
+        "./src/lib/*"
       ],
       "@service/*": [
-        "src/service/*"
+        "./src/service/*"
       ],
       "@config/*": [
-        "src/config/*"
+        "./src/config/*"
       ]
     },
     "jsx": "react-jsx",

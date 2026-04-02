@@ -33,6 +33,6 @@ export const separatorLink = ':separator-link:'
 
 export const serverWork = 'ok'
 
-export const eventKey = ".throwEvent";
+export const eventKey = ".throwEvent"
 
 export const expansionPhone = 748

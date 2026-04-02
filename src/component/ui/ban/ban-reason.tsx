@@ -3,7 +3,7 @@ import { Page } from '@/component/master/hoc'
 import { useRequest } from '@/lib/hook'
 import { profileService } from '@/service'
 import { banReasonInterface } from '@/model'
-import { RQKQYFACTORY } from '@/config/rq-key-factory'
+import { RQKEYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
     id: string | number
@@ -11,7 +11,7 @@ interface Props {
 
 
 export const BanReason: React.FC<Props> = ({ id }: Props) => {
-    const [reason] = useRequest<banReasonInterface>(() => profileService.GET_BAN_REASON(id), RQKQYFACTORY.banReason(id ?? 0))
+    const [reason] = useRequest<banReasonInterface>(() => profileService.GET_BAN_REASON(id), RQKEYFACTORY.banReason(id ?? 0))
 
     //@ts-ignore
     if (reason && reason != "no") {

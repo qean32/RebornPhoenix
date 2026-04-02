@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { modalAnimationEnum } from '@/config'
 import { PostContentSceleton } from '@component/widget/sceleton'
 import { handleFetchThen } from '@/lib/function'
-import { RQKQYFACTORY } from '@/config/rq-key-factory'
+import { RQKEYFACTORY } from '@/config/rq-key-factory'
 
 interface Props {
     className?: string
@@ -21,7 +21,7 @@ export const PostContent: React.FC<Props> = () => {
     const { id } = useParams()
     const toast = useToast()
     const navigate = useNavigate()
-    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), RQKQYFACTORY.post(id ?? 0))
+    const [post, loading] = useRequest<postType>(() => forumService.GET_POST(id ?? 0), RQKEYFACTORY.post(id ?? 0))
 
     const deletePost = () => {
         forumService.DELETE_POST(id ?? 0)

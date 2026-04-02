@@ -24,7 +24,6 @@ export type keysTmp =
     'create-character' |
     'delete-session' |
     'create-session' |
-    'push-object' |
     'push-object-to-session' |
     null
 type stateDto = { tmpObject: stateT, key: keysTmp }

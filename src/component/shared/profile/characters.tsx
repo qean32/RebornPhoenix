@@ -7,7 +7,7 @@ import { Modal } from "@component/widget/modal"
 import { NoFindData, PlusButton } from "@component/ui"
 import { LinkCharacterItem } from "@component/ui/item"
 import React from "react"
-import { RQKQYFACTORY } from "@/config/rq-key-factory"
+import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 
 export const Characters: React.FC<Props> = ({ id }: Props) => {
     const [characters, loading, { pushItem, deleteItem }] =
-        useRequestEditable<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), RQKQYFACTORY.profileCharacters(id ?? 0))
+        useRequestEditable<characterInterface[]>(() => profileService.GET_CHARACTERS(id ?? 0), RQKEYFACTORY.profileCharacters(id ?? 0))
     const { clearTmp, key, tmpObject } = useTmpObject()
 
     React.useEffect(() => {
@@ -32,7 +32,7 @@ export const Characters: React.FC<Props> = ({ id }: Props) => {
 
     return (
         <>
-            <div className='grid gap-5 grid-cols-12 pt-1 adaptive2k-grid-column-15'>
+            <div className='grid gap-5 grid-cols-12 adaptive2k-grid-column-15 pt-5'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
                         // @ts-ignore

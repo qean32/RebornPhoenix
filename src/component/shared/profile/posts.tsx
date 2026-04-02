@@ -8,14 +8,14 @@ import { profileService } from "@/service"
 import { postType } from "@/model/post.type"
 import { DepartmentSceleton } from "@/component/widget/sceleton"
 import { departmentMap } from "@/config"
-import { RQKQYFACTORY } from "@/config/rq-key-factory"
+import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 interface Props {
     id: number | string
 }
 
 export const Posts: React.FC<Props> = ({ id }: Props) => {
-    const [posts, loading] = useRequest<postType[]>(() => profileService.GET_POSTS(id ?? 0), RQKQYFACTORY.profilePosts(id ?? 0))
+    const [posts, loading] = useRequest<postType[]>(() => profileService.GET_POSTS(id ?? 0), RQKEYFACTORY.profilePosts(id ?? 0))
 
     return (
         <div className='pt-2 pb-4'>
