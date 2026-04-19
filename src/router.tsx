@@ -5,6 +5,7 @@ import { RefreshToken, ToastArea } from "@component/master"
 import { Header, Navigate } from "./component/shared"
 import { ProtectedRouteAuth, ProtectedRouteSession } from "./pages/protected-route"
 import React from "react"
+import Test from "./pages/test"
 
 const Faq = React.lazy(() => import("@/pages/faq"))
 const CommunityRules = React.lazy(() => import("@/pages/community-rules"))
@@ -28,6 +29,8 @@ export const Router = () => {
                         </ProtectedRouteAuth>
                     </ProtectedRouteSession>
                 } path="/session/:id/:name" />
+
+                <Route element={<Test />} path="/test" />
 
                 <Route element={<pages.Auth />} path="/auth" />
                 <Route element={<pages.CreatePost />} path="/create-post" />
