@@ -154,17 +154,16 @@ export const ImgInput: React.FC<InputFileProps> = ({
 }
 
 interface CheckboxProps {
-    value: boolean
-    fn?: Function
+    fn: React.FormEventHandler<HTMLDivElement>
     title: string
     className?: string
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({ title, className }: CheckboxProps) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ title, className, fn }: CheckboxProps) => {
     const id = generateId().toString()
 
     return (
-        <div className={cn('cursor-pointer flex gap-2', className)}>
+        <div className={cn('cursor-pointer flex gap-2', className)} onChange={fn}>
             <input hidden className="checkbox-pop" type="checkbox" id={id} />
             <label htmlFor={id} className='text-sm flex gap-5 text-justify'>
                 {title}

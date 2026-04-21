@@ -10,7 +10,7 @@ import { modalAnimationEnum } from '@/config'
 interface Props {
 }
 
-
+const ZOOM_CHANGE = 0.1
 export const CropImg: React.FC<Props> = () => {
     const [blob, _, clear] = useCropThrow()
     const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -25,10 +25,21 @@ export const CropImg: React.FC<Props> = () => {
         try {
             const croppedImage = await getCroppedImg(blob, croppedAreaPixels)
             console.log(croppedImage)
+            fetch(croppedImage).then((response) => response.blob())
+                .then((blob) => URL.createObjectURL(blob))
+            // .then((href) => { })
         } catch (e) {
             console.error(e)
         }
     }, [croppedAreaPixels])
+
+    const zoomHandler = useCallback((e: number) => {
+        if (zoom > e) {
+            setZoom(prev => prev - ZOOM_CHANGE)
+            return
+        }
+        setZoom(prev => prev + ZOOM_CHANGE)
+    }, [zoom])
 
     return (
         <Modal
@@ -36,7 +47,7 @@ export const CropImg: React.FC<Props> = () => {
             view={!!blob}
             animation={modalAnimationEnum['modal-dft']}
         >
-            <div className="bg-color w-1/3 h-6/12 rounded-md flex flex-col overflow-hidden" onClick={stopPropagation}>
+            <div className="bg-color w-1/3 h-6/12 rounded-md flex flex-col overflow-hidden p-5" onClick={stopPropagation}>
                 <div className="h-9/12 relative">
                     <Cropper
                         image={blob}
@@ -45,10 +56,10 @@ export const CropImg: React.FC<Props> = () => {
                         aspect={1}
                         onCropChange={setCrop}
                         onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
+                        onZoomChange={zoomHandler}
                     />
                 </div>
-                <div className="p-5 flex gap-3 justify-end items-end h-3/12">
+                <div className="flex gap-3 justify-end items-end h-3/12">
                     <Button variant='reject' onClick={clear}>Отмена</Button>
                     <Button onClick={showCroppedImage}>Обрезать</Button>
                 </div>

@@ -14,6 +14,7 @@ export const slogan = 'Играйте вместе с нами!'
 
 export const title = {
     communityRules: 'Правила сообщества',
+    noAuth: 'Необходима авторизация',
     authorization: 'Авторизация',
     p404: 'Страница 404',
     changePassword: 'Изменение пароля',

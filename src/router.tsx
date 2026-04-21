@@ -21,13 +21,13 @@ export const Router = () => {
             <Routes>
 
                 <Route element={
-                    <ProtectedRouteSession>
-                        <ProtectedRouteAuth >
+                    <ProtectedRouteAuth >
+                        <ProtectedRouteSession>
 
                             <MainLoader />
                             <pages.Session />
-                        </ProtectedRouteAuth>
-                    </ProtectedRouteSession>
+                        </ProtectedRouteSession>
+                    </ProtectedRouteAuth>
                 } path="/session/:id/:name" />
 
                 <Route element={<Test />} path="/test" />
