@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
+import { TextInput, Button, Title, LinkPrime, CropImgInput } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
 import { useMyForm, useToast, useUser } from '@/lib/hook'
@@ -20,6 +20,7 @@ export const EditProfileForm: React.FC<Props> = () => {
         useMyForm<editProfileFormSchema>(
             editProfileSchema,
             (data: editProfileFormSchema) => {
+                console.log(data)
                 profileService.UPDATE_PROFILE(conventToFormData(data))
                     .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
                         setTimeout(() => {
@@ -47,12 +48,7 @@ export const EditProfileForm: React.FC<Props> = () => {
                                 defaultValue={user?.name ?? ''}
                                 className='outline-bg-light'
                             />
-
-                            <ImgInput name='ava'
-                                defaultValue={user?.ava ?? ''}
-                                title='фото профиля'
-                                className='pl-1 pt-5'
-                            />
+                            <CropImgInput name='ava' defaultValue={user?.ava ?? ''} />
                         </div>
                         <LinkPrime
                             path='/reset-password'

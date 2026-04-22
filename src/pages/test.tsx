@@ -6,7 +6,6 @@ export default () => {
     return (
         <>
             <CropImgInput />
-            <CropImg />
         </>
     )
 }

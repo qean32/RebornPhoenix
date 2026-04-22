@@ -6,6 +6,7 @@ import { useMyForm, useToast } from '@/lib/hook'
 import { useNavigate } from 'react-router-dom'
 import { authServiceItem } from '@/service'
 import { handleFetchCatch, handleFetchThen, initSetUser, setToken } from '@/lib/function'
+import { urlTitle } from '@/config'
 
 interface Props {
 }
@@ -24,7 +25,7 @@ export const AuthForm: React.FC<Props> = () => {
                         setToken(data.token);
                         initSetUser(true)
                         setTimeout(() => {
-                            navigate('/')
+                            navigate(`/?${urlTitle.forceupdate}=true`)
                         }, 500)
                     }))
                     .catch(response => handleFetchCatch(response, toast))

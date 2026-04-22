@@ -15,7 +15,6 @@ import { viewImgReducer } from './throw/view-img'
 import { selectFilterReducer } from './throw/select-filter'
 import { pushCharacterReducer } from './throw/push-character'
 import { sessionMiddleware } from './middleware'
-import { cropReducer } from './throw/crop'
 
 
 const rootReducer = combineReducers({
@@ -26,7 +25,6 @@ const rootReducer = combineReducers({
     log: logReducer,
 
     anchor: anchorReducer,
-    crop: cropReducer,
     content: contentReducer,
     entityAction: entityActionReducer,
     grid: gridReducer,
