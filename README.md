@@ -21,7 +21,8 @@
   <img src="https://github.com/qean32/qean32/blob/main/icon/reacthookform.svg" />
 </div>
 
-### The application is designed as a non-commercial platform for organizing and conducting sessions D&D
+### The application is designed as a non-commercial platform for organizing and conducting sessions D&D with the forum
+### Приложение было разработано как некормерческая платформа для организации и проведения сессий D&D с формумом
 ### current version: 1.0
 
 </br>
