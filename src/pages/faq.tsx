@@ -6,7 +6,7 @@ import { usePage } from "@/lib/hook/use-page"
 import { infoBlockType } from "@/model/info-block.type"
 
 const Faq = () => {
-    const { } = usePage(title.faq)
+    const { } = usePage(title.FAQ)
 
     return (
         <Page size="w-[85%]" className="pb-20 bg-color-dark">

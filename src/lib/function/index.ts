@@ -32,3 +32,6 @@ export { handleFetchCatch } from './handle-fetch-catch'
 export { handleFetchThen } from './handle-fetch-then'
 export { setTheme } from './set-theme'
 export { formatDate } from './format-date'
+export { blobFile } from './blob-file'
+import crop from './crop'
+export { crop }

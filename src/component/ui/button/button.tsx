@@ -22,11 +22,15 @@ export const Button: React.FC<Props> = ({
     variant = 'default',
     onClick,
     type = 'button',
+    ref,
+    disabled
 }: Props) => {
     return (
         <button
             value={'button'}
+            disabled={disabled}
             type={type}
+            ref={ref}
             onClick={onClick}
             className={cn(
                 'transition-300 rounded-md cursor-pointer px-2 py-2',

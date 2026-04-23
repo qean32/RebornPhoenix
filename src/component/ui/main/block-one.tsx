@@ -14,9 +14,6 @@ export const BlockOne: React.FC<Props> = () => {
             <div className={cn("w-8/12 py-10 transition-700", (boolean ? '' : '-translate-x-10 opacity-20'))}>
                 <p className="text-7xl">ПОЧЕМУ МЫ?</p>
                 <ul className="text-xl list-inside">
-                    <li>Лучшие сервера</li>
-                    <li>Отличный интерфейс</li>
-                    <li>Вайбик</li>
                 </ul>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, Button, ImgInput, Title, LinkPrime } from '@component/ui'
+import { TextInput, Button, Title, LinkPrime, CropImgInput } from '@component/ui'
 import { FormProvider } from 'react-hook-form'
 import { editProfileFormSchema, editProfileSchema } from '@/model/schema'
 import { useMyForm, useToast, useUser } from '@/lib/hook'
@@ -47,12 +47,8 @@ export const EditProfileForm: React.FC<Props> = () => {
                                 defaultValue={user?.name ?? ''}
                                 className='outline-bg-light'
                             />
-
-                            <ImgInput name='ava'
-                                defaultValue={user?.ava ?? ''}
-                                title='фото профиля'
-                                className='pl-1 pt-5'
-                            />
+                            {/* @ts-ignore */}
+                            <CropImgInput name='ava' defaultValue={(process.env.SERVER_HOST_STORAGE + user?.ava) ?? ''} className='mt-5' labelClass='w-25 bg-color-darkness' />
                         </div>
                         <LinkPrime
                             path='/reset-password'

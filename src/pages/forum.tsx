@@ -11,7 +11,7 @@ import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 
 export const Forum = () => {
-    const { } = usePage(title.forum)
+    const { } = usePage(title.FORUM)
 
     return (
         <Page size="w-[70%]">

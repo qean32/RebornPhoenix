@@ -8,7 +8,7 @@ import { communityService } from "@/service"
 import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 export const Community = () => {
-    const { } = usePage(title.communty)
+    const { } = usePage(title.COMMUNITY)
 
     return (
         <Page size="w-[70%]">

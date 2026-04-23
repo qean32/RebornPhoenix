@@ -1,4 +1,4 @@
-import { Button, TextArea, TextInput, UploadImgArea } from '@/component/ui'
+import { Button, CropImgInput, TextArea, TextInput } from '@/component/ui'
 import { dftSource } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
@@ -46,12 +46,13 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
             <form className="w-1/2 flex-1 flex flex-col" onSubmit={submitHandler}>
                 <div className="flex-1 pt-15">
                     <div className="h-[180px] flex justify-center items-start">
-                        <UploadImgArea
+                        <CropImgInput defaultValue='' className='h-full w-full flex justify-center items-center' labelClass='w-2/5 bg-color-dark' name='img' />
+                        {/* <UploadImgArea
                             name='img'
                             className='w-full flex justify-center'
                             iconSize='icon-lg'
                             labelClass='p-0 w-1/2 aspect-square overflow-hidden rounded-full outline-bg-light cursor-pointer bg-color-dark'
-                        />
+                        /> */}
                     </div>
                     <div className='px-5'>
                         <TextInput
