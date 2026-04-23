@@ -6,7 +6,7 @@ import { usePage } from "@/lib/hook/use-page"
 import { infoBlockType } from "@/model/info-block.type"
 
 const CommunityRules = () => {
-    const { } = usePage(title.communityRules)
+    const { } = usePage(title.COMMUNIRY_RULES)
 
 
     return (

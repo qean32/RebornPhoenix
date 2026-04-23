@@ -5,7 +5,7 @@ import { title } from "@/config"
 import { usePage } from "@lib/hook"
 
 export const Auth = () => {
-    const { } = usePage(title.authorization)
+    const { } = usePage(title.AUTHORIZATION)
 
     return (
         <Page className="pt-10" size="w-[50%]">

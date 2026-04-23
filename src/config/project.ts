@@ -10,23 +10,23 @@ export const developers = 'wtfit & Snake Eyes Teams'
 export const REJECT_SERVER = 'Ошибка со стороны сервера!'
 
 export const nameProject = 'Reborn Phoenix'
-export const slogan = 'Играйте вместе с нами!'
+export const slogan = 'D&D навечно!'
 
 export const title = {
-    communityRules: 'Правила сообщества',
-    noAuth: 'Необходима авторизация',
-    authorization: 'Авторизация',
-    p404: 'Страница 404',
-    changePassword: 'Изменение пароля',
-    communty: 'Сообщество',
-    subscribers: 'Подписчики',
-    createPost: 'Конструктор статьи',
-    editProfile: 'Редактор профиля',
-    forum: 'Форум',
-    main: 'Главная',
-    profile: 'Профиль',
-    reserPassword: 'Востановление аккаунта',
-    faq: 'Часто задаваемые вопросы',
+    COMMUNIRY_RULES: 'Правила сообщества',
+    NO_AUTH: 'Необходима авторизация',
+    AUTHORIZATION: 'Авторизация',
+    P404: 'Страница 404',
+    CHANGE_PASSWORD: 'Изменение пароля',
+    COMMUNITY: 'Сообщество',
+    SUBSCRIBERS: 'Подписчики',
+    CREATE_POST: 'Конструктор статьи',
+    EDIT_PROFILE: 'Редактор профиля',
+    FORUM: 'Форум',
+    MAIN: 'Главная',
+    PROFILE: 'Профиль',
+    RESET_PASSWORD: 'Востановление аккаунта',
+    FAQ: 'Часто задаваемые вопросы',
 }
 
 export const separator = ':separator:'

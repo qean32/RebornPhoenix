@@ -32,7 +32,7 @@ export const CropImgInput: React.FC<Props> = ({ className, labelClass, name, def
                     )}
                     style={{ backgroundImage: `url(${url ?? defaultValue})` }}
                 >
-                    {!url && <img src="/icon/upload-aim.svg" alt="" className="icon-lg" />}
+                    {!url && !defaultValue && <img src="/icon/upload-aim.svg" alt="" className="icon-md" />}
                 </label>
                 <input accept='image/png, image/jpeg, image/svg, image/jpg, image/webp' type='file' id={id} className='d-none' onChange={changeHandler} />
             </div>

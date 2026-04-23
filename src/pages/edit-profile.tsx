@@ -5,7 +5,7 @@ import { title } from "@/config"
 import { usePage } from "@lib/hook"
 
 export const EditProfile = () => {
-    const { } = usePage(title.editProfile)
+    const { } = usePage(title.EDIT_PROFILE)
 
     return (
         <Page className="pt-10" size="w-[50%]">

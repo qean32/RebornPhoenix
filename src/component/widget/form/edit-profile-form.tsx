@@ -20,7 +20,6 @@ export const EditProfileForm: React.FC<Props> = () => {
         useMyForm<editProfileFormSchema>(
             editProfileSchema,
             (data: editProfileFormSchema) => {
-                console.log(data)
                 profileService.UPDATE_PROFILE(conventToFormData(data))
                     .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
                         setTimeout(() => {
@@ -48,7 +47,8 @@ export const EditProfileForm: React.FC<Props> = () => {
                                 defaultValue={user?.name ?? ''}
                                 className='outline-bg-light'
                             />
-                            <CropImgInput name='ava' defaultValue={user?.ava ?? ''} />
+                            {/* @ts-ignore */}
+                            <CropImgInput name='ava' defaultValue={(process.env.SERVER_HOST_STORAGE + user?.ava) ?? ''} className='mt-5' labelClass='w-25 bg-color-darkness' />
                         </div>
                         <LinkPrime
                             path='/reset-password'

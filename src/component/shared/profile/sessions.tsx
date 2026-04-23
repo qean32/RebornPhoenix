@@ -38,7 +38,7 @@ export const Sessions: React.FC<Props> = ({ id }: Props) => {
                         {...item}
                     />
                 )}
-            {!sessions?.length && !loading && <NoFindData title="Пользователь не начинал партии" className="min-h-[500px]" />}
+            {!sessions?.length && !loading && <NoFindData title="Пользователь не начинал партии" className="min-h-[400px]" />}
 
             <ViewAuthor payload_id={id}>
                 <Modal.Root

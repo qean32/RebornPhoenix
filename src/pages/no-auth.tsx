@@ -3,7 +3,7 @@ import { title } from "@/config";
 import { usePage } from "@lib/hook";
 
 export const NoAuth = () => {
-    const { } = usePage(title.noAuth)
+    const { } = usePage(title.NO_AUTH)
 
     return (
         <div className="h-full flex justify-center items-center fixed inset-0">

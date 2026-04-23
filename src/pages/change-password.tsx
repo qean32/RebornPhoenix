@@ -4,7 +4,7 @@ import { usePage } from "@lib/hook"
 import { PageWindow } from "@/component/master/hoc"
 
 export const ChangePassword = () => {
-    const { } = usePage(title.changePassword)
+    const { } = usePage(title.CHANGE_PASSWORD)
 
     return (
         <PageWindow><ChangePasswordForm /></PageWindow>
