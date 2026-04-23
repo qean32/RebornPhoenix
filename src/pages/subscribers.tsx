@@ -10,7 +10,7 @@ import React from "react"
 import { RQKEYFACTORY } from "@/config/rq-key-factory"
 
 export const Subscribers = () => {
-    const { } = usePage(title.subscribers)
+    const { } = usePage(title.SUBSCRIBERS)
 
     return (
         <Page size="w-[70%]">

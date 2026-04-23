@@ -13,7 +13,7 @@ export const ProfileContent: React.FC<Props> = () => {
     const { id } = useParams()
 
     return (
-        <div className={cn("flex w-[300%] pl-1 gap-1 transition-700 min-h-[520px] h-fit", (content == 'character' && '-translate-x-1/3'), content == 'session' && '-translate-x-2/3')}>
+        <div className={cn("flex w-[300%] pl-1 gap-1 transition-700 h-fit", (content == 'character' && '-translate-x-1/3'), content == 'session' && '-translate-x-2/3')}>
             <div className={classParent}>
                 {(content == 'post' || !content) && <Posts id={id ?? 0} />}
             </div>

@@ -3,7 +3,7 @@ import { title } from "@/config";
 import { usePage } from "@lib/hook";
 
 export const P404 = () => {
-    const { } = usePage(title.p404)
+    const { } = usePage(title.P404)
     const navigate = useNavigate();
 
     return (

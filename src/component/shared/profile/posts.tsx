@@ -33,7 +33,7 @@ export const Posts: React.FC<Props> = ({ id }: Props) => {
                     />
                 })}
 
-            {!posts?.length && !loading && <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[500px]" />}
+            {!posts?.length && !loading && <NoFindData title="Пользователь не выкладывал статьи" className="min-h-[400px]" />}
 
             <ViewAuthor payload_id={id ?? 0}>
                 <div className="mt-4">

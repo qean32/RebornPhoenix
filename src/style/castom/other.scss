@@ -233,3 +233,9 @@
         }
     }
 }
+
+button:disabled {
+    opacity: .7 !important;
+    cursor: default !important;
+    pointer-events: none;
+}

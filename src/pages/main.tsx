@@ -15,7 +15,7 @@ import { useSearchParams } from "react-router-dom";
 
 export const Main = () => {
     const [url] = useSearchParams()
-    usePage(title.main, !!url.get(urlTitle.forceupdate))
+    usePage(title.MAIN, !!url.get(urlTitle.forceupdate))
     React.useEffect(() => {
         url.delete(urlTitle.forceupdate)
     }, [])

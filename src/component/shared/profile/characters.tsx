@@ -32,7 +32,9 @@ export const Characters: React.FC<Props> = ({ id }: Props) => {
 
     return (
         <>
-            <div className='grid gap-5 grid-cols-12 adaptive2k-grid-column-15 pt-5'>
+            {!characters?.length && !loading && <NoFindData title="У пользователя нет персонажей!" className="min-h-[350px] w-full" />}
+
+            <div className='grid gap-5 grid-cols-12 adaptive2k-grid-column-15 pt-5 pb-5'>
                 {!!characters?.length &&
                     characters?.map((item, _) =>
                         // @ts-ignore
@@ -49,9 +51,7 @@ export const Characters: React.FC<Props> = ({ id }: Props) => {
                         <PlusButton className='h-[110px] min-w-[85px]' iconSize='icon-sm' />
                     </Modal.Root>
                 </ViewAuthor>
-
             </div>
-            {!characters?.length && !loading && <NoFindData title="У пользователя нет персонажей!" className="min-h-[260px] w-full" />}
         </>
     )
 }

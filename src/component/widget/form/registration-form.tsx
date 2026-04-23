@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { TextInput, Button, PasswordInput, Checkbox, Title } from '@component/ui'
 import { registrationFormSchema, registrationSchema } from '@/model/schema'
 import { FormProvider } from 'react-hook-form'
@@ -14,6 +14,12 @@ interface Props {
 export const RegistrationForm: React.FC<Props> = () => {
     const toast = useToast()
     const navigate = useNavigate()
+    const ref = React.useRef<null | HTMLButtonElement>(null)
+    const checkHandler = useCallback(() => {
+        if (ref.current) {
+            ref.current.disabled = !ref.current.disabled
+        }
+    }, [])
 
     const { form, submitHandler } =
         useMyForm<registrationFormSchema>(
@@ -60,10 +66,11 @@ export const RegistrationForm: React.FC<Props> = () => {
                             placeHolder="повторите пароль"
                             name='confirmPassword'
                         />
-                        <Checkbox title='Мне больше 18 лет и я согласен с условиями конфиденциальности' value />
-
+                        <Checkbox title='Мне больше 18 лет и я согласен с условиями конфиденциальности' fn={checkHandler} />
                     </div>
                     <Button
+                        ref={ref}
+                        disabled={true}
                         variant='acceess'
                         type='submit'
                         className="px-5 py-3"
