@@ -20,13 +20,14 @@ export const SessionLog: React.FC<Props> = () => {
             ref.current.style.top = top + 'px'
             ref.current.style.left = left + 'px'
         }
-    }, [])
+    }, [offset])
 
     React.useEffect(() => {
         const signal = new AbortController
 
         ref.current?.addEventListener('dragstart', (e) => {
             e.stopPropagation()
+            console.log(offset)
             setOffset({ left: e.offsetX, top: e.offsetY })
         }, signal)
 
