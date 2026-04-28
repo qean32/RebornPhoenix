@@ -20,7 +20,7 @@ const ZOOM_CHANGE = 0.1
 export const CropImg: React.FC<Props> = ({ name, setUrl, blob, clear }: Props) => {
     const [crop, setCrop] = useState(DEFAULT_CROP)
     const [zoom, setZoom] = useState(1)
-    const { setValue } = useFormContext()
+    const { setValue } = useFormContext()   
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
     const onCropComplete = useCallback((_: any, croppedAreaPixels: any) => {

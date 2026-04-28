@@ -1,4 +1,4 @@
-import { CropImg } from "@/component/widget/modal/crop-img"
+import { CropImg } from "@/component/widget/modal/crop-img-modal"
 import { blobFile, cn, generateId } from "@/lib/function"
 import React from "react"
 import { useFormContext } from "react-hook-form"
