@@ -19,7 +19,7 @@ export const MainLoader: React.FC<Props> = ({ infinity }: Props) => {
             <Portal>
                 <div className={cn("fixed flex-col gap-7 inset-0 bg-color-darkness flex justify-center items-center transition-300")} style={{ zIndex: '60' }}>
                     <Logo size='icon-2xl' />
-                    <p className='text-md max-w-[400px] text-center'>
+                    <p className='text-xl max-w-1/3 text-center'>
                         {ref.current ?? tip[0]}
                     </p>
                 </div>
@@ -35,7 +35,7 @@ export const MainLoader: React.FC<Props> = ({ infinity }: Props) => {
         <Portal>
             <div className={cn("fixed flex-col gap-7 inset-0 bg-color-darkness flex justify-center items-center transition-300", (!boolean && 'pointer-events-none opacity-0'))} style={{ zIndex: '60' }}>
                 <Logo size='icon-2xl' />
-                <p className='text-md max-w-[400px] text-center'>
+                <p className='text-xl max-w-1/3 text-center'>
                     {ref.current ?? tip[0]}
                 </p>
             </div>

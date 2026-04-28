@@ -14,7 +14,7 @@ export const useThrottleFunction = (
     daley: number = DEFAULT_THROTTLE_MS,
 ) => {
     const lastTriggered = useRef<number>(Date.now())
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const timeoutRef = useRef<any | null>(null)
 
     const cancel = useCallback(() => {
         if (timeoutRef.current) {
