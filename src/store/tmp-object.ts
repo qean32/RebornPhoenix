@@ -35,7 +35,7 @@ const tmpObjectSlice = createSlice({
     initialState,
     reducers: {
         swapTmpObject(state: stateDto, { payload: { key, payload } }: PayloadAction<{ payload: stateT, key: keysTmp }>) {
-            if (payload && state.tmpObject?.id == payload.id) {
+            if (payload && state.tmpObject?.id == payload.id && state.key == key) {
                 state.tmpObject = null
                 state.key = null
                 return

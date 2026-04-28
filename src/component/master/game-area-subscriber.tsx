@@ -23,7 +23,6 @@ const GameAreaSubscriber: React.FC<Props> = () => {
         return <MainLoader infinity />
     }
 
-
     return (
         <Stage
             onWheel={handleWheel}

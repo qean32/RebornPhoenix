@@ -1,23 +1,30 @@
-import { CropImg } from "@/component/widget/modal/crop-img"
+import { CropImg } from "@/component/widget/modal/crop-img-modal"
 import { blobFile, cn, generateId } from "@/lib/function"
 import React from "react"
+import { useFormContext } from "react-hook-form"
 
 interface Props {
     className?: string
     labelClass?: string
     name: string
     defaultValue: string
+    originalName?: string
 }
 
 
-export const CropImgInput: React.FC<Props> = ({ className, labelClass, name, defaultValue }: Props) => {
+export const CropImgInput: React.FC<Props> = ({ className, labelClass, name, defaultValue, originalName }: Props) => {
     const [url, setUrl] = React.useState()
+    const { setValue } = useFormContext()
     const [blob, setBlob] = React.useState<string>("")
     const id = generateId().toString()
     const clearBlob = React.useCallback(() => setBlob(""), [])
     const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setBlob(await blobFile(e.target.files[0]))
+
+            if (originalName) {
+                setValue(originalName, e.target.files[0])
+            }
         }
     };
 

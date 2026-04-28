@@ -28,11 +28,10 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                     .then(response => handleFetchThen(response, toast, "Успех", (data) => {
                         toast('push-entity', { name: data.name })
                         switcher.on()
-                        dispath(swapTmpObject(
-                            {
-                                key: 'push-entity',
-                                payload: { ...data, source: dftSource }
-                            }))
+                        dispath(swapTmpObject({
+                            key: 'push-entity',
+                            payload: { ...data, source: dftSource }
+                        }))
                         push(data);
                     }))
                     .catch(response => handleFetchCatch(response, toast))
@@ -46,13 +45,14 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
             <form className="w-1/2 flex-1 flex flex-col" onSubmit={submitHandler}>
                 <div className="flex-1 pt-15">
                     <div className="h-[180px] flex justify-center items-start">
-                        <CropImgInput defaultValue='' className='h-full w-full flex justify-center items-center' labelClass='w-2/5 bg-color-dark' name='img' />
-                        {/* <UploadImgArea
+                        <CropImgInput
+                            defaultValue=''
+                            className='h-full w-full flex justify-center items-center'
+                            labelClass='w-2/5 bg-color-dark'
                             name='img'
-                            className='w-full flex justify-center'
-                            iconSize='icon-lg'
-                            labelClass='p-0 w-1/2 aspect-square overflow-hidden rounded-full outline-bg-light cursor-pointer bg-color-dark'
-                        /> */}
+                            originalName="originalImg"
+                        />
+
                     </div>
                     <div className='px-5'>
                         <TextInput
