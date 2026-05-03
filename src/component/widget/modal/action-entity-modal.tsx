@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { cn, getHTMLData, stopPropagation } from '@/lib/function'
 import { Modal } from '@/component/master/hoc'
-import { Ava, ModalCross, Title } from '@component/ui'
+import { Ava, Button, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
 import { statusType } from '@/model'
 import { changeEntity } from '@/store/session'
 import { useEntityActionThrow } from '@/lib/hook/throw'
+import { useTmpObject } from '@/lib/hook'
 
 interface Props {
 }
@@ -68,7 +69,11 @@ const sizeMap: { id: number, text: string }[] = [
 export const ActionEntity: React.FC<Props> = ({ }: Props) => {
     const { session: { mapsData, currentMap } } = useAppSelector(state => state.session)
     const [view, swap] = useEntityActionThrow()
+    const { setTmp } = useTmpObject()
     const entity = currentMap ? mapsData[currentMap?.id ?? 'null']?.queue.find(item => item.id == Number(view)) : null
+    const openMoreModal = useCallback(() => {
+        setTmp({ key: "more-entity", payload: { id: entity?.idInBestiary ?? 0 } })
+    }, [entity])
     const dispath = useAppDispatch()
     const changeHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const { key, value } = getHTMLData(e, true)
@@ -88,7 +93,7 @@ export const ActionEntity: React.FC<Props> = ({ }: Props) => {
                 close: 'modal-close'
             }}
         >
-            <div className="bg-color w-4/12 h-5/12 pt-5 -translate-y-1/7 rounded-md flex flex-col overflow-hidden relative" onClick={stopPropagation}>
+            <div className="bg-color w-4/12 h-5/12 pt-5 -translate-y-1/7 rounded-md flex flex-col overflow-hidden relative min-h-fit" onClick={stopPropagation}>
                 <ModalCross onClick={() => swap(0)} />
                 <Title className='p-2 pl-10 uppercase letter-spacing-2px'>Редактор токена</Title>
                 <div className="p-5 px-10 flex">
@@ -119,6 +124,7 @@ export const ActionEntity: React.FC<Props> = ({ }: Props) => {
                                 </Square>
                             })}
                         </div>
+                        <Button onClick={openMoreModal}>Подробнее</Button>
                     </div>
                     <div className="w-full flex justify-start items-center flex-col gap-5 pl-5">
                         <Ava path={entity?.path ?? ''} size='ava-2xl' className='-translate-y-0.5' blob />
