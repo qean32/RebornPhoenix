@@ -1,8 +1,6 @@
-const imgsEnd: string[] = [
-    'png', 'svg', 'jpg', 'webp', 'jpeg'
-]
+import { imgsExtansions } from "@/config"
 
 export const isImageFile = (path: string) => {
     // @ts-ignore
-    return imgsEnd.includes(path.split('.').at(-1))
+    return imgsExtansions.includes(path.split('.').at(-1))
 }

@@ -44,7 +44,7 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
 
             <form className="w-1/2 flex-1 flex flex-col" onSubmit={submitHandler}>
                 <div className="flex-1 pt-15">
-                    <div className="h-[180px] flex justify-center items-start">
+                    <div className="h-1/4 flex justify-center items-start">
                         <CropImgInput
                             defaultValue=''
                             className='h-full w-full flex justify-center items-center'

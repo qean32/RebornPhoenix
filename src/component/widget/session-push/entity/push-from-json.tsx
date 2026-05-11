@@ -31,7 +31,7 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
             <div className="flex-1 pt-15">
                 {key == 'push-object-to-session' && tmpObject?.isEntity &&
                     <>
-                        <div className="h-[180px] flex justify-center items-start">
+                        <div className="h-1/4 flex justify-center items-start">
                             <div className="w-1/2 aspect-square bg-img rounded-full outline-bg-light" style={{ backgroundImage: `url(${tmpObject.path})` }}></div>
                         </div>
                         <div className='px-5'>

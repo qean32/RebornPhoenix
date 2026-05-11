@@ -222,3 +222,7 @@ export const dataTimeOption = {
     day: "numeric",
     timezone: "UTC",
 }
+
+export const imgsExtansions: string[] = [
+    'png', 'svg', 'jpg', 'webp', 'jpeg'
+]

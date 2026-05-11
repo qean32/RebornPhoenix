@@ -32,12 +32,12 @@ export const PushFromJSON: React.FC<Props> = ({ switcher, swap }: Props) => {
                 {tmpObject?.isObject && key == 'push-object-to-session'
                     &&
                     <>
-                        <div className="h-[300px] flex justify-center items-center pt-20">
-                            <div className="w-[99%] aspect-square bg-img rounded-sm" style={{ backgroundImage: `url(${tmpObject.path})` }}></div>
+                        <div className="h-1/2 flex justify-center items-center pt-25">
+                            <div className="h-full aspect-square bg-img rounded-sm" style={{ backgroundImage: `url(${tmpObject.path})` }}></div>
                         </div>
                         <div className='pt-15'>
                             {/* @ts-ignore */}
-                            <DisabledInput value={tmpObject.name} />
+                            <DisabledInput value={tmpObject.name} className='mt-5' />
                         </div>
                     </>
                 }
