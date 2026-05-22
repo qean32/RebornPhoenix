@@ -7,6 +7,8 @@ import { FormProvider } from 'react-hook-form'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/lib/hook/redux'
 import { pushImg } from '@/store/session'
+import { EventMiddleware } from '@/lib/middleware'
+import { KE } from '@/model'
 
 interface Props {
     swap: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>
@@ -16,17 +18,21 @@ const ACCEESS_ACTION = 'Изображение добавленно'
 export const PushImg: React.FC<Props> = ({ swap }: Props) => {
     const toast = useToast()
     const dispath = useAppDispatch()
+    const event = EventMiddleware()
 
     const { form, submitHandler } = useMyForm<{ img: any }>(
         z.object({
             img: z.any()
         }),
         (data: { img: any }) => {
-            sessionService.PUSH_IMG_TO_SESSION(conventToFormData(data))
-                .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
-                    dispath(pushImg({ img: data }))
-                }))
-                .catch(response => handleFetchCatch(response, toast))
+            event({ payload: {}, type: KE.pushImg }, () => {
+                sessionService.PUSH_IMG_TO_SESSION(conventToFormData(data))
+                    .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, (data) => {
+                        dispath(pushImg({ img: data }))
+                    }))
+                    .catch(response => handleFetchCatch(response, toast))
+            }
+            )
         },
         () => { }
     )

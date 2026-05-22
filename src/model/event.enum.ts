@@ -4,15 +4,16 @@ export type eventType = {
 }
 
 export enum KE {
-    swapCurrentMap,
-    changeObject,
-    changeEntity,
-    dice,
-    sync,
-    pushEntity,
-    pushObject,
-    pushCharacter,
-    pushToBestiary,
-    viewImg,
-    pushMap,
+    swapCurrentMap = "swapCurrentMap",
+    changeObject = "changeObject",
+    changeEntity = "changeEntity",
+    dice = "dice",
+    sync = "sync",
+    pushEntity = "pushEntity",
+    pushObject = "pushObject",
+    pushCharacter = "pushCharacter",
+    pushToBestiary = "pushToBestiary",
+    viewImg = "viewImg",
+    pushMap = "pushMap",
+    pushImg = "pushImg",
 }

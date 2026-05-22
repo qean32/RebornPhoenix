@@ -25,7 +25,7 @@ export const PushCharacterInSession: React.FC<Props> = ({ }: Props) => {
             dispath(pushCharacter(data))
         }
     }
-    const [characters, loading] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(view ?? 0), RQKEYFACTORY.characters(0))
+    const [characters, loading] = useRequest<characterInterface[]>(() => profileService.GET_CHARACTERS(view ?? 0), [...RQKEYFACTORY.characters(view), view.toString()])
 
     return (
         <Modal
