@@ -24,6 +24,7 @@ export const ThemeControl: React.FC<Props> = React.memo(() => {
                 <div className='transition-100 px-3 p-1 bg-color-dark-hover pr-5' data={JSON.stringify(themes.darkness)}>Контраст</div>
                 <div className='transition-100 px-3 p-1 bg-color-dark-hover pr-5' data={JSON.stringify(themes.wood)}>Дерево</div>
                 <div className='transition-100 px-3 p-1 bg-color-dark-hover pr-5' data={JSON.stringify(themes._default)}>По умолчанию</div>
+                <div className='transition-100 px-3 p-1 bg-color-dark-hover pr-5' data={JSON.stringify(themes.light)}>Светлая</div>
             </div>
             <span
                 className='w-fit cursor-pointer pointer-events-auto opacity-70'

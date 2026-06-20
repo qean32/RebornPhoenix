@@ -212,6 +212,12 @@ export const themes = {
         "var(--theme-2-darkness)",
         "var(--theme-2-light)",
     ],
+    light: [
+        "var(--theme-4)",
+        "var(--theme-4-dark)",
+        "var(--theme-4-darkness)",
+        "var(--theme-4-light)",
+    ],
 }
 
 export const expires = (1 * 365 * 24 * 60 * 60)

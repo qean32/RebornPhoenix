@@ -2,7 +2,7 @@ import { Button, CropImgInput, TextArea, TextInput } from '@/component/ui'
 import { dftSource } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
 import { useAppDispatch } from '@/lib/hook/redux'
-import { conventToFormData, handleFetchCatch, handleFetchThen, initPushDataToSession } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
 import { pushEntityToSessionFormSchema, pushEntityToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { swapTmpObject } from '@/store/tmp-object'
@@ -16,7 +16,6 @@ interface Props {
 
 
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
-    const push = initPushDataToSession('entity')
     const toast = useToast()
     const dispath = useAppDispatch()
 
@@ -32,7 +31,6 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                             key: 'push-entity',
                             payload: { ...data, source: dftSource }
                         }))
-                        push(data);
                     }))
                     .catch(response => handleFetchCatch(response, toast))
             },

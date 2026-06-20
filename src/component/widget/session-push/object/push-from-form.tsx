@@ -1,7 +1,7 @@
 import { Button, TextInput, UploadImgArea } from '@/component/ui'
 import { dftSource } from '@/config'
 import { TypeUseBoolen, useMyForm, useToast } from '@/lib/hook'
-import { conventToFormData, handleFetchCatch, handleFetchThen, initPushDataToSession } from '@/lib/function'
+import { conventToFormData, handleFetchCatch, handleFetchThen } from '@/lib/function'
 import { pushObjectToSessionFormSchema, pushObjectToSessionSchema } from '@/model/schema'
 import { sessionService } from '@/service/session-service'
 import { useAppDispatch } from '@/store'
@@ -16,7 +16,6 @@ interface Props {
 
 
 export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
-    const push = initPushDataToSession('object')
     const toast = useToast()
     const dispath = useAppDispatch()
 
@@ -33,7 +32,6 @@ export const PushFromForm: React.FC<Props> = ({ swap, switcher }: Props) => {
                                 key: 'push-entity',
                                 payload: { ...data, source: dftSource }
                             }))
-                        push(data);
                     }))
                     .catch(response => handleFetchCatch(response, toast))
             },

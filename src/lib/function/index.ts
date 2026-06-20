@@ -33,5 +33,7 @@ export { handleFetchThen } from './handle-fetch-then'
 export { setTheme } from './set-theme'
 export { formatDate } from './format-date'
 export { blobFile } from './blob-file'
+export { isIncludesStoragePath } from './is-includes-storage-path'
+export { repairPathToStorage } from './repait-path-to-storage'
 import crop from './crop'
 export { crop }

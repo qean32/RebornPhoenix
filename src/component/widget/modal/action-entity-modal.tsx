@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { cn, getHTMLData, stopPropagation } from '@/lib/function'
+import { cn, getHTMLData, repairPathToStorage, stopPropagation } from '@/lib/function'
 import { Modal } from '@/component/master/hoc'
 import { Ava, Button, ModalCross, Title } from '@component/ui'
 import { useAppDispatch, useAppSelector } from '@/lib/hook/redux'
@@ -127,7 +127,7 @@ export const ActionEntity: React.FC<Props> = ({ }: Props) => {
                         <Button onClick={openMoreModal}>Подробнее</Button>
                     </div>
                     <div className="w-full flex justify-start items-center flex-col gap-5 pl-5">
-                        <Ava path={entity?.path ?? ''} size='ava-2xl' className='-translate-y-0.5' blob />
+                        <Ava path={repairPathToStorage(entity?.path ?? '')} size='ava-2xl' className='-translate-y-0.5' blob />
                         <p className='text-2xl'>{entity?.name}</p>
                     </div>
                 </div>
