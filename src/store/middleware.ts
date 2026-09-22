@@ -11,7 +11,7 @@ const toast = (method: Function, next: any, ...args: any) => {
     }, 3000)
 }
 
-const rejectMwthods = ['pushImg', 'pushUser', 'removeEntity', 'removeObject', 'removeMap', 'removeCharacter', 'editBestiary']
+const rejectMwthods = ['removeEntity', 'removeObject', 'removeMap', 'removeCharacter', 'editBestiary']
 
 export const sessionMiddleware = (store: any) => (next: any) => (action: any) => {
     const type = action.type.split('/')

@@ -1,5 +1,5 @@
 import React from 'react'
-import { stopPropagation } from '@/lib/function'
+import { repairPathToStorage, stopPropagation } from '@/lib/function'
 import { Modal } from '@/component/master/hoc'
 import { useAppSelector } from '@/lib/hook/redux'
 import { Initiative, NoFindData } from '@/component/ui'
@@ -18,8 +18,8 @@ export const ObjectMoreDetailed: React.FC<Props> = () => {
         const viewImg = () => {
             // @ts-ignore
             const path = object.path.split('.')
-            path[path?.length - 1] = "original.webp"
-            swap(path.join(".") ?? '')
+            path[path?.length - 1] = "original." + path[path?.length - 1]
+            swap(path.join("") ?? '')
         }
 
         const object =
@@ -50,7 +50,7 @@ export const ObjectMoreDetailed: React.FC<Props> = () => {
                                     :
                                     <div onClick={stopPropagation} className='bg-color h-full w-[340px] cursor-pointer flex items-center justify-start pt-3 flex-col'>
                                         <div className="w-11/12 bg-color-dark aspect-square rounded-sm bg-img"
-                                            style={{ backgroundImage: `url(${object?.path ?? ''})` }}
+                                            style={{ backgroundImage: `url(${repairPathToStorage(object?.path)})` }}
                                             onClick={viewImg}
                                         >
                                         </div>

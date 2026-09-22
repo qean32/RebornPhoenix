@@ -2,6 +2,7 @@ import React from 'react'
 import { Ava } from '@component/ui'
 import { entityInterface } from '@/model'
 import { BestiaryMenu } from '@component/widget/context-menu'
+import { repairPathToStorage } from '@/lib/function'
 
 
 export const InToolEntityItem: React.FC<entityInterface> = (item: entityInterface) => {
@@ -11,7 +12,7 @@ export const InToolEntityItem: React.FC<entityInterface> = (item: entityInterfac
         >
             <div className="flex gap-2 flex-1 justify-between">
                 <div className="flex gap-2">
-                    <Ava path={item.path ?? ''} blob size='ava-md' />
+                    <Ava path={repairPathToStorage(item.path) ?? ''} blob size='ava-md' />
                     <p className='pl-3 flex-1 text-ellipsis overflow-hidden text-nowrap'>{item.name ?? ''}</p>
                 </div>
                 <BestiaryMenu {...item} />

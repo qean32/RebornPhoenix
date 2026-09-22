@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { useMyForm, useToast } from '@/lib/hook'
 import { authServiceItem } from '@/service'
 import { handleFetchCatch, handleFetchThen } from '@/lib/function'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { urlTitle } from '@/config'
 
 interface Props {
@@ -15,6 +15,7 @@ const ACCEESS_ACTION = 'Вы сменили пароль!'
 export const ChangePasswordForm: React.FC<Props> = () => {
     const toast = useToast()
     const [url] = useSearchParams()
+    const navigate = useNavigate()
 
     const { form, submitHandler } =
         useMyForm<changePasswordFormSchema>(
@@ -23,8 +24,8 @@ export const ChangePasswordForm: React.FC<Props> = () => {
                 authServiceItem.CHANGE_PASSWORD(data, url.get(urlTitle.token) ?? "")
                     .then(response => handleFetchThen(response, toast, ACCEESS_ACTION, () => {
                         setTimeout(() => {
-                            toast('message', { text: 'Вы можете закрывать страницу!' })
-                        }, 10000)
+                            navigate("/auth")
+                        }, 2000)
                     }))
                     .catch(response => handleFetchCatch(response, toast))
             },

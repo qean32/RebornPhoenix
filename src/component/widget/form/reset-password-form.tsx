@@ -30,7 +30,7 @@ export const ResetPasswordForm: React.FC<Props> = () => {
 
             <form className="h-full flex justify-center" onSubmit={submitHandler}>
                 <div className="w-fit flex flex-col gap-3">
-                    <Title className="pb-4">Востановление пароля</Title>
+                    <Title className="pb-4">Восстановление пароля</Title>
                     <div className="w-[40vh]">
                         <TextInput
                             placeHolder="почта"

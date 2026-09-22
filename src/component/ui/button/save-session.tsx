@@ -16,14 +16,13 @@ export const SaveSession: React.FC<Props> = React.memo(() => {
     const save = saveJson(toast)
     const { mode } = useAppSelector(state => state.log)
     const session = useAppSelector(state => state.session)
+    // это все по хорошему надо обернуть в асинхроную операцию типа сначала сохранить и про успешном отослать всем
     const eventSave = EventMiddleware()
 
     React.useEffect(() => {
         const interval = setInterval(() => {
-            if (mode == 'play') {
-                eventSave({ payload: session, type: KE.sync }, () => { })
-                save()
-            }
+            save()
+            eventSave({ payload: { data: session.info.session, bestiary: session.info.bestiary }, type: KE.sync }, () => { })
         }, 300000)
 
         return () => clearInterval(interval)
@@ -31,7 +30,10 @@ export const SaveSession: React.FC<Props> = React.memo(() => {
 
     return (
         <FillHoverHint title='Сохранить'>
-            <ButtonInGroup onClick={save} children={<img className='icon-sm' src='/icon/save.svg' />} />
+            <ButtonInGroup onClick={() => {
+                save()
+                eventSave({ payload: { data: session.info.session, bestiary: session.info.bestiary }, type: KE.sync }, () => { })
+            }} children={<img className='icon-sm' src='/icon/save.svg' />} />
         </FillHoverHint>
     )
 })

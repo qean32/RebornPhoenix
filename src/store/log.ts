@@ -16,7 +16,7 @@ const logSlice = createSlice({
     reducers: {
         pushLog(state: stateDto, { payload }: PayloadAction<{ log: string }>) {
             state.logs = [
-                payload.log,
+                payload.log + " " + new Date().toLocaleTimeString("ru-RU"),
                 ...state.logs,
             ]
         },

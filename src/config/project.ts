@@ -25,7 +25,7 @@ export const title = {
     FORUM: 'Форум',
     MAIN: 'Главная',
     PROFILE: 'Профиль',
-    RESET_PASSWORD: 'Востановление аккаунта',
+    RESET_PASSWORD: 'Восстановление аккаунта',
     FAQ: 'Часто задаваемые вопросы',
 }
 
